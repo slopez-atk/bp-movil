@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @lawyer.name
+%p
+  %b Lastname:
+  = @lawyer.lastname
+%p
+  %b Phone:
+  = @lawyer.phone
+
+= link_to 'Edit', edit_lawyer_path(@lawyer)
+\|
+= link_to 'Back', lawyers_path

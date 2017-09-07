@@ -21,6 +21,9 @@ gem 'webpacker'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
+# Webpacker React
+gem 'webpacker-react', "~> 0.2.0"
+
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
@@ -34,6 +37,13 @@ gem 'jbuilder', '~> 2.5'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+
+# Devise para autenticacion de usuarios
+gem 'devise', git: 'https://github.com/gogovan/devise.git', branch: 'rails-5.1'
+# Haml para las vistas
+gem 'haml-rails'
+# Anotaciones de los modelos
+gem 'annotate'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -1,0 +1,25 @@
+%h1 Listing lawyers
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th Lastname
+      %th Phone
+      %th
+      %th
+      %th
+
+  %tbody
+    - @lawyers.each do |lawyer|
+      %tr
+        %td= lawyer.name
+        %td= lawyer.lastname
+        %td= lawyer.phone
+        %td= link_to 'Show', lawyer
+        %td= link_to 'Edit', edit_lawyer_path(lawyer)
+        %td= link_to 'Destroy', lawyer, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Lawyer', new_lawyer_path

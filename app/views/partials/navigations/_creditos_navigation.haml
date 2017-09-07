@@ -1,0 +1,14 @@
+%nav.navbar-inverse.navbar-embossed
+  .container-fluid
+    .navbar-header
+      %li= link_to "Home", creditos_root_path, class: "navbar-brand"
+    .collapse.navbar-collapse
+      %ul.nav.navbar-nav.navbar-right
+
+        - if current_user.permissions == 5
+          %li= link_to "Jueces", lawyers_path
+        - if user_signed_in?
+          %li= link_to "Mi Cuenta", edit_user_registration_path
+          %li.active= link_to "Cerrar sesion", destroy_user_session_path, method: :delete
+        - else
+          %li.active= link_to "Iniciar sesion", new_user_session_path

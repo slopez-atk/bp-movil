@@ -1,0 +1,18 @@
+!!! 5
+%html
+  %head
+    %title Cacmu
+    = csrf_meta_tags
+    %link{rel: "stylesheet", href: "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"}
+    = stylesheet_link_tag    'application', media: 'all', :'data-turbolinks-track' => 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    %link{rel: "stylesheet", href: "https://fonts.googleapis.com/css?family=Lato:300,400,700,900"}
+    %link{rel: "stylesheet", href: "https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.css"}
+  %body
+    = render "partials/navigations/creditos_navigation"
+    %div{style:"#{'display:none;' if notice.nil? && alert.nil?}", class: "large-padding red white-text text-center no-margin"}
+      = notice
+      = alert
+      %p{style: "float: right",class: "close-parent"}
+        x
+    = yield

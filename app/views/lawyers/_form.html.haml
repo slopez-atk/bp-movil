@@ -1,0 +1,19 @@
+= form_for @lawyer do |f|
+  - if @lawyer.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@lawyer.errors.count, "error")} prohibited this lawyer from being saved:"
+      %ul
+        - @lawyer.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :lastname
+    = f.text_field :lastname
+  .field
+    = f.label :phone
+    = f.text_field :phone
+  .actions
+    = f.submit 'Save'

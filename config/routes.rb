@@ -1,3 +1,16 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :lawyers
+  devise_for :users, controllers: {
+      sessions: 'authentication/sessions',
+      registrations: 'authentication/registrations'
+  }
+
+  authenticated :user do
+    root to: "main#dashboard", as: :authenticated_root
+  end
+
+  root to: "main#home"
+
+  get 'home_creditos', to: "main#home_creditos", as: :creditos_root
+
 end
