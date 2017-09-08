@@ -2,30 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9c8cf5a2-853b-4585-8271-fc15264d8f44" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/flat-ui/main.coffee" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/partials/creditos/_jcreditos_home_tables.haml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/javascripts/lawyers.coffee" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/javascripts/main.coffee" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/lawyers.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/main.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/scaffolds.scss" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/AppCacmu.iml" afterPath="$PROJECT_DIR$/.idea/AppCacmu.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/application.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/application.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/application_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/application_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/main_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/main_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/lawyer.rb" afterPath="$PROJECT_DIR$/app/models/lawyer.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/user.rb" afterPath="$PROJECT_DIR$/app/models/user.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/main/home_creditos.haml" afterPath="$PROJECT_DIR$/app/views/main/home_creditos.haml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/partials/navigations/_creditos_navigation.haml" afterPath="$PROJECT_DIR$/app/views/partials/navigations/_creditos_navigation.haml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/routes.rb" afterPath="$PROJECT_DIR$/config/routes.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/schema.rb" afterPath="$PROJECT_DIR$/db/schema.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/fixtures/lawyers.yml" afterPath="$PROJECT_DIR$/test/fixtures/lawyers.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/fixtures/users.yml" afterPath="$PROJECT_DIR$/test/fixtures/users.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/models/lawyer_test.rb" afterPath="$PROJECT_DIR$/test/models/lawyer_test.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/models/user_test.rb" afterPath="$PROJECT_DIR$/test/models/user_test.rb" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
@@ -45,7 +22,7 @@
         <entry file="file://$PROJECT_DIR$/app/views/partials/creditos/_jcobranzas_home_tables.haml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="252">
-              <caret line="84" column="40" lean-forward="true" selection-start-line="84" selection-start-column="12" selection-end-line="84" selection-end-column="40" />
+              <caret line="84" column="40" lean-forward="false" selection-start-line="84" selection-start-column="12" selection-end-line="84" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -75,7 +52,7 @@
         <entry file="file://$PROJECT_DIR$/app/models/insolvency_stage.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="253">
-              <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+              <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -461,12 +438,12 @@
       <updated>1504719847494</updated>
       <workItem from="1504719848822" duration="9259000" />
       <workItem from="1504752049853" duration="7569000" />
-      <workItem from="1504798879011" duration="22782000" />
+      <workItem from="1504798879011" duration="23020000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39610000" />
+    <option name="totallyTimeSpent" value="39848000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="27" width="1280" height="773" extended-state="6" />
@@ -878,7 +855,7 @@
     <entry file="file://$PROJECT_DIR$/app/models/insolvency_stage.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="253">
-          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -894,7 +871,7 @@
     <entry file="file://$PROJECT_DIR$/app/views/partials/creditos/_jcobranzas_home_tables.haml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
-          <caret line="84" column="40" lean-forward="true" selection-start-line="84" selection-start-column="12" selection-end-line="84" selection-end-column="40" />
+          <caret line="84" column="40" lean-forward="false" selection-start-line="84" selection-start-column="12" selection-end-line="84" selection-end-column="40" />
           <folding />
         </state>
       </provider>
