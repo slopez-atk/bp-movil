@@ -1,0 +1,85 @@
+%h1 Listing insolvencies
+
+%table
+  %thead
+    %tr
+      %th Credit
+      %th Socio
+      %th Nombres
+      %th Cedula
+      %th Telefono
+      %th Celular
+      %th Direccion
+      %th Sector
+      %th Parroquia
+      %th Canton
+      %th Nombre grupo
+      %th Grupo solidario
+      %th Sucursal
+      %th Oficial credito
+      %th Cartera heredada
+      %th Fecha concesion
+      %th Fecha vencimiento
+      %th Tipo garantia
+      %th Garantia real
+      %th Garantia fiduciaria
+      %th Dir garante
+      %th Tel garante
+      %th Valor cartera castigada
+      %th Bienes
+      %th Tipo credito
+      %th Insolvency stage
+      %th Insolvency activity
+      %th Estado
+      %th Observaciones
+      %th Juicio
+      %th Fentrega juicios
+      %th Fcalificacion juicio
+      %th Codigo juicio
+      %th
+      %th
+      %th
+
+  %tbody
+    - @insolvencies.each do |insolvency|
+      %tr
+        %td= insolvency.credit_id
+        %td= insolvency.socio_id
+        %td= insolvency.nombres
+        %td= insolvency.cedula
+        %td= insolvency.telefono
+        %td= insolvency.celular
+        %td= insolvency.direccion
+        %td= insolvency.sector
+        %td= insolvency.parroquia
+        %td= insolvency.canton
+        %td= insolvency.nombre_grupo
+        %td= insolvency.grupo_solidario
+        %td= insolvency.sucursal
+        %td= insolvency.oficial_credito
+        %td= insolvency.cartera_heredada
+        %td= insolvency.fecha_concesion
+        %td= insolvency.fecha_vencimiento
+        %td= insolvency.tipo_garantia
+        %td= insolvency.garantia_real
+        %td= insolvency.garantia_fiduciaria
+        %td= insolvency.dir_garante
+        %td= insolvency.tel_garante
+        %td= insolvency.valor_cartera_castigada
+        %td= insolvency.bienes
+        %td= insolvency.tipo_credito
+        %td= insolvency.insolvency_stage
+        %td= insolvency.insolvency_activity
+        %td= insolvency.estado
+        %td= insolvency.observaciones
+        %td= insolvency.juicio_id
+        %td= insolvency.fentrega_juicios
+        %td= insolvency.fcalificacion_juicio
+        %td= insolvency.codigo_juicio
+        %td= link_to 'Show', insolvency
+        %td= link_to 'Edit', edit_insolvency_path(insolvency)
+        %td= link_to 'Destroy', insolvency, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Insolvency', new_insolvency_path

@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
 
   protected
   def set_layout
+    return
     return "creditos_judiciales" unless action_name == "dashboard" or action_name == "home"
     "application"
   end

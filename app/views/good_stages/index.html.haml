@@ -1,0 +1,25 @@
+%h1 Listing good_stages
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th Months
+      %th Days
+      %th
+      %th
+      %th
+
+  %tbody
+    - @good_stages.each do |good_stage|
+      %tr
+        %td= good_stage.name
+        %td= good_stage.months
+        %td= good_stage.days
+        %td= link_to 'Show', good_stage
+        %td= link_to 'Edit', edit_good_stage_path(good_stage)
+        %td= link_to 'Destroy', good_stage, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Good stage', new_good_stage_path

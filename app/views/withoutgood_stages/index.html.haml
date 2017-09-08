@@ -1,0 +1,25 @@
+%h1 Listing withoutgood_stages
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th Months
+      %th Days
+      %th
+      %th
+      %th
+
+  %tbody
+    - @withoutgood_stages.each do |withoutgood_stage|
+      %tr
+        %td= withoutgood_stage.name
+        %td= withoutgood_stage.months
+        %td= withoutgood_stage.days
+        %td= link_to 'Show', withoutgood_stage
+        %td= link_to 'Edit', edit_withoutgood_stage_path(withoutgood_stage)
+        %td= link_to 'Destroy', withoutgood_stage, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Withoutgood stage', new_withoutgood_stage_path

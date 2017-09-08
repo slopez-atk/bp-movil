@@ -10,7 +10,119 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170907050649) do
+ActiveRecord::Schema.define(version: 20170907195440) do
+
+  create_table "good_activities", force: :cascade do |t|
+    t.string "name"
+    t.integer "good_stage_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["good_stage_id"], name: "index_good_activities_on_good_stage_id"
+  end
+
+  create_table "good_stages", force: :cascade do |t|
+    t.string "name"
+    t.integer "months"
+    t.integer "days"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "goods", force: :cascade do |t|
+    t.string "credit_id"
+    t.string "socio_id"
+    t.string "nombres"
+    t.string "cedula"
+    t.string "telefono"
+    t.string "celular"
+    t.string "direccion"
+    t.string "sector"
+    t.string "parroquia"
+    t.string "canton"
+    t.string "nombre_grupo"
+    t.string "grupo_solidario"
+    t.string "sucursal"
+    t.string "oficial_credito"
+    t.string "cartera_heredada"
+    t.string "fecha_concesion"
+    t.string "fecha_vencimiento"
+    t.string "tipo_garantia"
+    t.string "garantia_real"
+    t.string "garantia_fiduciaria"
+    t.string "dir_garante"
+    t.string "tel_garante"
+    t.string "valor_cartera_castigada"
+    t.string "bienes"
+    t.string "tipo_credito"
+    t.integer "good_stage_id"
+    t.integer "good_activity_id"
+    t.string "estado"
+    t.text "observaciones"
+    t.string "juicio_id"
+    t.date "fentrega_juicios"
+    t.date "fcalificacion_juicio"
+    t.string "codigo_juicio"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["good_activity_id"], name: "index_goods_on_good_activity_id"
+    t.index ["good_stage_id"], name: "index_goods_on_good_stage_id"
+  end
+
+  create_table "insolvencies", force: :cascade do |t|
+    t.string "credit_id"
+    t.string "socio_id"
+    t.string "nombres"
+    t.string "cedula"
+    t.string "telefono"
+    t.string "celular"
+    t.string "direccion"
+    t.string "sector"
+    t.string "parroquia"
+    t.string "canton"
+    t.string "nombre_grupo"
+    t.string "grupo_solidario"
+    t.string "sucursal"
+    t.string "oficial_credito"
+    t.string "cartera_heredada"
+    t.string "fecha_concesion"
+    t.string "fecha_vencimiento"
+    t.string "tipo_garantia"
+    t.string "garantia_real"
+    t.string "garantia_fiduciaria"
+    t.string "dir_garante"
+    t.string "tel_garante"
+    t.string "valor_cartera_castigada"
+    t.string "bienes"
+    t.string "tipo_credito"
+    t.integer "insolvency_stage_id"
+    t.integer "insolvency_activity_id"
+    t.string "estado"
+    t.text "observaciones"
+    t.string "juicio_id"
+    t.date "fentrega_juicios"
+    t.date "fcalificacion_juicio"
+    t.string "codigo_juicio"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["insolvency_activity_id"], name: "index_insolvencies_on_insolvency_activity_id"
+    t.index ["insolvency_stage_id"], name: "index_insolvencies_on_insolvency_stage_id"
+  end
+
+  create_table "insolvency_activities", force: :cascade do |t|
+    t.string "name"
+    t.integer "insolvency_stage_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["insolvency_stage_id"], name: "index_insolvency_activities_on_insolvency_stage_id"
+  end
+
+  create_table "insolvency_stages", force: :cascade do |t|
+    t.string "name"
+    t.integer "months"
+    t.integer "days"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "lawyers", force: :cascade do |t|
     t.string "name"
@@ -40,6 +152,62 @@ ActiveRecord::Schema.define(version: 20170907050649) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "without_good_activities", force: :cascade do |t|
+    t.string "name"
+    t.integer "withoutgood_stage_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["withoutgood_stage_id"], name: "index_without_good_activities_on_withoutgood_stage_id"
+  end
+
+  create_table "without_goods", force: :cascade do |t|
+    t.string "credit_id"
+    t.string "socio_id"
+    t.string "nombres"
+    t.string "cedula"
+    t.string "telefono"
+    t.string "celular"
+    t.string "direccion"
+    t.string "sector"
+    t.string "parroquia"
+    t.string "canton"
+    t.string "nombre_grupo"
+    t.string "grupo_solidario"
+    t.string "sucursal"
+    t.string "oficial_credito"
+    t.string "cartera_heredada"
+    t.string "fecha_concesion"
+    t.string "fecha_vencimiento"
+    t.string "tipo_garantia"
+    t.string "garantia_real"
+    t.string "garantia_fiduciaria"
+    t.string "dir_garante"
+    t.string "tel_garante"
+    t.string "valor_cartera_castigada"
+    t.string "bienes"
+    t.string "tipo_credito"
+    t.integer "withoutgood_stage_id"
+    t.integer "without_good_activity_id"
+    t.string "estado"
+    t.text "observaciones"
+    t.string "juicio_id"
+    t.date "fentrega_juicios"
+    t.date "fcalificacion_juicio"
+    t.string "codigo_juicio"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["without_good_activity_id"], name: "index_without_goods_on_without_good_activity_id"
+    t.index ["withoutgood_stage_id"], name: "index_without_goods_on_withoutgood_stage_id"
+  end
+
+  create_table "withoutgood_stages", force: :cascade do |t|
+    t.string "name"
+    t.integer "months"
+    t.integer "days"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

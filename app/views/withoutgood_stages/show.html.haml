@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @withoutgood_stage.name
+%p
+  %b Months:
+  = @withoutgood_stage.months
+%p
+  %b Days:
+  = @withoutgood_stage.days
+
+= link_to 'Edit', edit_withoutgood_stage_path(@withoutgood_stage)
+\|
+= link_to 'Back', withoutgood_stages_path

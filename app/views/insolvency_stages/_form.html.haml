@@ -1,0 +1,19 @@
+= form_for @insolvency_stage do |f|
+  - if @insolvency_stage.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@insolvency_stage.errors.count, "error")} prohibited this insolvency_stage from being saved:"
+      %ul
+        - @insolvency_stage.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :months
+    = f.number_field :months
+  .field
+    = f.label :days
+    = f.number_field :days
+  .actions
+    = f.submit 'Save'

@@ -1,0 +1,2 @@
+module WithoutgoodStagesHelper
+end

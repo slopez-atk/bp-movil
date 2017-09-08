@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @insolvency_activity.name
+%p
+  %b Insolvency stage:
+  = @insolvency_activity.insolvency_stage
+
+= link_to 'Edit', edit_insolvency_activity_path(@insolvency_activity)
+\|
+= link_to 'Back', insolvency_activities_path

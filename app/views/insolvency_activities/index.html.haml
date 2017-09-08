@@ -1,0 +1,23 @@
+%h1 Listing insolvency_activities
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th Insolvency stage
+      %th
+      %th
+      %th
+
+  %tbody
+    - @insolvency_activities.each do |insolvency_activity|
+      %tr
+        %td= insolvency_activity.name
+        %td= insolvency_activity.insolvency_stage
+        %td= link_to 'Show', insolvency_activity
+        %td= link_to 'Edit', edit_insolvency_activity_path(insolvency_activity)
+        %td= link_to 'Destroy', insolvency_activity, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Insolvency activity', new_insolvency_activity_path

@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @without_good_activity.name
+%p
+  %b Withoutgood stage:
+  = @without_good_activity.withoutgood_stage
+
+= link_to 'Edit', edit_without_good_activity_path(@without_good_activity)
+\|
+= link_to 'Back', without_good_activities_path

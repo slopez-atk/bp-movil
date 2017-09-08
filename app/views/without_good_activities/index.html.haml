@@ -1,0 +1,23 @@
+%h1 Listing without_good_activities
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th Withoutgood stage
+      %th
+      %th
+      %th
+
+  %tbody
+    - @without_good_activities.each do |without_good_activity|
+      %tr
+        %td= without_good_activity.name
+        %td= without_good_activity.withoutgood_stage
+        %td= link_to 'Show', without_good_activity
+        %td= link_to 'Edit', edit_without_good_activity_path(without_good_activity)
+        %td= link_to 'Destroy', without_good_activity, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Without good activity', new_without_good_activity_path

@@ -1,0 +1,85 @@
+%h1 Listing goods
+
+%table
+  %thead
+    %tr
+      %th Credit
+      %th Socio
+      %th Nombres
+      %th Cedula
+      %th Telefono
+      %th Celular
+      %th Direccion
+      %th Sector
+      %th Parroquia
+      %th Canton
+      %th Nombre grupo
+      %th Grupo solidario
+      %th Sucursal
+      %th Oficial credito
+      %th Cartera heredada
+      %th Fecha concesion
+      %th Fecha vencimiento
+      %th Tipo garantia
+      %th Garantia real
+      %th Garantia fiduciaria
+      %th Dir garante
+      %th Tel garante
+      %th Valor cartera castigada
+      %th Bienes
+      %th Tipo credito
+      %th Good stage
+      %th Good activity
+      %th Estado
+      %th Observaciones
+      %th Juicio
+      %th Fentrega juicios
+      %th Fcalificacion juicio
+      %th Codigo juicio
+      %th
+      %th
+      %th
+
+  %tbody
+    - @goods.each do |good|
+      %tr
+        %td= good.credit_id
+        %td= good.socio_id
+        %td= good.nombres
+        %td= good.cedula
+        %td= good.telefono
+        %td= good.celular
+        %td= good.direccion
+        %td= good.sector
+        %td= good.parroquia
+        %td= good.canton
+        %td= good.nombre_grupo
+        %td= good.grupo_solidario
+        %td= good.sucursal
+        %td= good.oficial_credito
+        %td= good.cartera_heredada
+        %td= good.fecha_concesion
+        %td= good.fecha_vencimiento
+        %td= good.tipo_garantia
+        %td= good.garantia_real
+        %td= good.garantia_fiduciaria
+        %td= good.dir_garante
+        %td= good.tel_garante
+        %td= good.valor_cartera_castigada
+        %td= good.bienes
+        %td= good.tipo_credito
+        %td= good.good_stage
+        %td= good.good_activity
+        %td= good.estado
+        %td= good.observaciones
+        %td= good.juicio_id
+        %td= good.fentrega_juicios
+        %td= good.fcalificacion_juicio
+        %td= good.codigo_juicio
+        %td= link_to 'Show', good
+        %td= link_to 'Edit', edit_good_path(good)
+        %td= link_to 'Destroy', good, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Good', new_good_path

@@ -1,1 +1,4 @@
-%h3.text-center Home Creditos
+- if current_user.permissions == 5
+  = render "partials/creditos/jcreditos_home_tables"
+- elsif current_user.permissions == 4
+  = render "partials/creditos/jcobranzas_home_tables"

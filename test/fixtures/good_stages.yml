@@ -1,0 +1,23 @@
+# == Schema Information
+#
+# Table name: good_stages
+#
+#  id         :integer          not null, primary key
+#  name       :string
+#  months     :integer
+#  days       :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  months: MyString
+  days: MyString
+
+two:
+  name: MyString
+  months: MyString
+  days: MyString

@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @good_stage.name
+%p
+  %b Months:
+  = @good_stage.months
+%p
+  %b Days:
+  = @good_stage.days
+
+= link_to 'Edit', edit_good_stage_path(@good_stage)
+\|
+= link_to 'Back', good_stages_path

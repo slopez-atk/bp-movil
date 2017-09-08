@@ -1,0 +1,85 @@
+%h1 Listing without_goods
+
+%table
+  %thead
+    %tr
+      %th Credit
+      %th Socio
+      %th Nombres
+      %th Cedula
+      %th Telefono
+      %th Celular
+      %th Direccion
+      %th Sector
+      %th Parroquia
+      %th Canton
+      %th Nombre grupo
+      %th Grupo solidario
+      %th Sucursal
+      %th Oficial credito
+      %th Cartera heredada
+      %th Fecha concesion
+      %th Fecha vencimiento
+      %th Tipo garantia
+      %th Garantia real
+      %th Garantia fiduciaria
+      %th Dir garante
+      %th Tel garante
+      %th Valor cartera castigada
+      %th Bienes
+      %th Tipo credito
+      %th Withoutgood stage
+      %th Without good activity
+      %th Estado
+      %th Observaciones
+      %th Juicio
+      %th Fentrega juicios
+      %th Fcalificacion juicio
+      %th Codigo juicio
+      %th
+      %th
+      %th
+
+  %tbody
+    - @without_goods.each do |without_good|
+      %tr
+        %td= without_good.credit_id
+        %td= without_good.socio_id
+        %td= without_good.nombres
+        %td= without_good.cedula
+        %td= without_good.telefono
+        %td= without_good.celular
+        %td= without_good.direccion
+        %td= without_good.sector
+        %td= without_good.parroquia
+        %td= without_good.canton
+        %td= without_good.nombre_grupo
+        %td= without_good.grupo_solidario
+        %td= without_good.sucursal
+        %td= without_good.oficial_credito
+        %td= without_good.cartera_heredada
+        %td= without_good.fecha_concesion
+        %td= without_good.fecha_vencimiento
+        %td= without_good.tipo_garantia
+        %td= without_good.garantia_real
+        %td= without_good.garantia_fiduciaria
+        %td= without_good.dir_garante
+        %td= without_good.tel_garante
+        %td= without_good.valor_cartera_castigada
+        %td= without_good.bienes
+        %td= without_good.tipo_credito
+        %td= without_good.withoutgood_stage
+        %td= without_good.without_good_activity
+        %td= without_good.estado
+        %td= without_good.observaciones
+        %td= without_good.juicio_id
+        %td= without_good.fentrega_juicios
+        %td= without_good.fcalificacion_juicio
+        %td= without_good.codigo_juicio
+        %td= link_to 'Show', without_good
+        %td= link_to 'Edit', edit_without_good_path(without_good)
+        %td= link_to 'Destroy', without_good, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Without good', new_without_good_path

@@ -1,0 +1,109 @@
+= form_for @without_good do |f|
+  - if @without_good.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@without_good.errors.count, "error")} prohibited this without_good from being saved:"
+      %ul
+        - @without_good.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :credit_id
+    = f.text_field :credit_id
+  .field
+    = f.label :socio_id
+    = f.text_field :socio_id
+  .field
+    = f.label :nombres
+    = f.text_field :nombres
+  .field
+    = f.label :cedula
+    = f.text_field :cedula
+  .field
+    = f.label :telefono
+    = f.text_field :telefono
+  .field
+    = f.label :celular
+    = f.text_field :celular
+  .field
+    = f.label :direccion
+    = f.text_field :direccion
+  .field
+    = f.label :sector
+    = f.text_field :sector
+  .field
+    = f.label :parroquia
+    = f.text_field :parroquia
+  .field
+    = f.label :canton
+    = f.text_field :canton
+  .field
+    = f.label :nombre_grupo
+    = f.text_field :nombre_grupo
+  .field
+    = f.label :grupo_solidario
+    = f.text_field :grupo_solidario
+  .field
+    = f.label :sucursal
+    = f.text_field :sucursal
+  .field
+    = f.label :oficial_credito
+    = f.text_field :oficial_credito
+  .field
+    = f.label :cartera_heredada
+    = f.text_field :cartera_heredada
+  .field
+    = f.label :fecha_concesion
+    = f.text_field :fecha_concesion
+  .field
+    = f.label :fecha_vencimiento
+    = f.text_field :fecha_vencimiento
+  .field
+    = f.label :tipo_garantia
+    = f.text_field :tipo_garantia
+  .field
+    = f.label :garantia_real
+    = f.text_field :garantia_real
+  .field
+    = f.label :garantia_fiduciaria
+    = f.text_field :garantia_fiduciaria
+  .field
+    = f.label :dir_garante
+    = f.text_field :dir_garante
+  .field
+    = f.label :tel_garante
+    = f.text_field :tel_garante
+  .field
+    = f.label :valor_cartera_castigada
+    = f.text_field :valor_cartera_castigada
+  .field
+    = f.label :bienes
+    = f.text_field :bienes
+  .field
+    = f.label :tipo_credito
+    = f.text_field :tipo_credito
+  .field
+    = f.label :withoutgood_stage
+    = f.text_field :withoutgood_stage
+  .field
+    = f.label :without_good_activity
+    = f.text_field :without_good_activity
+  .field
+    = f.label :estado
+    = f.text_field :estado
+  .field
+    = f.label :observaciones
+    = f.text_area :observaciones
+  .field
+    = f.label :juicio_id
+    = f.text_field :juicio_id
+  .field
+    = f.label :fentrega_juicios
+    = f.date_select :fentrega_juicios
+  .field
+    = f.label :fcalificacion_juicio
+    = f.date_select :fcalificacion_juicio
+  .field
+    = f.label :codigo_juicio
+    = f.text_field :codigo_juicio
+  .actions
+    = f.submit 'Save'

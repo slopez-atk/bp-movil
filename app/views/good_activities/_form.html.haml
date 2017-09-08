@@ -1,0 +1,16 @@
+= form_for @good_activity do |f|
+  - if @good_activity.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@good_activity.errors.count, "error")} prohibited this good_activity from being saved:"
+      %ul
+        - @good_activity.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :good_stage
+    = f.text_field :good_stage
+  .actions
+    = f.submit 'Save'

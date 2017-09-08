@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @insolvency_stage.name
+%p
+  %b Months:
+  = @insolvency_stage.months
+%p
+  %b Days:
+  = @insolvency_stage.days
+
+= link_to 'Edit', edit_insolvency_stage_path(@insolvency_stage)
+\|
+= link_to 'Back', insolvency_stages_path

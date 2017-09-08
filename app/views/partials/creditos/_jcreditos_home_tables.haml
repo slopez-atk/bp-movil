@@ -1,0 +1,97 @@
+%h3.text-center.text-muted Juicios con Bienes
+
+.row.center-xs
+  .col-xs-11
+    .table-responsive
+      %table.table.table-striped.table-hover
+        %thead
+          %tr
+            %th Nombre
+            %th Id Crédito
+            %th Id Socio
+            %th Cédula
+            %th Etapa Actual
+            %th Etapa Estimada
+            %th Estado
+            %th Semaforo
+            %th Ver
+        %tbody
+          - @conBienes.each do |trial|
+            - semaforos = trial.semaforo
+            %tr
+              %td= trial.nombres
+              %td= trial.credit_id
+              %td= trial.socio_id
+              %td= trial.cedula
+              %td= trial.good_stage.name
+              %td= trial.etapa_estimada
+              %td= trial.estado
+              %td
+                %span.label{class: "#{semaforos[1]}"}
+                  = semaforos[0]
+              %td= link_to "Ver", good_path(trial), class: "btn btn-info"
+
+%h3.text-center.text-muted Juicios sin Bienes
+.row.center-xs
+  .col-xs-11
+    .table-responsive
+      %table.table.table-striped.table-hover
+        %thead
+          %tr
+            %th Nombre
+            %th Id Crédito
+            %th Id Socio
+            %th Cédula
+            %th Etapa Actual
+            %th Etapa Estimada
+            %th Estado
+            %th Semaforo
+            %th Ver
+        %tbody
+          - @sinBienes.each do |trial|
+            - semaforos = trial.semaforo
+            %tr
+              %td= trial.nombres
+              %td= trial.credit_id
+              %td= trial.socio_id
+              %td= trial.cedula
+              %td= trial.withoutgood_stage.name
+              %td= trial.etapa_estimada
+              %td= trial.estado
+              %td
+                %span.label{class: "#{semaforos[1]}"}
+                  = semaforos[0]
+              %td= link_to "Ver", without_good_path(trial), class: "btn btn-info"
+
+
+%h3.text-center.text-muted Juicios de Insolvencia
+.row.center-xs
+  .col-xs-11
+    .table-responsive
+      %table.table.table-striped.table-hover
+        %thead
+          %tr
+            %th Nombre
+            %th Id Crédito
+            %th Id Socio
+            %th Cédula
+            %th Etapa Actual
+            %th Etapa Estimada
+            %th Estado
+            %th Semaforo
+            %th Ver
+        %tbody
+          - @insolvencias.each do |trial|
+            - semaforos = trial.semaforo
+            %tr
+              %td= trial.nombres
+              %td= trial.credit_id
+              %td= trial.socio_id
+              %td= trial.cedula
+              %td= trial.insolvency_stage.name
+              %td= trial.etapa_estimada
+              %td= trial.estado
+              %td
+                %span.label{class: "#{semaforos[1]}"}
+                  = semaforos[0]
+              %td= link_to "Ver", insolvency_path(trial), class: "btn btn-info"

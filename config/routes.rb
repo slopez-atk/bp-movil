@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+  resources :insolvencies
+  resources :insolvency_activities
+  resources :insolvency_stages
+  resources :without_goods
+  resources :without_good_activities
+  resources :withoutgood_stages
+  resources :goods
+  resources :good_activities
+  resources :good_stages
   resources :lawyers
   devise_for :users, controllers: {
       sessions: 'authentication/sessions',

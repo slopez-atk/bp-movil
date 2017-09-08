@@ -1,0 +1,2 @@
+module WithoutGoodsHelper
+end

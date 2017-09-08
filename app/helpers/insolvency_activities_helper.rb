@@ -1,0 +1,2 @@
+module InsolvencyActivitiesHelper
+end
