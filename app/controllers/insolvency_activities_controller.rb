@@ -15,6 +15,9 @@ class InsolvencyActivitiesController < ApplicationController
   # GET /insolvency_activities/new
   def new
     @insolvency_activity = InsolvencyActivity.new
+    @insolvency_activity.insolvency_stage_id = params["insolvency_stage"]
+
+    @activities = InsolvencyActivity.where(insolvency_stage_id: params["insolvency_stage"])
   end
 
   # GET /insolvency_activities/1/edit
@@ -28,7 +31,7 @@ class InsolvencyActivitiesController < ApplicationController
 
     respond_to do |format|
       if @insolvency_activity.save
-        format.html { redirect_to @insolvency_activity, notice: 'Insolvency activity was successfully created.' }
+        format.html { redirect_to stages_root_path, notice: 'Insolvency activity was successfully created.' }
         format.json { render :show, status: :created, location: @insolvency_activity }
       else
         format.html { render :new }
@@ -70,5 +73,9 @@ class InsolvencyActivitiesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def insolvency_activity_params
       params.require(:insolvency_activity).permit(:name, :insolvency_stage_id)
+    end
+
+    def set_layout
+      return "creditos_judiciales" if action_name == "new"
     end
 end

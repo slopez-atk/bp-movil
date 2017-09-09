@@ -13,10 +13,9 @@
               Buscar
 
           - if current_user.permissions == 5
-            %li= link_to "Jueces", lawyers_path
-            %li= link_to "Etapas", good_stages_path
-
-          %li= link_to "Mi Cuenta", edit_user_registration_path
-          %li.active= link_to "Cerrar sesion", destroy_user_session_path, method: :delete
+            %li{class: "#{'active' if controller_name == 'lawyers'}"}= link_to "Jueces", lawyers_path
+            %li{class: "#{'active' if action_name == 'stage'}"}= link_to "Etapas", stages_root_path
+          %li{class: "#{'active' if controller_name == 'sessions'}"}= link_to "Mi Cuenta", edit_user_registration_path
+          %li= link_to "Cerrar sesion", destroy_user_session_path, method: :delete
         - else
-          %li.active= link_to "Iniciar sesion", new_user_session_path
+          %li= link_to "Iniciar sesion", new_user_session_path

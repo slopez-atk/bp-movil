@@ -46,8 +46,12 @@ export class LawyerGroup extends React.Component {
         </div>
 
         <div className="col-xs-6 center-xs col-xs-offset-3">
-          <h3>Ingresar nuevo abogado</h3>
-          <LawyerForm add={this.add}/>
+          <div className="collapse" id="collapseExample">
+            <div className="well">
+              <h3>Ingresar nuevo abogado</h3>
+              <LawyerForm add={this.add}/>
+            </div>
+          </div>
         </div>
       </div>
     )

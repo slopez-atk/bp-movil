@@ -15,6 +15,10 @@ class GoodActivitiesController < ApplicationController
   # GET /good_activities/new
   def new
     @good_activity = GoodActivity.new
+    @good_activity.good_stage_id = params["good_stage"]
+
+    @activities = GoodActivity.where(good_stage_id: params["good_stage"])
+
   end
 
   # GET /good_activities/1/edit
@@ -28,7 +32,7 @@ class GoodActivitiesController < ApplicationController
 
     respond_to do |format|
       if @good_activity.save
-        format.html { redirect_to @good_activity, notice: 'Good activity was successfully created.' }
+        format.html { redirect_to stages_root_path, notice: 'Good activity was successfully created.' }
         format.json { render :show, status: :created, location: @good_activity }
       else
         format.html { render :new }
@@ -70,5 +74,9 @@ class GoodActivitiesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def good_activity_params
       params.require(:good_activity).permit(:name, :good_stage_id)
+    end
+
+    def set_layout
+      return "creditos_judiciales" if action_name == "new"
     end
 end

@@ -9,8 +9,6 @@
   .field
     = f.label :name
     = f.text_field :name
-  .field
-    = f.label :insolvency_stage
-    = f.text_field :insolvency_stage
+    = f.hidden_field :insolvency_stage_id
   .actions
-    = f.submit 'Save'
+    = f.submit 'Enviar', class: "btn btn-primary", data: {confirm: "Estas segura?"}

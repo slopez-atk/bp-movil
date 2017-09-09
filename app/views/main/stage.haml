@@ -1,0 +1,57 @@
+%h2.text-center
+  Bienvenid@
+  %small= current_user.full_name
+
+%p{data: {toggle: "tooltip", animation: "true", placement: "bottom"}, title: "Con el boton de 'Ingresar proceso' tambien podras ver los procesos actuales de cada etapa", class: "text-center"}
+  Tip
+.row.center-xs
+  .col-xs-11
+    %h4 Estados de los juicios con bienes
+    .table-responsive
+      %table.table.table-striped.table-hover
+        %thead
+          %tr.text-center
+            %th Nombre Etapa
+            %th Mes
+            %th Ingresar proceso
+
+        %tbody
+          - @conBienes.each do |good_stage|
+            %tr
+              %td= good_stage.name
+              %td= good_stage.months
+              %td= link_to 'Ingresar proceso', new_good_activity_path(good_stage: good_stage), class: "btn btn-wide btn-inverse"
+
+  .col-xs-11
+    %h4 Estados de los juicios sin bienes
+    .table-responsive
+      %table.table.table-striped.table-hover
+        %thead
+          %tr
+            %th Nombre Etapa
+            %th Mes
+            %th Ingresar proceso
+
+        %tbody
+          - @sinBienes.each do |good_stage|
+            %tr
+              %td= good_stage.name
+              %td= good_stage.months
+              %td= link_to 'Ingresar proceso', new_without_good_activity_path(withoutgood_stage: good_stage), class: "btn btn-wide btn-inverse"
+
+  .col-xs-11
+    %h4 Estados de los juicios de insolvencia
+    .table-responsive
+      %table.table.table-striped.table-hover
+        %thead
+          %tr
+            %th Nombre Etapa
+            %th Mes
+            %th Ingresar proceso
+
+        %tbody
+          - @insolvencias.each do |good_stage|
+            %tr
+              %td= good_stage.name
+              %td= good_stage.months
+              %td= link_to 'Ingresar proceso', new_insolvency_activity_path(insolvency_stage: good_stage), class: "btn btn-wide btn-inverse"

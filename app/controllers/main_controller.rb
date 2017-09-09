@@ -14,8 +14,15 @@ class MainController < ApplicationController
     @insolvencias = Insolvency.all
   end
 
+  def stage
+    @conBienes = GoodStage.all
+    @sinBienes = WithoutgoodStage.all
+    @insolvencias = InsolvencyStage.all
+  end
+
   def set_layout
     return "creditos_judiciales" if action_name == "home_creditos"
+    return "creditos_judiciales" if action_name == "stage"
     super
   end
 end

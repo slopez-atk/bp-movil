@@ -13,6 +13,22 @@
 //= require rails-ujs
 //= require turbolinks
 //= require flat-ui/jquery-1.8.3.min
-//= require_tree .
+//= require flat-ui/jquery-ui-1.10.3.custom.min
+//= require bootstrap.min
+//= require token
+
+//= require flat-ui/application_flatui
+//= require flat-ui/bootstrap-select
+//= require flat-ui/bootstrap-switch
+//= require flat-ui/flatui-checkbox
+//= require flat-ui/flatui-fileinput
+//= require flat-ui/flatui-radio
+//= require flat-ui/holder
+//= require flat-ui/jquery.placeholder
+//= require flat-ui/jquery.tagsinput.ja
+//= require flat-ui/jquery.ui.touch-punch.min
+//= require cable
+//= require main
+
 //= require best_in_place
 //= require best_in_place.jquery-ui

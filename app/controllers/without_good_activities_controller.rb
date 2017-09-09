@@ -15,6 +15,9 @@ class WithoutGoodActivitiesController < ApplicationController
   # GET /without_good_activities/new
   def new
     @without_good_activity = WithoutGoodActivity.new
+    @without_good_activity.withoutgood_stage_id = params["withoutgood_stage"]
+
+    @activities = WithoutGoodActivity.where(withoutgood_stage_id: params["withoutgood_stage"])
   end
 
   # GET /without_good_activities/1/edit
@@ -28,7 +31,7 @@ class WithoutGoodActivitiesController < ApplicationController
 
     respond_to do |format|
       if @without_good_activity.save
-        format.html { redirect_to @without_good_activity, notice: 'Without good activity was successfully created.' }
+        format.html { redirect_to stages_root_path, notice: 'Without good activity was successfully created.' }
         format.json { render :show, status: :created, location: @without_good_activity }
       else
         format.html { render :new }
@@ -70,5 +73,9 @@ class WithoutGoodActivitiesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def without_good_activity_params
       params.require(:without_good_activity).permit(:name, :withoutgood_stage_id)
+    end
+
+    def set_layout
+      return "creditos_judiciales" if action_name == "new"
     end
 end

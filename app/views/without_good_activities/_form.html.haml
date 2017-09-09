@@ -9,8 +9,7 @@
   .field
     = f.label :name
     = f.text_field :name
-  .field
-    = f.label :withoutgood_stage
-    = f.text_field :withoutgood_stage
+    = f.hidden_field :withoutgood_stage_id
+
   .actions
-    = f.submit 'Save'
+    = f.submit 'Enviar', class: "btn btn-primary", data: {confirm: "Estas segura?"}

@@ -7,10 +7,8 @@
           %li= message
 
   .field
-    = f.label :name
+    = f.label :nombre
     = f.text_field :name
-  .field
-    = f.label :good_stage
-    = f.text_field :good_stage
+    = f.hidden_field :good_stage_id
   .actions
-    = f.submit 'Save'
+    = f.submit 'Enviar', class: "btn btn-primary", data: {confirm: "Estas segura?"}

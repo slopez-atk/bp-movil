@@ -1,5 +1,12 @@
-%h1 New good_activity
+.row.center-xs
+  .col-xs-11
+    %h2 Ingresar Proceso
+    = render 'form'
 
-= render 'form'
-
-= link_to 'Back', good_activities_path
+  .col-xs-6
+    %h2 Actividades actuales
+    %ul.list-group
+      - @activities.each do |activity|
+        %li.list-group-item
+          = activity.name
+    = link_to 'Regresar', stages_root_path, class: "btn btn-wide btn-warning"
