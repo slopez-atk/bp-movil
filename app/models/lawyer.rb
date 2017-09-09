@@ -11,4 +11,11 @@
 #
 
 class Lawyer < ApplicationRecord
+  has_many :goods
+  has_many :whitout_goods
+  has_many :insolvencies
+
+  def full_name
+    self.name + " " + self.lastname
+  end
 end

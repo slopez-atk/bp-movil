@@ -13,4 +13,9 @@ class MainController < ApplicationController
     @sinBienes =  WithoutGood.all
     @insolvencias = Insolvency.all
   end
+
+  def set_layout
+    return "creditos_judiciales" if action_name == "home_creditos"
+    super
+  end
 end

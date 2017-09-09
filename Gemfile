@@ -45,7 +45,9 @@ gem 'haml-rails'
 # Anotaciones de los modelos
 gem 'annotate'
 # Best in place
-gem 'best_in_place', '~> 3.0.1'
+gem 'best_in_place', '~> 3.1'
+# Jquery
+gem 'jquery-rails', '~> 4.1', '>= 4.1.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

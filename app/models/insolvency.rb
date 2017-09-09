@@ -43,6 +43,7 @@
 class Insolvency < ApplicationRecord
   belongs_to :insolvency_stage
   belongs_to :insolvency_activity
+  belongs_to :lawyer
 
   def etapa_estimada
     fecha_inicio = self.created_at.to_date

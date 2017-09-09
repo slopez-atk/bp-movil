@@ -8,6 +8,7 @@
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
     %link{rel: "stylesheet", href: "https://fonts.googleapis.com/css?family=Lato:300,400,700,900"}
     %link{rel: "stylesheet", href: "https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.css"}
+    = javascript_pack_tag "lawyer_group"
   %body
     = render "partials/navigations/creditos_navigation"
     %div{style:"#{'display:none;' if notice.nil? && alert.nil?}", class: "large-padding red white-text text-center no-margin"}

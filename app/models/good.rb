@@ -43,6 +43,7 @@
 class Good < ApplicationRecord
   belongs_to :good_stage
   belongs_to :good_activity
+  belongs_to :lawyer
 
   def etapa_estimada
     fecha_inicio = self.created_at.to_date

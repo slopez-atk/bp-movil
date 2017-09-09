@@ -14,6 +14,5 @@
 //= require turbolinks
 //= require flat-ui/jquery-1.8.3.min
 //= require_tree .
-
 //= require best_in_place
 //= require best_in_place.jquery-ui

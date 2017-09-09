@@ -5,10 +5,17 @@
     .collapse.navbar-collapse
       %ul.nav.navbar-nav.navbar-right
 
-        - if current_user.permissions == 5
-          %li= link_to "Jueces", lawyers_path
-          %li= link_to "Etapas", good_stages_path
         - if user_signed_in?
+          %form{role:"search", class:"navbar-form navbar-left"}
+            .form-group
+              %input.form-control{type: "text", placeholder: "Search"}
+            %button{class:"btn btn-default", type:"submit"}
+              Buscar
+
+          - if current_user.permissions == 5
+            %li= link_to "Jueces", lawyers_path
+            %li= link_to "Etapas", good_stages_path
+
           %li= link_to "Mi Cuenta", edit_user_registration_path
           %li.active= link_to "Cerrar sesion", destroy_user_session_path, method: :delete
         - else

@@ -1,105 +1,190 @@
-%p#notice= notice
+%h3.text-center
+  Datos del credito
+  %small= @without_good.credit_id
+.row.center-xs
+  .col-xs-6.top-space.text-left
+    .card.bg-color-white.padding
+      %h4.text-center Datos del Credito
+      %hr
+      .row
+        .col-xs-6
+          %p
+            %b Id Credito:
+            = @without_good.credit_id
+          %p
+            %b Id Socio:
+            = @without_good.socio_id
+          %p
+            %b Nombre grupo:
+            = @without_good.nombre_grupo
+          %p
+            %b Grupo solidario:
+            = @without_good.grupo_solidario
 
-%p
-  %b Credit:
-  = @without_good.credit_id
-%p
-  %b Socio:
-  = @without_good.socio_id
-%p
-  %b Nombres:
-  = @without_good.nombres
-%p
-  %b Cedula:
-  = @without_good.cedula
-%p
-  %b Telefono:
-  = @without_good.telefono
-%p
-  %b Celular:
-  = @without_good.celular
-%p
-  %b Direccion:
-  = @without_good.direccion
-%p
-  %b Sector:
-  = @without_good.sector
-%p
-  %b Parroquia:
-  = @without_good.parroquia
-%p
-  %b Canton:
-  = @without_good.canton
-%p
-  %b Nombre grupo:
-  = @without_good.nombre_grupo
-%p
-  %b Grupo solidario:
-  = @without_good.grupo_solidario
-%p
-  %b Sucursal:
-  = @without_good.sucursal
-%p
-  %b Oficial credito:
-  = @without_good.oficial_credito
-%p
-  %b Cartera heredada:
-  = @without_good.cartera_heredada
-%p
-  %b Fecha concesion:
-  = @without_good.fecha_concesion
-%p
-  %b Fecha vencimiento:
-  = @without_good.fecha_vencimiento
-%p
-  %b Tipo garantia:
-  = @without_good.tipo_garantia
-%p
-  %b Garantia real:
-  = @without_good.garantia_real
-%p
-  %b Garantia fiduciaria:
-  = @without_good.garantia_fiduciaria
-%p
-  %b Dir garante:
-  = @without_good.dir_garante
-%p
-  %b Tel garante:
-  = @without_good.tel_garante
-%p
-  %b Valor cartera castigada:
-  = @without_good.valor_cartera_castigada
-%p
-  %b Bienes:
-  = @without_good.bienes
-%p
-  %b Tipo credito:
-  = @without_good.tipo_credito
-%p
-  %b Withoutgood stage:
-  = @without_good.withoutgood_stage
-%p
-  %b Without good activity:
-  = @without_good.without_good_activity
-%p
-  %b Estado:
-  = @without_good.estado
-%p
-  %b Observaciones:
-  = @without_good.observaciones
-%p
-  %b Juicio:
-  = @without_good.juicio_id
-%p
-  %b Fentrega juicios:
-  = @without_good.fentrega_juicios
-%p
-  %b Fcalificacion juicio:
-  = @without_good.fcalificacion_juicio
-%p
-  %b Codigo juicio:
-  = @without_good.codigo_juicio
+        .col-xs-6
+          %p
+            %b Bienes:
+            = @without_good.bienes
+          %p
+            %b Tipo credito:
+            = @without_good.tipo_credito
+          %p
+            %b Etapa:
+            = @without_good.withoutgood_stage.name
+          %p
+            %b Proceso:
+            = @without_good.without_good_activity.name
+          %p
+            %b Estado:
+            = @without_good.estado
 
-= link_to 'Edit', edit_without_good_path(@without_good)
-\|
-= link_to 'Back', without_goods_path
+  .col-xs-5.top-space
+    .card.bg-color-white.padding.bottom-space
+      %h4.text-center Datos del Cliente
+      %hr
+      .row.text-left
+        .col-xs-6
+          %p
+            %b Nombres:
+            = @without_good.nombres
+          %p
+            %b Cedula:
+            = @without_good.cedula
+          %p
+            %b Telefono:
+            = @without_good.telefono
+          %p
+            %b Celular:
+            = @without_good.celular
+
+        .col-xs-6
+          %p
+            %b Direccion:
+            = @without_good.direccion
+          %p
+            %b Sector:
+            = @without_good.sector
+          %p
+            %b Parroquia:
+            = @without_good.parroquia
+          %p
+            %b Canton:
+            = @without_good.canton
+          %p
+            %b Sucursal:
+            = @without_good.sucursal
+
+  .col-xs-11
+    .card.bg-color-white.padding
+      %h4.text-center Datos Extras
+      %hr
+      .row.text-left
+        .col-xs-4
+          %p
+            %b Oficial credito:
+            = @without_good.oficial_credito
+          %p
+            %b Cartera heredada:
+            = @without_good.cartera_heredada
+          %p
+            %b Fecha concesion:
+            = @without_good.fecha_concesion
+          %p
+            %b Fecha vencimiento:
+            = @without_good.fecha_vencimiento
+        .col-xs-4
+          %p
+            %b Tipo garantia:
+            = @without_good.tipo_garantia
+          %p
+            %b Garantia real:
+            = @without_good.garantia_real
+          %p
+            %b Garantia fiduciaria:
+            = @without_good.garantia_fiduciaria
+        .col-xs-4
+          %p
+            %b Dir garante:
+            = @without_good.dir_garante
+          %p
+            %b Tel garante:
+            = @without_good.tel_garante
+          %p
+            %b Valor cartera castigada:
+            = @without_good.valor_cartera_castigada
+
+  .col-xs-5.top-space
+    .card.bg-color-white.padding
+      %h4.text-center Datos Extras
+      %hr
+      .row.text-left
+        .col-xs-6
+          %p
+            %b Monto real:
+            0.00
+          %p
+            %b Saldo total:
+            0.00
+          %p
+            %b Valor cancela:
+            0.00
+        .col-xs-6
+          %p
+            %b Dias de mora:
+            0.00
+          %p
+            %b Provision requerida:
+            0.00
+          %p
+            %b Calificacion propia:
+            0.00
+
+  .col-xs-6.text-left
+    .card.bg-color-white.padding.bottom-space.top-space
+      %h4.text-center Datos Judiciales
+      %hr
+      .row.text-left
+        - if current_user.permissions == 4
+          .col-xs-6
+            %p
+              %b Abogado
+              = @without_good.lawyer.full_name
+            %p
+              %b Juicio:
+              = best_in_place @without_good, :juicio_id
+            %p
+              %b Fentrega juicios:
+              = best_in_place @without_good, :fentrega_juicios, as: :date
+          .col-xs-6
+            %p
+              %b Fcalificacion juicio:
+              = best_in_place @without_good, :fcalificacion_juicio, as: :date
+            %p
+              %b Codigo juicio:
+              = best_in_place @without_good, :codigo_juicio
+        - else
+          .col-xs-6
+            %p
+              %b Abogado
+              = @without_good.lawyer.full_name
+            %p
+              %b Juicio:
+              = @without_good.juicio_id
+            %p
+              %b Fentrega juicios:
+              = @without_good.fentrega_juicios
+          .col-xs-6
+            %p
+              %b Fcalificacion juicio:
+              = @without_good.fcalificacion_juicio
+            %p
+              %b Codigo juicio:
+              = @without_good.codigo_juicio
+
+
+  - if current_user.permissions == 4
+    .col-xs-10.start-xs.top-space
+      %h4.text-center Observaciones
+      %p.text-left
+        = best_in_place @without_good, :observaciones, :as => :textarea
+

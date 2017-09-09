@@ -71,4 +71,9 @@ class LawyersController < ApplicationController
     def lawyer_params
       params.require(:lawyer).permit(:name, :lastname, :phone)
     end
+
+    def set_layout
+      return "creditos_judiciales" if action_name == "index" and formats[0] != :json
+      super
+    end
 end

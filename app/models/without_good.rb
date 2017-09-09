@@ -43,6 +43,7 @@
 class WithoutGood < ApplicationRecord
   belongs_to :withoutgood_stage
   belongs_to :without_good_activity
+  belongs_to :lawyer
 
 
   def etapa_estimada

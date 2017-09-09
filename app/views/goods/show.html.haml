@@ -1,105 +1,189 @@
-%p#notice= notice
+%h3.text-center
+  Datos del credito
+  %small= @good.credit_id
+.row.center-xs
+  .col-xs-6.top-space.text-left
+    .card.bg-color-white.padding
+      %h4.text-center Datos del Credito
+      %hr
+      .row
+        .col-xs-6
+          %p
+            %b Id Credito:
+            = @good.credit_id
+          %p
+            %b Id Socio:
+            = @good.socio_id
+          %p
+            %b Nombre grupo:
+            = @good.nombre_grupo
+          %p
+            %b Grupo solidario:
+            = @good.grupo_solidario
 
-%p
-  %b Credit:
-  = @good.credit_id
-%p
-  %b Socio:
-  = @good.socio_id
-%p
-  %b Nombres:
-  = @good.nombres
-%p
-  %b Cedula:
-  = @good.cedula
-%p
-  %b Telefono:
-  = @good.telefono
-%p
-  %b Celular:
-  = @good.celular
-%p
-  %b Direccion:
-  = @good.direccion
-%p
-  %b Sector:
-  = @good.sector
-%p
-  %b Parroquia:
-  = @good.parroquia
-%p
-  %b Canton:
-  = @good.canton
-%p
-  %b Nombre grupo:
-  = @good.nombre_grupo
-%p
-  %b Grupo solidario:
-  = @good.grupo_solidario
-%p
-  %b Sucursal:
-  = @good.sucursal
-%p
-  %b Oficial credito:
-  = @good.oficial_credito
-%p
-  %b Cartera heredada:
-  = @good.cartera_heredada
-%p
-  %b Fecha concesion:
-  = @good.fecha_concesion
-%p
-  %b Fecha vencimiento:
-  = @good.fecha_vencimiento
-%p
-  %b Tipo garantia:
-  = @good.tipo_garantia
-%p
-  %b Garantia real:
-  = @good.garantia_real
-%p
-  %b Garantia fiduciaria:
-  = @good.garantia_fiduciaria
-%p
-  %b Dir garante:
-  = @good.dir_garante
-%p
-  %b Tel garante:
-  = @good.tel_garante
-%p
-  %b Valor cartera castigada:
-  = @good.valor_cartera_castigada
-%p
-  %b Bienes:
-  = @good.bienes
-%p
-  %b Tipo credito:
-  = @good.tipo_credito
-%p
-  %b Good stage:
-  = @good.good_stage
-%p
-  %b Good activity:
-  = @good.good_activity
-%p
-  %b Estado:
-  = @good.estado
-%p
-  %b Observaciones:
-  = @good.observaciones
-%p
-  %b Juicio:
-  = @good.juicio_id
-%p
-  %b Fentrega juicios:
-  = @good.fentrega_juicios
-%p
-  %b Fcalificacion juicio:
-  = @good.fcalificacion_juicio
-%p
-  %b Codigo juicio:
-  = @good.codigo_juicio
+        .col-xs-6
+          %p
+            %b Bienes:
+            = @good.bienes
+          %p
+            %b Tipo credito:
+            = @good.tipo_credito
+          %p
+            %b Etapa:
+            = @good.good_stage.name
+          %p
+            %b Proceso:
+            = @good.good_activity.name
+          %p
+            %b Estado:
+            = @good.estado
 
-= link_to 'Edit', edit_good_path(@good)
-\|
-= link_to 'Back', goods_path
+  .col-xs-5.top-space
+    .card.bg-color-white.padding.bottom-space
+      %h4.text-center Datos del Cliente
+      %hr
+      .row.text-left
+        .col-xs-6
+          %p
+            %b Nombres:
+            = @good.nombres
+          %p
+            %b Cedula:
+            = @good.cedula
+          %p
+            %b Telefono:
+            = @good.telefono
+          %p
+            %b Celular:
+            = @good.celular
+
+        .col-xs-6
+          %p
+            %b Direccion:
+            = @good.direccion
+          %p
+            %b Sector:
+            = @good.sector
+          %p
+            %b Parroquia:
+            = @good.parroquia
+          %p
+            %b Canton:
+            = @good.canton
+          %p
+            %b Sucursal:
+            = @good.sucursal
+
+  .col-xs-11
+    .card.bg-color-white.padding
+      %h4.text-center Datos Extras
+      %hr
+      .row.text-left
+        .col-xs-4
+          %p
+            %b Oficial credito:
+            = @good.oficial_credito
+          %p
+            %b Cartera heredada:
+            = @good.cartera_heredada
+          %p
+            %b Fecha concesion:
+            = @good.fecha_concesion
+          %p
+            %b Fecha vencimiento:
+            = @good.fecha_vencimiento
+        .col-xs-4
+          %p
+            %b Tipo garantia:
+            = @good.tipo_garantia
+          %p
+            %b Garantia real:
+            = @good.garantia_real
+          %p
+            %b Garantia fiduciaria:
+            = @good.garantia_fiduciaria
+        .col-xs-4
+          %p
+            %b Dir garante:
+            = @good.dir_garante
+          %p
+            %b Tel garante:
+            = @good.tel_garante
+          %p
+            %b Valor cartera castigada:
+            = @good.valor_cartera_castigada
+
+  .col-xs-5.top-space
+    .card.bg-color-white.padding
+      %h4.text-center Datos Extras
+      %hr
+      .row.text-left
+        .col-xs-6
+          %p
+            %b Monto real:
+            0.00
+          %p
+            %b Saldo total:
+            0.00
+          %p
+            %b Valor cancela:
+            0.00
+        .col-xs-6
+          %p
+            %b Dias de mora:
+            0.00
+          %p
+            %b Provision requerida:
+            = @good.valor_cartera_castigada
+          %p
+            %b Calificacion propia:
+            0.00
+
+  .col-xs-6.text-left
+    .card.bg-color-white.padding.bottom-space.top-space
+      %h4.text-center Datos Judiciales
+      %hr
+      .row.text-left
+        - if current_user.permissions == 4
+          .col-xs-6
+            %p
+              %b Abogado
+              = @good.lawyer.full_name
+            %p
+              %b Juicio:
+              = best_in_place @good, :juicio_id
+            %p
+              %b Fentrega juicios:
+              = best_in_place @good, :fentrega_juicios, as: :date
+          .col-xs-6
+            %p
+              %b Fcalificacion juicio:
+              = best_in_place @good, :fcalificacion_juicio, as: :date
+            %p
+              %b Codigo juicio:
+              = best_in_place @good, :codigo_juicio
+        - else
+          .col-xs-6
+            %p
+              %b Abogado
+              = @good.lawyer.full_name
+            %p
+              %b Juicio:
+              = @good.juicio_id
+            %p
+              %b Fentrega juicios:
+              = @good.fentrega_juicios
+          .col-xs-6
+            %p
+              %b Fcalificacion juicio:
+              = @good.fcalificacion_juicio
+            %p
+              %b Codigo juicio:
+              = @good.codigo_juicio
+
+
+  - if current_user.permissions == 4
+    .col-xs-10.start-xs.top-space
+      %h4.text-center Observaciones
+      %p.text-left
+        = best_in_place @good, :observaciones, :as => :textarea

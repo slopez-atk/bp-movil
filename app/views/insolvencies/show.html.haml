@@ -1,105 +1,189 @@
-%p#notice= notice
+%h3.text-center
+  Datos del credito
+  %small= @insolvency.credit_id
+.row.center-xs
+  .col-xs-6.top-space.text-left
+    .card.bg-color-white.padding
+      %h4.text-center Datos del Credito
+      %hr
+      .row
+        .col-xs-6
+          %p
+            %b Id Credito:
+            = @insolvency.credit_id
+          %p
+            %b Id Socio:
+            = @insolvency.socio_id
+          %p
+            %b Nombre grupo:
+            = @insolvency.nombre_grupo
+          %p
+            %b Grupo solidario:
+            = @insolvency.grupo_solidario
 
-%p
-  %b Credit:
-  = @insolvency.credit_id
-%p
-  %b Socio:
-  = @insolvency.socio_id
-%p
-  %b Nombres:
-  = @insolvency.nombres
-%p
-  %b Cedula:
-  = @insolvency.cedula
-%p
-  %b Telefono:
-  = @insolvency.telefono
-%p
-  %b Celular:
-  = @insolvency.celular
-%p
-  %b Direccion:
-  = @insolvency.direccion
-%p
-  %b Sector:
-  = @insolvency.sector
-%p
-  %b Parroquia:
-  = @insolvency.parroquia
-%p
-  %b Canton:
-  = @insolvency.canton
-%p
-  %b Nombre grupo:
-  = @insolvency.nombre_grupo
-%p
-  %b Grupo solidario:
-  = @insolvency.grupo_solidario
-%p
-  %b Sucursal:
-  = @insolvency.sucursal
-%p
-  %b Oficial credito:
-  = @insolvency.oficial_credito
-%p
-  %b Cartera heredada:
-  = @insolvency.cartera_heredada
-%p
-  %b Fecha concesion:
-  = @insolvency.fecha_concesion
-%p
-  %b Fecha vencimiento:
-  = @insolvency.fecha_vencimiento
-%p
-  %b Tipo garantia:
-  = @insolvency.tipo_garantia
-%p
-  %b Garantia real:
-  = @insolvency.garantia_real
-%p
-  %b Garantia fiduciaria:
-  = @insolvency.garantia_fiduciaria
-%p
-  %b Dir garante:
-  = @insolvency.dir_garante
-%p
-  %b Tel garante:
-  = @insolvency.tel_garante
-%p
-  %b Valor cartera castigada:
-  = @insolvency.valor_cartera_castigada
-%p
-  %b Bienes:
-  = @insolvency.bienes
-%p
-  %b Tipo credito:
-  = @insolvency.tipo_credito
-%p
-  %b Insolvency stage:
-  = @insolvency.insolvency_stage
-%p
-  %b Insolvency activity:
-  = @insolvency.insolvency_activity
-%p
-  %b Estado:
-  = @insolvency.estado
-%p
-  %b Observaciones:
-  = @insolvency.observaciones
-%p
-  %b Juicio:
-  = @insolvency.juicio_id
-%p
-  %b Fentrega juicios:
-  = @insolvency.fentrega_juicios
-%p
-  %b Fcalificacion juicio:
-  = @insolvency.fcalificacion_juicio
-%p
-  %b Codigo juicio:
-  = @insolvency.codigo_juicio
+        .col-xs-6
+          %p
+            %b Bienes:
+            = @insolvency.bienes
+          %p
+            %b Tipo credito:
+            = @insolvency.tipo_credito
+          %p
+            %b Etapa:
+            = @insolvency.insolvency_stage.name
+          %p
+            %b Proceso:
+            = @insolvency.insolvency_activity.name
+          %p
+            %b Estado:
+            = @insolvency.estado
 
-= link_to 'Edit', edit_insolvency_path(@insolvency)
-\|
-= link_to 'Back', insolvencies_path
+  .col-xs-5.top-space
+    .card.bg-color-white.padding.bottom-space
+      %h4.text-center Datos del Cliente
+      %hr
+      .row.text-left
+        .col-xs-6
+          %p
+            %b Nombres:
+            = @insolvency.nombres
+          %p
+            %b Cedula:
+            = @insolvency.cedula
+          %p
+            %b Telefono:
+            = @insolvency.telefono
+          %p
+            %b Celular:
+            = @insolvency.celular
+
+        .col-xs-6
+          %p
+            %b Direccion:
+            = @insolvency.direccion
+          %p
+            %b Sector:
+            = @insolvency.sector
+          %p
+            %b Parroquia:
+            = @insolvency.parroquia
+          %p
+            %b Canton:
+            = @insolvency.canton
+          %p
+            %b Sucursal:
+            = @insolvency.sucursal
+
+  .col-xs-11
+    .card.bg-color-white.padding
+      %h4.text-center Datos Extras
+      %hr
+      .row.text-left
+        .col-xs-4
+          %p
+            %b Oficial credito:
+            = @insolvency.oficial_credito
+          %p
+            %b Cartera heredada:
+            = @insolvency.cartera_heredada
+          %p
+            %b Fecha concesion:
+            = @insolvency.fecha_concesion
+          %p
+            %b Fecha vencimiento:
+            = @insolvency.fecha_vencimiento
+        .col-xs-4
+          %p
+            %b Tipo garantia:
+            = @insolvency.tipo_garantia
+          %p
+            %b Garantia real:
+            = @insolvency.garantia_real
+          %p
+            %b Garantia fiduciaria:
+            = @insolvency.garantia_fiduciaria
+        .col-xs-4
+          %p
+            %b Dir garante:
+            = @insolvency.dir_garante
+          %p
+            %b Tel garante:
+            = @insolvency.tel_garante
+          %p
+            %b Valor cartera castigada:
+            = @insolvency.valor_cartera_castigada
+
+  .col-xs-5.top-space
+    .card.bg-color-white.padding
+      %h4.text-center Datos Extras
+      %hr
+      .row.text-left
+        .col-xs-6
+          %p
+            %b Monto real:
+            0.00
+          %p
+            %b Saldo total:
+            0.00
+          %p
+            %b Valor cancela:
+            0.00
+        .col-xs-6
+          %p
+            %b Dias de mora:
+            0.00
+          %p
+            %b Provision requerida:
+            0.00
+          %p
+            %b Calificacion propia:
+            0.00
+
+  .col-xs-6.text-left
+    .card.bg-color-white.padding.bottom-space.top-space
+      %h4.text-center Datos Judiciales
+      %hr
+      .row.text-left
+        - if current_user.permissions == 4
+          .col-xs-6
+            %p
+              %b Abogado
+              = @insolvency.lawyer.full_name
+            %p
+              %b Juicio:
+              = best_in_place @insolvency, :juicio_id
+            %p
+              %b Fentrega juicios:
+              = best_in_place @insolvency, :fentrega_juicios, as: :date
+          .col-xs-6
+            %p
+              %b Fcalificacion juicio:
+              = best_in_place @insolvency, :fcalificacion_juicio, as: :date
+            %p
+              %b Codigo juicio:
+              = best_in_place @insolvency, :codigo_juicio
+        - else
+          .col-xs-6
+            %p
+              %b Abogado
+              = @insolvency.lawyer.full_name
+            %p
+              %b Juicio:
+              = @insolvency.juicio_id
+            %p
+              %b Fentrega juicios:
+              = @insolvency.fentrega_juicios
+          .col-xs-6
+            %p
+              %b Fcalificacion juicio:
+              = @insolvency.fcalificacion_juicio
+            %p
+              %b Codigo juicio:
+              = @insolvency.codigo_juicio
+
+
+  - if current_user.permissions == 4
+    .col-xs-10.start-xs.top-space
+      %h4.text-center Observaciones
+      %p.text-left
+        = best_in_place @insolvency, :observaciones, :as => :textarea
