@@ -22,5 +22,6 @@ Rails.application.routes.draw do
 
   get 'home_creditos', to: "main#home_creditos", as: :creditos_root
   get '/list/stages', to: "main#stage", as: :stages_root
+  get '/creditos/new', to: "main#new_trial", as: :new_trials_root
 
 end

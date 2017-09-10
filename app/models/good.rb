@@ -146,4 +146,21 @@ class Good < ApplicationRecord
       end
     end
   end
+
+  def self.filtrar_creditos(creditos)
+    r = Good.pluck(:credit_id)
+    r +=Insolvency.pluck(:credit_id)
+    r +=WithoutGood.pluck(:credit_id)
+    resultados = creditos
+    puts r
+    creditos.each_with_index do |credit, i|
+      puts "Entro"
+      puts credit["ID_CREDITO"]
+      if r.include?(credit["ID_CREDITO"])
+        puts "Coincide con #{credit["ID_CREDITO"]}"
+        resultados = creditos.shift(i)
+      end
+    end
+    resultados
+  end
 end

@@ -1,0 +1,26 @@
+.row.center-xs
+  .col-xs-11
+    %h2 Ingreso de nuevos juicios
+    .table-responsive
+      %table.table.table-striped.table-hover
+        %thead
+          %tr
+            %th Id Credito
+            %th Id Socio
+            %th Id Nombres
+            %th Id Saldo Total
+            %th Id Monto Real
+            %th Id Oficina
+            %th Dias de Mora
+            %th Autorizar
+        %tbody
+          - @trials.each do |trial|
+            %tr
+              %th= trial["ID_CREDITO"]
+              %th= trial["ID_SOCIO"]
+              %th= trial["NOMBRE"]
+              %th= trial["SALDO_TOTAL"]
+              %th= trial["MONTO_REAL"]
+              %th= trial["OFICINA"]
+              %th= trial["DIASMORA_PD"]
+              %th= link_to "Autorizar", root_path, class: "btn btn-danger"
