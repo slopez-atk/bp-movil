@@ -16,6 +16,13 @@
             %li{class: "#{'active' if controller_name == 'lawyers'}"}= link_to "Jueces", lawyers_path
             %li{class: "#{'active' if action_name == 'stage'}"}= link_to "Etapas", stages_root_path
             %li{class: "#{'active' if action_name == 'new_trial'}"}= link_to "Ingresos", new_trials_root_path
+          - elsif current_user.permissions == 4
+            %li{class: "#{'active' if action_name == 'create_trial'}"}
+              = link_to pending_trials_path do
+                Nuevo Juicios
+                %span{class: "navbar-new"}
+                  = PendingTrial.pending_trials_count
+
           %li{class: "#{'active' if controller_name == 'sessions'}"}= link_to "Mi Cuenta", edit_user_registration_path
           %li= link_to "Cerrar sesion", destroy_user_session_path, method: :delete
         - else

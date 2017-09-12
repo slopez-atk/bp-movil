@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: goods
+# Table name: pending_trials
 #
 #  id                      :integer          not null, primary key
 #  credit_id               :string
@@ -28,17 +28,8 @@
 #  valor_cartera_castigada :string
 #  bienes                  :string
 #  tipo_credito            :string
-#  good_stage_id           :integer
-#  good_activity_id        :integer
-#  estado                  :string
-#  observaciones           :text
-#  juicio_id               :string
-#  fentrega_juicios        :date
-#  fcalificacion_juicio    :date
-#  codigo_juicio           :string
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null
-#  lawyer_id               :integer
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
@@ -69,14 +60,6 @@ one:
   valor_cartera_castigada: MyString
   bienes: MyString
   tipo_credito: MyString
-  good_stage: one
-  good_activity: one
-  estado: MyString
-  observaciones: MyText
-  juicio_id: MyString
-  fentrega_juicios: 2017-09-07
-  fcalificacion_juicio: 2017-09-07
-  codigo_juicio: MyString
 
 two:
   credit_id: MyString
@@ -104,11 +87,3 @@ two:
   valor_cartera_castigada: MyString
   bienes: MyString
   tipo_credito: MyString
-  good_stage: two
-  good_activity: two
-  estado: MyString
-  observaciones: MyText
-  juicio_id: MyString
-  fentrega_juicios: 2017-09-07
-  fcalificacion_juicio: 2017-09-07
-  codigo_juicio: MyString

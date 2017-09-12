@@ -29,6 +29,7 @@
 //= require flat-ui/jquery.ui.touch-punch.min
 //= require cable
 //= require main
+//= require datepicker
 
 //= require best_in_place
 //= require best_in_place.jquery-ui

@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: insolvencies
+# Table name: pending_trials
 #
 #  id                      :integer          not null, primary key
 #  credit_id               :string
@@ -28,22 +28,13 @@
 #  valor_cartera_castigada :string
 #  bienes                  :string
 #  tipo_credito            :string
-#  insolvency_stage_id     :integer
-#  insolvency_activity_id  :integer
-#  estado                  :string
-#  observaciones           :text
-#  juicio_id               :string
-#  fentrega_juicios        :date
-#  fcalificacion_juicio    :date
-#  codigo_juicio           :string
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null
-#  lawyer_id               :integer
 #
 
 require 'test_helper'
 
-class InsolvencyTest < ActiveSupport::TestCase
+class PendingTrialTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

@@ -38,6 +38,7 @@
 #  codigo_juicio           :string
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null
+#  lawyer_id               :integer
 #
 
 require 'test_helper'

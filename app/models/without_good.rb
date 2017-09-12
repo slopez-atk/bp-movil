@@ -38,12 +38,14 @@
 #  codigo_juicio            :string
 #  created_at               :datetime         not null
 #  updated_at               :datetime         not null
+#  lawyer_id                :integer
 #
 
 class WithoutGood < ApplicationRecord
   belongs_to :withoutgood_stage
   belongs_to :without_good_activity
   belongs_to :lawyer
+  after_create :delete_pending
 
 
   def etapa_estimada
@@ -132,6 +134,10 @@ class WithoutGood < ApplicationRecord
         ["verde", "label label-success"]
       end
     end
+  end
+
+  def delete_pending
+    PendingTrial.find_by(credit_id: self.credit_id).destroy
   end
 
 end

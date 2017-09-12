@@ -7,20 +7,22 @@
           %tr
             %th Id Credito
             %th Id Socio
-            %th Id Nombres
-            %th Id Saldo Total
-            %th Id Monto Real
-            %th Id Oficina
+            %th Nombres
+            %th Saldo Total
+            %th Monto Real
+            %th Oficina
             %th Dias de Mora
+            %th Tipo de credito
             %th Autorizar
         %tbody
           - @trials.each do |trial|
             %tr
-              %th= trial["ID_CREDITO"]
+              %th= trial["ID_CREDITO"].to_i
               %th= trial["ID_SOCIO"]
               %th= trial["NOMBRE"]
               %th= trial["SALDO_TOTAL"]
               %th= trial["MONTO_REAL"]
               %th= trial["OFICINA"]
               %th= trial["DIASMORA_PD"]
-              %th= link_to "Autorizar", root_path, class: "btn btn-danger"
+              %th= trial["TIPO_CREDITO"]
+              %th= link_to "Autorizar", create_trial_root_path(trial: trial), class: "btn btn-danger", method: :post, data: {confirm: "Estas seguro!"}

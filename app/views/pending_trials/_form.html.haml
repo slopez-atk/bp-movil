@@ -1,0 +1,128 @@
+.row.center-xs
+  = form_for @pending_trial, url: {action: "create"}, method: :post do |f|
+    - if @pending_trial.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@pending_trial.errors.count, "error")} prohibited this pending_trial from being saved:"
+        %ul
+          - @pending_trial.errors.full_messages.each do |message|
+            %li= message
+    = hidden_field_tag "setting[id]", params[:id]
+    .col-xs-10.top-space.text-left.col-xs-offset-1
+      .card.bg-color-white.padding
+        %h4.text-center Datos del Credito
+        .row
+          .col-xs-4
+            .form-group
+              = f.label :credit_id
+              = f.text_field :credit_id, class: "form-control"
+            .form-group
+              = f.label :socio_id
+              = f.text_field :socio_id, class: "form-control"
+          .col-xs-4
+            .form-group
+              = f.label :nombre_grupo
+              = f.text_field :nombre_grupo, class: "form-control"
+            .form-group
+              = f.label :grupo_solidario
+              = f.text_field :grupo_solidario, class: "form-control"
+          .col-xs-4
+            .form-group
+              = f.label :tiene_bienes_?
+              %br
+              %select{name:"setting[flag_bienes]", class:"selectpicker"}
+                %option{value:"SI", selected: "true"}
+                  Si tiene bienes
+                %option{value:"No"}
+                  No tiene bienes
+            .form-group
+              = f.label :Abogado
+              %br
+              = collection_select(:lawyer, :lawyer_id, Lawyer.all, :id, :full_name, prompt: true)
+          .col-xs-4.col-xs-offset-4
+            .form-group
+              = f.label :bienes
+              = f.text_field :bienes, class: "form-control"
+
+    .col-xs-10.top-space.col-xs-offset-1
+      .card.bg-color-white.padding.bottom-space
+        %h4.text-center Datos del Cliente
+        .row.text-left
+          .col-xs-6
+            .form-group
+              = f.label :nombres
+              = f.text_field :nombres, class: "form-control"
+            .form-group
+              = f.label :cedula
+              = f.text_field :cedula, class: "form-control"
+            .form-group
+              = f.label :telefono
+              = f.text_field :telefono, class: "form-control"
+            .form-group
+              = f.label :celular
+              = f.text_field :celular, class: "form-control"
+          .col-xs-6
+            .form-group
+              = f.label :direccion
+              = f.text_field :direccion, class: "form-control"
+            .form-group
+              = f.label :sector
+              = f.text_field :sector, class: "form-control"
+            .form-group
+              = f.label :parroquia
+              = f.text_field :parroquia, class: "form-control"
+            .form-group
+              = f.label :canton
+              = f.text_field :canton, class: "form-control"
+
+            .form-group
+              = f.label :sucursal
+              = f.text_field :sucursal, class: "form-control"
+
+    .col-xs-10.top-space.col-xs-offset-1
+      .card.bg-color-white.padding.bottom-space
+        %h4.text-center Datos Extras
+        .row.text-left
+          .col-xs-4
+            .form-group
+              = f.label :oficial_credito
+              = f.text_field :oficial_credito, class: "form-control"
+            .form-group
+              = f.label :cartera_heredada
+              = f.text_field :cartera_heredada, class: "form-control"
+            .form-group
+              = f.label :fecha_concesion
+              .input-group
+                %span.input-group-btn
+                  %button{class:"btn", type:"button"}
+                    H
+                = f.text_field :fecha_concesion, class: "form-control", id: "datepicker-01"
+            .form-group
+              = f.label :fecha_vencimiento
+              = f.text_field :fecha_vencimiento, class: "form-control"
+          .col-xs-4
+            .form-group
+              = f.label :tipo_garantia
+              = f.text_field :tipo_garantia, class: "form-control"
+            .form-group
+              = f.label :garantia_real
+              = f.text_field :garantia_real, class: "form-control"
+            .form-group
+              = f.label :garantia_fiduciaria
+              = f.text_field :garantia_fiduciaria, class: "form-control"
+            .form-group
+              = f.label :tipo_credito
+              = f.text_field :tipo_credito, class: "form-control"
+          .col-xs-4
+            .form-group
+              = f.label :dir_garante
+              = f.text_field :dir_garante, class: "form-control"
+            .form-group
+              = f.label :tel_garante
+              = f.text_field :tel_garante, class: "form-control"
+            .form-group
+              = f.label :valor_cartera_castigada
+              = f.text_field :valor_cartera_castigada, class: "form-control"
+
+    .actions.top-space
+      = f.submit 'Eviar', class: "btn btn-wide btn-primary", method: :post
+      = link_to 'Regresar', pending_trials_path, class: "btn btn-wide btn-warning"

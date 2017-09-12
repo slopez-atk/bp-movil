@@ -38,12 +38,14 @@
 #  codigo_juicio           :string
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null
+#  lawyer_id               :integer
 #
 
 class Good < ApplicationRecord
   belongs_to :good_stage
   belongs_to :good_activity
   belongs_to :lawyer
+  after_create :delete_pending
 
   def etapa_estimada
     fecha_inicio = self.created_at.to_date
@@ -151,16 +153,31 @@ class Good < ApplicationRecord
     r = Good.pluck(:credit_id)
     r +=Insolvency.pluck(:credit_id)
     r +=WithoutGood.pluck(:credit_id)
-    resultados = creditos
-    puts r
+    r +=PendingTrial.pluck(:credit_id)
+
+    ids_repetidos = Array.new
     creditos.each_with_index do |credit, i|
-      puts "Entro"
-      puts credit["ID_CREDITO"]
+      # Encuentra y guarda en un array los id_credito repetidos
       if r.include?(credit["ID_CREDITO"])
-        puts "Coincide con #{credit["ID_CREDITO"]}"
-        resultados = creditos.shift(i)
+        ids_repetidos.push(credit["ID_CREDITO"])
       end
     end
-    resultados
+
+    ids_repetidos.each do |id|
+      creditos = self.eliminar_de_array id,creditos
+    end
+    creditos
+  end
+
+  def self.eliminar_de_array(id, array)
+    array.each_with_index do |credito, i|
+      if credito["ID_CREDITO"] == id
+        array.delete_at(i)
+      end
+    end
+  end
+
+  def delete_pending
+    PendingTrial.find_by(credit_id: self.credit_id).destroy
   end
 end

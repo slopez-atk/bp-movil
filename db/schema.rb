@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170909052214) do
+ActiveRecord::Schema.define(version: 20170910201145) do
 
   create_table "good_activities", force: :cascade do |t|
     t.string "name"
@@ -134,6 +134,37 @@ ActiveRecord::Schema.define(version: 20170909052214) do
     t.string "phone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "pending_trials", force: :cascade do |t|
+    t.string "credit_id"
+    t.string "socio_id"
+    t.string "nombres"
+    t.string "cedula"
+    t.string "telefono"
+    t.string "celular"
+    t.string "direccion"
+    t.string "sector"
+    t.string "parroquia"
+    t.string "canton"
+    t.string "nombre_grupo"
+    t.string "grupo_solidario"
+    t.string "sucursal"
+    t.string "oficial_credito"
+    t.string "cartera_heredada"
+    t.string "fecha_concesion"
+    t.string "fecha_vencimiento"
+    t.string "tipo_garantia"
+    t.string "garantia_real"
+    t.string "garantia_fiduciaria"
+    t.string "dir_garante"
+    t.string "tel_garante"
+    t.string "valor_cartera_castigada"
+    t.string "bienes"
+    t.string "tipo_credito"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "calificacion_propia"
   end
 
   create_table "users", force: :cascade do |t|
