@@ -1,34 +1,33 @@
 .row.center-xs
   .col-xs-12
     %h1 Juicios pendientes
-    %table.table.table-striped.table-hover
-      %thead
-        %tr
-          %th Id Credito
-          %th Id Socio
-          %th Nombres
-          %th Cedula
-          %th Nombre grupo
-          %th Grupo solidario
-          %th Oficial credito
-          %th Bienes
-          %th Tipo credito
-          %th
-
-
-      %tbody
-        - @pending_trials.each do |pending_trial|
+    .table-responsive
+      %table.table.table-striped.table-hover
+        %thead
           %tr
-            %td= pending_trial.credit_id
-            %td= pending_trial.socio_id
-            %td= pending_trial.nombres
-            %td= pending_trial.cedula
-            %td= pending_trial.nombre_grupo
-            %td= pending_trial.grupo_solidario
-            %td= pending_trial.oficial_credito
-            %td= pending_trial.bienes
-            %td= pending_trial.tipo_credito
-            %td= link_to 'Ver', pending_trial, class: "btn btn-info"
-            %td= link_to "Ingresar", new_pending_trial_path(id: pending_trial.id), class: "btn btn-inverse"
+            %th Id Credito
+            %th Id Socio
+            %th Nombres
+            %th Cedula
+            %th Nombre grupo
+            %th Grupo solidario
+            %th Oficial credito
+            %th Bienes
+            %th Tipo credito
+            %th
 
-    %br
+
+        %tbody
+          - @pending_trials.each do |pending_trial|
+            %tr
+              %td= pending_trial.credit_id
+              %td= pending_trial.socio_id
+              %td= pending_trial.nombres
+              %td= pending_trial.cedula
+              %td= pending_trial.nombre_grupo
+              %td= pending_trial.grupo_solidario
+              %td= pending_trial.oficial_credito
+              %td= pending_trial.bienes
+              %td= pending_trial.tipo_credito
+              %td= link_to 'Ver', pending_trial, class: "btn btn-info"
+              %td= link_to "Ingresar", new_pending_trial_path(id: pending_trial.id), class: "btn btn-inverse", data: {confirm: "Estas seguro?"}

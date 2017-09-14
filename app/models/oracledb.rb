@@ -37,5 +37,14 @@ class Oracledb < ApplicationRecord
     end
   end
 
+  def self.getVariables credit_id
+    results = connection.exec_query("Select * from variables where credit_id = '#{credit_id}'")
+    if results.present?
+      return results
+    else
+      return nil
+    end
+  end
+
 
 end

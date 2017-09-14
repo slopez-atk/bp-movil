@@ -10,6 +10,8 @@ class InsolvenciesController < ApplicationController
   # GET /insolvencies/1
   # GET /insolvencies/1.json
   def show
+    # Recupera los datos variables de este id de credito desde la bdd Oracle
+    @variables = Oracledb.getVariables(@insolvency.credit_id).to_a
   end
 
   # GET /insolvencies/new

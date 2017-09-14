@@ -10,6 +10,8 @@ class GoodsController < ApplicationController
   # GET /goods/1
   # GET /goods/1.json
   def show
+    # Recupera los datos variables de este id de credito desde la bdd Oracle
+    @variables = Oracledb.getVariables(@good.credit_id).to_a
   end
 
   # GET /goods/new

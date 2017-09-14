@@ -13,9 +13,9 @@ class MainController < ApplicationController
 
   # Controlador de la pantalla principal del modulo de creditos
   def home_creditos
-    @conBienes = Good.all
-    @sinBienes =  WithoutGood.all
-    @insolvencias = Insolvency.all
+    @conBienes = Good.includes(:good_stage, :good_activity)
+    @sinBienes =  WithoutGood.includes(:withoutgood_stage, :without_good_activity)
+    @insolvencias = Insolvency.includes(:insolvency_stage, :insolvency_activity)
   end
 
   # Controlador de la pantalla de las etapas y procesos

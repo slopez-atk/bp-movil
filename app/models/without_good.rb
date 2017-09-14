@@ -47,6 +47,15 @@ class WithoutGood < ApplicationRecord
   belongs_to :lawyer
   after_create :delete_pending
 
+  # Scopes
+  scope :activos, -> { where(estado: "Activo") }
+  scope :cancelados, -> { where(estado: "Cancelado") }
+  scope :reingresos, -> { where(estado: "Reingreso") }
+  scope :terminados, -> { where(estado: "Terminado") }
+  scope :insolvencias, -> { where(estado: "Insolvencia") }
+  scope :reestructurados, -> { where(estado: "Reestructurado") }
+  scope :abandonados, -> { where(estado: "Abandono") }
+
 
   def etapa_estimada
     fecha_inicio = self.created_at.to_date

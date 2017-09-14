@@ -1,79 +1,134 @@
-%p#notice= notice
+.row
+  .col-xs-10.col-xs-offset-1
+    = link_to 'Regresar', pending_trials_path, class: "btn btn-wide btn-warning top-space"
+%h3.text-center
+  Datos del credito
+  %small= @pending_trial.credit_id
+.row.center-xs
+  .col-xs-6.top-space.text-left
+    .card.bg-color-white.padding
+      %h4.text-center Datos del Credito
+      %hr
+      .row
+        .col-xs-6
+          %p
+            %b Id Credito:
+            = @pending_trial.credit_id
+          %p
+            %b Id Socio:
+            = @pending_trial.socio_id
+          %p
+            %b Nombre grupo:
+            = @pending_trial.nombre_grupo
+          %p
+            %b Grupo solidario:
+            = @pending_trial.grupo_solidario
+          %p
+            %b Tipo credito:
+            = @pending_trial.tipo_credito
 
-%p
-  %b Credit:
-  = @pending_trial.credit_id
-%p
-  %b Socio:
-  = @pending_trial.socio_id
-%p
-  %b Nombres:
-  = @pending_trial.nombres
-%p
-  %b Cedula:
-  = @pending_trial.cedula
-%p
-  %b Telefono:
-  = @pending_trial.telefono
-%p
-  %b Celular:
-  = @pending_trial.celular
-%p
-  %b Direccion:
-  = @pending_trial.direccion
-%p
-  %b Sector:
-  = @pending_trial.sector
-%p
-  %b Parroquia:
-  = @pending_trial.parroquia
-%p
-  %b Canton:
-  = @pending_trial.canton
-%p
-  %b Nombre grupo:
-  = @pending_trial.nombre_grupo
-%p
-  %b Grupo solidario:
-  = @pending_trial.grupo_solidario
-%p
-  %b Sucursal:
-  = @pending_trial.sucursal
-%p
-  %b Oficial credito:
-  = @pending_trial.oficial_credito
-%p
-  %b Cartera heredada:
-  = @pending_trial.cartera_heredada
-%p
-  %b Fecha concesion:
-  = @pending_trial.fecha_concesion
-%p
-  %b Fecha vencimiento:
-  = @pending_trial.fecha_vencimiento
-%p
-  %b Tipo garantia:
-  = @pending_trial.tipo_garantia
-%p
-  %b Garantia real:
-  = @pending_trial.garantia_real
-%p
-  %b Garantia fiduciaria:
-  = @pending_trial.garantia_fiduciaria
-%p
-  %b Dir garante:
-  = @pending_trial.dir_garante
-%p
-  %b Tel garante:
-  = @pending_trial.tel_garante
-%p
-  %b Valor cartera castigada:
-  = @pending_trial.valor_cartera_castigada
-%p
-  %b Bienes:
-  = @pending_trial.bienes
-%p
-  %b Tipo credito:
-  = @pending_trial.tipo_credito
+        .col-xs-6
+          %p
+            %b Bienes:
+            = @pending_trial.bienes
 
-= link_to 'Back', pending_trials_path
+  .col-xs-5.top-space
+    .card.bg-color-white.padding.bottom-space
+      %h4.text-center Datos del Cliente
+      %hr
+      .row.text-left
+        .col-xs-6
+          %p
+            %b Nombres:
+            = @pending_trial.nombres
+          %p
+            %b Cedula:
+            = @pending_trial.cedula
+          %p
+            %b Telefono:
+            = @pending_trial.telefono
+          %p
+            %b Celular:
+            = @pending_trial.celular
+
+        .col-xs-6
+          %p
+            %b Direccion:
+            = @pending_trial.direccion
+          %p
+            %b Sector:
+            = @pending_trial.sector
+          %p
+            %b Parroquia:
+            = @pending_trial.parroquia
+          %p
+            %b Canton:
+            = @pending_trial.canton
+          %p
+            %b Sucursal:
+            = @pending_trial.sucursal
+
+  .col-xs-11
+    .card.bg-color-white.padding
+      %h4.text-center Datos Extras
+      %hr
+      .row.text-left
+        .col-xs-4
+          %p
+            %b Oficial credito:
+            = @pending_trial.oficial_credito
+          %p
+            %b Cartera heredada:
+            = @pending_trial.cartera_heredada
+          %p
+            %b Fecha concesion:
+            = @pending_trial.fecha_concesion
+          %p
+            %b Fecha vencimiento:
+            = @pending_trial.fecha_vencimiento
+        .col-xs-4
+          %p
+            %b Tipo garantia:
+            = @pending_trial.tipo_garantia
+          %p
+            %b Garantia real:
+            = @pending_trial.garantia_real
+          %p
+            %b Garantia fiduciaria:
+            = @pending_trial.garantia_fiduciaria
+        .col-xs-4
+          %p
+            %b Dir garante:
+            = @pending_trial.dir_garante
+          %p
+            %b Tel garante:
+            = @pending_trial.tel_garante
+          %p
+            %b Valor cartera castigada:
+            = @pending_trial.valor_cartera_castigada
+
+  .col-xs-5.top-space
+    .card.bg-color-white.padding
+      %h4.text-center Valores del crédito
+      %hr
+      .row.text-left
+        .col-xs-6
+          %p
+            %b Monto real:
+            = @variables[0]["MONTO_REAL"]
+          %p
+            %b Saldo total:
+            = @variables[0]["SALDO_TOTAL"]
+          %p
+            %b Valor cancela:
+            = @variables[0]["VALOR_CANCELA"]
+        .col-xs-6
+          %p
+            %b Dias de mora:
+            = @variables[0]["DIASMORA_PD"]
+          %p
+            %b Provision requerida:
+            = @variables[0]["PROVISION_REQUERIDA"]
+          %p
+            %b Calificacion propia:
+            = @variables[0]["CALIFICACION_PROPIA"]

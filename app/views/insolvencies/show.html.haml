@@ -121,23 +121,23 @@
         .col-xs-6
           %p
             %b Monto real:
-            0.00
+            = @variables[0]["MONTO_REAL"]
           %p
             %b Saldo total:
-            0.00
+            = @variables[0]["SALDO_TOTAL"]
           %p
             %b Valor cancela:
-            0.00
+            = @variables[0]["VALOR_CANCELA"]
         .col-xs-6
           %p
             %b Dias de mora:
-            0.00
+            = @variables[0]["DIASMORA_PD"]
           %p
             %b Provision requerida:
-            0.00
+            = @variables[0]["PROVISION_REQUERIDA"]
           %p
             %b Calificacion propia:
-            0.00
+            = @variables[0]["CALIFICACION_PROPIA"]
 
   .col-xs-6.text-left
     .card.bg-color-white.padding.bottom-space.top-space
