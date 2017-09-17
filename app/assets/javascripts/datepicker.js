@@ -13,7 +13,7 @@
 // // Now let's align datepicker with the prepend button
 // $(datepickerSelector).datepicker('widget').css({'margin-left': -$(datepickerSelector).prev('.btn').outerWidth()});
 
-$(function(){
+$(document).on("turbolinks:load",function(){
   $('#datepicker1').datepicker({
     dateFormat: "dd-mm-yy"
   }).prev('.btn').on('click', function(e){

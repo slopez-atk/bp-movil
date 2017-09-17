@@ -139,5 +139,9 @@ class Insolvency < ApplicationRecord
     end
   end
 
+  def self.buscar_por_idCredito id
+    Insolvency.find_by(:credit_id => id)
+  end
+
 
 end

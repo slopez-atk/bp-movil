@@ -149,4 +149,8 @@ class WithoutGood < ApplicationRecord
     PendingTrial.find_by(credit_id: self.credit_id).destroy
   end
 
+  def self.buscar_por_idCredito id
+    WithoutGood.find_by(:credit_id => id)
+  end
+
 end

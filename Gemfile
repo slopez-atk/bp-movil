@@ -50,6 +50,8 @@ gem 'best_in_place', '~> 3.1'
 gem 'jquery-rails', '~> 4.1', '>= 4.1.1'
 # Postgres temp
 gem 'pg'
+# Para los filtrados en los reportes
+gem 'filterrific'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

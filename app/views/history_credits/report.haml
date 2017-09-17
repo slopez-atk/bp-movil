@@ -1,10 +1,52 @@
-%h2.text-center.text-primary Reporte de juicios
+%h2.text-center Reporte de juicios
 .row.center-xs
   .col-xs-11
+    %button{class:"btn btn-inverse", type:"button", data: {toggle:"collapse", target: "#collapseExample"}, aria: {expanded:"false", controls: "collapseExample"}}
+      Buscar nuevas fechas
+  .col-xs-5.bottom-space
+    .collapse.top-space#collapseExample
+      .well
+        = render "partials/reports/form_report"
+  .col-xs-11
+    .dialog
+      .container
+        = form_tag report_history_credits_path, class: "form-inline" do
+          .col-xs-4
+            .form-group
+              %label Abogados
+              = collection_select(:lawyer, :full_name, Lawyer.all, :name, :full_name, prompt: "Todos", class: "form-control")
+          .col-xs-4
+            .form-group
+              %label Agencias
+              = select_tag("agencia", options_for_select(HistoryCredit.obtener_agencias), prompt: "Todos")
+          .col-xs-4
+            .form-group
+              %label Asesores
+              = select_tag("asesores", options_for_select(HistoryCredit.obtener_asesores), prompt: "Todos")
+          = hidden_field_tag "inicio", @inicio
+          = hidden_field_tag "fin", @fin
+          .col-xs-12
+          = submit_tag "Filtrar", class: "btn btn-wide btn-primary"
+        - unless @filtros.nil?
+          .col-xs-5
+            %h5 Filtros aplicados
+            %p.text-left
+              Abogado
+              %b= @filtros[:abogado]
+            %p.text-left
+              Agencia
+              %b= @filtros[:agencia]
+            %p.text-left
+              Asesor
+              %b= @filtros[:asesor]
+
+
+
     .table-responsive
       %table.table.table-striped.table-hover
         %thead
           %tr
+            %th Ver
             %th Cedula
             %th Id Crédito
             %th Id Socio
@@ -18,6 +60,15 @@
           - total = 0
           - @history_credits.each do |history_credit|
             %tr
+              - if history_credit.tipo_credito == "bienes"
+                %th
+                  = link_to "Ver", good_path(Good.buscar_por_idCredito history_credit.credit_id), class: "btn btn-inverse"
+              - elsif history_credit.tipo_credito == "sinbienes"
+                %th
+                  = link_to "Ver", without_good_path(WithoutGood.buscar_por_idCredito history_credit.credit_id), class: "btn btn-inverse"
+              - else
+                %th
+                  = link_to "Ver", insolvency_path(Insolvency.buscar_por_idCredito history_credit.credit_id), class: "btn btn-inverse"
               %td= history_credit.cedula
               %td= history_credit.credit_id
               %td= history_credit.socio_id
@@ -29,29 +80,36 @@
                 - else
                   - if dato == "rojo"
                     - rojos += 1
+                    %th
+                      %span.label.label-danger= dato
                   - elsif dato == "verde"
                     - verdes += 1
+                    %th
+                      %span.label.label-success= dato
                   - elsif dato == "amarillo"
                     - amarillos += 1
+                    %th
+                      %span.label.label-warning= dato
                   - total += 1
-
-                  %th= dato
 
 .row.center-xs
   .col-xs-11
     .col-xs-4
       %h5.text-primary Porcentaje de semaforos Verdes
-      - porcentaje = (verdes * 100)/total
+      - if total > 0
+        - porcentaje = (verdes * 100)/total
       %p
         %b= porcentaje.to_s + "%"
     .col-xs-4
       %h5.text-primary Porcentaje de semaforos Amarillos
-      - porcentaje = (amarillos * 100)/total
+      - if total > 0
+        - porcentaje = (amarillos * 100)/total
       %p
         %b= porcentaje.to_s + "%"
     .col-xs-4
       %h5.text-primary Pocentaje de semaforos Rojos
-      - porcentaje = (rojos * 100)/total
+      - if total > 0
+        - porcentaje = (rojos * 100)/total
       %p
         %b= porcentaje.to_s + "%"
 

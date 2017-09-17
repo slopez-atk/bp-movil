@@ -12,7 +12,7 @@
 
 class Lawyer < ApplicationRecord
   has_many :goods
-  has_many :whitout_goods
+  has_many :without_goods
   has_many :insolvencies
 
   def full_name

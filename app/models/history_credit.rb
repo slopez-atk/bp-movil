@@ -26,6 +26,10 @@ class HistoryCredit < ApplicationRecord
   scope :rojos, ->{ where(estado: "Rojo") }
   scope :activos, ->{ where(estado: "Activo") }
 
+  scope :abogado, ->(nombres){where("abogado LIKE ?", "%#{nombres}%")}
+  scope :agencia, ->(agencia){where("agencia LIKE ?", "#{agencia}")}
+  scope :asesor, ->(asesor){where("asesor LIKE ?", "#{asesor}")}
+
   # Recibe un id_credito, un mes y todos los datos
   # y regresa el valor del semaforo
   def self.buscar_fecha(id_credito, fecha, datos)
@@ -51,4 +55,13 @@ class HistoryCredit < ApplicationRecord
   def self.obtener_fechas_guardadas
     HistoryCredit.distinct.pluck(:mes)
   end
+
+  def self.obtener_agencias
+    HistoryCredit.distinct.pluck(:agencia)
+  end
+
+  def self.obtener_asesores
+    HistoryCredit.distinct.pluck(:asesor)
+  end
+
 end

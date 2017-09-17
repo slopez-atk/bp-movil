@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     collection { post :store }
     collection { get :monitoreo }
   end
+
   resources :pending_trials, only: [:index, :show, :destroy, :new, :create]
   resources :insolvencies
   resources :insolvency_activities
@@ -29,6 +30,7 @@ Rails.application.routes.draw do
   get 'home_creditos', to: "main#home_creditos", as: :creditos_root
   get '/list/stages', to: "main#stage", as: :stages_root
   get '/creditos/new', to: "main#new_trial", as: :new_trials_root
+  get '/evaluacion_resultados', to: "main#evaluacion_resultados", as: :evaluacion_resultados
   post '/creditos/create', to: "main#create_trial", as: :create_trial_root
 
 end

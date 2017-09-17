@@ -24,7 +24,7 @@
                 Nuevo Juicios
                 %span{class: "navbar-new"}
                   = PendingTrial.pending_trials_count
-
+          %li{class: "#{'active' if action_name == 'evaluacion_resultados'}"}= link_to "Resultados",evaluacion_resultados_path
           %li{class: "#{'active' if controller_name == 'sessions'}"}= link_to "Mi Cuenta", edit_user_registration_path
           %li= link_to "Cerrar sesion", destroy_user_session_path, method: :delete
         - else

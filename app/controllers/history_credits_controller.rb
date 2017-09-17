@@ -10,20 +10,39 @@ class HistoryCreditsController < ApplicationController
 
   # Visualiza el historial de creditos
   def report
-    fechainicio = params["inicio"]
-    inicio = fechainicio.to_date
+
+      fechainicio = params["inicio"]
+      @inicio = fechainicio.to_date
+
+      fechafin = params["fin"]
+      @fin = fechafin.to_date
+
+      # Guardo en un array los meses con los anios que queremos buscar
+      @arreglo = extraer_fechas_entre(@inicio, @fin)
+
+      @original = HistoryCredit.filtrado(@arreglo)
+
+      if params["lawyer"].present?
 
 
-    fechafin = params["fin"]
-    fin = fechafin.to_date
+        if params["lawyer"]["full_name"] == ""; abogado = "%%" else abogado = params["lawyer"]["full_name"] end
+        if params["asesores"] == ""; asesor = "%%" else asesor = params["asesores"] end
+        if params["agencia"] == ""; agencia = "%%" else agencia = params["agencia"] end
 
-    # Guardo en un array los meses con los anios que queremos buscar
-    @arreglo = extraer_fechas_entre(inicio, fin)
+        @original = HistoryCredit.filtrado(@arreglo).abogado(abogado).asesor(asesor).agencia(agencia)
+        @history_credits = @original.group(:credit_id)
+
+        if agencia == "%%"; agencia = "Todos" else agencia end
+        if abogado == "%%"; abogado = "Todos" else abogado end
+        if asesor == "%%"; asesor = "Todos" else agencia end
+        @filtros = {asesor: asesor, abogado: abogado, agencia: agencia}
+      else
+        @original = HistoryCredit.filtrado(@arreglo)
+        @history_credits = @original.group(:credit_id)
+      end
 
 
-    @original = HistoryCredit.filtrado(@arreglo)
 
-    @history_credits = @original.group(:credit_id)
 
   end
 

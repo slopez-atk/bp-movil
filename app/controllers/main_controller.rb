@@ -37,6 +37,10 @@ class MainController < ApplicationController
     @trials = Good.filtrar_creditos(@trials)
   end
 
+  def evaluacion_resultados
+
+  end
+
   # Controlador para poder crear un pending_trial, estos son los creditos que
   # se autorizan desde la jefatura de credito para que pueda ser enviado
   # a juicio
@@ -80,7 +84,7 @@ class MainController < ApplicationController
   end
 
   def set_layout
-    return "creditos_judiciales" if action_name == "home_creditos" or action_name == "new_trial"
+    return "creditos_judiciales" if action_name == "home_creditos" or action_name == "new_trial" or action_name == "evaluacion_resultados"
     return "creditos_judiciales" if action_name == "stage"
     super
   end
