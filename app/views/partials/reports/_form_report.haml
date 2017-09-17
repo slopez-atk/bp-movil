@@ -1,0 +1,19 @@
+= form_tag report_history_credits_path, multipart: true do
+  .form-group
+    %p.text-left
+      %b Fecha de inicio
+    .input-group
+      %span.input-group-btn
+        %button{class:"btn", type:"button"}
+          Calendario
+      = text_field_tag "inicio", nil, class:"form-control datepick", id: "datepicker1"
+  .form-group
+    %p.text-left
+      %b Fecha de fin
+    .input-group
+      %span.input-group-btn
+        %button{class:"btn", type:"button"}
+          Calendario
+      = text_field_tag "fin", nil, class:"form-control datepick", id: "datepicker2"
+  .form-group
+    = submit_tag "Visualizar", class: "btn btn-wide btn-primary"

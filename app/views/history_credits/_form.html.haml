@@ -1,0 +1,34 @@
+= form_for @history_credit do |f|
+  - if @history_credit.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@history_credit.errors.count, "error")} prohibited this history_credit from being saved:"
+      %ul
+        - @history_credit.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :credit_id
+    = f.text_field :credit_id
+  .field
+    = f.label :socio_id
+    = f.text_field :socio_id
+  .field
+    = f.label :cedula
+    = f.text_field :cedula
+  .field
+    = f.label :agencia
+    = f.text_field :agencia
+  .field
+    = f.label :abogado
+    = f.text_field :abogado
+  .field
+    = f.label :asesor
+    = f.text_field :asesor
+  .field
+    = f.label :estado
+    = f.text_field :estado
+  .field
+    = f.label :semaforo
+    = f.text_field :semaforo
+  .actions
+    = f.submit 'Save'

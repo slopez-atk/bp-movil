@@ -1,14 +1,20 @@
 .row.center-xs
-  .col-xs-11.top-space
-    %button{class:"btn btn-inverse", type:"button", data: {toggle:"collapse", target: "#collapseExample"}, aria: {expanded:"false", controls: "collapseExample"}}
-      Reporte de juicios
-  .col-xs-5
-    .collapse.top-space#collapseExample
-      .well
-        = render "partials/reports/form_report"
+  .col-xs-11
+    %h2{data: {toggle: "tooltip", tooltip: {style:"light"}, placement: "bottom" }, title:"Recuerda que se guardará el historial con fecha del mes anterior"}
+      Monitoreo mensual de créditos
+  .col-xs-11
+    = link_to "Guardar monitoreo mensual", store_history_credits_path, method: :post, class: "btn btn-wide btn-danger", data: {confirm: "Estás segura?"}
+  .col-xs-11
+    %h3{data: {toggle: "tooltip", tooltip: {style:"light"}, placement: "top" }, title:"Aquí te mostramos las fechas de los historiales que ya han sido guardados"}
+      Historial de guardado
+    %ul{class: "nav nav-list nav-list-vivid"}
+      - if @fechas.empty?
+        %li Todavía no tienes historiales guardados
+      - else
+        - @fechas.each do |fecha|
+          %li= fecha
 
 %h3.text-center.text-muted Juicios con Bienes
-
 .row.center-xs
   .col-xs-11
     .table-responsive
@@ -18,22 +24,18 @@
             %th Nombre
             %th Id Crédito
             %th Id Socio
-            %th Cédula
             %th Etapa Actual
-            %th Etapa Estimada
             %th Estado
             %th Semaforo
             %th Ver
         %tbody
-          - @conBienes.each do |trial|
+          - @goods.each do |trial|
             - semaforos = trial.semaforo
             %tr
               %td= trial.nombres
               %td= trial.credit_id
               %td= trial.socio_id
-              %td= trial.cedula
               %td= trial.good_stage.name
-              %td= trial.etapa_estimada
               %td= trial.estado
               %td
                 %span.label{class: "#{semaforos[1]}"}
@@ -50,22 +52,18 @@
             %th Nombre
             %th Id Crédito
             %th Id Socio
-            %th Cédula
             %th Etapa Actual
-            %th Etapa Estimada
             %th Estado
             %th Semaforo
             %th Ver
         %tbody
-          - @sinBienes.each do |trial|
+          - @withoutgoods.each do |trial|
             - semaforos = trial.semaforo
             %tr
               %td= trial.nombres
               %td= trial.credit_id
               %td= trial.socio_id
-              %td= trial.cedula
               %td= trial.withoutgood_stage.name
-              %td= trial.etapa_estimada
               %td= trial.estado
               %td
                 %span.label{class: "#{semaforos[1]}"}
@@ -83,22 +81,18 @@
             %th Nombre
             %th Id Crédito
             %th Id Socio
-            %th Cédula
             %th Etapa Actual
-            %th Etapa Estimada
             %th Estado
             %th Semaforo
             %th Ver
         %tbody
-          - @insolvencias.each do |trial|
+          - @insolvencies.each do |trial|
             - semaforos = trial.semaforo
             %tr
               %td= trial.nombres
               %td= trial.credit_id
               %td= trial.socio_id
-              %td= trial.cedula
               %td= trial.insolvency_stage.name
-              %td= trial.etapa_estimada
               %td= trial.estado
               %td
                 %span.label{class: "#{semaforos[1]}"}

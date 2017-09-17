@@ -30,6 +30,7 @@
 #  tipo_credito            :string
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null
+#  calificacion_propia     :string
 #
 
 require 'test_helper'

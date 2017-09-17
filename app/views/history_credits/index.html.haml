@@ -1,0 +1,35 @@
+%h1 Listing history_credits
+
+%table
+  %thead
+    %tr
+      %th Credit
+      %th Socio
+      %th Cedula
+      %th Agencia
+      %th Abogado
+      %th Asesor
+      %th Estado
+      %th Semaforo
+      %th
+      %th
+      %th
+
+  %tbody
+    - @history_credits.each do |history_credit|
+      %tr
+        %td= history_credit.credit_id
+        %td= history_credit.socio_id
+        %td= history_credit.cedula
+        %td= history_credit.agencia
+        %td= history_credit.abogado
+        %td= history_credit.asesor
+        %td= history_credit.estado
+        %td= history_credit.semaforo
+        %td= link_to 'Show', history_credit
+        %td= link_to 'Edit', edit_history_credit_path(history_credit)
+        %td= link_to 'Destroy', history_credit, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New History credit', new_history_credit_path

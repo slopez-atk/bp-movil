@@ -31,6 +31,7 @@ class PendingTrialsController < ApplicationController
         @good.good_stage_id = 1
         @good.lawyer_id = params["lawyer"]["lawyer_id"]
         @good.good_activity_id = 1
+        @good.estado = "Activo"
 
         if @good.save
           format.html { redirect_to creditos_root_path, notice: 'Juicio ingresado' }
@@ -43,6 +44,7 @@ class PendingTrialsController < ApplicationController
         @withoutgood.withoutgood_stage_id = 1
         @withoutgood.lawyer_id = params["lawyer"]["lawyer_id"]
         @withoutgood.without_good_activity_id = 1
+        @withoutgood.estado = "Activo"
         if @withoutgood.save
           format.html { redirect_to creditos_root_path, notice: 'Juicio ingresado' }
         else

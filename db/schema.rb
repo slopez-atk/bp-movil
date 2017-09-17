@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170910201145) do
+ActiveRecord::Schema.define(version: 20170914222634) do
 
   create_table "good_activities", force: :cascade do |t|
     t.string "name"
@@ -65,9 +65,25 @@ ActiveRecord::Schema.define(version: 20170910201145) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "lawyer_id"
+    t.string "fecha_terminacion"
     t.index ["good_activity_id"], name: "index_goods_on_good_activity_id"
     t.index ["good_stage_id"], name: "index_goods_on_good_stage_id"
     t.index ["lawyer_id"], name: "index_goods_on_lawyer_id"
+  end
+
+  create_table "history_credits", force: :cascade do |t|
+    t.string "credit_id"
+    t.string "socio_id"
+    t.string "cedula"
+    t.string "agencia"
+    t.string "abogado"
+    t.string "asesor"
+    t.string "estado"
+    t.string "semaforo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "mes"
+    t.string "tipo_credito"
   end
 
   create_table "insolvencies", force: :cascade do |t|
@@ -107,6 +123,7 @@ ActiveRecord::Schema.define(version: 20170910201145) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "lawyer_id"
+    t.string "fecha_terminacion"
     t.index ["insolvency_activity_id"], name: "index_insolvencies_on_insolvency_activity_id"
     t.index ["insolvency_stage_id"], name: "index_insolvencies_on_insolvency_stage_id"
     t.index ["lawyer_id"], name: "index_insolvencies_on_lawyer_id"
@@ -234,6 +251,7 @@ ActiveRecord::Schema.define(version: 20170910201145) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "lawyer_id"
+    t.string "fecha_terminacion"
     t.index ["lawyer_id"], name: "index_without_goods_on_lawyer_id"
     t.index ["without_good_activity_id"], name: "index_without_goods_on_without_good_activity_id"
     t.index ["withoutgood_stage_id"], name: "index_without_goods_on_withoutgood_stage_id"

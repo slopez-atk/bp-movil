@@ -1,0 +1,188 @@
+class HistoryCreditsController < ApplicationController
+  before_action :set_history_credit, only: [:show, :edit, :update, :destroy]
+
+  def monitoreo
+    @goods = Good.includes(:good_stage)
+    @withoutgoods = WithoutGood.includes(:withoutgood_stage)
+    @insolvencies = Insolvency.includes(:insolvency_stage)
+    @fechas = HistoryCredit.obtener_fechas_guardadas
+  end
+
+  # Visualiza el historial de creditos
+  def report
+    fechainicio = params["inicio"]
+    inicio = fechainicio.to_date
+
+
+    fechafin = params["fin"]
+    fin = fechafin.to_date
+
+    # Guardo en un array los meses con los anios que queremos buscar
+    @arreglo = extraer_fechas_entre(inicio, fin)
+
+
+    @original = HistoryCredit.filtrado(@arreglo)
+
+    @history_credits = @original.group(:credit_id)
+
+  end
+
+  # Metodo que guardar en la base de datos el historial de creditos
+  def store
+    @goods = Good.includes(:lawyer)
+    @withoutgoods = WithoutGood.includes(:lawyer)
+    @insolvencies = Insolvency.includes(:lawyer)
+
+    date = 1.month.ago.strftime('%m-%Y')
+    @goods.each do |credit|
+      if credit.estado == "Terminado"
+        result = HistoryCredit.buscar_creditos_terminados credit.credit_id
+        if result.present?
+
+        else
+          semaforo = credit.semaforo
+          HistoryCredit.create(credit_id: credit.credit_id, socio_id: credit.socio_id, cedula: credit.cedula, agencia: credit.sucursal, abogado: credit.lawyer.full_name, asesor: credit.oficial_credito, mes: date, estado: credit.estado, semaforo: semaforo[0], tipo_credito: "bienes")
+
+        end
+      else
+        semaforo = credit.semaforo
+        HistoryCredit.create(credit_id: credit.credit_id, socio_id: credit.socio_id, cedula: credit.cedula, agencia: credit.sucursal, abogado: credit.lawyer.full_name, asesor: credit.oficial_credito, mes: date, estado: credit.estado, semaforo: semaforo[0], tipo_credito: "bienes")
+      end
+
+    end
+
+    @withoutgoods.each do |credit|
+      if credit.estado == "Terminado"
+        result = HistoryCredit.buscar_creditos_terminados credit.credit_id
+        if result.present?
+
+        else
+          semaforo = credit.semaforo
+          HistoryCredit.create(credit_id: credit.credit_id, socio_id: credit.socio_id, cedula: credit.cedula, agencia: credit.sucursal, abogado: credit.lawyer.full_name, asesor: credit.oficial_credito, mes: date, estado: credit.estado, semaforo: semaforo[0], tipo_credito: "sinbienes")
+        end
+      else
+        semaforo = credit.semaforo
+        HistoryCredit.create(credit_id: credit.credit_id, socio_id: credit.socio_id, cedula: credit.cedula, agencia: credit.sucursal, abogado: credit.lawyer.full_name, asesor: credit.oficial_credito, mes: date, estado: credit.estado, semaforo: semaforo[0], tipo_credito: "sinbienes")
+
+      end
+    end
+
+    @insolvencies.each do |credit|
+      if credit.estado == "Terminado"
+        result = HistoryCredit.buscar_creditos_terminados credit.credit_id
+        if result.present?
+
+        else
+          semaforo = credit.semaforo
+          HistoryCredit.create(credit_id: credit.credit_id, socio_id: credit.socio_id, cedula: credit.cedula, agencia: credit.sucursal, abogado: credit.lawyer.full_name, asesor: credit.oficial_credito, mes: date, estado: credit.estado, semaforo: semaforo[0], tipo_credito: "insolvencia")
+        end
+      else
+        semaforo = credit.semaforo
+        HistoryCredit.create(credit_id: credit.credit_id, socio_id: credit.socio_id, cedula: credit.cedula, agencia: credit.sucursal, abogado: credit.lawyer.full_name, asesor: credit.oficial_credito, mes: date, estado: credit.estado, semaforo: semaforo[0], tipo_credito: "insolvencia")
+
+      end
+    end
+
+    respond_to do |format|
+      format.html { redirect_to monitoreo_history_credits_path, notice: "Monitoreo guardado!" }
+    end
+  end
+
+
+  # GET /history_credits
+  # GET /history_credits.json
+  def index
+    @history_credits = HistoryCredit.all
+  end
+
+  # GET /history_credits/1
+  # GET /history_credits/1.json
+  def show
+  end
+
+  # GET /history_credits/new
+  def new
+    @history_credit = HistoryCredit.new
+  end
+
+  # GET /history_credits/1/edit
+  def edit
+  end
+
+  # POST /history_credits
+  # POST /history_credits.json
+  def create
+    @history_credit = HistoryCredit.new(history_credit_params)
+
+    respond_to do |format|
+      if @history_credit.save
+        format.html { redirect_to @history_credit, notice: 'History credit was successfully created.' }
+        format.json { render :show, status: :created, location: @history_credit }
+      else
+        format.html { render :new }
+        format.json { render json: @history_credit.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PATCH/PUT /history_credits/1
+  # PATCH/PUT /history_credits/1.json
+  def update
+    respond_to do |format|
+      if @history_credit.update(history_credit_params)
+        format.html { redirect_to @history_credit, notice: 'History credit was successfully updated.' }
+        format.json { render :show, status: :ok, location: @history_credit }
+      else
+        format.html { render :edit }
+        format.json { render json: @history_credit.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # DELETE /history_credits/1
+  # DELETE /history_credits/1.json
+  def destroy
+    @history_credit.destroy
+    respond_to do |format|
+      format.html { redirect_to history_credits_url, notice: 'History credit was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_history_credit
+      @history_credit = HistoryCredit.find(params[:id])
+    end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def history_credit_params
+      params.require(:history_credit).permit(:credit_id, :socio_id, :cedula, :agencia, :abogado, :asesor, :estado, :semaforo)
+    end
+
+    # Convierte los paramatros(anio, mes, dia) a un tipo fecha 2017-03-25
+    def convertir_fechas(anio, mes, dia)
+      fecha = Date.new anio.to_i, mes.to_i, dia.to_i
+    end
+
+    # Extrae los meses-anios de las fechas de inicio y fin que se envian
+    # por parametros y devulve un array ['07-2017', '09-2017']
+    def extraer_fechas_entre(inicio, fin)
+      arr = Array.new
+      (inicio.year..fin.year).each do |y|
+        mo_start = (inicio.year == y) ? inicio.month : 1
+        mo_end = (fin.year == y) ? fin.month : 12
+
+
+        (mo_start..mo_end).each do |m|
+          fecha = Date.new(y,m,1).strftime('%m-%Y').to_s
+          arr.push(fecha)
+        end
+      end
+      arr
+    end
+
+    def set_layout
+      return "creditos_judiciales" if action_name == "monitoreo" or action_name == "report"
+    end
+end

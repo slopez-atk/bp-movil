@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :history_credits do
+    collection { post :report }
+    collection { post :store }
+    collection { get :monitoreo }
+  end
   resources :pending_trials, only: [:index, :show, :destroy, :new, :create]
   resources :insolvencies
   resources :insolvency_activities

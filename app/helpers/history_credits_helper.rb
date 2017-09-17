@@ -1,0 +1,2 @@
+module HistoryCreditsHelper
+end

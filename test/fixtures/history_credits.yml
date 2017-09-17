@@ -1,0 +1,40 @@
+# == Schema Information
+#
+# Table name: history_credits
+#
+#  id           :integer          not null, primary key
+#  credit_id    :string
+#  socio_id     :string
+#  cedula       :string
+#  agencia      :string
+#  abogado      :string
+#  asesor       :string
+#  estado       :string
+#  semaforo     :string
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  mes          :string
+#  tipo_credito :string
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  credit_id: MyString
+  socio_id: MyString
+  cedula: MyString
+  agencia: MyString
+  abogado: MyString
+  asesor: MyString
+  estado: MyString
+  semaforo: MyString
+
+two:
+  credit_id: MyString
+  socio_id: MyString
+  cedula: MyString
+  agencia: MyString
+  abogado: MyString
+  asesor: MyString
+  estado: MyString
+  semaforo: MyString

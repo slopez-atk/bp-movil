@@ -1,0 +1,30 @@
+%p#notice= notice
+
+%p
+  %b Credit:
+  = @history_credit.credit_id
+%p
+  %b Socio:
+  = @history_credit.socio_id
+%p
+  %b Cedula:
+  = @history_credit.cedula
+%p
+  %b Agencia:
+  = @history_credit.agencia
+%p
+  %b Abogado:
+  = @history_credit.abogado
+%p
+  %b Asesor:
+  = @history_credit.asesor
+%p
+  %b Estado:
+  = @history_credit.estado
+%p
+  %b Semaforo:
+  = @history_credit.semaforo
+
+= link_to 'Edit', edit_history_credit_path(@history_credit)
+\|
+= link_to 'Back', history_credits_path

@@ -1,0 +1,65 @@
+%h2.text-center.text-primary Reporte de juicios
+.row.center-xs
+  .col-xs-11
+    .table-responsive
+      %table.table.table-striped.table-hover
+        %thead
+          %tr
+            %th Cedula
+            %th Id Crédito
+            %th Id Socio
+            %th Estado
+            - @arreglo.each do |fecha|
+              %th= fecha
+        %tbody
+          - verdes = 0
+          - amarillos = 0
+          - rojos = 0
+          - total = 0
+          - @history_credits.each do |history_credit|
+            %tr
+              %td= history_credit.cedula
+              %td= history_credit.credit_id
+              %td= history_credit.socio_id
+              %th= history_credit.estado
+              - @arreglo.each do |fecha|
+                - dato = HistoryCredit.buscar_fecha(history_credit.credit_id, fecha, @original)
+                - if dato.nil?
+                  %td -
+                - else
+                  - if dato == "rojo"
+                    - rojos += 1
+                  - elsif dato == "verde"
+                    - verdes += 1
+                  - elsif dato == "amarillo"
+                    - amarillos += 1
+                  - total += 1
+
+                  %th= dato
+
+.row.center-xs
+  .col-xs-11
+    .col-xs-4
+      %h5.text-primary Porcentaje de semaforos Verdes
+      - porcentaje = (verdes * 100)/total
+      %p
+        %b= porcentaje.to_s + "%"
+    .col-xs-4
+      %h5.text-primary Porcentaje de semaforos Amarillos
+      - porcentaje = (amarillos * 100)/total
+      %p
+        %b= porcentaje.to_s + "%"
+    .col-xs-4
+      %h5.text-primary Pocentaje de semaforos Rojos
+      - porcentaje = (rojos * 100)/total
+      %p
+        %b= porcentaje.to_s + "%"
+
+
+.row.center-xs
+  .col-xs-11
+    %h3 Este reporte se extrajo de las fechas
+  .col-xs-6.top-space
+    %ul{class: "nav nav-list nav-list-vivid"}
+      - @arreglo.each do |fecha|
+        %li= fecha
