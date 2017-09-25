@@ -12,6 +12,7 @@ class GoodsController < ApplicationController
   def show
     # Recupera los datos variables de este id de credito desde la bdd Oracle
     @variables = Oracledb.getVariables(@good.credit_id).to_a
+    @semaforo_actual = @good.semaforo
   end
 
   # GET /goods/new
@@ -71,7 +72,7 @@ class GoodsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def good_params
-      params.require(:good).permit(:credit_id, :socio_id, :nombres, :cedula, :telefono, :celular, :direccion, :sector, :parroquia, :canton, :nombre_grupo, :grupo_solidario, :sucursal, :oficial_credito, :cartera_heredada, :fecha_concesion, :fecha_vencimiento, :tipo_garantia, :garantia_real, :garantia_fiduciaria, :dir_garante, :tel_garante, :valor_cartera_castigada, :bienes, :tipo_credito, :good_stage_id, :good_activity_id, :estado, :observaciones, :juicio_id, :fentrega_juicios, :fcalificacion_juicio, :codigo_juicio)
+      params.require(:good).permit(:credit_id, :socio_id, :nombres, :cedula, :telefono, :celular, :direccion, :sector, :parroquia, :canton, :nombre_grupo, :grupo_solidario, :sucursal, :oficial_credito, :cartera_heredada, :fecha_concesion, :fecha_vencimiento, :tipo_garantia, :garantia_real, :garantia_fiduciaria, :dir_garante, :tel_garante, :valor_cartera_castigada, :bienes, :tipo_credito, :good_stage_id, :good_activity_id, :estado, :observaciones, :juicio_id, :fentrega_juicios, :fcalificacion_juicio, :codigo_juicio, :lawyer_id)
     end
 
   def set_layout

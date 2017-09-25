@@ -52,6 +52,10 @@ gem 'jquery-rails', '~> 4.1', '>= 4.1.1'
 gem 'pg'
 # Para los filtrados en los reportes
 gem 'filterrific'
+# Graficas
+gem "chartkick"
+# Para busquedas en los modelos
+gem 'searchkick'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

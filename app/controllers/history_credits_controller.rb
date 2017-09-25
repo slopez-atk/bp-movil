@@ -54,6 +54,7 @@ class HistoryCreditsController < ApplicationController
 
     date = 1.month.ago.strftime('%m-%Y')
     @goods.each do |credit|
+      # Cancelados, abandonos
       if credit.estado == "Terminado"
         result = HistoryCredit.buscar_creditos_terminados credit.credit_id
         if result.present?

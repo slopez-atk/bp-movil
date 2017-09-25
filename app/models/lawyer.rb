@@ -18,4 +18,8 @@ class Lawyer < ApplicationRecord
   def full_name
     self.name + " " + self.lastname
   end
+
+  def self.collection
+    Lawyer.select("id, name, lastname").map {|x| [x.id, x.full_name] }
+  end
 end

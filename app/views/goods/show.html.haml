@@ -1,6 +1,13 @@
 %h3.text-center
   Datos del credito
   %small= @good.credit_id
+  %small
+    %span.label{class: "#{@semaforo_actual[1]}"}
+      = @semaforo_actual[0]
+.row.center-xs
+  .col-xs-11
+    -#= timeline [["verde","2017-09-15","2017-10-15"],["rojo", '2017-10-15','2017-11-15'], ["verde", '2017-10-15','2017-11-15']]
+    = img_juicio @good.good_stage.name, 'bienes'
 .row.center-xs
   .col-xs-6.top-space.text-left
     .card.bg-color-white.padding
@@ -9,7 +16,7 @@
       .row
         .col-xs-6
           %p
-            %b Id Credito:
+            %b Id Crédito:
             = @good.credit_id
           %p
             %b Id Socio:
@@ -26,7 +33,7 @@
             %b Bienes:
             = @good.bienes
           %p
-            %b Tipo credito:
+            %b Tipo crédito:
             = @good.tipo_credito
           %p
             %b Etapa:
@@ -51,7 +58,7 @@
             %b Cedula:
             = @good.cedula
           %p
-            %b Telefono:
+            %b Teléfono:
             = @good.telefono
           %p
             %b Celular:
@@ -59,7 +66,7 @@
 
         .col-xs-6
           %p
-            %b Direccion:
+            %b Dirección:
             = @good.direccion
           %p
             %b Sector:
@@ -68,7 +75,7 @@
             %b Parroquia:
             = @good.parroquia
           %p
-            %b Canton:
+            %b Cantón:
             = @good.canton
           %p
             %b Sucursal:
@@ -130,17 +137,17 @@
             = @variables[0]["VALOR_CANCELA"]
         .col-xs-6
           %p
-            %b Dias de mora:
+            %b Días de mora:
             = @variables[0]["DIASMORA_PD"]
           %p
-            %b Provision requerida:
+            %b Provisión requerida:
             = @variables[0]["PROVISION_REQUERIDA"]
           %p
-            %b Calificacion propia:
+            %b Calificación propia:
             = @variables[0]["CALIFICACION_PROPIA"]
 
   .col-xs-6.text-left
-    .card.bg-color-white.padding.bottom-space.top-space
+    .card.bg-color-red-200.padding.bottom-space.top-space
       %h4.text-center Datos Judiciales
       %hr
       .row.text-left
@@ -148,16 +155,16 @@
           .col-xs-6
             %p
               %b Abogado
-              = @good.lawyer.full_name
+              = best_in_place(@good, :lawyer_id, :as => :select, collection: Lawyer.collection)
             %p
               %b Juicio:
               = best_in_place @good, :juicio_id
             %p
-              %b Fentrega juicios:
+              %b Fecha entrega del juicio:
               = best_in_place @good, :fentrega_juicios, as: :date
           .col-xs-6
             %p
-              %b Fcalificacion juicio:
+              %b Fecha calificacion de juicio:
               = best_in_place @good, :fcalificacion_juicio, as: :date
             %p
               %b Codigo juicio:
@@ -171,14 +178,14 @@
               %b Juicio:
               = @good.juicio_id
             %p
-              %b Fentrega juicios:
-              = @good.fentrega_juicios
+              %b Fecha entrega juicios:
+              = @good.fentrega_juicios.strftime('%B %d, del %Y') if @good.fentrega_juicios
           .col-xs-6
             %p
-              %b Fcalificacion juicio:
-              = @good.fcalificacion_juicio
+              %b Fecha calificacion juicio:
+              = @good.fcalificacion_juicio.strftime('%B %d, del %Y') if @good.fcalificacion_juicio
             %p
-              %b Codigo juicio:
+              %b Código juicio:
               = @good.codigo_juicio
 
 
@@ -187,3 +194,7 @@
       %h4.text-center Observaciones
       %p.text-left
         = best_in_place @good, :observaciones, :as => :textarea
+  - else
+    .col-xs-10.start-xs.top-space
+      %h4.text-center Observaciones
+      %p.text-left= @good.observaciones

@@ -39,6 +39,7 @@
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null
 #  lawyer_id               :integer
+#  fecha_terminacion       :string
 #
 
 require 'test_helper'

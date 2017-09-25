@@ -1,6 +1,12 @@
 %h3.text-center
   Datos del credito
   %small= @insolvency.credit_id
+  %small
+    %span.label{class: "#{@semaforo_actual[1]}"}
+      = @semaforo_actual[0]
+.row.center-xs
+  .col-xs-11
+    -#= img_juicio @without_good.withoutgood_stage.name, 'insolvencias'
 .row.center-xs
   .col-xs-6.top-space.text-left
     .card.bg-color-white.padding
@@ -140,7 +146,7 @@
             = @variables[0]["CALIFICACION_PROPIA"]
 
   .col-xs-6.text-left
-    .card.bg-color-white.padding.bottom-space.top-space
+    .card.bg-color-red-200.padding.bottom-space.top-space
       %h4.text-center Datos Judiciales
       %hr
       .row.text-left
@@ -148,16 +154,16 @@
           .col-xs-6
             %p
               %b Abogado
-              = @insolvency.lawyer.full_name
+              = best_in_place(@insolvency, :lawyer_id, :as => :select, collection: Lawyer.collection)
             %p
               %b Juicio:
               = best_in_place @insolvency, :juicio_id
             %p
-              %b Fentrega juicios:
+              %b Fecha entrega de juicio:
               = best_in_place @insolvency, :fentrega_juicios, as: :date
           .col-xs-6
             %p
-              %b Fcalificacion juicio:
+              %b Fecha calificacion de juicio:
               = best_in_place @insolvency, :fcalificacion_juicio, as: :date
             %p
               %b Codigo juicio:
@@ -171,12 +177,12 @@
               %b Juicio:
               = @insolvency.juicio_id
             %p
-              %b Fentrega juicios:
-              = @insolvency.fentrega_juicios
+              %b Fecha entrega de juicio:
+              = @insolvency.fentrega_juicios.strftime('%B %d, del %Y') if @insolvency.fentrega_juicios
           .col-xs-6
             %p
-              %b Fcalificacion juicio:
-              = @insolvency.fcalificacion_juicio
+              %b Fecha calificación de juicio:
+              = @insolvency.fcalificacion_juicio.strftime('%B %d, del %Y') if @insolvency.fcalificacion_juicio
             %p
               %b Codigo juicio:
               = @insolvency.codigo_juicio
@@ -187,3 +193,8 @@
       %h4.text-center Observaciones
       %p.text-left
         = best_in_place @insolvency, :observaciones, :as => :textarea
+  - else
+    .col-xs-10.start-xs.top-space
+      %h4.text-center Observaciones
+      %p.text-left= @insolvency.observaciones
+

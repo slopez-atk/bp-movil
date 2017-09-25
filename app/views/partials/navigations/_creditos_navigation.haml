@@ -6,11 +6,10 @@
       %ul.nav.navbar-nav.navbar-right
 
         - if user_signed_in?
-          %form{role:"search", class:"navbar-form navbar-left"}
+          = form_tag search_juicios_path, method: :get, class:"navbar-form navbar-left", role:"search" do
             .form-group
-              %input.form-control{type: "text", placeholder: "Search"}
-            %button{class:"btn btn-default", type:"submit"}
-              Buscar
+              = text_field_tag :search, params[:search], class: "form-control", placeholder: "Buscar"
+            = submit_tag "Buscar", class: "btn btn-default"
 
           - if current_user.permissions == 5
             %li{class: "#{'active' if controller_name == 'monitoreo'}"}= link_to "Monitoreo", monitoreo_history_credits_path

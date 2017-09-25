@@ -13,9 +13,9 @@ class MainController < ApplicationController
 
   # Controlador de la pantalla principal del modulo de creditos
   def home_creditos
-    @conBienes = Good.includes(:good_stage, :good_activity)
-    @sinBienes =  WithoutGood.includes(:withoutgood_stage, :without_good_activity)
-    @insolvencias = Insolvency.includes(:insolvency_stage, :insolvency_activity)
+    @conBienes = Good.activos.ultimos.includes(:good_stage, :good_activity)
+    @sinBienes =  WithoutGood.activos.ultimos.includes(:withoutgood_stage, :without_good_activity)
+    @insolvencias = Insolvency.activos.ultimos.includes(:insolvency_stage, :insolvency_activity)
   end
 
   # Controlador de la pantalla de las etapas y procesos
@@ -37,7 +37,77 @@ class MainController < ApplicationController
     @trials = Good.filtrar_creditos(@trials)
   end
 
+  # Controlador de las busquedas de los juicios por id de credito, socio y cedula
+  def search
+    if params[:search].present?
+      @conBienes = Good.search(params[:search])
+      @sinBienes =  WithoutGood.search(params[:search])
+      @insolvencias = Insolvency.search(params[:search])
+    else
+      @conBienes
+      @sinBienes
+      @insolvencias
+    end
+
+
+  end
+
   def evaluacion_resultados
+    @cantidades_semafotos = {verdes: 0, rojos: 0, amarillos: 0 }
+    @verdes = Array.new
+    @amarillos = Array.new
+    @rojos = Array.new
+    # Consulto todos los juicios excepto los reestructurados y en funcion al semaforo
+    # aumento su respeectiva variable para poder graficarlos al ultimo
+    Good.sin_reestructurados.each do |trial|
+      if trial.semaforo[0] == 'rojo'
+        @cantidades_semafotos[:rojos] = @cantidades_semafotos[:rojos] + 1
+        @rojos.push(trial)
+      elsif trial.semaforo[0] == 'amarillo'
+        @cantidades_semafotos[:amarillos] = @cantidades_semafotos[:amarillos] + 1
+        @amarillos.push(trial)
+      else
+        @cantidades_semafotos[:verdes] = @cantidades_semafotos[:verdes] + 1
+        @verdes.push(trial)
+      end
+    end
+
+    Insolvency.sin_reestructurados.each do | trial|
+      if trial.semaforo[0] == 'rojo'
+        @cantidades_semafotos[:rojos] = @cantidades_semafotos[:rojos] + 1
+        @rojos.push(trial)
+      elsif trial.semaforo[0] == 'amarillo'
+        @cantidades_semafotos[:amarillos] = @cantidades_semafotos[:amarillos] + 1
+        @amarillos.push(trial)
+      else
+        @cantidades_semafotos[:verdes] = @cantidades_semafotos[:verdes] + 1
+        @verdes.push(trial)
+      end
+    end
+
+    WithoutGood.sin_reestructurados.each do | trial|
+      if trial.semaforo[0] == 'rojo'
+        @cantidades_semafotos[:rojos] = @cantidades_semafotos[:rojos] + 1
+        @rojos.push(trial)
+      elsif trial.semaforo[0] == 'amarillo'
+        @cantidades_semafotos[:amarillos] = @cantidades_semafotos[:amarillos] + 1
+        @amarillos.push(trial)
+      else
+        @cantidades_semafotos[:verdes] = @cantidades_semafotos[:verdes] + 1
+        @verdes.push(trial)
+      end
+    end
+
+    @total_semaforos = @cantidades_semafotos[:amarillos] + @cantidades_semafotos[:verdes] + @cantidades_semafotos[:rojos]
+
+    # Para obtener los valores de los juicios segun su estado
+    @estado_juicios = {Activos: Good.activos.count + Insolvency.activos.count + WithoutGood.activos.count,
+                       Terminados: Good.terminados.count + Insolvency.terminados.count + WithoutGood.terminados.count,
+                       Reingresos: Good.reingresos.count + Insolvency.reingresos.count + WithoutGood.reingresos.count,
+                       Insolvencia: Good.insolvencias.count + Insolvency.insolvencias.count + WithoutGood.insolvencias.count,
+                       Abandono: Good.abandonados.count + Insolvency.abandonados.count + WithoutGood.abandonados.count
+    }
+
 
   end
 
@@ -84,7 +154,7 @@ class MainController < ApplicationController
   end
 
   def set_layout
-    return "creditos_judiciales" if action_name == "home_creditos" or action_name == "new_trial" or action_name == "evaluacion_resultados"
+    return "creditos_judiciales" if action_name == "home_creditos" or action_name == "new_trial" or action_name == "evaluacion_resultados" or action_name == "search"
     return "creditos_judiciales" if action_name == "stage"
     super
   end

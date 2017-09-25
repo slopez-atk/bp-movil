@@ -1,6 +1,12 @@
 %h3.text-center
   Datos del credito
   %small= @without_good.credit_id
+  %small
+    %span.label{class: "#{@semaforo_actual[1]}"}
+      = @semaforo_actual[0]
+.row.center-xs
+  .col-xs-11
+    = img_juicio @without_good.withoutgood_stage.name, 'sinbienes'
 .row.center-xs
   .col-xs-6.top-space.text-left
     .card.bg-color-white.padding
@@ -9,7 +15,7 @@
       .row
         .col-xs-6
           %p
-            %b Id Credito:
+            %b Id Crédito:
             = @without_good.credit_id
           %p
             %b Id Socio:
@@ -26,7 +32,7 @@
             %b Bienes:
             = @without_good.bienes
           %p
-            %b Tipo credito:
+            %b Tipo crédito:
             = @without_good.tipo_credito
           %p
             %b Etapa:
@@ -51,7 +57,7 @@
             %b Cedula:
             = @without_good.cedula
           %p
-            %b Telefono:
+            %b Teléfono:
             = @without_good.telefono
           %p
             %b Celular:
@@ -59,7 +65,7 @@
 
         .col-xs-6
           %p
-            %b Direccion:
+            %b Dirección:
             = @without_good.direccion
           %p
             %b Sector:
@@ -68,7 +74,7 @@
             %b Parroquia:
             = @without_good.parroquia
           %p
-            %b Canton:
+            %b Cantón:
             = @without_good.canton
           %p
             %b Sucursal:
@@ -81,13 +87,13 @@
       .row.text-left
         .col-xs-4
           %p
-            %b Oficial credito:
+            %b Oficial crédito:
             = @without_good.oficial_credito
           %p
             %b Cartera heredada:
             = @without_good.cartera_heredada
           %p
-            %b Fecha concesion:
+            %b Fecha concesión:
             = @without_good.fecha_concesion
           %p
             %b Fecha vencimiento:
@@ -130,17 +136,17 @@
             = @variables[0]["VALOR_CANCELA"]
         .col-xs-6
           %p
-            %b Dias de mora:
+            %b Días de mora:
             = @variables[0]["DIASMORA_PD"]
           %p
-            %b Provision requerida:
+            %b Provisión requerida:
             = @variables[0]["PROVISION_REQUERIDA"]
           %p
-            %b Calificacion propia:
+            %b Calificación propia:
             = @variables[0]["CALIFICACION_PROPIA"]
 
   .col-xs-6.text-left
-    .card.bg-color-white.padding.bottom-space.top-space
+    .card.padding.bottom-space.top-space.bg-color-red-200
       %h4.text-center Datos Judiciales
       %hr
       .row.text-left
@@ -148,16 +154,16 @@
           .col-xs-6
             %p
               %b Abogado
-              = @without_good.lawyer.full_name
+              = best_in_place(@without_good, :lawyer_id, :as => :select, collection: Lawyer.collection)
             %p
               %b Juicio:
               = best_in_place @without_good, :juicio_id
             %p
-              %b Fentrega juicios:
+              %b Fecha de entrega del juicios:
               = best_in_place @without_good, :fentrega_juicios, as: :date
           .col-xs-6
             %p
-              %b Fcalificacion juicio:
+              %b Feca de calificacion del juicio:
               = best_in_place @without_good, :fcalificacion_juicio, as: :date
             %p
               %b Codigo juicio:
@@ -171,12 +177,12 @@
               %b Juicio:
               = @without_good.juicio_id
             %p
-              %b Fentrega juicios:
-              = @without_good.fentrega_juicios
+              %b Fecha entrega de juicio:
+              = @without_good.fentrega_juicios.strftime('%B %d, del %Y') if @without_good.fentrega_juicios
           .col-xs-6
             %p
-              %b Fcalificacion juicio:
-              = @without_good.fcalificacion_juicio
+              %b Fecha calificacion de juicio:
+              = @without_good.fcalificacion_juicio.strftime('%B %d, del %Y') if @without_good.fcalificacion_juicio
             %p
               %b Codigo juicio:
               = @without_good.codigo_juicio
@@ -187,4 +193,7 @@
       %h4.text-center Observaciones
       %p.text-left
         = best_in_place @without_good, :observaciones, :as => :textarea
-
+  - else
+    .col-xs-10.start-xs.top-space
+      %h4.text-center Observaciones
+      %p.text-left= @without_good.observaciones

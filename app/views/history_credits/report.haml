@@ -73,7 +73,9 @@
               %td= history_credit.credit_id
               %td= history_credit.socio_id
               %th= history_credit.estado
+
               - @arreglo.each do |fecha|
+
                 - dato = HistoryCredit.buscar_fecha(history_credit.credit_id, fecha, @original)
                 - if dato.nil?
                   %td -

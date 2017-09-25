@@ -1,0 +1,82 @@
+.row.center-xs
+  .col-xs-11
+    %h3 Evaluación de resultados
+  .col-xs-11
+    .card
+      .row.center-xs
+        %h5 Semáforos totales
+        .col-xs-12
+          = pie_chart @cantidades_semafotos, adapter: "google", download: "ResultadoSemaforos", colors: ["#66BB6A", "#EF5350", "#FFEE58"], library: {pieSliceText:'value-and-percentage'}
+        .col-xs-4
+          = pie_chart({'Rojos' => @cantidades_semafotos[:rojos], 'Restantes' => @total_semaforos - @cantidades_semafotos[:rojos]}, download: "RojosChar", colors: ["#EF5350", "#999"])
+        .col-xs-4
+          = pie_chart({'Amarillos' => @cantidades_semafotos[:amarillos], 'Restantes' => @total_semaforos - @cantidades_semafotos[:amarillos]}, download: "AmarillosChart", colors: ["#FFEE58", "#999"])
+        .col-xs-4
+          = pie_chart({'Verdes' => @cantidades_semafotos[:verdes], 'Restantes' => @total_semaforos - @cantidades_semafotos[:verdes]}, download: "VerdesChart", colors: ["#66BB6A", "#999"])
+
+    .card.top-space
+      .row.center-xs
+        %h5 Gráfica de juicios
+        .col-xs-11
+          = column_chart @estado_juicios, download: "GraficaJuicios", colors: ["#29B6F6", "#EF5350","#7E57C2", "#EC407A","#78909C"]
+
+    .card.top-space
+      .row.center-xs
+        .col-xs-8
+          %h5.text-danger Juicios en rojo
+          .table-responsive
+            %table.table.table-bordered
+              %thead
+                %tr
+                  %th Nombre
+                  %th Id Crédito
+                  %th Id Socio
+                  %th Cédula
+                  %th Estado
+              %tbody
+                - @rojos.each do |trial|
+                  %tr.danger
+                    %td= trial.nombres
+                    %td= trial.credit_id
+                    %td= trial.socio_id
+                    %td= trial.cedula
+                    %td= trial.estado
+
+        .col-xs-8
+          %h5.text-warning Juicios en amarillo
+          .table-responsive
+            %table.table.table-bordered
+              %thead
+                %tr
+                  %th Nombre
+                  %th Id Crédito
+                  %th Id Socio
+                  %th Cédula
+                  %th Estado
+              %tbody
+                - @amarillos.each do |trial|
+                  %tr.warning
+                    %td= trial.nombres
+                    %td= trial.credit_id
+                    %td= trial.socio_id
+                    %td= trial.cedula
+                    %td= trial.estado
+        .col-xs-8
+          %h5.text-success Juicios en verde
+          .table-responsive
+            %table.table.table-bordered
+              %thead
+                %tr
+                  %th Nombre
+                  %th Id Crédito
+                  %th Id Socio
+                  %th Cédula
+                  %th Estado
+              %tbody
+                - @verdes.each do |trial|
+                  %tr.success
+                    %td= trial.nombres
+                    %td= trial.credit_id
+                    %td= trial.socio_id
+                    %td= trial.cedula
+                    %td= trial.estado

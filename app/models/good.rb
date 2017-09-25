@@ -39,9 +39,11 @@
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null
 #  lawyer_id               :integer
+#  fecha_terminacion       :string
 #
 
 class Good < ApplicationRecord
+  searchkick
   belongs_to :good_stage
   belongs_to :good_activity
   belongs_to :lawyer
@@ -56,6 +58,9 @@ class Good < ApplicationRecord
   scope :insolvencias, -> { where(estado: "Insolvencia") }
   scope :reestructurados, -> { where(estado: "Reestructurado") }
   scope :abandonados, -> { where(estado: "Abandono") }
+  scope :ultimos, ->{ order("created_at DESC")}
+
+  scope :sin_reestructurados, -> { where("estado IS NOT 'Reestructurado'") }
 
   def etapa_estimada
     fecha_inicio = self.created_at.to_date
@@ -151,7 +156,7 @@ class Good < ApplicationRecord
       # Si los días que han transcurrido son mayores al numero total de días entre las etapas es
       # porque esta trasado una etapa, se valida que sean positivos porque cuando son negativos
       # quiere decir que esta adelantado
-      if ( dias_transcurridos_desde_etapa_actual > dias_entre_etapas) and dias_entre_etapas > 0
+      if ( dias_transcurridos_desde_etapa_actual >= dias_entre_etapas) and dias_entre_etapas > 0
         ["rojo", "label label-danger"]
       else
         ["verde", "label label-success"]
@@ -193,5 +198,9 @@ class Good < ApplicationRecord
 
   def self.buscar_por_idCredito id
     Good.find_by(:credit_id => id)
+  end
+
+  def date_format date
+    date.strftime('%B %d, del %Y')
   end
 end

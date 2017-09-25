@@ -39,32 +39,44 @@
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null
 #  lawyer_id               :integer
+#  fecha_terminacion       :string
 #
 
 class Insolvency < ApplicationRecord
+  searchkick
   belongs_to :insolvency_stage
   belongs_to :insolvency_activity
   belongs_to :lawyer
+
+  # Scopes
+  scope :activos, -> { where(estado: "Activo") }
+  scope :cancelados, -> { where(estado: "Cancelado") }
+  scope :reingresos, -> { where(estado: "Reingreso") }
+  scope :terminados, -> { where(estado: "Terminado") }
+  scope :insolvencias, -> { where(estado: "Insolvencia") }
+  scope :reestructurados, -> { where(estado: "Reestructurado") }
+  scope :abandonados, -> { where(estado: "Abandono") }
+  scope :ultimos, ->{ order("created_at DESC")}
+
+  scope :sin_reestructurados, -> { where("estado IS NOT 'Reestructurado'") }
 
   def etapa_estimada
     fecha_inicio = self.created_at.to_date
     dias_transcurridos = (Date.current - fecha_inicio)
 
     # Compara que el # de días transcurridos estén entre el # días de inicio y fin de cada etapa
-    if dias_transcurridos >= ((fecha_inicio + 9.month) - fecha_inicio).to_i
+    if dias_transcurridos >= ((fecha_inicio + 8.month) - fecha_inicio).to_i
       "Notificación de quiebra"
-    elsif dias_transcurridos >= ((fecha_inicio + 8.month) - fecha_inicio).to_i and dias_transcurridos <= ((fecha_inicio + 9.month) - fecha_inicio).to_i
+    elsif dias_transcurridos >= ((fecha_inicio + 7.month) - fecha_inicio).to_i and dias_transcurridos <= ((fecha_inicio + 8.month) - fecha_inicio).to_i
       "Síndico de quiebra"
-    elsif dias_transcurridos >= ((fecha_inicio + 5.month) - fecha_inicio).to_i and dias_transcurridos <= ((fecha_inicio + 8.month) - fecha_inicio).to_i
+    elsif dias_transcurridos >= ((fecha_inicio + 4.month) - fecha_inicio).to_i and dias_transcurridos <= ((fecha_inicio + 7.month) - fecha_inicio).to_i
       "Notificación pública"
-    elsif dias_transcurridos >= ((fecha_inicio + 4.month) - fecha_inicio).to_i and dias_transcurridos <= ((fecha_inicio + 5.month) - fecha_inicio).to_i
+    elsif dias_transcurridos >= ((fecha_inicio + 3.month) - fecha_inicio).to_i and dias_transcurridos <= ((fecha_inicio + 4.month) - fecha_inicio).to_i
       "Citaciones finalizadas"
-    elsif dias_transcurridos >= ((fecha_inicio + 2.month) - fecha_inicio).to_i and dias_transcurridos <= ((fecha_inicio + 4.month) - fecha_inicio).to_i
+    elsif dias_transcurridos >= ((fecha_inicio + 1.month) - fecha_inicio).to_i and dias_transcurridos <= ((fecha_inicio + 3.month) - fecha_inicio).to_i
       "Acta de sorteo judicial"
-    elsif dias_transcurridos >= ((fecha_inicio + 1.month) - fecha_inicio).to_i and dias_transcurridos <= ((fecha_inicio + 2.month) - fecha_inicio).to_i
-      "Mandamiento de ejecución"
     else
-      "Liquidación"
+      "Mandamiento de ejecución"
     end
 
   end
@@ -84,24 +96,21 @@ class Insolvency < ApplicationRecord
 
     nombre_etapa_estimada = self.etapa_estimada
     case nombre_etapa_estimada
-      when "Liquidación"
+      when "Mandamiento de ejecución"
         fecha_etapa_estimada = self.created_at
         fecha_proxima_etapa =  self.created_at + 1.month
-      when "Mandamiento de ejecución"
-        fecha_etapa_estimada = self.created_at + 1.month
-        fecha_proxima_etapa =  self.created_at + 2.month
       when "Acta de sorteo judicial"
-        fecha_etapa_estimada = self.created_at + 2.month
-        fecha_proxima_etapa =  self.created_at + 4.month
+        fecha_etapa_estimada = self.created_at + 1.month
+        fecha_proxima_etapa =  self.created_at + 3.month
       when "Citaciones finalizadas"
-        fecha_etapa_estimada = self.created_at + 4.month
-        fecha_proxima_etapa =  self.created_at + 5.month
+        fecha_etapa_estimada = self.created_at + 3.month
+        fecha_proxima_etapa =  self.created_at + 4.month
       when "Notificación pública"
-        fecha_etapa_estimada = self.created_at + 5.month
-        fecha_proxima_etapa =  self.created_at + 8.month
+        fecha_etapa_estimada = self.created_at + 4.month
+        fecha_proxima_etapa =  self.created_at + 7.month
       when "Síndico de quiebra"
-        fecha_etapa_estimada = self.created_at + 8.month
-        fecha_proxima_etapa =  self.created_at + 9.month
+        fecha_etapa_estimada = self.created_at + 7.month
+        fecha_proxima_etapa =  self.created_at + 8.month
       when "Notificación de quiebra"
         return ["terminado", "label label-default"]
 
@@ -131,7 +140,7 @@ class Insolvency < ApplicationRecord
       # Si los días que han transcurrido son mayores al numero total de días entre las etapas es
       # porque esta trasado una etapa, se valida que sean positivos porque cuando son negativos
       # quiere decir que esta adelantado
-      if ( dias_transcurridos_desde_etapa_actual > dias_entre_etapas) and dias_entre_etapas > 0
+      if ( dias_transcurridos_desde_etapa_actual >= dias_entre_etapas) and dias_entre_etapas > 0
         ["rojo", "label label-danger"]
       else
         ["verde", "label label-success"]
