@@ -1,0 +1,6 @@
+.nav.nav-pills
+  %li= link_to "Terminado", update_trial_state_path(:id => trial.id, :tipo_juicio => tipo, :state => 'Terminado'), method: :post, class: "btn btn-inverse", data: {confirm: "Estás segur@?"}
+  %li= link_to "Abandono", update_trial_state_path(:id => trial.id, :tipo_juicio => tipo, :state => 'Abandono'), method: :post, class: "btn btn-inverse", data: {confirm: "Estás segur@?"}
+  %li= link_to "Cancelar", update_trial_state_path(:id => trial.id, :tipo_juicio => tipo, :state => 'Cancelado'), method: :post, class: "btn btn-inverse", data: {confirm: "Estás segur@?"}
+  %li= link_to "Reestructurado", update_trial_state_path(:id => trial.id, :tipo_juicio => tipo, :state => 'Reestructurado'), method: :post, class: "btn btn-inverse", data: {confirm: "Estás segur@?"}
+  %li= link_to "Activar", update_trial_state_path(:id => trial.id, :tipo_juicio => tipo, :state => 'Activo'), method: :post, class: "btn btn-inverse", data: {confirm: "Estás segur@?"}

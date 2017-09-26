@@ -3971,7 +3971,8 @@ a.list-group-item.active > .badge,
   }
 }
 .nav-pills > li > a {
-  background-color: #1abc9c;
+  /*background-color: #1abc9c;*/
+  background-color: #34495e;
   border-left: 2px solid #16a085;
   color: #ffffff;
   font-size: 16px;

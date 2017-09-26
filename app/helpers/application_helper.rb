@@ -55,4 +55,11 @@ module ApplicationHelper
     html.html_safe
   end
 
+  def is_last_stage? stage
+    if stage == "Termina proceso" or stage == "Mandamiento de ejecución" or stage == "Notificación de quiebra"
+      return true
+    end
+    return false
+  end
+
 end

@@ -47,7 +47,7 @@ class Good < ApplicationRecord
   belongs_to :good_stage
   belongs_to :good_activity
   belongs_to :lawyer
-  after_create :delete_pending
+  after_create :delete_pending, :unless => :skip_callbacks
 
 
   # Scopes
@@ -60,7 +60,9 @@ class Good < ApplicationRecord
   scope :abandonados, -> { where(estado: "Abandono") }
   scope :ultimos, ->{ order("created_at DESC")}
 
-  scope :sin_reestructurados, -> { where("estado IS NOT 'Reestructurado'") }
+  scope :activados, ->{ where(estado: ["Activo", "Reingreso", "Insolvencia", "Reestructurado"])}
+
+  scope :sin_reestructurados, -> { where(estado: ["Activo", "Reingreso", "Insolvencia"]) }
 
   def etapa_estimada
     fecha_inicio = self.created_at.to_date
@@ -202,5 +204,9 @@ class Good < ApplicationRecord
 
   def date_format date
     date.strftime('%B %d, del %Y')
+  end
+
+  def skip_callbacks
+    self.credit_id[0] == "R"
   end
 end

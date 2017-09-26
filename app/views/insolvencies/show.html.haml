@@ -4,6 +4,9 @@
   %small
     %span.label{class: "#{@semaforo_actual[1]}"}
       = @semaforo_actual[0]
+%h5.text-center
+  Juicio
+  %small= @insolvency.estado
 .row.center-xs
   .col-xs-11
     -#= img_juicio @without_good.withoutgood_stage.name, 'insolvencias'

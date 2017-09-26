@@ -22,7 +22,7 @@
             %th Proceso
             %th Estado
             %th Semaforo
-            %th Ver
+            %th Acciones
         %tbody
           - @conBienes.each do |trial|
             - semaforos = trial.semaforo
@@ -37,7 +37,8 @@
               %td
                 %span.label{class: "#{semaforos[1]}"}
                   = semaforos[0]
-              %td= link_to "Ver", good_path(trial), class: "btn btn-info"
+              %td= link_to "Ver", good_path(trial), class: "btn btn-inverse"
+              %td= link_to "Terminar", update_trial_state_path(:id => trial.id, :tipo_juicio => 'bienes', :state => 'Terminado'), method: :post, class: "btn btn-inverse" if is_last_stage? trial.good_stage.name
 
 %h3.text-center.text-muted Juicios sin Bienes
 .row.center-xs
@@ -54,7 +55,7 @@
             %th Proceso
             %th Estado
             %th Semaforo
-            %th Ver
+            %th Acciones
         %tbody
           - @sinBienes.each do |trial|
             - semaforos = trial.semaforo
@@ -69,7 +70,8 @@
               %td
                 %span.label{class: "#{semaforos[1]}"}
                   = semaforos[0]
-              %td= link_to "Ver", without_good_path(trial), class: "btn btn-info"
+              %td= link_to "Ver", without_good_path(trial), class: "btn btn-inverse"
+              %td= link_to "Terminar", update_trial_state_path(:id => trial.id, :tipo_juicio => 'sinbienes', :state => 'Terminado'), method: :post, class: "btn btn-inverse" if is_last_stage? trial.withoutgood_stage.name
 
 
 %h3.text-center.text-muted Juicios de Insolvencia
@@ -87,7 +89,7 @@
             %th Proceso
             %th Estado
             %th Semaforo
-            %th Ver
+            %th Acciones
         %tbody
           - @insolvencias.each do |trial|
             - semaforos = trial.semaforo
@@ -102,4 +104,5 @@
               %td
                 %span.label{class: "#{semaforos[1]}"}
                   = semaforos[0]
-              %td= link_to "Ver", insolvency_path(trial), class: "btn btn-info"
+              %td= link_to "Ver", insolvency_path(trial), class: "btn btn-inverse"
+              %td= link_to "Terminar", update_trial_state_path(:id => trial.id, :tipo_juicio => 'insolvencia', :state => 'Terminado'), method: :post, class: "btn btn-inverse" if is_last_stage? trial.insolvency_stage.name

@@ -13,9 +13,9 @@ class MainController < ApplicationController
 
   # Controlador de la pantalla principal del modulo de creditos
   def home_creditos
-    @conBienes = Good.activos.ultimos.includes(:good_stage, :good_activity)
-    @sinBienes =  WithoutGood.activos.ultimos.includes(:withoutgood_stage, :without_good_activity)
-    @insolvencias = Insolvency.activos.ultimos.includes(:insolvency_stage, :insolvency_activity)
+    @conBienes = Good.activados.ultimos.includes(:good_stage, :good_activity)
+    @sinBienes =  WithoutGood.activados.ultimos.includes(:withoutgood_stage, :without_good_activity)
+    @insolvencias = Insolvency.activados.ultimos.includes(:insolvency_stage, :insolvency_activity)
   end
 
   # Controlador de la pantalla de las etapas y procesos
@@ -59,7 +59,7 @@ class MainController < ApplicationController
     @rojos = Array.new
     # Consulto todos los juicios excepto los reestructurados y en funcion al semaforo
     # aumento su respeectiva variable para poder graficarlos al ultimo
-    Good.sin_reestructurados.each do |trial|
+    Good.activados.each do |trial|
       if trial.semaforo[0] == 'rojo'
         @cantidades_semafotos[:rojos] = @cantidades_semafotos[:rojos] + 1
         @rojos.push(trial)
@@ -72,7 +72,7 @@ class MainController < ApplicationController
       end
     end
 
-    Insolvency.sin_reestructurados.each do | trial|
+    Insolvency.activados.each do | trial|
       if trial.semaforo[0] == 'rojo'
         @cantidades_semafotos[:rojos] = @cantidades_semafotos[:rojos] + 1
         @rojos.push(trial)
@@ -85,7 +85,7 @@ class MainController < ApplicationController
       end
     end
 
-    WithoutGood.sin_reestructurados.each do | trial|
+    WithoutGood.activados.each do | trial|
       if trial.semaforo[0] == 'rojo'
         @cantidades_semafotos[:rojos] = @cantidades_semafotos[:rojos] + 1
         @rojos.push(trial)
@@ -151,6 +151,51 @@ class MainController < ApplicationController
       end
     end
 
+  end
+
+  # Metodo accedido por Post para cambiar el estado de un credito
+  # segun los parametros que se le envie
+  def change_state
+    tipo_juicio = params[:tipo_juicio]
+    case tipo_juicio
+      when "bienes"
+        @trial = Good.find(params[:id])
+      when "sinbienes"
+        @trial = WithoutGood.find(params[:id])
+      when "insolvencia"
+        @trial = Insolvency.find(params[:id])
+    end
+    respond_to do |format|
+      if @trial.update(estado: params[:state])
+        format.html{ redirect_to @trial, notice: 'Se actualizó el estado del crédito'}
+      else
+        format.html{ redirect_to @trial, notice: 'Algo salió mal! Intentalo de nuevo'}
+      end
+    end
+
+  end
+
+  def reingresos
+    tipo_juicio = params[:tipo_juicio]
+    case tipo_juicio
+      when "bienes"
+        @trial = Good.find(params[:id])
+      when "sinbienes"
+        @trial = WithoutGood.find(params[:id])
+      when "insolvencia"
+        @trial = Insolvency.find(params[:id])
+    end
+    @juicio_reingresado = @trial.dup
+    @juicio_reingresado.credit_id = "R-"+@trial.credit_id.to_s
+    @juicio_reingresado.estado = "Reingreso"
+    respond_to do |format|
+      if @juicio_reingresado.save
+        @trial.update(estado: "Abandono")
+        format.html{ redirect_to @juicio_reingresado, notice: 'Se reingresó exitosamente el crédito'}
+      else
+        format.html{ redirect_to @juicio_reingresado, notice: 'Algo salió mal! Intentalo de nuevo'}
+      end
+    end
   end
 
   def set_layout

@@ -32,10 +32,14 @@
 }
 
 .padding {
-  padding: 10px 15px;
+  padding: 10px 15px !important;
 }
 
 .top-space {
   margin-top: 1em;
+}
+
+.no-margin{
+  margin: 0px;
 }
 

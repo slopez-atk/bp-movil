@@ -4,10 +4,14 @@
   %small
     %span.label{class: "#{@semaforo_actual[1]}"}
       = @semaforo_actual[0]
+%h5.text-center
+  Juicio
+  %small.color-cyan-400= @good.estado
+
 .row.center-xs
   .col-xs-11
-    -#= timeline [["verde","2017-09-15","2017-10-15"],["rojo", '2017-10-15','2017-11-15'], ["verde", '2017-10-15','2017-11-15']]
     = img_juicio @good.good_stage.name, 'bienes'
+    = render partial: "partials/creditos/buttons_states", locals: {tipo: "bienes", trial: @good} if current_user.permissions == 5
 .row.center-xs
   .col-xs-6.top-space.text-left
     .card.bg-color-white.padding
