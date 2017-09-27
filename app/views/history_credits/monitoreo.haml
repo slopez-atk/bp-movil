@@ -1,3 +1,11 @@
+%ul.breadcrumb
+  %li
+    = link_to "Dashboard", root_path
+  %li
+    = link_to "Home", creditos_root_path
+  %li.active
+    Monitoreo
+
 .row.center-xs
   .col-xs-11
     %h2{data: {toggle: "tooltip", tooltip: {style:"light"}, placement: "bottom" }, title:"Recuerda que se guardará el historial con fecha del mes anterior"}
@@ -40,7 +48,7 @@
               %td
                 %span.label{class: "#{semaforos[1]}"}
                   = semaforos[0]
-              %td= link_to "Ver", good_path(trial), class: "btn btn-info"
+              %td= link_to "Ver", good_path(trial), class: "btn btn-inverse"
 
 %h3.text-center.text-muted Juicios sin Bienes
 .row.center-xs
@@ -68,7 +76,7 @@
               %td
                 %span.label{class: "#{semaforos[1]}"}
                   = semaforos[0]
-              %td= link_to "Ver", without_good_path(trial), class: "btn btn-info"
+              %td= link_to "Ver", without_good_path(trial), class: "btn btn-inverse"
 
 
 %h3.text-center.text-muted Juicios de Insolvencia
@@ -97,4 +105,4 @@
               %td
                 %span.label{class: "#{semaforos[1]}"}
                   = semaforos[0]
-              %td= link_to "Ver", insolvency_path(trial), class: "btn btn-info"
+              %td= link_to "Ver", insolvency_path(trial), class: "btn btn-inverse"

@@ -1,17 +1,12 @@
-%ul.breadcrumb
-  %li
-    = link_to "Dashboard", root_path
-  %li
-    = link_to "Home", creditos_root_path
-
 .row.center-xs
   .col-xs-11.top-space
     %button{class:"btn btn-inverse", type:"button", data: {toggle:"collapse", target: "#collapseExample"}, aria: {expanded:"false", controls: "collapseExample"}}
-      Reporte de juicios
+      Historial de Semaforos
   .col-xs-5
     .collapse.top-space#collapseExample
       .well
         = render "partials/reports/form_report"
+
 %h3.text-center.text-muted Juicios con Bienes
 
 .row.center-xs
@@ -25,10 +20,10 @@
             %th Id Socio
             %th Cédula
             %th Etapa Actual
-            %th Proceso
+            %th Etapa Estimada
             %th Estado
             %th Semaforo
-            %th Acciones
+            %th Ver
         %tbody
           - @conBienes.each do |trial|
             - semaforos = trial.semaforo
@@ -37,14 +32,13 @@
               %td= trial.credit_id
               %td= trial.socio_id
               %td= trial.cedula
-              %td= best_in_place(trial, :good_stage_id, :as => :select, collection: GoodStage.collection)
-              %td= best_in_place(trial, :good_activity_id, :as => :select, collection: trial.good_stage.get_activities)
+              %td= trial.good_stage.name
+              %td= trial.etapa_estimada
               %td= trial.estado
               %td
                 %span.label{class: "#{semaforos[1]}"}
                   = semaforos[0]
               %td= link_to "Ver", good_path(trial), class: "btn btn-inverse"
-              %td= link_to "Terminar", update_trial_state_path(:id => trial.id, :tipo_juicio => 'bienes', :state => 'Terminado'), method: :post, class: "btn btn-inverse" if is_last_stage? trial.good_stage.name
 
 %h3.text-center.text-muted Juicios sin Bienes
 .row.center-xs
@@ -58,10 +52,11 @@
             %th Id Socio
             %th Cédula
             %th Etapa Actual
-            %th Proceso
+            %th Etapa Estimada
             %th Estado
             %th Semaforo
-            %th Acciones
+            %th
+            %th
         %tbody
           - @sinBienes.each do |trial|
             - semaforos = trial.semaforo
@@ -70,8 +65,8 @@
               %td= trial.credit_id
               %td= trial.socio_id
               %td= trial.cedula
-              %td= best_in_place(trial, :withoutgood_stage_id, :as => :select, collection: WithoutgoodStage.collection)
-              %td= best_in_place(trial, :without_good_activity_id, :as => :select, collection: trial.withoutgood_stage.get_activities)
+              %td= trial.withoutgood_stage.name
+              %td= trial.etapa_estimada
               %td= trial.estado
               %td
                 %span.label{class: "#{semaforos[1]}"}
@@ -91,10 +86,11 @@
             %th Id Socio
             %th Cédula
             %th Etapa Actual
-            %th Proceso
+            %th Etapa Estimada
             %th Estado
             %th Semaforo
-            %th Acciones
+            %th Ver
+            %th
         %tbody
           - @insolvencias.each do |trial|
             - semaforos = trial.semaforo
@@ -103,11 +99,10 @@
               %td= trial.credit_id
               %td= trial.socio_id
               %td= trial.cedula
-              %td= best_in_place(trial, :insolvency_stage_id, :as => :select, collection: InsolvencyStage.collection)
-              %td= best_in_place(trial, :insolvency_activity_id, :as => :select, collection: trial.insolvency_stage.get_activities)
+              %td= trial.insolvency_stage.name
+              %td= trial.etapa_estimada
               %td= trial.estado
               %td
                 %span.label{class: "#{semaforos[1]}"}
                   = semaforos[0]
               %td= link_to "Ver", insolvency_path(trial), class: "btn btn-inverse"
-              %td= link_to "Terminar", update_trial_state_path(:id => trial.id, :tipo_juicio => 'insolvencia', :state => 'Terminado'), method: :post, class: "btn btn-inverse" if is_last_stage? trial.insolvency_stage.name

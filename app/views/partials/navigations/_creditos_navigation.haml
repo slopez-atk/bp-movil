@@ -11,20 +11,54 @@
               = text_field_tag :search, params[:search], class: "form-control", placeholder: "Buscar"
             = submit_tag "Buscar", class: "btn btn-default"
 
+
+          %ul.nav.navbar-nav
+            %li{class: "#{'active' if action_name == 'listado_juicios'} dropdown"}
+              %a{href: "#", class: "dropdown-toggle", data: {toggle:"dropdown"},  role:"button", aria: {haspopup:"true", expanded:"false"}}
+                Juicios
+                %span.caret
+              %ul.dropdown-menu
+                %li= link_to 'Terminados', listado_juicios_path(:estado => "Terminado")
+                %li= link_to 'Cancelados', listado_juicios_path(:estado => "Cancelado")
+                %li= link_to 'Insolvencia', listado_juicios_path(:estado => "Insolvencia")
+                %li= link_to 'Abandonados', listado_juicios_path(:estado => "Abandono")
+                %li= link_to 'Re-estructurados', listado_juicios_path(:estado => "Reestructurado")
+                %li= link_to 'Re-ingresos', listado_juicios_path(:estado => "Reingreso")
+
+
           - if current_user.permissions == 5
-            %li{class: "#{'active' if controller_name == 'monitoreo'}"}= link_to "Monitoreo", monitoreo_history_credits_path
-            %li{class: "#{'active' if controller_name == 'lawyers'}"}
-            %li{class: "#{'active' if controller_name == 'lawyers'}"}= link_to "Jueces", lawyers_path
-            %li{class: "#{'active' if action_name == 'stage'}"}= link_to "Etapas", stages_root_path
+
+
+            %ul.nav.navbar-nav
+            %li{class: "#{'active' if controller_name == 'lawyers' or action_name == 'stage'} dropdown"}
+              %a{href: "#", class: "dropdown-toggle", data: {toggle:"dropdown"},  role:"button", aria: {haspopup:"true", expanded:"false"}}
+                Gestionar
+                %span.caret
+              %ul.dropdown-menu
+                %li= link_to "Jueces", lawyers_path
+                %li= link_to "Etapas", stages_root_path
+
+
+            %li{class: "#{'active' if action_name == 'monitoreo'}"}= link_to "Monitoreo", monitoreo_history_credits_path
             %li{class: "#{'active' if action_name == 'new_trial'}"}= link_to "Ingresos", new_trials_root_path
+
+
+
           - elsif current_user.permissions == 4
-            %li{class: "#{'active' if action_name == 'create_trial'}"}
+
+            %li{class: "#{'active' if controller_name == 'pending_trials'}"}
               = link_to pending_trials_path do
-                Nuevo Juicios
+                Nuevos Juicios
                 %span{class: "navbar-new"}
                   = PendingTrial.pending_trials_count
           %li{class: "#{'active' if action_name == 'evaluacion_resultados'}"}= link_to "Resultados",evaluacion_resultados_path
-          %li{class: "#{'active' if controller_name == 'sessions'}"}= link_to "Mi Cuenta", edit_user_registration_path
-          %li= link_to "Cerrar sesion", destroy_user_session_path, method: :delete
+          %ul.nav.navbar-nav
+            %li{class: "#{'active' if action_name == 'todos_los_juicios'} dropdown"}
+              %a{href: "#", class: "dropdown-toggle", data: {toggle:"dropdown"},  role:"button", aria: {haspopup:"true", expanded:"false"}}
+                Cuenta
+                %span.caret
+              %ul.dropdown-menu
+                %li{class: "#{'active' if controller_name == 'sessions'}"}= link_to "Mi Cuenta", edit_user_registration_path
+                %li= link_to "Cerrar sesion", destroy_user_session_path, method: :delete
         - else
           %li= link_to "Iniciar sesion", new_user_session_path

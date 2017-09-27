@@ -11,7 +11,13 @@ class InsolvenciesController < ApplicationController
   # GET /insolvencies/1.json
   def show
     # Recupera los datos variables de este id de credito desde la bdd Oracle
-    @variables = Oracledb.getVariables(@insolvency.credit_id).to_a
+    # Filtro la letra "R" al principio de credit_id para saber  si el juicio
+    # tiene un id de reingreso y busque las variables
+    id = @insolvency.credit_id
+    if id[0] == "R" or id[0] == "I"
+      id = id[2..id.length]
+    end
+    @variables = Oracledb.getVariables(id).to_a
     @semaforo_actual = @insolvency.semaforo
   end
 

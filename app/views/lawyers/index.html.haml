@@ -1,3 +1,10 @@
+%ul.breadcrumb
+  %li
+    = link_to "Dashboard", root_path
+  %li
+    = link_to "Home", creditos_root_path
+  %li.active
+    Abogados
 = react_component("LawyerGroup")
 %button{class:"btn btn-inverse", type:"button", data: {toggle:"collapse", target: "#collapseExample"}, aria: {expanded:"false", controls: "collapseExample"}}
   Ingresar abogado

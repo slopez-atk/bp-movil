@@ -44,9 +44,9 @@ class MainController < ApplicationController
       @sinBienes =  WithoutGood.search(params[:search])
       @insolvencias = Insolvency.search(params[:search])
     else
-      @conBienes
-      @sinBienes
-      @insolvencias
+      @conBienes = Good.all.includes(:lawyer, :good_stage, :good_activity)
+      @sinBienes = WithoutGood.all.includes(:lawyer, :withoutgood_stage, :without_good_activity)
+      @insolvencias = Insolvency.all.includes(:lawyer, :insolvency_stage, :insolvency_activity)
     end
 
 
@@ -162,9 +162,30 @@ class MainController < ApplicationController
         @trial = Good.find(params[:id])
       when "sinbienes"
         @trial = WithoutGood.find(params[:id])
-      when "insolvencia"
+      when "envio_insolvencia"
+        @trial = WithoutGood.find(params[:id])
+        trial_json = @trial.as_json.to_h
+        trial_json.except!("id", "withoutgood_stage_id", "without_good_activity_id", "fcalificacion_juicio","juicio_id","fentrega_juicios","created_at")
+        @insolvencia = Insolvency.new(trial_json)
+        @insolvencia.credit_id = "I-" + @insolvencia.credit_id
+        @insolvencia.estado = "Insolvencia"
+        @insolvencia.insolvency_stage = InsolvencyStage.first
+        @insolvencia.insolvency_activity = InsolvencyStage.first.insolvency_activities.first
+        respond_to do |format|
+          if @insolvencia.save
+            @trial.update(estado: 'Terminado')
+            format.html{ redirect_to @insolvencia, notice: 'Se envió el juicio a insolvencia!'}
+
+          else
+            format.html{ redirect_to creditos_root_path, notice: 'Algo salió mal! Intentalo de nuevo'}
+          end
+
+        end
+        return
+      when 'insolvencia'
         @trial = Insolvency.find(params[:id])
     end
+
     respond_to do |format|
       if @trial.update(estado: params[:state])
         format.html{ redirect_to @trial, notice: 'Se actualizó el estado del crédito'}
@@ -186,7 +207,14 @@ class MainController < ApplicationController
         @trial = Insolvency.find(params[:id])
     end
     @juicio_reingresado = @trial.dup
-    @juicio_reingresado.credit_id = "R-"+@trial.credit_id.to_s
+
+    if @juicio_reingresado.credit_id[0] != 'R' and @juicio_reingresado.credit_id[0] != 'I'
+      @juicio_reingresado.credit_id = "R-"+@trial.credit_id.to_s
+    elsif @juicio_reingresado.credit_id[0] == 'I'
+      @juicio_reingresado.credit_id[0] = "R"
+    end
+
+
     @juicio_reingresado.estado = "Reingreso"
     respond_to do |format|
       if @juicio_reingresado.save
@@ -198,8 +226,37 @@ class MainController < ApplicationController
     end
   end
 
+  def listado_juicios
+    case params[:estado]
+      when "Terminado"
+        @conBienes = Good.terminados.includes(:lawyer, :good_stage, :good_activity)
+        @sinBienes = WithoutGood.terminados.includes(:lawyer, :withoutgood_stage, :without_good_activity)
+        @insolvencias = Insolvency.terminados.includes(:lawyer, :insolvency_stage, :insolvency_activity)
+      when "Cancelado"
+        @conBienes = Good.cancelados.includes(:lawyer, :good_stage, :good_activity)
+        @sinBienes = WithoutGood.cancelados.includes(:lawyer, :withoutgood_stage, :without_good_activity)
+        @insolvencias = Insolvency.cancelados.includes(:lawyer, :insolvency_stage, :insolvency_activity)
+      when "Insolvencia"
+        @conBienes = Good.insolvencias.includes(:lawyer, :good_stage, :good_activity)
+        @sinBienes = WithoutGood.insolvencias.includes(:lawyer, :withoutgood_stage, :without_good_activity)
+        @insolvencias = Insolvency.insolvencias.includes(:lawyer, :insolvency_stage, :insolvency_activity)
+      when "Abandono"
+        @conBienes = Good.abandonados.includes(:lawyer, :good_stage, :good_activity)
+        @sinBienes = WithoutGood.abandonados.includes(:lawyer, :withoutgood_stage, :without_good_activity)
+        @insolvencias = Insolvency.abandonados.includes(:lawyer, :insolvency_stage, :insolvency_activity)
+      when "Reestructurado"
+        @conBienes = Good.reestructurados.includes(:lawyer, :good_stage, :good_activity)
+        @sinBienes = WithoutGood.reestructurados.includes(:lawyer, :withoutgood_stage, :without_good_activity)
+        @insolvencias = Insolvency.reestructurados.includes(:lawyer, :insolvency_stage, :insolvency_activity)
+      when "Reingreso"
+        @conBienes = Good.reingresos.includes(:lawyer, :good_stage, :good_activity)
+        @sinBienes = WithoutGood.reingresos.includes(:lawyer, :withoutgood_stage, :without_good_activity)
+        @insolvencias = Insolvency.reingresos.includes(:lawyer, :insolvency_stage, :insolvency_activity)
+    end
+  end
+
   def set_layout
-    return "creditos_judiciales" if action_name == "home_creditos" or action_name == "new_trial" or action_name == "evaluacion_resultados" or action_name == "search"
+    return "creditos_judiciales" if action_name == "home_creditos" or action_name == "new_trial" or action_name == "evaluacion_resultados" or action_name == "search"or action_name == "listado_juicios"
     return "creditos_judiciales" if action_name == "stage"
     super
   end

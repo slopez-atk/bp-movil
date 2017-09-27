@@ -43,5 +43,7 @@ Rails.application.routes.draw do
   post '/juicio/:id/update', to: "main#change_state", as: :update_trial_state
   # Ruta para manejar los reingresos de juicios
   post '/reingresos/:id', to: "main#reingresos", as: :reingreso_juicios
+  #   Ruta que muestra todos los juicios
+  get '/juicios', to: 'main#listado_juicios', as: :listado_juicios
 
 end

@@ -47,7 +47,7 @@ class WithoutGood < ApplicationRecord
   belongs_to :withoutgood_stage
   belongs_to :without_good_activity
   belongs_to :lawyer
-  after_create :delete_pending
+  after_create :delete_pending, :unless => :skip_callbacks
 
 # Scopes
   scope :activos, -> { where(estado: "Activo") }
@@ -163,6 +163,10 @@ class WithoutGood < ApplicationRecord
 
   def self.buscar_por_idCredito id
     WithoutGood.find_by(:credit_id => id)
+  end
+
+  def skip_callbacks
+    self.credit_id[0] == "R"
   end
 
 end

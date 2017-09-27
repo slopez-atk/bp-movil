@@ -5,8 +5,9 @@
     .collapse.navbar-collapse
       %ul.nav.navbar-nav.navbar-right
         %li
-          %a Mi Cuenta
         - if user_signed_in?
+          %li= link_to "Panel de administración", "/administracion" if current_user.admin
           %li.active= link_to "Cerrar sesion", destroy_user_session_path, method: :delete
+
         - else
           %li.active= link_to "Iniciar sesion", new_user_session_path
