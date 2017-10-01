@@ -27,29 +27,44 @@ module ApplicationHelper
 
       case nombre_etapa
         when "Autorización proceso judicial"
-          src = asset_path 'bienes/bienes_autorizacion_proceso.jpeg'
+          src = asset_path 'sinbienes/autorizacion_proceso.jpeg'
         when "Documentos habilitantes"
-          src = asset_path 'bienes/bienes_documentos_habilitantes.jpeg'
+          src = asset_path 'sinbienes/documentos_habilitantes.jpeg'
         when "Acta sorteo judicial"
-          src = asset_path 'bienes/bienes_acta_sorteo_judicial.jpeg'
+          src = asset_path 'sinbienes/acta_sorteo_judicial.jpeg'
         when "Citaciones finalizadas - razón"
-          src = asset_path 'bienes/bienes_citaciones_finalizadas.jpeg'
+          src = asset_path 'sinbienes/citaciones_finalizadas.jpeg'
         when "Sentencia"
-          src = asset_path 'bienes/bienes_sentencia.jpeg'
+          src = asset_path 'sinbienes/sentencia.jpeg'
         when "Liquidación"
-          src = asset_path 'bienes/bienes_liquidacion.jpeg'
+          src = asset_path 'sinbienes/Liquidacion.jpeg'
         when "Mandamiento de ejecución"
-          src = asset_path 'sinbienes/sinbienes_mandamiento_ejecucion.jpeg'
+          src = asset_path 'sinbienes/mandamiento_ejecucion.jpeg'
       end
 
     else
+
+      case nombre_etapa
+        when "Mandamiento de ejecución"
+          src = asset_path 'insolvencia/mandamiento_ejecucion.jpeg'
+        when "Acta de sorteo judicial"
+          src = asset_path 'insolvencia/acta_sorteo.jpeg'
+        when "Citaciones finalizadas"
+          src = asset_path 'insolvencia/citaciones_finalizadas.jpeg'
+        when "Notificación pública"
+          src = asset_path 'insolvencia/notificaciones_publicas.jpeg'
+        when "Síndico de quiebra"
+          src = asset_path 'insolvencia/sindico_quiebra.jpeg'
+        when "Notificación de quiebra"
+          src = asset_path 'insolvencia/notificacion_quiebra.jpeg'
+      end
 
 
 
 
 
     end
-    html_style = "max-width: 100%;height:400px;background-size:cover;background-position: center;"
+    html_style = ""
     html ="<img src='#{src}' style='#{html_style}'>"\
             "</header>"
     html.html_safe

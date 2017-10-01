@@ -2,3 +2,55 @@
   = render "partials/creditos/jcreditos_home_tables"
 - elsif current_user.permissions == 4
   = render "partials/creditos/jcobranzas_home_tables"
+- elsif current_user.permissions == 3
+  %ul.breadcrumb
+    %li
+      = link_to "Dashboard", root_path
+    %li.active
+      Home
+  .row.center-xs.middle-xs
+    .col-xs-12
+      %h2
+        Bienvenid@
+        %small= current_user.full_name
+    .col-xs-8
+      .tabbable
+        %ul.nav.nav-tabs.nav-append-content
+          %li.active
+            %a{href: "#tab1"}Reporte de monitoreos
+          %li
+            %a{href: "#tab2"}Lista de monitoreos
+        .tab-content
+          .tab-pane.active{id: "tab1"}
+            = render "partials/reports/form_report"
+          .tab-pane{id: "tab2"}
+            %h3{data: {toggle: "tooltip", tooltip: {style:"light"}, placement: "top" }, title:"Aquí te mostramos las fechas de los monitoreos que ya han sido guardados"}
+              Lista de meses en los que se ha realizado los monitoreos
+            %ul{class: "list-group"}
+              - if @fechas.empty?
+                %li.list-group-item Todavía no tienes historiales guardados
+              - else
+                - @fechas.each do |fecha|
+                  %li.list-group-item
+                    %spam
+                      = fecha
+                      = link_to "Eliminar monitoreo", eliminar_history_credits_path(fecha: fecha), method: :post, class: "btn btn-embossed btn-primary", data: {confirm: 'Estás segur@?'}
+- else
+  %ul.breadcrumb
+    %li
+      = link_to "Dashboard", root_path
+    %li.active
+      Home
+  .row.center-xs.middle-xs
+    .col-xs-12
+      %h2
+        Bienvenid@
+        %small= current_user.full_name
+    .col-xs-8
+      .tabbable
+        %ul.nav.nav-tabs.nav-append-content
+          %li.active
+            %a{href: "#tab1"}Reporte de monitoreos
+        .tab-content
+          .tab-pane.active{id: "tab1"}
+            = render "partials/reports/form_report"

@@ -58,6 +58,11 @@ gem "chartkick"
 gem 'searchkick'
 # Rails admin
 gem 'rails_admin', '~> 1.2'
+# Oracle DBC
+gem 'activerecord-oracle_enhanced-adapter', '~> 1.8.1'
+# gem 'therubyracer', platforms: :ruby
+gem 'ruby-oci8' # only for CRuby users
+# gem 'ruby-plsql', '~> 0.6.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

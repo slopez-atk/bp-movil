@@ -13,9 +13,13 @@ class MainController < ApplicationController
 
   # Controlador de la pantalla principal del modulo de creditos
   def home_creditos
-    @conBienes = Good.activados.ultimos.includes(:good_stage, :good_activity)
-    @sinBienes =  WithoutGood.activados.ultimos.includes(:withoutgood_stage, :without_good_activity)
-    @insolvencias = Insolvency.activados.ultimos.includes(:insolvency_stage, :insolvency_activity)
+    if current_user.permissions == 5 or current_user.permissions == 4
+      @conBienes = Good.activados.ultimos.includes(:good_stage, :good_activity)
+      @sinBienes =  WithoutGood.activados.ultimos.includes(:withoutgood_stage, :without_good_activity)
+      @insolvencias = Insolvency.activados.ultimos.includes(:insolvency_stage, :insolvency_activity)
+    else
+      @fechas = HistoryCredit.obtener_fechas_guardadas
+    end
   end
 
   # Controlador de la pantalla de las etapas y procesos
@@ -29,12 +33,12 @@ class MainController < ApplicationController
   # se listan los creditos filtrados desde la bdd Oracle
   def new_trial
     inmobiliarios = Oracledb.getCreditosInmobiliarios.to_a
-    productivos = Oracledb.getCreditosProductivos.to_a
-    microcreditos = Oracledb.getCreditosMicrocreditos.to_a
-    consumos = Oracledb.getCreditosConsumo.to_a
+    # productivos = Oracledb.getCreditosProductivos.to_a
+    # microcreditos = Oracledb.getCreditosMicrocreditos.to_a
+    # consumos = Oracledb.getCreditosConsumo.to_a
 
-    @trials = inmobiliarios + productivos + microcreditos + consumos
-    @trials = Good.filtrar_creditos(@trials)
+    # @trials = inmobiliarios + productivos + microcreditos + consumos
+    @trials = Good.filtrar_creditos(inmobiliarios)
   end
 
   # Controlador de las busquedas de los juicios por id de credito, socio y cedula

@@ -7,7 +7,7 @@
 .row.center-xs
   .col-xs-11.top-space
     %button{class:"btn btn-inverse", type:"button", data: {toggle:"collapse", target: "#collapseExample"}, aria: {expanded:"false", controls: "collapseExample"}}
-      Reporte de juicios
+      Historial de semaforización
   .col-xs-5
     .collapse.top-space#collapseExample
       .well
@@ -44,7 +44,7 @@
                 %span.label{class: "#{semaforos[1]}"}
                   = semaforos[0]
               %td= link_to "Ver", good_path(trial), class: "btn btn-inverse"
-              %td= link_to "Terminar", update_trial_state_path(:id => trial.id, :tipo_juicio => 'bienes', :state => 'Terminado'), method: :post, class: "btn btn-inverse" if is_last_stage? trial.good_stage.name
+              %td= link_to "Terminar", update_trial_state_path(:id => trial.id, :tipo_juicio => 'bienes', :state => 'Terminado'), method: :post, class: "btn btn-inverse", data: {confirm: "Estás segur@?"} if is_last_stage? trial.good_stage.name
 
 %h3.text-center.text-muted Juicios sin Bienes
 .row.center-xs
@@ -110,4 +110,4 @@
                 %span.label{class: "#{semaforos[1]}"}
                   = semaforos[0]
               %td= link_to "Ver", insolvency_path(trial), class: "btn btn-inverse"
-              %td= link_to "Terminar", update_trial_state_path(:id => trial.id, :tipo_juicio => 'insolvencia', :state => 'Terminado'), method: :post, class: "btn btn-inverse" if is_last_stage? trial.insolvency_stage.name
+              %td= link_to "Terminar", update_trial_state_path(:id => trial.id, :tipo_juicio => 'insolvencia', :state => 'Terminado'), method: :post, class: "btn btn-inverse", data: {confirm: "Estás segur@?"} if is_last_stage? trial.insolvency_stage.name

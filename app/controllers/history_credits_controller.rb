@@ -1,5 +1,6 @@
 class HistoryCreditsController < ApplicationController
   before_action :set_history_credit, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_gerente, only: [:eliminar]
 
   def monitoreo
     @goods = Good.includes(:good_stage)
@@ -10,6 +11,11 @@ class HistoryCreditsController < ApplicationController
 
   # Visualiza el historial de creditos
   def report
+
+      if params["inicio"] == "" or params["fin"] == ""
+        redirect_to creditos_root_path, notice: "Debes seleccionar dos fechas!"
+        return false
+      end
 
       fechainicio = params["inicio"]
       @inicio = fechainicio.to_date
@@ -42,8 +48,6 @@ class HistoryCreditsController < ApplicationController
       end
 
 
-
-
   end
 
   # Metodo que guardar en la base de datos el historial de creditos
@@ -52,11 +56,11 @@ class HistoryCreditsController < ApplicationController
     @withoutgoods = WithoutGood.includes(:lawyer)
     @insolvencies = Insolvency.includes(:lawyer)
 
-    date = 1.month.ago.strftime('%m-%Y')
+    date = 5.month.ago.strftime('%m-%Y')
     @goods.each do |credit|
       # Cancelados, abandonos
       if credit.estado == "Terminado" or credit.estado == "Abandono" or credit.estado == "Cancelado"
-        result = HistoryCredit.buscar_creditos_terminados credit.credit_id
+        result = HistoryCredit.buscar_creditos_finalizados credit.credit_id
         if result.present?
 
         else
@@ -73,7 +77,7 @@ class HistoryCreditsController < ApplicationController
 
     @withoutgoods.each do |credit|
       if credit.estado == "Terminado" or credit.estado == "Abandono" or credit.estado == "Cancelado"
-        result = HistoryCredit.buscar_creditos_terminados credit.credit_id
+        result = HistoryCredit.buscar_creditos_finalizados credit.credit_id
         if result.present?
 
         else
@@ -89,7 +93,7 @@ class HistoryCreditsController < ApplicationController
 
     @insolvencies.each do |credit|
       if credit.estado == "Terminado" or credit.estado == "Abandono" or credit.estado == "Cancelado"
-        result = HistoryCredit.buscar_creditos_terminados credit.credit_id
+        result = HistoryCredit.buscar_creditos_finalizados credit.credit_id
         if result.present?
 
         else
@@ -108,6 +112,20 @@ class HistoryCreditsController < ApplicationController
     end
   end
 
+  # Elimina to-do el historial de creditos de una fecha dada
+  def eliminar
+    fecha = params[:fecha]
+    HistoryCredit.find_by(mes: fecha)
+    respond_to do |format|
+      if HistoryCredit.where(mes: fecha).destroy_all
+        format.html { redirect_to creditos_root_path, notice: "Se realizó la petición correctamente!" }
+      else
+        format.html { redirect_to creditos_root_path, alert: "Algo salio mal! Intentalo de nuevo"}
+      end
+    end
+  end
+
+
 
   # GET /history_credits
   # GET /history_credits.json
@@ -118,6 +136,10 @@ class HistoryCreditsController < ApplicationController
   # GET /history_credits/1
   # GET /history_credits/1.json
   def show
+
+  rescue ActiveRecord::RecordNotFound
+    flash[:notice] = "No debes recargar esta página"
+    redirect_to root_path
   end
 
   # GET /history_credits/new
@@ -173,6 +195,8 @@ class HistoryCreditsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_history_credit
       @history_credit = HistoryCredit.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to creditos_root_path, notice: "No debes recargar esta página"
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
@@ -204,5 +228,12 @@ class HistoryCreditsController < ApplicationController
 
     def set_layout
       return "creditos_judiciales" if action_name == "monitoreo" or action_name == "report"
+    end
+
+    def authenticate_gerente
+      if current_user.permissions != 3
+        redirect_to root_path, alert: "No estas autorizado"
+        return false
+      end
     end
 end

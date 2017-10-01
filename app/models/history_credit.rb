@@ -41,10 +41,10 @@ class HistoryCredit < ApplicationRecord
     return nil
   end
 
-  # Buscara en los historiales de credito si un credito terminado ya se ingreso
+  # Buscara en los historiales de credito si un credito terminado, abandonado o terminado ya se ingreso
   # para no ingresarlo dos veces
-  def self.buscar_creditos_terminados(credit_id)
-    results = HistoryCredit.where(credit_id: credit_id).where(estado: "Terminado")
+  def self.buscar_creditos_finalizados(credit_id)
+    results = HistoryCredit.where(credit_id: credit_id).where(estado: ["Terminado", "Abandono", "Cancelado"])
     if results.present?
        results
     else

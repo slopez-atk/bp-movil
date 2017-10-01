@@ -13,7 +13,7 @@
     = javascript_pack_tag "lawyer_group"
   %body
     = render "partials/navigations/creditos_navigation"
-    %div{style:"#{'display:none;' if notice.nil? && alert.nil?}", class: "large-padding red white-text text-center no-margin"}
+    %div{style:"#{'display:none;' if notice.nil? && alert.nil?}", class: "large-padding bg-color-red-500 color-white text-center no-margin"}
       = notice
       = alert
       %p{style: "float: right",class: "close-parent"}

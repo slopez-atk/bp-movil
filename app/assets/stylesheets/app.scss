@@ -17,6 +17,19 @@
 
 .full-page-height-vh {
   height: 100vh;
+  overflow-y: hidden;
+}
+.large-padding{
+  padding: 10px 15px;
+}
+
+.login-background{
+  overflow: inherit;
+  width: 100%;
+  height: 100%;
+  background-image: url("#{asset_path('login-background.png')}");
+  background-size: cover;
+  margin: 0px !important;
 }
 
 .navbar.main{

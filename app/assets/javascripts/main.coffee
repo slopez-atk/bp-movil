@@ -6,6 +6,11 @@ $(document).on "turbolinks:load", ()->
   $("select").selectpicker({style: 'btn-primary', menuStyle: 'dropdown-inverse'})
   $(".best_in_place").best_in_place()
 
+  $(".nav-tabs a").on 'click',  (e)->
+    e.preventDefault();
+    $(this).tab("show");
+
+
 $(document).on "best_in_place:success", (ev)->
   location.reload()
 

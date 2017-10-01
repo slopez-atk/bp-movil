@@ -9,195 +9,214 @@
   %small= @insolvency.estado
 .row.center-xs
   .col-xs-11
-    -#= img_juicio @without_good.withoutgood_stage.name, 'insolvencias'
-.row.center-xs
-  .col-xs-6.top-space.text-left
-    .card.bg-color-white.padding
-      %h4.text-center Datos del Credito
-      %hr
-      .row
-        .col-xs-6
-          %p
-            %b Id Credito:
-            = @insolvency.credit_id
-          %p
-            %b Id Socio:
-            = @insolvency.socio_id
-          %p
-            %b Nombre grupo:
-            = @insolvency.nombre_grupo
-          %p
-            %b Grupo solidario:
-            = @insolvency.grupo_solidario
+    = img_juicio @insolvency.insolvency_stage.name, 'insolvencias'
+    = render partial: "partials/creditos/buttons_states", locals: {tipo: "insolvencia", trial: @insolvency} if current_user.permissions == 5
 
-        .col-xs-6
-          %p
-            %b Bienes:
-            = @insolvency.bienes
-          %p
-            %b Tipo credito:
-            = @insolvency.tipo_credito
-          %p
-            %b Etapa:
-            = @insolvency.insolvency_stage.name
-          %p
-            %b Proceso:
-            = @insolvency.insolvency_activity.name
-          %p
-            %b Estado:
-            = @insolvency.estado
-
-  .col-xs-5.top-space
-    .card.bg-color-white.padding.bottom-space
-      %h4.text-center Datos del Cliente
-      %hr
-      .row.text-left
-        .col-xs-6
-          %p
-            %b Nombres:
-            = @insolvency.nombres
-          %p
-            %b Cedula:
-            = @insolvency.cedula
-          %p
-            %b Telefono:
-            = @insolvency.telefono
-          %p
-            %b Celular:
-            = @insolvency.celular
-
-        .col-xs-6
-          %p
-            %b Direccion:
-            = @insolvency.direccion
-          %p
-            %b Sector:
-            = @insolvency.sector
-          %p
-            %b Parroquia:
-            = @insolvency.parroquia
-          %p
-            %b Canton:
-            = @insolvency.canton
-          %p
-            %b Sucursal:
-            = @insolvency.sucursal
-
+.row.center-xs.middle-xs.top-space
   .col-xs-11
-    .card.bg-color-white.padding
-      %h4.text-center Datos Extras
-      %hr
-      .row.text-left
-        .col-xs-4
-          %p
-            %b Oficial credito:
-            = @insolvency.oficial_credito
-          %p
-            %b Cartera heredada:
-            = @insolvency.cartera_heredada
-          %p
-            %b Fecha concesion:
-            = @insolvency.fecha_concesion
-          %p
-            %b Fecha vencimiento:
-            = @insolvency.fecha_vencimiento
-        .col-xs-4
-          %p
-            %b Tipo garantia:
-            = @insolvency.tipo_garantia
-          %p
-            %b Garantia real:
-            = @insolvency.garantia_real
-          %p
-            %b Garantia fiduciaria:
-            = @insolvency.garantia_fiduciaria
-        .col-xs-4
-          %p
-            %b Dir garante:
-            = @insolvency.dir_garante
-          %p
-            %b Tel garante:
-            = @insolvency.tel_garante
-          %p
-            %b Valor cartera castigada:
-            = @insolvency.valor_cartera_castigada
+    .tabbable
+      %ul.nav.nav-tabs.nav-append-content
+        %li.active
+          %a{href: "#tab1"}Datos del Crédito
+        %li
+          %a{href: "#tab2"}Datos del Cliente
+        %li
+          %a{href: "#tab3"}Saldos
+        %li
+          %a{href: "#tab4"}Datos Judiciales
+        %li
+          %a{href: "#tab5"}Detalles
+        %li
+          %a{href: "#tab6"}Observaciones
+      .tab-content
 
-  .col-xs-5.top-space
-    .card.bg-color-white.padding
-      %h4.text-center Datos Extras
-      %hr
-      .row.text-left
-        .col-xs-6
-          %p
-            %b Monto real:
-            = @variables[0]["MONTO_REAL"]
-          %p
-            %b Saldo total:
-            = @variables[0]["SALDO_TOTAL"]
-          %p
-            %b Valor cancela:
-            = @variables[0]["VALOR_CANCELA"]
-        .col-xs-6
-          %p
-            %b Dias de mora:
-            = @variables[0]["DIASMORA_PD"]
-          %p
-            %b Provision requerida:
-            = @variables[0]["PROVISION_REQUERIDA"]
-          %p
-            %b Calificacion propia:
-            = @variables[0]["CALIFICACION_PROPIA"]
+        .tab-pane.active{id: "tab1"}
+          %h4.text-center Datos del Credito
+          %hr
+          .row.text-left
+            .col-xs-6
+              %p
+                %b.text-primary Id Credito:
+                = @insolvency.credit_id
+              %p
+                %b.text-primary Id Socio:
+                = @insolvency.socio_id
+              %p
+                %b.text-primary Nombre grupo:
+                = @insolvency.nombre_grupo
+              %p
+                %b.text-primary Grupo solidario:
+                = @insolvency.grupo_solidario
 
-  .col-xs-6.text-left
-    .card.bg-color-red-200.padding.bottom-space.top-space
-      %h4.text-center Datos Judiciales
-      %hr
-      .row.text-left
-        - if current_user.permissions == 4
-          .col-xs-6
-            %p
-              %b Abogado
-              = best_in_place(@insolvency, :lawyer_id, :as => :select, collection: Lawyer.collection)
-            %p
-              %b Juicio:
-              = best_in_place @insolvency, :juicio_id
-            %p
-              %b Fecha entrega de juicio:
-              = best_in_place @insolvency, :fentrega_juicios, as: :date
-          .col-xs-6
-            %p
-              %b Fecha calificacion de juicio:
-              = best_in_place @insolvency, :fcalificacion_juicio, as: :date
-            %p
-              %b Codigo juicio:
-              = best_in_place @insolvency, :codigo_juicio
-        - else
-          .col-xs-6
-            %p
-              %b Abogado
-              = @insolvency.lawyer.full_name
-            %p
-              %b Juicio:
-              = @insolvency.juicio_id
-            %p
-              %b Fecha entrega de juicio:
-              = @insolvency.fentrega_juicios.strftime('%B %d, del %Y') if @insolvency.fentrega_juicios
-          .col-xs-6
-            %p
-              %b Fecha calificación de juicio:
-              = @insolvency.fcalificacion_juicio.strftime('%B %d, del %Y') if @insolvency.fcalificacion_juicio
-            %p
-              %b Codigo juicio:
-              = @insolvency.codigo_juicio
+            .col-xs-6
+              %p
+                %b.text-primary Bienes:
+                = @insolvency.bienes
+              %p
+                %b.text-primary Tipo credito:
+                = @insolvency.tipo_credito
+              %p
+                %b.text-primary Etapa:
+                = @insolvency.insolvency_stage.name
+              %p
+                %b.text-primary Proceso:
+                = @insolvency.insolvency_activity.name
+              %p
+                %b.text-primary Estado:
+                = @insolvency.estado
 
 
-  - if current_user.permissions == 4
-    .col-xs-10.start-xs.top-space
-      %h4.text-center Observaciones
-      %p.text-left
-        = best_in_place @insolvency, :observaciones, :as => :textarea
-  - else
-    .col-xs-10.start-xs.top-space
-      %h4.text-center Observaciones
-      %p.text-left= @insolvency.observaciones
+        .tab-pane{id: "tab2"}
+          %h4.text-center Datos del Cliente
+          %hr
+          .row.text-left
+            .col-xs-6
+              %p
+                %b.text-primary Nombres:
+                = @insolvency.nombres
+              %p
+                %b.text-primary Cedula:
+                = @insolvency.cedula
+              %p
+                %b.text-primary Telefono:
+                = @insolvency.telefono
+              %p
+                %b.text-primary Celular:
+                = @insolvency.celular
 
+            .col-xs-6
+              %p
+                %b.text-primary Direccion:
+                = @insolvency.direccion
+              %p
+                %b.text-primary Sector:
+                = @insolvency.sector
+              %p
+                %b.text-primary Parroquia:
+                = @insolvency.parroquia
+              %p
+                %b.text-primary Canton:
+                = @insolvency.canton
+              %p
+                %b.text-primary Sucursal:
+                = @insolvency.sucursal
+
+
+        .tab-pane{id: "tab3"}
+          %h4.text-center Saldos del crédito
+          %hr
+          .row.text-left
+            .col-xs-6
+              %p
+                %b.text-primary Monto real:
+                = @variables[0]["MONTO_REAL"]
+              %p
+                %b.text-primary Saldo total:
+                = @variables[0]["SALDO_TOTAL"]
+              %p
+                %b.text-primary Valor cancela:
+                = @variables[0]["VALOR_CANCELA"]
+            .col-xs-6
+              %p
+                %b.text-primary Dias de mora:
+                = @variables[0]["DIASMORA_PD"]
+              %p
+                %b.text-primary Provision requerida:
+                = @variables[0]["PROVISION_REQUERIDA"]
+              %p
+                %b.text-primary Calificacion propia:
+                = @variables[0]["CALIFICACION_PROPIA"]
+
+
+        .tab-pane{id: "tab4"}
+          %h4.text-center Datos Judiciales
+          %hr
+          .row.text-left
+            - if current_user.permissions == 4
+              .col-xs-6
+                %p
+                  %b.text-primary Abogado
+                  = best_in_place(@insolvency, :lawyer_id, :as => :select, collection: Lawyer.collection)
+                %p
+                  %b.text-primary Juicio:
+                  = best_in_place @insolvency, :juicio_id
+                %p
+                  %b.text-primary Fecha entrega de juicio:
+                  = best_in_place @insolvency, :fentrega_juicios, as: :date
+              .col-xs-6
+                %p
+                  %b.text-primary Fecha calificacion de juicio:
+                  = best_in_place @insolvency, :fcalificacion_juicio, as: :date
+                %p
+                  %b.text-primary Codigo juicio:
+                  = best_in_place @insolvency, :codigo_juicio
+            - else
+              .col-xs-6
+                %p
+                  %b.text-primary Abogado
+                  = @insolvency.lawyer.full_name
+                %p
+                  %b.text-primary Juicio:
+                  = @insolvency.juicio_id
+                %p
+                  %b.text-primary Fecha entrega de juicio:
+                  = @insolvency.fentrega_juicios.strftime('%B %d, del %Y') if @insolvency.fentrega_juicios
+              .col-xs-6
+                %p
+                  %b.text-primary Fecha calificación de juicio:
+                  = @insolvency.fcalificacion_juicio.strftime('%B %d, del %Y') if @insolvency.fcalificacion_juicio
+                %p
+                  %b.text-primary Codigo juicio:
+                  = @insolvency.codigo_juicio
+
+
+        .tab-pane{id: "tab5"}
+          %h4.text-center Datos Extras
+          %hr
+          .row.text-left
+            .col-xs-4
+              %p
+                %b.text-primary Oficial credito:
+                = @insolvency.oficial_credito
+              %p
+                %b.text-primary Cartera heredada:
+                = @insolvency.cartera_heredada
+              %p
+                %b.text-primary Fecha concesion:
+                = @insolvency.fecha_concesion
+              %p
+                %b.text-primary Fecha vencimiento:
+                = @insolvency.fecha_vencimiento
+            .col-xs-4
+              %p
+                %b.text-primary Tipo garantia:
+                = @insolvency.tipo_garantia
+              %p
+                %b.text-primary Garantia real:
+                = @insolvency.garantia_real
+              %p
+                %b.text-primary Garantia fiduciaria:
+                = @insolvency.garantia_fiduciaria
+            .col-xs-4
+              %p
+                %b.text-primary Dir garante:
+                = @insolvency.dir_garante
+              %p
+                %b.text-primary Tel garante:
+                = @insolvency.tel_garante
+              %p
+                %b.text-primary Valor cartera castigada:
+                = @insolvency.valor_cartera_castigada
+
+
+        .tab-pane{id: "tab6"}
+          .row
+            - if current_user.permissions == 4
+              .col-xs-10.start-xs.top-space
+                %h4.text-center Observaciones
+                %p.text-left
+                  = best_in_place @insolvency, :observaciones, :as => :textarea
+            - else
+              .col-xs-10.start-xs.top-space
+                %h4.text-center Observaciones
+                %p.text-left= @insolvency.observaciones

@@ -25,12 +25,12 @@
         %tbody
           - @trials.each do |trial|
             %tr
-              %th= trial["ID_CREDITO"].to_i
-              %th= trial["ID_SOCIO"]
-              %th= trial["NOMBRE"]
-              %th= trial["SALDO_TOTAL"]
-              %th= trial["MONTO_REAL"]
-              %th= trial["OFICINA"]
-              %th= trial["DIASMORA_PD"]
-              %th= trial["TIPO_CREDITO"]
+              %th= trial["id_credito"].to_i
+              %th= trial["id_socio"]
+              %th= trial["nombres"]
+              %th= trial["saldo_total"]
+              %th= trial["monto_real"]
+              %th= trial["oficina"]
+              %th= trial["diasmora_pd"]
+              %th= trial["tipo_credito"]
               %th= link_to "Autorizar", create_trial_root_path(trial: trial), class: "btn btn-danger", method: :post, data: {confirm: "Estas seguro!"}

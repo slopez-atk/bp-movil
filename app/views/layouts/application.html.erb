@@ -12,7 +12,11 @@
     <%= javascript_pack_tag "registration" %>
   </head>
 
-  <body>
+  <body class="full-page-height-vh">
+    <p class="large-padding bg-color-red-500 color-white text-center no-margin" style="<%= 'display:none;' if notice.nil? && alert.nil? %>">
+      <%= notice %><%= alert %>
+      <span style="float: right" class="close-parent">X</span>
+    </p>
     <%= render "partials/navigations/main_navigation" %>
     <%= yield %>
   </body>

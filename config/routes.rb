@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     collection { post :report }
     collection { post :store }
     collection { get :monitoreo }
+    collection { post :eliminar }
   end
 
   resources :pending_trials, only: [:index, :show, :destroy, :new, :create]
