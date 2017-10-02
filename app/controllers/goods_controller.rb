@@ -1,5 +1,7 @@
 class GoodsController < ApplicationController
   before_action :set_good, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :authenticate_admin, only: [:index, :edit, :new, :update, :destroy]
 
   # GET /goods
   # GET /goods.json

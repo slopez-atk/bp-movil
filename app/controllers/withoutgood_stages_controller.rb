@@ -1,5 +1,7 @@
 class WithoutgoodStagesController < ApplicationController
   before_action :set_withoutgood_stage, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :authenticate_admin, only: [:index, :show]
 
   # GET /withoutgood_stages
   # GET /withoutgood_stages.json

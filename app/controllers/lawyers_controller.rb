@@ -1,5 +1,8 @@
 class LawyersController < ApplicationController
   before_action :set_lawyer, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :authenticate_jcreditos
+  before_action :authenticate_admin, only: [:show]
 
   # GET /lawyers
   # GET /lawyers.json

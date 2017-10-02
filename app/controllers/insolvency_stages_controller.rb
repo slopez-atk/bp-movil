@@ -1,5 +1,7 @@
 class InsolvencyStagesController < ApplicationController
   before_action :set_insolvency_stage, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :authenticate_admin, only: [:index, :show]
 
   # GET /insolvency_stages
   # GET /insolvency_stages.json

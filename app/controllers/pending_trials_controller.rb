@@ -1,5 +1,6 @@
 class PendingTrialsController < ApplicationController
   before_action :set_pending_trial, only: [:show, :edit, :update, :destroy, :new]
+  before_action :authenticate_user!
 
   # GET /pending_trials
   # GET /pending_trials.json

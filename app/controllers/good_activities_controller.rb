@@ -1,5 +1,7 @@
 class GoodActivitiesController < ApplicationController
   before_action :set_good_activity, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :authenticate_admin, only: [:index, :show]
 
   # GET /good_activities
   # GET /good_activities.json
@@ -32,7 +34,7 @@ class GoodActivitiesController < ApplicationController
 
     respond_to do |format|
       if @good_activity.save
-        format.html { redirect_to stages_root_path, notice: 'Good activity was successfully created.' }
+        format.html { redirect_to stages_root_path, notice: 'Se agregó el proceso correctamente!' }
         format.json { render :show, status: :created, location: @good_activity }
       else
         format.html { render :new }
@@ -46,7 +48,7 @@ class GoodActivitiesController < ApplicationController
   def update
     respond_to do |format|
       if @good_activity.update(good_activity_params)
-        format.html { redirect_to @good_activity, notice: 'Good activity was successfully updated.' }
+        format.html { redirect_to @good_activity, notice: 'Se actualizó el proceso correctamente.' }
         format.json { render :show, status: :ok, location: @good_activity }
       else
         format.html { render :edit }

@@ -1,5 +1,6 @@
 class MainController < ApplicationController
   before_action :authenticate_user!, except: [:home]
+  before_action :authenticate_jcreditos, only: [:new_trial, :stage]
 
   # Pantalla de inicio cuando el usuario no esta autenticado
   def home

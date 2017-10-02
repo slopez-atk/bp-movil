@@ -1,5 +1,7 @@
 class GoodStagesController < ApplicationController
   before_action :set_good_stage, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :authenticate_admin, only: [:index, :show]
 
   # GET /good_stages
   # GET /good_stages.json

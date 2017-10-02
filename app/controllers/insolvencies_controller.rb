@@ -1,5 +1,7 @@
 class InsolvenciesController < ApplicationController
   before_action :set_insolvency, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :authenticate_admin, only: [:index, :edit, :new, :update, :destroy]
 
   # GET /insolvencies
   # GET /insolvencies.json

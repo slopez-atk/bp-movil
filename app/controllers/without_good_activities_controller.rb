@@ -1,5 +1,7 @@
 class WithoutGoodActivitiesController < ApplicationController
   before_action :set_without_good_activity, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :authenticate_admin, only: [:index, :show]
 
   # GET /without_good_activities
   # GET /without_good_activities.json

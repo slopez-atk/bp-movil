@@ -6,4 +6,18 @@ class ApplicationController < ActionController::Base
   def set_layout
     "application"
   end
+
+  def authenticate_admin
+    if current_user.admin != true
+      redirect_to root_path, notice: "No estas autorizado!"
+    end
+  end
+
+  def authenticate_jcreditos
+    if !current_user.admin
+      if current_user.permissions != 5
+        redirect_to root_path, notice: "No estas autorizado!"
+      end
+    end
+  end
 end

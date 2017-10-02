@@ -1,5 +1,7 @@
 class WithoutGoodsController < ApplicationController
   before_action :set_without_good, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :authenticate_admin, only: [:index, :edit, :new, :update, :destroy]
 
   # GET /without_goods
   # GET /without_goods.json

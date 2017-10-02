@@ -1,6 +1,9 @@
 class HistoryCreditsController < ApplicationController
   before_action :set_history_credit, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_gerente, only: [:eliminar]
+  before_action :authenticate_user!
+  before_action :authenticate_jcreditos, only: [:monitoreo, :store]
+  before_action :authenticate_admin, only: [:index, :show, :new, :edit]
 
   def monitoreo
     @goods = Good.includes(:good_stage)

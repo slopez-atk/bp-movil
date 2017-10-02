@@ -1,5 +1,7 @@
 class InsolvencyActivitiesController < ApplicationController
   before_action :set_insolvency_activity, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :authenticate_admin, only: [:index, :show]
 
   # GET /insolvency_activities
   # GET /insolvency_activities.json
