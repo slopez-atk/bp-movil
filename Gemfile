@@ -65,6 +65,9 @@ gem 'ruby-oci8' # only for CRuby users
 # gem 'ruby-plsql', '~> 0.6.0'
 # Trabajos en segundo plano
 gem 'whenever', :require => false
+# Javascript runtime
+gem 'therubyracer'
+gem 'execjs'
 
 # Deployment
 gem 'capistrano', '~> 3.7', '>= 3.7.1'
