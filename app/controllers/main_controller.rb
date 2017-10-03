@@ -33,13 +33,13 @@ class MainController < ApplicationController
   # Controlador de la pantalla de la Jefatura de Credito en donde
   # se listan los creditos filtrados desde la bdd Oracle
   def new_trial
-    inmobiliarios = Oracledb.getCreditosInmobiliarios.to_a
+    # inmobiliarios = Oracledb.getCreditosInmobiliarios.to_a
     # productivos = Oracledb.getCreditosProductivos.to_a
     # microcreditos = Oracledb.getCreditosMicrocreditos.to_a
     # consumos = Oracledb.getCreditosConsumo.to_a
-
     # @trials = inmobiliarios + productivos + microcreditos + consumos
-    @trials = Good.filtrar_creditos(inmobiliarios)
+
+    @trials = Good.filtrar_creditos(Oracledb.obtener_creditos_pendientes)
   end
 
   # Controlador de las busquedas de los juicios por id de credito, socio y cedula

@@ -265,13 +265,12 @@ class Oracledb < ApplicationRecord
   end
 
   def self.getCreditosProductivos
-    # results = connection.exec_query("Select * from productivo")
-    # if results.nil?
-    #   return results
-    # else
-    #   return nil
-    # end
-    nil
+    results = connection.exec_query("Select * from productivo")
+    if results.present?
+      return results
+    else
+      return nil
+    end
   end
 
   def self.getVariables credit_id
@@ -281,6 +280,27 @@ class Oracledb < ApplicationRecord
     else
       return nil
     end
+  end
+
+
+  def self.guardar_creditos_pendientes
+    inmobiliarios = Oracledb.getCreditosInmobiliarios.to_a
+    productivos = Oracledb.getCreditosProductivos.to_a
+    microcreditos = Oracledb.getCreditosMicrocreditos.to_a
+    consumos = Oracledb.getCreditosConsumo.to_a
+    juicios = inmobiliarios + productivos + microcreditos + consumos
+
+
+    filename =  "creditos_nuevos.txt"
+    file = File.open(Rails.public_path.join("creditos",filename), "w")
+    serialized_array = Marshal.dump(juicios)
+    File.open(file, "w"){ |f| f << serialized_array }
+  end
+
+  def self.obtener_creditos_pendientes
+    filename =  "creditos_nuevos.txt"
+    data = Marshal.load File.read(Rails.public_path.join("creditos",filename))
+    data
   end
 
 

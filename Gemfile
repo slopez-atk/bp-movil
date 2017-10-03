@@ -63,6 +63,17 @@ gem 'activerecord-oracle_enhanced-adapter', '~> 1.8.1'
 # gem 'therubyracer', platforms: :ruby
 gem 'ruby-oci8' # only for CRuby users
 # gem 'ruby-plsql', '~> 0.6.0'
+# Trabajos en segundo plano
+gem 'whenever', :require => false
+
+# Deployment
+gem 'capistrano', '~> 3.7', '>= 3.7.1'
+gem 'capistrano-rails', '~> 1.2'
+gem 'capistrano-passenger', '~> 0.2.0'
+
+# Add this if you're using rbenv
+gem 'capistrano-rbenv', '~> 2.1'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -71,6 +82,8 @@ group :development, :test do
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
 end
+
+
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
