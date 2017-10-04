@@ -11,6 +11,7 @@ set :rbenv_ruby, '2.4.1'
 # Whenever
 require 'capistrano/rbenv'
 require 'whenever/capistrano'
+require 'capistrano/rails/console'
 
 # Load the SCM plugin appropriate to your project:
 #
