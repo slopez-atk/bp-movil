@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9c8cf5a2-853b-4585-8271-fc15264d8f44" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/database.yml" afterPath="$PROJECT_DIR$/config/database.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/deploy/production.rb" afterPath="$PROJECT_DIR$/config/deploy/production.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/schedule.rb" afterPath="$PROJECT_DIR$/config/schedule.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/oracledb.rb" afterPath="$PROJECT_DIR$/app/models/oracledb.rb" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
@@ -61,11 +59,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Gemfile" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Gemfile" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Gemfile">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="371">
               <caret line="69" column="12" lean-forward="false" selection-start-line="69" selection-start-column="12" selection-end-line="69" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="oracledb.rb" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/models/oracledb.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="268">
+              <caret line="290" column="27" lean-forward="false" selection-start-line="290" selection-start-column="27" selection-end-line="290" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -156,7 +164,6 @@
         <option value="$PROJECT_DIR$/app/controllers/pending_trials_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/withoutgood_stages_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/without_good_activities_controller.rb" />
-        <option value="$PROJECT_DIR$/app/models/oracledb.rb" />
         <option value="$PROJECT_DIR$/log/development.log" />
         <option value="$PROJECT_DIR$/app/views/main/new_trial.haml" />
         <option value="$PROJECT_DIR$/app/controllers/main_controller.rb" />
@@ -170,6 +177,7 @@
         <option value="$PROJECT_DIR$/config/deploy/production.rb" />
         <option value="$PROJECT_DIR$/config/database.yml" />
         <option value="$PROJECT_DIR$/config/schedule.rb" />
+        <option value="$PROJECT_DIR$/app/models/oracledb.rb" />
       </list>
     </option>
   </component>
@@ -244,7 +252,7 @@
             <path>
               <item name="AppCacmu" type="b2602c69:ProjectViewProjectNode" />
               <item name="AppCacmu" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="AppCacmu" type="b2602c69:ProjectViewProjectNode" />
@@ -432,12 +440,12 @@
       <workItem from="1506981124125" duration="16012000" />
       <workItem from="1507074982917" duration="456000" />
       <workItem from="1507090805968" duration="15000" />
-      <workItem from="1507130730937" duration="594000" />
+      <workItem from="1507130730937" duration="1022000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="203565000" />
+    <option name="totallyTimeSpent" value="203993000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="773" extended-state="0" />
@@ -732,13 +740,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/oracledb.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="131">
-          <caret line="285" column="38" lean-forward="false" selection-start-line="285" selection-start-column="11" selection-end-line="285" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/main/new_trial.haml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="549">
@@ -834,6 +835,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="371">
           <caret line="69" column="12" lean-forward="false" selection-start-line="69" selection-start-column="12" selection-end-line="69" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/oracledb.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="268">
+          <caret line="290" column="27" lean-forward="false" selection-start-line="290" selection-start-column="27" selection-end-line="290" selection-end-column="27" />
           <folding />
         </state>
       </provider>
