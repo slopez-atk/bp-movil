@@ -3,7 +3,6 @@ require "capistrano/setup"
 
 # Include default deployment tasks
 require "capistrano/deploy"
-
 require 'capistrano/rails'
 require 'capistrano/passenger'
 set :rbenv_type, :user

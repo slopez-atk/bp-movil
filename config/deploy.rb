@@ -13,7 +13,7 @@ append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "vendor/bund
 
 
 # Whenever
-set :whenever_command, 'bundle exec whenever'
+set :whenever_command, [:bundle, :exec, :whenever]
 
 # Configure 'whenever'
 vars = lambda do
