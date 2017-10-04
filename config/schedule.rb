@@ -28,6 +28,6 @@ set :rbenv_version, '2.4.1'
 env 'RBENV_ROOT', rbenv_root
 env 'RBENV_VERSION', rbenv_version
 
-every 1.minute do
+every 1.day, :at => '5:00 am' do
   runner "Oracledb.guardar_creditos_pendientes"
 end
