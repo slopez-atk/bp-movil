@@ -35,6 +35,6 @@ every 1.day, :at => '5:00 am' do
   runner "Oracledb.guardar_creditos_pendientes"
 end
 
-every 2.minutes do
-  runner "Oracledb.guardar_creditos_pendientes"
-end
+# every 2.minutes do
+#   runner "Oracledb.guardar_creditos_pendientes"
+# end

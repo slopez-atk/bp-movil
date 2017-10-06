@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9c8cf5a2-853b-4585-8271-fc15264d8f44" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/oracledb.rb" afterPath="$PROJECT_DIR$/app/models/oracledb.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/schedule.rb" afterPath="$PROJECT_DIR$/config/schedule.rb" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
@@ -28,11 +29,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="schedule.rb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="schedule.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/schedule.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="584">
-              <caret line="39" column="3" lean-forward="true" selection-start-line="39" selection-start-column="3" selection-end-line="39" selection-end-column="3" />
+            <state relative-caret-position="492">
+              <caret line="35" column="3" lean-forward="true" selection-start-line="35" selection-start-column="3" selection-end-line="35" selection-end-column="3" />
               <folding />
             </state>
           </provider>
@@ -78,11 +79,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="oracledb.rb" pinned="false" current-in-tab="false">
+      <file leaf-file-name="oracledb.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/models/oracledb.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="404">
-              <caret line="301" column="28" lean-forward="false" selection-start-line="301" selection-start-column="28" selection-end-line="301" selection-end-column="28" />
+            <state relative-caret-position="247">
+              <caret line="291" column="12" lean-forward="false" selection-start-line="291" selection-start-column="12" selection-end-line="291" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -180,13 +181,13 @@
         <option value="$PROJECT_DIR$/log/capistrano.log" />
         <option value="$PROJECT_DIR$/config/initializers/devise.rb" />
         <option value="$PROJECT_DIR$/config/database.yml" />
-        <option value="$PROJECT_DIR$/app/models/oracledb.rb" />
         <option value="$PROJECT_DIR$/Gemfile" />
         <option value="$PROJECT_DIR$/Capfile" />
         <option value="$PROJECT_DIR$/config/secrets.yml" />
         <option value="$PROJECT_DIR$/config/deploy.rb" />
         <option value="$PROJECT_DIR$/config/deploy/production.rb" />
         <option value="$PROJECT_DIR$/config/schedule.rb" />
+        <option value="$PROJECT_DIR$/app/models/oracledb.rb" />
       </list>
     </option>
   </component>
@@ -286,7 +287,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Color Scheme Font" />
-    <property name="SearchEverywhereHistoryKey" value="gem&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/Gemfile&#10;data&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/config/database.yml&#10;gemf&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/Gemfile&#10;new_tr&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/views/main/new_trial.haml&#10;routes&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/config/routes.rb&#10;orac&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/models/oracledb.rb&#10;appl&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/application_controller.rb&#10;butt&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/views/partials/creditos/_buttons_states.haml&#10;home&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/views/main/home_creditos.haml&#10;eval&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/views/main/evaluacion_resultados.haml&#10;route&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/config/routes.rb&#10;his&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/history_credits_controller.rb&#10;applica&#9;null&#9;null&#10;ora&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/models/oracledb.rb&#10;creditos&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/views/layouts/creditos_judiciales.haml&#10;monit&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/views/history_credits/monitoreo.haml&#10;pend&#9;null&#9;null&#10;_&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/views/partials/creditos/_jcobranzas_home_tables.haml&#10;main&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/main_controller.rb&#10;rout&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/config/routes.rb" />
+    <property name="SearchEverywhereHistoryKey" value="ora&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/models/oracledb.rb&#10;gem&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/Gemfile&#10;data&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/config/database.yml&#10;gemf&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/Gemfile&#10;new_tr&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/views/main/new_trial.haml&#10;routes&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/config/routes.rb&#10;orac&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/models/oracledb.rb&#10;appl&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/application_controller.rb&#10;butt&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/views/partials/creditos/_buttons_states.haml&#10;home&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/views/main/home_creditos.haml&#10;eval&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/views/main/evaluacion_resultados.haml&#10;route&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/config/routes.rb&#10;his&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/history_credits_controller.rb&#10;applica&#9;null&#9;null&#10;creditos&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/views/layouts/creditos_judiciales.haml&#10;monit&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/views/history_credits/monitoreo.haml&#10;pend&#9;null&#9;null&#10;_&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/views/partials/creditos/_jcobranzas_home_tables.haml&#10;main&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/main_controller.rb&#10;rout&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/config/routes.rb" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -457,12 +458,12 @@
       <workItem from="1507130730937" duration="1780000" />
       <workItem from="1507161539065" duration="825000" />
       <workItem from="1507174258394" duration="20000" />
-      <workItem from="1507304465119" duration="2194000" />
+      <workItem from="1507304465119" duration="2978000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="207790000" />
+    <option name="totallyTimeSpent" value="208574000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="773" extended-state="0" />
@@ -473,18 +474,18 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -807,22 +808,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Gemfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="921">
-          <caret line="80" column="46" lean-forward="false" selection-start-line="80" selection-start-column="46" selection-end-line="80" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/oracledb.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="404">
-          <caret line="301" column="28" lean-forward="false" selection-start-line="301" selection-start-column="28" selection-end-line="301" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/deploy.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="358">
@@ -831,10 +816,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/secrets.yml">
+    <entry file="file://$PROJECT_DIR$/config/schedule.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+        <state relative-caret-position="492">
+          <caret line="35" column="3" lean-forward="true" selection-start-line="35" selection-start-column="3" selection-end-line="35" selection-end-column="3" />
           <folding />
         </state>
       </provider>
@@ -847,6 +832,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/config/secrets.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/config/database.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="568">
@@ -855,10 +848,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/schedule.rb">
+    <entry file="file://$PROJECT_DIR$/Gemfile">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="584">
-          <caret line="39" column="3" lean-forward="true" selection-start-line="39" selection-start-column="3" selection-end-line="39" selection-end-column="3" />
+        <state relative-caret-position="921">
+          <caret line="80" column="46" lean-forward="false" selection-start-line="80" selection-start-column="46" selection-end-line="80" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/oracledb.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="291" column="12" lean-forward="false" selection-start-line="291" selection-start-column="12" selection-end-line="291" selection-end-column="12" />
           <folding />
         </state>
       </provider>

@@ -289,6 +289,7 @@ class Oracledb < ApplicationRecord
     # microcreditos = Oracledb.getCreditosMicrocreditos.to_a
     consumos = Oracledb.getCreditosConsumo.to_a
     juicios = inmobiliarios + consumos
+    juicios.encode("iso-8859-1").force_encoding("utf-8")
 
 
     filename =  "creditos_nuevos.txt"
