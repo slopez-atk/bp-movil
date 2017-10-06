@@ -6,8 +6,9 @@ ask :git_http_password
 set :default_env, { path: "~/.rbenv/shims:~/.rbenv/bin:$PATH" }
 set :repo_url, "https://github.com/githubpopckorn/appcacmu.git"
 set :deploy_to, '/home/deploy/appcacmu'
-require 'whenever/capistrano'
 
+
+require 'whenever/capistrano'
 set :console_env, :production
 
 # append :linked_files, "config/database.yml", "config/secrets.yml"
