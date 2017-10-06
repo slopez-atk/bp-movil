@@ -47,7 +47,7 @@ class Good < ApplicationRecord
   belongs_to :good_stage
   belongs_to :good_activity
   belongs_to :lawyer
-  after_create :delete_pending, :unless => :skip_callbacks
+  # after_create :delete_pending, :unless => :skip_callbacks
 
 
   # Scopes

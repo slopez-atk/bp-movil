@@ -289,13 +289,12 @@ class Oracledb < ApplicationRecord
     # microcreditos = Oracledb.getCreditosMicrocreditos.to_a
     consumos = Oracledb.getCreditosConsumo.to_a
     juicios = inmobiliarios + consumos
-    juicios.encode("iso-8859-1").force_encoding("utf-8")
 
 
     filename =  "creditos_nuevos.txt"
     file = File.open(Rails.public_path.join("creditos",filename), "w")
     serialized_array = Marshal.dump(juicios)
-    File.open(file, "w"){ |f| f << serialized_array }
+    File.open(file, "w"){ |f| f.encode("iso-8859-1").force_encoding("utf-8") << serialized_array }
   end
 
   def self.obtener_creditos_pendientes
