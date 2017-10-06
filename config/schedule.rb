@@ -23,7 +23,7 @@
 # env :RBENV_VERSION, "2.4.0"
 # set :environment, :development
 
-set :rbenv_root, '/home/deploy'
+set :rbenv_root, '/home/deploy/.rbenv'
 set :rbenv_version, '2.4.1'
 env 'RBENV_ROOT', rbenv_root
 env 'RBENV_VERSION', rbenv_version
