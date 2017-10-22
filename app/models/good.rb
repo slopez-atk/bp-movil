@@ -47,7 +47,7 @@ class Good < ApplicationRecord
   belongs_to :good_stage
   belongs_to :good_activity
   belongs_to :lawyer
-  # after_create :delete_pending, :unless => :skip_callbacks
+  after_create :delete_pending, :unless => :skip_callbacks
 
 
   # Scopes
@@ -175,8 +175,8 @@ class Good < ApplicationRecord
     ids_repetidos = Array.new
     creditos.each_with_index do |credit, i|
       # Encuentra y guarda en un array los id_credito repetidos
-      if r.include?(credit["ID_CREDITO"])
-        ids_repetidos.push(credit["ID_CREDITO"])
+      if r.include?(credit["id_credito"])
+        ids_repetidos.push(credit["id_credito"])
       end
     end
 
@@ -188,7 +188,7 @@ class Good < ApplicationRecord
 
   def self.eliminar_de_array(id, array)
     array.each_with_index do |credito, i|
-      if credito["ID_CREDITO"] == id
+      if credito["id_credito"] == id
         array.delete_at(i)
       end
     end

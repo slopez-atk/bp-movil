@@ -282,6 +282,21 @@ class Oracledb < ApplicationRecord
     end
   end
 
+  # Obtiene una fila del archivo creditos_nuevos.txt con la finalidad
+  # de obtener los saldos del credito sin tener que consultar a la base
+  # de datos
+  def self.getSaldos credit_id
+    filename =  "creditos_nuevos.txt"
+    data = Marshal.load File.read(Rails.public_path.join("creditos",filename))
+    data.each do |row|
+      if row['id_credito'] == credit_id
+        resultado = row
+        return resultado
+      end
+    end
+
+  end
+
 
   def self.guardar_creditos_pendientes
     inmobiliarios = Oracledb.getCreditosInmobiliarios.to_a

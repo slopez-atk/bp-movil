@@ -47,7 +47,7 @@ class WithoutGood < ApplicationRecord
   belongs_to :withoutgood_stage
   belongs_to :without_good_activity
   belongs_to :lawyer
-  # after_create :delete_pending, :unless => :skip_callbacks
+  after_create :delete_pending, :unless => :skip_callbacks
 
 # Scopes
   scope :activos, -> { where(estado: "Activo") }

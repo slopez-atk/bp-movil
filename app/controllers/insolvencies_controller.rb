@@ -1,7 +1,7 @@
 class InsolvenciesController < ApplicationController
   before_action :set_insolvency, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-  before_action :authenticate_admin, only: [:index, :edit, :new, :update, :destroy]
+  before_action :authenticate_admin, only: [:index, :edit, :new, :destroy]
 
   # GET /insolvencies
   # GET /insolvencies.json
@@ -19,7 +19,7 @@ class InsolvenciesController < ApplicationController
     if id[0] == "R" or id[0] == "I"
       id = id[2..id.length]
     end
-    @variables = Oracledb.getVariables(id).to_a
+    @variables = Oracledb.getSaldos(id)
     @semaforo_actual = @insolvency.semaforo
   end
 

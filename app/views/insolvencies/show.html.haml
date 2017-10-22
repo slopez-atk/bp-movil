@@ -103,29 +103,29 @@
 
 
         .tab-pane{id: "tab3"}
-          %h4.text-center Saldos del crédito
+          %h4.text-center Datos Crediticios
           %hr
           .row.text-left
             .col-xs-6
               %p
                 %b.text-primary Monto real:
-                = @variables[0]["MONTO_REAL"]
+                = @variables["monto_real"]
               %p
                 %b.text-primary Saldo total:
-                = @variables[0]["SALDO_TOTAL"]
+                = @variables["saldo_total"]
               %p
                 %b.text-primary Valor cancela:
-                = @variables[0]["VALOR_CANCELA"]
+                = @variables["valor_cancela"]
             .col-xs-6
               %p
-                %b.text-primary Dias de mora:
-                = @variables[0]["DIASMORA_PD"]
+                %b.text-primary Días de mora:
+                = @variables["diasmora_pd"]
               %p
-                %b.text-primary Provision requerida:
-                = @variables[0]["PROVISION_REQUERIDA"]
+                %b.text-primary Provisión requerida:
+                = @variables["provision_requerida"]
               %p
-                %b.text-primary Calificacion propia:
-                = @variables[0]["CALIFICACION_PROPIA"]
+                %b.text-primary Calificación propia:
+                = @variables["calificacion_propia"]
 
 
         .tab-pane{id: "tab4"}

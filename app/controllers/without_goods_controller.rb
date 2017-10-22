@@ -1,7 +1,7 @@
 class WithoutGoodsController < ApplicationController
   before_action :set_without_good, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-  before_action :authenticate_admin, only: [:index, :edit, :new, :update, :destroy]
+  before_action :authenticate_admin, only: [:index, :edit, :new, :destroy]
 
   # GET /without_goods
   # GET /without_goods.json
@@ -19,7 +19,7 @@ class WithoutGoodsController < ApplicationController
     if id[0] == "R"
       id = id[2..id.length]
     end
-    @variables = Oracledb.getVariables(id).to_a
+    @variables = Oracledb.getSaldos(id)
     @semaforo_actual = @without_good.semaforo
   end
 

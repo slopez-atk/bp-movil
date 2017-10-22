@@ -59,7 +59,7 @@ class HistoryCreditsController < ApplicationController
     @withoutgoods = WithoutGood.includes(:lawyer)
     @insolvencies = Insolvency.includes(:lawyer)
 
-    date = 5.month.ago.strftime('%m-%Y')
+    date = 1.month.ago.strftime('%m-%Y')
     @goods.each do |credit|
       # Cancelados, abandonos
       if credit.estado == "Terminado" or credit.estado == "Abandono" or credit.estado == "Cancelado"

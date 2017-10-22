@@ -12,7 +12,7 @@ class PendingTrialsController < ApplicationController
   # GET /pending_trials/1.json
   def show
     # Recupera los datos variables de este id de credito desde la bdd Oracle
-    @variables = Oracledb.getVariables(@pending_trial.credit_id).to_a
+    @variables = Oracledb.getSaldos(@pending_trial.credit_id)
   end
 
   #GET /pending_trials/new
