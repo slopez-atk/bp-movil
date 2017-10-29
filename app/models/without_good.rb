@@ -48,7 +48,7 @@ class WithoutGood < ApplicationRecord
   belongs_to :without_good_activity
   belongs_to :lawyer
   after_create :delete_pending, :unless => :skip_callbacks
-
+  attr_accessor :callback_skip
 # Scopes
   scope :activos, -> { where(estado: "Activo") }
   scope :cancelados, -> { where(estado: "Cancelado") }
@@ -162,11 +162,19 @@ class WithoutGood < ApplicationRecord
   end
 
   def self.buscar_por_idCredito id
-    WithoutGood.find_by(:credit_id => id)
+    id_original = id
+    if id[0] == "R" or id[0] == "I"
+      id = id[2..id.length]
+    end
+    juicio = WithoutGood.find_by(:credit_id => id)
+    if juicio.nil?
+      juicio = WithoutGood.find_by(:credit_id => id_original)
+    end
+    juicio
   end
 
   def skip_callbacks
-    self.credit_id[0] == "R"
+    self.credit_id[0] == "R" or self.callback_skip == true
   end
 
 end

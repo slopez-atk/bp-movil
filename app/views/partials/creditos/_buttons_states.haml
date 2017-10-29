@@ -4,3 +4,7 @@
   %li= link_to "Cancelar", update_trial_state_path(:id => trial.id, :tipo_juicio => tipo, :state => 'Cancelado'), method: :post, class: "btn btn-inverse", data: {confirm: "Estás segur@?"}
   %li= link_to "Reestructurado", update_trial_state_path(:id => trial.id, :tipo_juicio => tipo, :state => 'Reestructurado'), method: :post, class: "btn btn-inverse", data: {confirm: "Estás segur@?"}
   %li= link_to "Activar", update_trial_state_path(:id => trial.id, :tipo_juicio => tipo, :state => 'Activo'), method: :post, class: "btn btn-inverse", data: {confirm: "Estás segur@?"}
+  - if tipo == "bienes"
+    %li= link_to "Convertir a Sin Bienes", cambiar_tipo_juicio_path(estado_actual: tipo,juicio: trial.id), method: :post, data: {confirm: "Estás segur@?"}
+  - else
+    %li= link_to "Convertir a Bienes", cambiar_tipo_juicio_path(estado_actual: tipo, juicio: trial.id), method: :post, data: {confirm: "Estás segur@?"}

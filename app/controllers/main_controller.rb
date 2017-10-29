@@ -265,4 +265,47 @@ class MainController < ApplicationController
     return "creditos_judiciales" if action_name == "stage"
     super
   end
+
+  # Metodo para cambiar de la tabla de bienes a sin bienes y viceversa, un  determinado juicio
+  def change_trial_type
+    juicio_id = params[:juicio]
+    estado_actual = params[:estado_actual]
+    if estado_actual == 'bienes'
+      juicio = Good.find(juicio_id)
+      datos = juicio.as_json.dup.except!("id","good_stage_id", "good_activity_id")
+      nuevo_juicio = WithoutGood.new(datos)
+      nuevo_juicio.withoutgood_stage_id = 1#WithoutgoodStage.find_by_name(juicio.good_stage.name)
+      nuevo_juicio.without_good_activity_id = 1
+      nuevo_juicio.callback_skip = true
+      puts "\n ===== Datos del juicio ===== \n"
+      puts nuevo_juicio
+      puts "\n ======= Dato de la etapa ===== \n"
+      puts WithoutgoodStage.find_by_name(juicio.good_stage.name)
+      respond_to do |format|
+        if nuevo_juicio.save
+          nuevo_juicio.update(created_at: juicio.created_at, updated_at: juicio.updated_at)
+          juicio.destroy
+          format.html{ redirect_to nuevo_juicio, notice: 'Se cambio el juicio exitosamente'}
+        else
+          format.html{ redirect_to root_path, notice: 'Algo salió mal! Intentalo de nuevo'}
+        end
+      end
+    else
+      juicio = WithoutGood.find(juicio_id)
+      datos = juicio.as_json.dup.except!("id","withoutgood_stage_id", "without_good_activity_id")
+      nuevo_juicio = Good.new(datos)
+      nuevo_juicio.good_stage_id = 1#GoodStage.find_by_name(juicio.withoutgood_stage.name)
+      nuevo_juicio.good_activity_id = 1
+      nuevo_juicio.callback_skip = true
+      respond_to do |format|
+        if nuevo_juicio.save
+          nuevo_juicio.update(created_at: juicio.created_at, updated_at: juicio.updated_at)
+          juicio.destroy
+          format.html{ redirect_to nuevo_juicio, notice: 'Se cambio el juicio exitosamente'}
+        else
+          format.html{ redirect_to root_path, notice: 'Algo salió mal! Intentalo de nuevo'}
+        end
+      end
+    end
+  end
 end

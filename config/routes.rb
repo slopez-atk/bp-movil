@@ -46,5 +46,6 @@ Rails.application.routes.draw do
   post '/reingresos/:id', to: "main#reingresos", as: :reingreso_juicios
   #   Ruta que muestra todos los juicios
   get '/juicios', to: 'main#listado_juicios', as: :listado_juicios
-
+  # Ruta del metodo para cambiar un juicio de bienes a sin bienes y al contrario
+  post '/juicio/update', to: "main#change_trial_type", as: :cambiar_tipo_juicio
 end
