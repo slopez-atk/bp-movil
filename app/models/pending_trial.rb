@@ -38,4 +38,15 @@ class PendingTrial < ApplicationRecord
   def self.pending_trials_count
     PendingTrial.count
   end
+
+  def self.split_separado_por_comas arreglo
+    cadena = ""
+    if arreglo.nil?
+      return ""
+    end
+    arreglo.each do |palabra|
+      cadena += palabra + ","
+    end
+    cadena = cadena[0..-2]
+  end
 end

@@ -10,6 +10,8 @@ $(document).on "turbolinks:load", ()->
     e.preventDefault();
     $(this).tab("show");
 
+  $(':checkbox').checkbox();
+
 
 $(document).on "best_in_place:success", (ev)->
   location.reload()

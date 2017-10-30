@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171015201752) do
+ActiveRecord::Schema.define(version: 20171030023745) do
 
   create_table "good_activities", force: :cascade do |t|
     t.string "name"
@@ -67,6 +67,13 @@ ActiveRecord::Schema.define(version: 20171015201752) do
     t.integer "lawyer_id"
     t.string "fecha_terminacion"
     t.date "fecha_original_juicio"
+    t.string "nom_garante1"
+    t.string "ci_garante_1"
+    t.string "cony_garante1"
+    t.string "nom_garante2"
+    t.string "ci_garante2"
+    t.string "cony_garante2"
+    t.string "propietario_bienes"
     t.index ["good_activity_id"], name: "index_goods_on_good_activity_id"
     t.index ["good_stage_id"], name: "index_goods_on_good_stage_id"
     t.index ["lawyer_id"], name: "index_goods_on_lawyer_id"
@@ -126,6 +133,13 @@ ActiveRecord::Schema.define(version: 20171015201752) do
     t.integer "lawyer_id"
     t.string "fecha_terminacion"
     t.date "fecha_original_juicio"
+    t.string "nom_garante1"
+    t.string "ci_garante_1"
+    t.string "cony_garante1"
+    t.string "nom_garante2"
+    t.string "ci_garante2"
+    t.string "cony_garante2"
+    t.string "propietario_bienes"
     t.index ["insolvency_activity_id"], name: "index_insolvencies_on_insolvency_activity_id"
     t.index ["insolvency_stage_id"], name: "index_insolvencies_on_insolvency_stage_id"
     t.index ["lawyer_id"], name: "index_insolvencies_on_lawyer_id"
@@ -184,6 +198,13 @@ ActiveRecord::Schema.define(version: 20171015201752) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "calificacion_propia"
+    t.string "nom_garante1"
+    t.string "ci_garante_1"
+    t.string "cony_garante1"
+    t.string "nom_garante2"
+    t.string "ci_garante2"
+    t.string "cony_garante2"
+    t.string "propietario_bienes"
   end
 
   create_table "users", force: :cascade do |t|
@@ -255,6 +276,13 @@ ActiveRecord::Schema.define(version: 20171015201752) do
     t.integer "lawyer_id"
     t.string "fecha_terminacion"
     t.date "fecha_original_juicio"
+    t.string "nom_garante1"
+    t.string "ci_garante_1"
+    t.string "cony_garante1"
+    t.string "nom_garante2"
+    t.string "ci_garante2"
+    t.string "cony_garante2"
+    t.string "propietario_bienes"
     t.index ["lawyer_id"], name: "index_without_goods_on_lawyer_id"
     t.index ["without_good_activity_id"], name: "index_without_goods_on_without_good_activity_id"
     t.index ["withoutgood_stage_id"], name: "index_without_goods_on_withoutgood_stage_id"

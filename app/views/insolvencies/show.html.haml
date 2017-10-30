@@ -27,7 +27,9 @@
         %li
           %a{href: "#tab5"}Detalles
         %li
-          %a{href: "#tab6"}Observaciones
+          %a{href: "#tab6"}Garantes
+        %li
+          %a{href: "#tab7"}Observaciones
       .tab-content
 
         .tab-pane.active{id: "tab1"}
@@ -47,6 +49,9 @@
               %p
                 %b.text-primary Grupo solidario:
                 = @insolvency.grupo_solidario
+              %p
+                %b.text-primary Propietario de los bienes:
+                = @insolvency.propietario_bienes
 
             .col-xs-6
               %p
@@ -208,8 +213,39 @@
                 %b.text-primary Valor cartera castigada:
                 = @insolvency.valor_cartera_castigada
 
-
         .tab-pane{id: "tab6"}
+          %h4.text-center Datos de los Garantes
+          %hr
+          .row.text-left
+            .col-xs-4
+              %p
+                %b.text-primary Nombres Garante 1:
+                = @insolvency.nom_garante1
+              %p
+                %b.text-primary Cédula Garante 1:
+                = @insolvency.ci_garante_1
+              %p
+                %b.text-primary Cony Garante 1:
+                = @insolvency.cony_garante1
+            .col-xs-4
+              %p
+                %b.text-primary Nombres Garante 2:
+                = @insolvency.nom_garante2
+              %p
+                %b.text-primary Cédula Garante 2:
+                = @insolvency.ci_garante2
+              %p
+                %b.text-primary Cony Garante 2:
+                = @insolvency.cony_garante2
+            .col-xs-4
+              %p
+                %b.text-primary Dirección garante:
+                = @insolvency.dir_garante
+              %p
+                %b.text-primary Teléfono garante:
+                = @insolvency.tel_garante
+
+        .tab-pane{id: "tab7"}
           .row
             - if current_user.permissions == 4
               .col-xs-10.start-xs.top-space

@@ -28,7 +28,9 @@
         %li
           %a{href: "#tab5"}Detalles
         %li
-          %a{href: "#tab6"}Observaciones
+          %a{href: "#tab6"}Garantes
+        %li
+          %a{href: "#tab7"}Observaciones
       .tab-content
 
 
@@ -49,6 +51,9 @@
               %p
                 %b.text-primary Grupo solidario:
                 = @good.grupo_solidario
+              %p
+                %b.text-primary Propietario de los bienes:
+                = @good.propietario_bienes
             .col-xs-6
               %p
                 %b.text-primary Bienes:
@@ -201,17 +206,43 @@
                 = @good.garantia_fiduciaria
             .col-xs-4
               %p
-                %b.text-primary Dir garante:
-                = @good.dir_garante
-              %p
-                %b.text-primary Tel garante:
-                = @good.tel_garante
-              %p
                 %b.text-primary Valor cartera castigada:
                 = @good.valor_cartera_castigada
 
-
         .tab-pane{id: "tab6"}
+          %h4.text-center Datos de los Garantes
+          %hr
+          .row.text-left
+            .col-xs-4
+              %p
+                %b.text-primary Nombres Garante 1:
+                = @good.nom_garante1
+              %p
+                %b.text-primary Cédula Garante 1:
+                = @good.ci_garante_1
+              %p
+                %b.text-primary Cony Garante 1:
+                = @good.cony_garante1
+            .col-xs-4
+              %p
+                %b.text-primary Nombres Garante 2:
+                = @good.nom_garante2
+              %p
+                %b.text-primary Cédula Garante 2:
+                = @good.ci_garante2
+              %p
+                %b.text-primary Cony Garante 2:
+                = @good.cony_garante2
+            .col-xs-4
+              %p
+                %b.text-primary Dirección garante:
+                = @good.dir_garante
+              %p
+                %b.text-primary Teléfono garante:
+                = @good.tel_garante
+
+
+        .tab-pane{id: "tab7"}
           .row
             - if current_user.permissions == 4
               .col-xs-10.start-xs.top-space

@@ -39,10 +39,32 @@
               = f.label :Abogado
               %br
               = collection_select(:lawyer, :lawyer_id, Lawyer.all, :id, :full_name, prompt: true)
-          .col-xs-4.col-xs-offset-4
-            .form-group
-              = f.label :bienes
-              = f.text_field :bienes, class: "form-control"
+          .col-xs-4.col-xs-offset-2
+            .card.large-padding
+              %h5 Seleccione los bienes
+              %label.checkbox{for:"checkbox1"}
+                = f.check_box(:bienes,{:multiple => true, id: "checkbox1"},"Casa",nil)
+                Casa
+              %label.checkbox{for:"checkbox2"}
+                = f.check_box(:bienes,{:multiple => true, id: "checkbox2"}, "Terreno",nil)
+                Terreno
+              %label.checkbox{for:"checkbox3"}
+                = f.check_box(:bienes,{:multiple => true, id: "checkbox3"}, "Vehículo",nil)
+                Vehículo
+              -#= f.label :bienes
+              -#= f.text_field :bienes, class: "form-control"
+          .col-xs-4
+            .card.large-padding
+              %h5 Poseedor de los bienes
+              %label.checkbox{for:"checkbox1"}
+                = f.check_box(:propietario_bienes,{:multiple => true, id: "checkbox1"},"Socio",nil)
+                Socio
+              %label.checkbox{for:"checkbox2"}
+                = f.check_box(:propietario_bienes,{:multiple => true, id: "checkbox2"}, "Garante 1",nil)
+                Garante 1
+              %label.checkbox{for:"checkbox3"}
+                = f.check_box(:propietario_bienes,{:multiple => true, id: "checkbox3"}, "Garante 2",nil)
+                Garante 2
 
     .col-xs-10.top-space.col-xs-offset-1
       .card.bg-color-white.padding.bottom-space
@@ -123,7 +145,26 @@
             .form-group
               = f.label :valor_cartera_castigada
               = f.text_field :valor_cartera_castigada, class: "form-control", readonly: true
-
+          .col-xs-4.col-xs-offset-2
+            .form-group
+              = f.label :nombres_garante_1
+              = f.text_field :nom_garante1, class: "form-control", readonly: true
+            .form-group
+              = f.label :cedula_garante_1
+              = f.text_field :ci_garante_1, class: "form-control", readonly: true
+            .form-group
+              = f.label :cony_garante1
+              = f.text_field :cony_garante1, class: "form-control", readonly: true
+          .col-xs-4
+            .form-group
+              = f.label :nombres_garante_2
+              = f.text_field :nom_garante2, class: "form-control", readonly: true
+            .form-group
+              = f.label :cedula_garante_2
+              = f.text_field :ci_garante2, class: "form-control", readonly: true
+            .form-group
+              = f.label :cony_garante2
+              = f.text_field :ci_garante2, class: "form-control", readonly: true
     .actions.top-space
       = f.submit 'Eviar', class: "btn btn-wide btn-primary", method: :post
       = link_to 'Regresar', pending_trials_path, class: "btn btn-wide btn-warning"

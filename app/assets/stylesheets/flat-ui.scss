@@ -42,8 +42,8 @@
 }
 @font-face {
   font-family: "Flat-UI-Icons";
-    src: url("flat-ui-icons-regular.eot");
-    src: url("flat-ui-icons-regular.eot?#iefix") format("embedded-opentype"), url("Flat-Ui-Icons.woff") format("woff"), url("Flat-Ui-Icons.ttf") format("truetype"), url("flat-ui-icons-regular.svg#Flat-UI-Icons") format("svg");
+    src: font-url("flat-ui-icons-regular.eot");
+    src: font-url("flat-ui-icons-regular.eot?#iefix") format("embedded-opentype"), font-url("Flat-Ui-Icons.woff") format("woff"), font-url("Flat-Ui-Icons.ttf") format("truetype"), font-url("flat-ui-icons-regular.svg#Flat-UI-Icons") format("svg");
     font-weight: normal;
     font-style: normal;
 }

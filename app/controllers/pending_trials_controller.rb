@@ -34,6 +34,9 @@ class PendingTrialsController < ApplicationController
         @good.good_activity_id = 1
         @good.estado = "Activo"
 
+        @good.bienes = PendingTrial.split_separado_por_comas(params["pending_trial"]["bienes"])
+        @good.propietario_bienes = PendingTrial.split_separado_por_comas(params["pending_trial"]["propietario_bienes"])
+
         if @good.save
           format.html { redirect_to creditos_root_path, notice: 'Juicio ingresado' }
         else
@@ -46,6 +49,10 @@ class PendingTrialsController < ApplicationController
         @withoutgood.lawyer_id = params["lawyer"]["lawyer_id"]
         @withoutgood.without_good_activity_id = 1
         @withoutgood.estado = "Activo"
+
+        @withoutgood.bienes = PendingTrial.split_separado_por_comas(params["pending_trial"]["bienes"])
+        @withoutgood.propietario_bienes = PendingTrial.split_separado_por_comas(params["pending_trial"]["propietario_bienes"])
+
         if @withoutgood.save
           format.html { redirect_to creditos_root_path, notice: 'Juicio ingresado' }
         else
@@ -76,7 +83,7 @@ class PendingTrialsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pending_trial_params
-      params.require(:pending_trial).permit(:credit_id, :socio_id, :nombres, :cedula, :telefono, :celular, :direccion, :sector, :parroquia, :canton, :nombre_grupo, :grupo_solidario, :sucursal, :oficial_credito, :cartera_heredada, :fecha_concesion, :fecha_vencimiento, :tipo_garantia, :garantia_real, :garantia_fiduciaria, :dir_garante, :tel_garante, :valor_cartera_castigada, :bienes, :tipo_credito, :flag_bienes)
+      params.require(:pending_trial).permit(:credit_id, :socio_id, :nombres, :cedula, :telefono, :celular, :direccion, :sector, :parroquia, :canton, :nombre_grupo, :grupo_solidario, :sucursal, :oficial_credito, :cartera_heredada, :fecha_concesion, :fecha_vencimiento, :tipo_garantia, :garantia_real, :garantia_fiduciaria, :dir_garante, :tel_garante, :valor_cartera_castigada, :bienes, :tipo_credito, :flag_bienes, :nom_garante1, :nom_garante2, :cony_garante1, :cony_garante2, :ci_garante_1, :ci_garante2, :propietario_bienes)
     end
 
     def set_layout
