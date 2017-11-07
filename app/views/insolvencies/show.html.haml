@@ -52,6 +52,9 @@
               %p
                 %b.text-primary Propietario de los bienes:
                 = @insolvency.propietario_bienes
+              %p
+                %b.text-primary Fecha del juicio:
+                = @insolvency.created_at
 
             .col-xs-6
               %p
@@ -69,6 +72,9 @@
               %p
                 %b.text-primary Estado:
                 = @insolvency.estado
+              %p
+                %b.text-primary Fecha original del juicio:
+                = @insolvency.fecha_original_juicio
 
 
         .tab-pane{id: "tab2"}

@@ -54,6 +54,9 @@
               %p
                 %b.text-primary Propietario de los bienes:
                 = @good.propietario_bienes
+              %p
+                %b.text-primary Fecha del juicio:
+                = @good.created_at
             .col-xs-6
               %p
                 %b.text-primary Bienes:
@@ -70,6 +73,9 @@
               %p
                 %b.text-primary Estado:
                 = @good.estado
+              %p
+                %b.text-primary Fecha original del juicio:
+                = @good.fecha_original_juicio
 
 
 

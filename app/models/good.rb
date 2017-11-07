@@ -216,4 +216,30 @@ class Good < ApplicationRecord
   def skip_callbacks
     self.credit_id[0] == "R" or self.callback_skip == true
   end
+
+  #   Metodo que sirve para ajustar la fecha de creacion de los juicios
+  #   para que queden en verde
+  def self.ajustar_fechas
+    Good.all.each do |juicio|
+      if juicio.estado == 'Activo' or juicio.estado == 'Reingreso'
+        # nombre_etapa_estimada = juicio.etapa_estimada
+        # month = GoodStage.find_by_name(nombre_etapa_estimada).months
+        # juicio.update(created_at: Date.current - month.month)
+        juicio.update(created_at: Date.current - juicio.good_stage.months.month)
+      end
+    end
+  end
+
+  # def self.guardar_creditos_pendientes
+  #   good = Good.all.as_json.to_a
+  #   withgood = WithoutGood.all.as_json.to_a
+  #
+  #   juicios = good + withgood
+  #   # guardar_creditos_pendientes
+  #
+  #   filename =  "creditos_nuevos.txt"
+  #   file = File.open(Rails.public_path.join("creditos",filename), "wb")
+  #   serialized_array = Marshal.dump(juicios)
+  #   File.open(file, "wb"){ |f| f << serialized_array }
+  # end
 end

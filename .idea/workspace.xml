@@ -2,16 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9c8cf5a2-853b-4585-8271-fc15264d8f44" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/main.coffee" afterPath="$PROJECT_DIR$/app/assets/javascripts/main.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/flat-ui.scss" afterPath="$PROJECT_DIR$/app/assets/stylesheets/flat-ui.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/pending_trials_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/pending_trials_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/pending_trial.rb" afterPath="$PROJECT_DIR$/app/models/pending_trial.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/good.rb" afterPath="$PROJECT_DIR$/app/models/good.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/oracledb.rb" afterPath="$PROJECT_DIR$/app/models/oracledb.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/without_good.rb" afterPath="$PROJECT_DIR$/app/models/without_good.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/goods/show.html.haml" afterPath="$PROJECT_DIR$/app/views/goods/show.html.haml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/insolvencies/show.html.haml" afterPath="$PROJECT_DIR$/app/views/insolvencies/show.html.haml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/pending_trials/_form.html.haml" afterPath="$PROJECT_DIR$/app/views/pending_trials/_form.html.haml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/without_goods/show.html.haml" afterPath="$PROJECT_DIR$/app/views/without_goods/show.html.haml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/application.rb" afterPath="$PROJECT_DIR$/config/application.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/database.yml" afterPath="$PROJECT_DIR$/config/database.yml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/schema.rb" afterPath="$PROJECT_DIR$/db/schema.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/creditos/creditos_nuevos.txt" afterPath="$PROJECT_DIR$/public/creditos/creditos_nuevos.txt" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
@@ -27,51 +27,71 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="without_good.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/without_good.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="536">
-              <caret line="172" column="10" lean-forward="false" selection-start-line="172" selection-start-column="10" selection-end-line="172" selection-end-column="10" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="_form.html.haml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/pending_trials/_form.html.haml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="164">
-              <caret line="45" column="37" lean-forward="false" selection-start-line="45" selection-start-column="37" selection-end-line="45" selection-end-column="37" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pending_trials_controller.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/pending_trials_controller.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="194">
-              <caret line="29" column="49" lean-forward="false" selection-start-line="29" selection-start-column="49" selection-end-line="29" selection-end-column="49" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="pending_trial.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/pending_trial.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="472">
-              <caret line="44" column="14" lean-forward="true" selection-start-line="44" selection-start-column="14" selection-end-line="44" selection-end-column="14" />
+            <state relative-caret-position="1012">
+              <caret line="44" column="14" lean-forward="false" selection-start-line="44" selection-start-column="14" selection-end-line="44" selection-end-column="14" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="show.html.haml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="good.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/models/good.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="221" column="0" lean-forward="false" selection-start-line="221" selection-start-column="0" selection-end-line="230" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="without_good.rb" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/models/without_good.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="404">
+              <caret line="185" column="73" lean-forward="false" selection-start-line="185" selection-start-column="73" selection-end-line="185" selection-end-column="73" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="database.yml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/database.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="276">
+              <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="1" selection-end-line="13" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="show.html.haml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/insolvencies/show.html.haml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="491">
-              <caret line="53" column="29" lean-forward="false" selection-start-line="53" selection-start-column="29" selection-end-line="53" selection-end-column="29" />
+            <state relative-caret-position="552">
+              <caret line="76" column="51" lean-forward="false" selection-start-line="76" selection-start-column="51" selection-end-line="76" selection-end-column="51" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="production.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/deploy/production.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="goods_controller.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/goods_controller.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="483">
+              <caret line="21" column="39" lean-forward="false" selection-start-line="21" selection-start-column="39" selection-end-line="21" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -112,6 +132,7 @@
       <find>estado_actual</find>
       <find>[0]</find>
       <find>checkbo</find>
+      <find>st</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -142,7 +163,6 @@
         <option value="$PROJECT_DIR$/config/environments/production.rb" />
         <option value="$PROJECT_DIR$/log/capistrano.log" />
         <option value="$PROJECT_DIR$/config/initializers/devise.rb" />
-        <option value="$PROJECT_DIR$/config/database.yml" />
         <option value="$PROJECT_DIR$/Gemfile" />
         <option value="$PROJECT_DIR$/Capfile" />
         <option value="$PROJECT_DIR$/config/secrets.yml" />
@@ -151,26 +171,27 @@
         <option value="$PROJECT_DIR$/config/schedule.rb" />
         <option value="$PROJECT_DIR$/public/creditos/creditos_nuevos.txt" />
         <option value="$PROJECT_DIR$/app/views/main/new_trial.haml" />
-        <option value="$PROJECT_DIR$/app/controllers/goods_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/without_goods_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/insolvencies_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/pending_trials/show.html.haml" />
-        <option value="$PROJECT_DIR$/app/models/oracledb.rb" />
         <option value="$PROJECT_DIR$/config/routes.rb" />
         <option value="$PROJECT_DIR$/app/views/partials/creditos/_buttons_states.haml" />
         <option value="$PROJECT_DIR$/app/controllers/main_controller.rb" />
-        <option value="$PROJECT_DIR$/app/models/good.rb" />
-        <option value="$PROJECT_DIR$/app/models/without_good.rb" />
         <option value="$PROJECT_DIR$/app/controllers/history_credits_controller.rb" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/main.coffee" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/flat-ui.scss" />
         <option value="$PROJECT_DIR$/config/application.rb" />
-        <option value="$PROJECT_DIR$/app/views/goods/show.html.haml" />
         <option value="$PROJECT_DIR$/app/views/pending_trials/_form.html.haml" />
         <option value="$PROJECT_DIR$/app/controllers/pending_trials_controller.rb" />
         <option value="$PROJECT_DIR$/app/models/pending_trial.rb" />
+        <option value="$PROJECT_DIR$/app/models/oracledb.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/goods_controller.rb" />
+        <option value="$PROJECT_DIR$/config/database.yml" />
+        <option value="$PROJECT_DIR$/app/models/good.rb" />
+        <option value="$PROJECT_DIR$/app/views/goods/show.html.haml" />
         <option value="$PROJECT_DIR$/app/views/without_goods/show.html.haml" />
         <option value="$PROJECT_DIR$/app/views/insolvencies/show.html.haml" />
+        <option value="$PROJECT_DIR$/app/models/without_good.rb" />
       </list>
     </option>
   </component>
@@ -235,6 +256,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="RailsProjectView" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -297,20 +321,23 @@
               <item name="AppCacmu" type="462c0819:PsiDirectoryNode" />
               <item name="config" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="AppCacmu" type="b2602c69:ProjectViewProjectNode" />
+              <item name="AppCacmu" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+              <item name="deploy" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
-      <pane id="RailsProjectView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Color Scheme Font" />
-    <property name="SearchEverywhereHistoryKey" value="show&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/views/insolvencies/show.html.haml&#10;pend&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/models/pending_trial.rb&#10;Pending&#9;null&#9;null&#10;hist&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/history_credits_controller.rb&#10;with&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/models/without_good.rb&#10;go&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/models/good.rb&#10;his&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/history_credits_controller.rb&#10;main&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/main_controller.rb&#10;good&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/goods_controller.rb&#10;ora&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/models/oracledb.rb&#10;g&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/models/good.rb&#10;repor&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/views/history_credits/report.haml&#10;Wit&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/models/without_good.rb&#10;Goo&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/models/good.rb&#10;rou&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/config/routes.rb&#10;r&#9;FILE&#9;file:///Users/santy/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.1.3/lib/action_dispatch/journey/routes.rb&#10;routes&#9;null&#9;null&#10;Good&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/models/good.rb&#10;oracl&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/models/oracledb.rb&#10;histo&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/history_credits_controller.rb&#10;sch&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/config/schedule.rb&#10;new&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/views/main/new_trial.haml&#10;Ins&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/models/insolvency.rb&#10;With&#9;null&#9;null&#10;gem&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/Gemfile&#10;data&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/config/database.yml&#10;gemf&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/Gemfile&#10;new_tr&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/views/main/new_trial.haml&#10;orac&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/models/oracledb.rb&#10;appl&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/application_controller.rb&#10;butt&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/views/partials/creditos/_buttons_states.haml&#10;home&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/views/main/home_creditos.haml&#10;eval&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/views/main/evaluacion_resultados.haml&#10;route&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/config/routes.rb&#10;applica&#9;null&#9;null&#10;creditos&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/views/layouts/creditos_judiciales.haml&#10;monit&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/views/history_credits/monitoreo.haml&#10;_&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/views/partials/creditos/_jcobranzas_home_tables.haml&#10;rout&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/config/routes.rb" />
+    <property name="SearchEverywhereHistoryKey" value="with&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/models/without_good.rb&#10;show&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/views/insolvencies/show.html.haml&#10;databas&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/config/database.yml&#10;good&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/goods_controller.rb&#10;orac&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/models/oracledb.rb&#10;pend&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/models/pending_trial.rb&#10;Pending&#9;null&#9;null&#10;hist&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/history_credits_controller.rb&#10;go&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/models/good.rb&#10;his&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/history_credits_controller.rb&#10;main&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/main_controller.rb&#10;ora&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/models/oracledb.rb&#10;g&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/models/good.rb&#10;repor&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/views/history_credits/report.haml&#10;Wit&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/models/without_good.rb&#10;Goo&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/models/good.rb&#10;rou&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/config/routes.rb&#10;r&#9;FILE&#9;file:///Users/santy/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.1.3/lib/action_dispatch/journey/routes.rb&#10;routes&#9;null&#9;null&#10;Good&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/models/good.rb&#10;oracl&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/models/oracledb.rb&#10;histo&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/history_credits_controller.rb&#10;sch&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/config/schedule.rb&#10;new&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/views/main/new_trial.haml&#10;Ins&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/models/insolvency.rb&#10;With&#9;null&#9;null&#10;gem&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/Gemfile&#10;data&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/config/database.yml&#10;gemf&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/Gemfile&#10;new_tr&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/views/main/new_trial.haml&#10;appl&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/application_controller.rb&#10;butt&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/views/partials/creditos/_buttons_states.haml&#10;home&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/views/main/home_creditos.haml&#10;eval&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/views/main/evaluacion_resultados.haml&#10;route&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/config/routes.rb&#10;applica&#9;null&#9;null&#10;creditos&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/views/layouts/creditos_judiciales.haml&#10;monit&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/views/history_credits/monitoreo.haml&#10;_&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/views/partials/creditos/_jcobranzas_home_tables.haml&#10;rout&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/config/routes.rb" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -491,11 +518,14 @@
       <workItem from="1508634836091" duration="76000" />
       <workItem from="1509302298696" duration="997000" />
       <workItem from="1509312063362" duration="13581000" />
+      <workItem from="1509499262946" duration="1904000" />
+      <workItem from="1509985711761" duration="2445000" />
+      <workItem from="1510068186154" duration="369000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="234481000" />
+    <option name="totallyTimeSpent" value="239199000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="773" extended-state="6" />
@@ -505,7 +535,6 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -517,6 +546,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -531,20 +561,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/views/main/stage.haml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-470">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/partials/creditos/_jcobranzas_home_tables.haml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/partials/creditos/_jcreditos_home_tables.haml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2172">
@@ -640,7 +656,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="644">
           <caret line="28" column="34" lean-forward="false" selection-start-line="28" selection-start-column="34" selection-end-line="28" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -648,7 +663,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1036">
           <caret line="4" column="10" lean-forward="false" selection-start-line="4" selection-start-column="10" selection-end-line="4" selection-end-column="10" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -664,7 +678,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="207">
           <caret line="9" column="151" lean-forward="false" selection-start-line="9" selection-start-column="151" selection-end-line="9" selection-end-column="151" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -672,23 +685,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1320">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/oracledb.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="516">
-          <caret line="301" column="58" lean-forward="false" selection-start-line="301" selection-start-column="58" selection-end-line="301" selection-end-column="58" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/goods_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="19" column="6" lean-forward="true" selection-start-line="19" selection-start-column="6" selection-end-line="19" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -696,7 +692,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4488">
           <caret line="218" column="35" lean-forward="false" selection-start-line="218" selection-start-column="35" selection-end-line="218" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -704,23 +699,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="639">
           <caret line="133" column="24" lean-forward="false" selection-start-line="133" selection-start-column="24" selection-end-line="133" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/good.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="417">
-          <caret line="208" column="10" lean-forward="false" selection-start-line="208" selection-start-column="10" selection-end-line="208" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/without_good.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="536">
-          <caret line="172" column="10" lean-forward="false" selection-start-line="172" selection-start-column="10" selection-end-line="172" selection-end-column="10" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -744,7 +722,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-452">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -752,7 +729,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="760">
           <caret line="61" column="12" lean-forward="false" selection-start-line="61" selection-start-column="12" selection-end-line="61" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -760,7 +736,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -768,9 +743,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -778,7 +750,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="355">
           <caret line="45" column="188" lean-forward="false" selection-start-line="45" selection-start-column="188" selection-end-line="45" selection-end-column="188" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -786,9 +757,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2025">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -812,26 +780,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="276">
           <caret line="12" column="26" lean-forward="false" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db/migrate/20171030023419_add_propietario_bienes_insolvency.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/migrate/20171030023450_add_propietario_bienes_pending_trial.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/db/migrate/20171030023419_add_propietario_bienes_insolvency.rb" />
+    <entry file="file://$PROJECT_DIR$/db/migrate/20171030023450_add_propietario_bienes_pending_trial.rb" />
     <entry file="file://$PROJECT_DIR$/db/migrate/20171030023400_add_propietario_bienes_to_good.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -868,7 +821,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
           <caret line="8" column="72" lean-forward="true" selection-start-line="8" selection-start-column="72" selection-end-line="8" selection-end-column="72" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -882,48 +834,91 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/pending_trials/_form.html.haml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="164">
+        <state relative-caret-position="1035">
           <caret line="45" column="37" lean-forward="false" selection-start-line="45" selection-start-column="37" selection-end-line="45" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/pending_trials_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
+        <state relative-caret-position="667">
           <caret line="29" column="49" lean-forward="false" selection-start-line="29" selection-start-column="49" selection-end-line="29" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/oracledb.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="206">
+          <caret line="292" column="23" lean-forward="false" selection-start-line="292" selection-start-column="23" selection-end-line="292" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/goods_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="483">
+          <caret line="21" column="39" lean-forward="false" selection-start-line="21" selection-start-column="39" selection-end-line="21" selection-end-column="39" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/goods/show.html.haml">
+    <entry file="file://$PROJECT_DIR$/config/database.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="55" column="42" lean-forward="false" selection-start-line="53" selection-start-column="14" selection-end-line="55" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/without_goods/show.html.haml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="49" column="14" lean-forward="true" selection-start-line="49" selection-start-column="14" selection-end-line="51" selection-end-column="50" />
+        <state relative-caret-position="276">
+          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="1" selection-end-line="13" selection-end-column="36" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/pending_trial.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="472">
-          <caret line="44" column="14" lean-forward="true" selection-start-line="44" selection-start-column="14" selection-end-line="44" selection-end-column="14" />
+        <state relative-caret-position="1012">
+          <caret line="44" column="14" lean-forward="false" selection-start-line="44" selection-start-column="14" selection-end-line="44" selection-end-column="14" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/goods/show.html.haml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="337">
+          <caret line="75" column="14" lean-forward="true" selection-start-line="75" selection-start-column="14" selection-end-line="77" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/without_goods/show.html.haml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="466">
+          <caret line="73" column="53" lean-forward="false" selection-start-line="73" selection-start-column="53" selection-end-line="73" selection-end-column="53" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/insolvencies/show.html.haml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="491">
-          <caret line="53" column="29" lean-forward="false" selection-start-line="53" selection-start-column="29" selection-end-line="53" selection-end-column="29" />
+        <state relative-caret-position="552">
+          <caret line="76" column="51" lean-forward="false" selection-start-line="76" selection-start-column="51" selection-end-line="76" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/deploy/production.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/good.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="221" column="0" lean-forward="false" selection-start-line="221" selection-start-column="0" selection-end-line="230" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/without_good.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="404">
+          <caret line="185" column="73" lean-forward="false" selection-start-line="185" selection-start-column="73" selection-end-line="185" selection-end-column="73" />
           <folding />
         </state>
       </provider>

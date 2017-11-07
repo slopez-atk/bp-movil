@@ -10,8 +10,14 @@ default: &default
   timeout: 5000
 
 development:
-  <<: *default
-  database: db/development.sqlite3
+#   <<: *default
+#   database: db/development.sqlite3
+  adapter: postgresql
+  encoding: utf8
+  database: appcacmu_development
+  pool: 5
+  username: santy
+  password:
 
 development_sec:
   adapter: postgresql

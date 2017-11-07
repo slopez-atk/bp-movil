@@ -10,11 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171030023745) do
+ActiveRecord::Schema.define(version: 20171030050756) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "good_activities", force: :cascade do |t|
     t.string "name"
-    t.integer "good_stage_id"
+    t.bigint "good_stage_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["good_stage_id"], name: "index_good_activities_on_good_stage_id"
@@ -54,8 +57,8 @@ ActiveRecord::Schema.define(version: 20171030023745) do
     t.string "valor_cartera_castigada"
     t.string "bienes"
     t.string "tipo_credito"
-    t.integer "good_stage_id"
-    t.integer "good_activity_id"
+    t.bigint "good_stage_id"
+    t.bigint "good_activity_id"
     t.string "estado"
     t.text "observaciones"
     t.string "juicio_id"
@@ -64,7 +67,7 @@ ActiveRecord::Schema.define(version: 20171030023745) do
     t.string "codigo_juicio"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "lawyer_id"
+    t.bigint "lawyer_id"
     t.string "fecha_terminacion"
     t.date "fecha_original_juicio"
     t.string "nom_garante1"
@@ -74,6 +77,7 @@ ActiveRecord::Schema.define(version: 20171030023745) do
     t.string "ci_garante2"
     t.string "cony_garante2"
     t.string "propietario_bienes"
+    t.string "calificacion"
     t.index ["good_activity_id"], name: "index_goods_on_good_activity_id"
     t.index ["good_stage_id"], name: "index_goods_on_good_stage_id"
     t.index ["lawyer_id"], name: "index_goods_on_lawyer_id"
@@ -120,8 +124,8 @@ ActiveRecord::Schema.define(version: 20171030023745) do
     t.string "valor_cartera_castigada"
     t.string "bienes"
     t.string "tipo_credito"
-    t.integer "insolvency_stage_id"
-    t.integer "insolvency_activity_id"
+    t.bigint "insolvency_stage_id"
+    t.bigint "insolvency_activity_id"
     t.string "estado"
     t.text "observaciones"
     t.string "juicio_id"
@@ -130,7 +134,7 @@ ActiveRecord::Schema.define(version: 20171030023745) do
     t.string "codigo_juicio"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "lawyer_id"
+    t.bigint "lawyer_id"
     t.string "fecha_terminacion"
     t.date "fecha_original_juicio"
     t.string "nom_garante1"
@@ -140,6 +144,7 @@ ActiveRecord::Schema.define(version: 20171030023745) do
     t.string "ci_garante2"
     t.string "cony_garante2"
     t.string "propietario_bienes"
+    t.string "calificacion"
     t.index ["insolvency_activity_id"], name: "index_insolvencies_on_insolvency_activity_id"
     t.index ["insolvency_stage_id"], name: "index_insolvencies_on_insolvency_stage_id"
     t.index ["lawyer_id"], name: "index_insolvencies_on_lawyer_id"
@@ -147,7 +152,7 @@ ActiveRecord::Schema.define(version: 20171030023745) do
 
   create_table "insolvency_activities", force: :cascade do |t|
     t.string "name"
-    t.integer "insolvency_stage_id"
+    t.bigint "insolvency_stage_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["insolvency_stage_id"], name: "index_insolvency_activities_on_insolvency_stage_id"
@@ -205,6 +210,7 @@ ActiveRecord::Schema.define(version: 20171030023745) do
     t.string "ci_garante2"
     t.string "cony_garante2"
     t.string "propietario_bienes"
+    t.string "calificacion"
   end
 
   create_table "users", force: :cascade do |t|
@@ -231,7 +237,7 @@ ActiveRecord::Schema.define(version: 20171030023745) do
 
   create_table "without_good_activities", force: :cascade do |t|
     t.string "name"
-    t.integer "withoutgood_stage_id"
+    t.bigint "withoutgood_stage_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["withoutgood_stage_id"], name: "index_without_good_activities_on_withoutgood_stage_id"
@@ -263,8 +269,8 @@ ActiveRecord::Schema.define(version: 20171030023745) do
     t.string "valor_cartera_castigada"
     t.string "bienes"
     t.string "tipo_credito"
-    t.integer "withoutgood_stage_id"
-    t.integer "without_good_activity_id"
+    t.bigint "withoutgood_stage_id"
+    t.bigint "without_good_activity_id"
     t.string "estado"
     t.text "observaciones"
     t.string "juicio_id"
@@ -273,7 +279,7 @@ ActiveRecord::Schema.define(version: 20171030023745) do
     t.string "codigo_juicio"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "lawyer_id"
+    t.bigint "lawyer_id"
     t.string "fecha_terminacion"
     t.date "fecha_original_juicio"
     t.string "nom_garante1"
@@ -283,6 +289,7 @@ ActiveRecord::Schema.define(version: 20171030023745) do
     t.string "ci_garante2"
     t.string "cony_garante2"
     t.string "propietario_bienes"
+    t.string "calificacion"
     t.index ["lawyer_id"], name: "index_without_goods_on_lawyer_id"
     t.index ["without_good_activity_id"], name: "index_without_goods_on_without_good_activity_id"
     t.index ["withoutgood_stage_id"], name: "index_without_goods_on_withoutgood_stage_id"
@@ -296,4 +303,16 @@ ActiveRecord::Schema.define(version: 20171030023745) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "good_activities", "good_stages"
+  add_foreign_key "goods", "good_activities"
+  add_foreign_key "goods", "good_stages"
+  add_foreign_key "goods", "lawyers"
+  add_foreign_key "insolvencies", "insolvency_activities"
+  add_foreign_key "insolvencies", "insolvency_stages"
+  add_foreign_key "insolvencies", "lawyers"
+  add_foreign_key "insolvency_activities", "insolvency_stages"
+  add_foreign_key "without_good_activities", "withoutgood_stages"
+  add_foreign_key "without_goods", "lawyers"
+  add_foreign_key "without_goods", "without_good_activities"
+  add_foreign_key "without_goods", "withoutgood_stages"
 end

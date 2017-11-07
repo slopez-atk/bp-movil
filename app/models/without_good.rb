@@ -177,4 +177,15 @@ class WithoutGood < ApplicationRecord
     self.credit_id[0] == "R" or self.callback_skip == true
   end
 
+  def self.ajustar_fechas
+    WithoutGood.all.each do |juicio|
+      if juicio.estado == 'Activo' or juicio.estado == 'Reingreso'
+        # nombre_etapa_estimada = juicio.etapa_estimada
+        # month = GoodStage.find_by_name(nombre_etapa_estimada).months
+        # juicio.update(created_at: Date.current - month.month)
+        juicio.update(created_at: Date.current - juicio.withoutgood_stage.months.month)
+      end
+    end
+  end
+
 end
