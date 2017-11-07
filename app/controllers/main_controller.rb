@@ -147,6 +147,13 @@ class MainController < ApplicationController
     pending_trial.tipo_credito= trial["tipo_credito"]
     pending_trial.tipo_garantia= trial["tipo_garantia"]
     pending_trial.valor_cartera_castigada= trial["valor_cartera_castigada"]
+    pending_trial.nom_garante1 = trial["nom_garante1"]
+    pending_trial.nom_garante2 = trial["nom_garante2"]
+    pending_trial.ci_garante_1 = trial["ci_garante_1"]
+    pending_trial.ci_garante2 = trial["ci_garante2"]
+    pending_trial.cony_garante1 = trial["cony_garante1"]
+    pending_trial.cony_garante2 = trial["cony_garante2"]
+    pending_trial.calificacion = trial["calificacion_propia"]
 
     respond_to do |format|
       if pending_trial.save
