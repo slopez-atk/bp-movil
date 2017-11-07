@@ -289,7 +289,7 @@ class Oracledb < ApplicationRecord
     filename =  "creditos_nuevos.txt"
     data = Marshal.load File.read(Rails.public_path.join("creditos",filename))
     data.each do |row|
-      if row['credit_id'] == credit_id
+      if row['id_credito'] == credit_id
         resultado = row
         return resultado
       end
