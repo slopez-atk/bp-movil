@@ -39,7 +39,7 @@ class HistoryCreditsController < ApplicationController
         if params["agencia"] == ""; agencia = "%%" else agencia = params["agencia"] end
 
         @original = HistoryCredit.filtrado(@arreglo).abogado(abogado).asesor(asesor).agencia(agencia)
-        @history_credits = @original.group(:credit_id)
+        @history_credits = @original.group(:credit_id, :id)
 
         if agencia == "%%"; agencia = "Todos" else agencia end
         if abogado == "%%"; abogado = "Todos" else abogado end
@@ -47,7 +47,7 @@ class HistoryCreditsController < ApplicationController
         @filtros = {asesor: asesor, abogado: abogado, agencia: agencia}
       else
         @original = HistoryCredit.filtrado(@arreglo)
-        @history_credits = @original.group(:credit_id)
+        @history_credits = @original.group(:credit_id, :id)
       end
 
 
