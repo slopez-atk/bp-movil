@@ -317,7 +317,7 @@ class Oracledb < ApplicationRecord
     end
     results = connection.exec_query("select
     (select monto_real from cred_creditos where numero_credito=t.numero_operacion)monto_real,
-    t.saldo_total,t.cuota_credito valor_cancela,t.dias_morocidad,t.provision_especifica,t.calificacion_propia
+    t.saldo_total,t.cuota_credito valor_cancela,t.dias_morocidad AS diasmora_pd,t.provision_especifica AS provision_requerida,t.calificacion_propia
     from temp_c02 t
     where t.numero_operacion='" + credit_id +"'")
     if results.present?

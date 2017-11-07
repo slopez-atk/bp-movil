@@ -41,8 +41,8 @@
       <file leaf-file-name="show.html.haml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/insolvencies/show.html.haml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="471">
-              <caret line="244" column="43" lean-forward="false" selection-start-line="244" selection-start-column="30" selection-end-line="244" selection-end-column="43" />
+            <state relative-caret-position="201">
+              <caret line="128" column="43" lean-forward="false" selection-start-line="128" selection-start-column="30" selection-end-line="128" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -61,8 +61,8 @@
       <file leaf-file-name="oracledb.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/models/oracledb.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="139">
-              <caret line="312" column="24" lean-forward="false" selection-start-line="312" selection-start-column="14" selection-end-line="312" selection-end-column="24" />
+            <state relative-caret-position="180">
+              <caret line="317" column="43" lean-forward="true" selection-start-line="317" selection-start-column="43" selection-end-line="317" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -163,7 +163,6 @@
         <option value="$PROJECT_DIR$/app/models/good.rb" />
         <option value="$PROJECT_DIR$/app/views/goods/show.html.haml" />
         <option value="$PROJECT_DIR$/app/views/without_goods/show.html.haml" />
-        <option value="$PROJECT_DIR$/app/views/insolvencies/show.html.haml" />
         <option value="$PROJECT_DIR$/app/models/without_good.rb" />
         <option value="$PROJECT_DIR$/config/database.yml" />
         <option value="$PROJECT_DIR$/config/environments/production.rb" />
@@ -172,6 +171,7 @@
         <option value="$PROJECT_DIR$/app/views/main/home.haml" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/app.scss" />
         <option value="$PROJECT_DIR$/app/controllers/main_controller.rb" />
+        <option value="$PROJECT_DIR$/app/views/insolvencies/show.html.haml" />
         <option value="$PROJECT_DIR$/app/models/oracledb.rb" />
       </list>
     </option>
@@ -508,12 +508,12 @@
       <workItem from="1509312063362" duration="13581000" />
       <workItem from="1509499262946" duration="1904000" />
       <workItem from="1509985711761" duration="2445000" />
-      <workItem from="1510068186154" duration="6026000" />
+      <workItem from="1510068186154" duration="6395000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="244856000" />
+    <option name="totallyTimeSpent" value="245225000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="773" extended-state="0" />
@@ -909,14 +909,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/insolvencies/show.html.haml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="471">
-          <caret line="244" column="43" lean-forward="false" selection-start-line="244" selection-start-column="30" selection-end-line="244" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/pending_trials_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-52">
@@ -925,10 +917,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/insolvencies/show.html.haml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="201">
+          <caret line="128" column="43" lean-forward="false" selection-start-line="128" selection-start-column="30" selection-end-line="128" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/oracledb.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="312" column="24" lean-forward="false" selection-start-line="312" selection-start-column="14" selection-end-line="312" selection-end-column="24" />
+        <state relative-caret-position="180">
+          <caret line="317" column="43" lean-forward="true" selection-start-line="317" selection-start-column="43" selection-end-line="317" selection-end-column="43" />
           <folding />
         </state>
       </provider>
