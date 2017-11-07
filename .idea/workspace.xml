@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9c8cf5a2-853b-4585-8271-fc15264d8f44" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/images/login-background.png" afterPath="$PROJECT_DIR$/app/assets/images/login-background.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/app.scss" afterPath="$PROJECT_DIR$/app/assets/stylesheets/app.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/main_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/main_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/oracledb.rb" afterPath="$PROJECT_DIR$/app/models/oracledb.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/creditos_judiciales.haml" afterPath="$PROJECT_DIR$/app/views/layouts/creditos_judiciales.haml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/main/home.haml" afterPath="$PROJECT_DIR$/app/views/main/home.haml" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
@@ -67,8 +61,8 @@
       <file leaf-file-name="oracledb.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/models/oracledb.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="262">
-              <caret line="308" column="20" lean-forward="false" selection-start-line="308" selection-start-column="11" selection-end-line="308" selection-end-column="20" />
+            <state relative-caret-position="139">
+              <caret line="312" column="24" lean-forward="false" selection-start-line="312" selection-start-column="14" selection-end-line="312" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -514,12 +508,12 @@
       <workItem from="1509312063362" duration="13581000" />
       <workItem from="1509499262946" duration="1904000" />
       <workItem from="1509985711761" duration="2445000" />
-      <workItem from="1510068186154" duration="5582000" />
+      <workItem from="1510068186154" duration="6026000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="244412000" />
+    <option name="totallyTimeSpent" value="244856000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="773" extended-state="0" />
@@ -933,8 +927,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/oracledb.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="308" column="20" lean-forward="false" selection-start-line="308" selection-start-column="11" selection-end-line="308" selection-end-column="20" />
+        <state relative-caret-position="139">
+          <caret line="312" column="24" lean-forward="false" selection-start-line="312" selection-start-column="14" selection-end-line="312" selection-end-column="24" />
           <folding />
         </state>
       </provider>

@@ -310,7 +310,7 @@ class Oracledb < ApplicationRecord
     filename =  "creditos_nuevos.txt"
     data = Marshal.load File.read(Rails.public_path.join("creditos",filename))
     data.each do |row|
-      if row['credit_id'] == credit_id
+      if row['id_credito'] == credit_id
         resultado = row
         return resultado
       end
@@ -321,7 +321,7 @@ class Oracledb < ApplicationRecord
     from temp_c02 t
     where t.numero_operacion='" + credit_id +"'")
     if results.present?
-      return results
+      return results[0]
     else
       return nil
     end
