@@ -38,7 +38,7 @@ class MainController < ApplicationController
     # microcreditos = Oracledb.getCreditosMicrocreditos.to_a
     # consumos = Oracledb.getCreditosConsumo.to_a
     # @trials = inmobiliarios + productivos + microcreditos + consumos
-
+    @discarded = DiscardedTrial.all
     @trials = Good.filtrar_creditos(Oracledb.obtener_creditos_pendientes)
   end
 
@@ -110,7 +110,8 @@ class MainController < ApplicationController
                        Terminados: Good.terminados.count + Insolvency.terminados.count + WithoutGood.terminados.count,
                        Reingresos: Good.reingresos.count + Insolvency.reingresos.count + WithoutGood.reingresos.count,
                        Insolvencia: Good.insolvencias.count + Insolvency.insolvencias.count + WithoutGood.insolvencias.count,
-                       Abandono: Good.abandonados.count + Insolvency.abandonados.count + WithoutGood.abandonados.count
+                       Abandono: Good.abandonados.count + Insolvency.abandonados.count + WithoutGood.abandonados.count,
+                       Cancelados: Good.cancelados.count + Insolvency.cancelados.count + WithoutGood.cancelados.count
     }
 
 

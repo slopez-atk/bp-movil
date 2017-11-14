@@ -65,6 +65,7 @@
           - verdes = 0
           - amarillos = 0
           - rojos = 0
+          - terminados = 0
           - total = 0
           - @history_credits.each do |history_credit|
             %tr
@@ -100,29 +101,84 @@
                     - amarillos += 1
                     %th
                       %span.label.label-warning= dato
+                  - elsif dato == "terminado"
+                    - terminados += 1
+                    %th
+                      %span.label.label-default= dato
                   - total += 1
 
 .row.center-xs
   .col-xs-11
-    .col-xs-4
+    .col-xs-3
       %h5.text-primary Porcentaje de semaforos Verdes
       - if total > 0
         - porcentaje = (verdes * 100)/total
       %p
         %b= porcentaje.to_s + "%"
-    .col-xs-4
+    .col-xs-3
       %h5.text-primary Porcentaje de semaforos Amarillos
       - if total > 0
         - porcentaje = (amarillos * 100)/total
       %p
         %b= porcentaje.to_s + "%"
-    .col-xs-4
+    .col-xs-3
       %h5.text-primary Pocentaje de semaforos Rojos
       - if total > 0
         - porcentaje = (rojos * 100)/total
       %p
         %b= porcentaje.to_s + "%"
+    .col-xs-3
+      %h5.text-primary Semaforos Terminados
+      - if total > 0
+        - porcentaje = (terminados * 100)/total
+      %p
+        %b= porcentaje.to_s + "%"
 
+.row.center-xs
+  .col-xs-11
+    %h3 % de Semaforos por Meses
+    - @arreglo.each do |fecha|
+      - datos = HistoryCredit.filtrado(fecha)
+      - ver = 0
+      - ama = 0
+      - roj = 0
+      - ter = 0
+      - tot = 0
+      - datos.each do |credit|
+        - if credit.semaforo == "rojo"
+          - roj += 1
+        - elsif credit.semaforo == "amarillo"
+          - ama += 1
+        - elsif credit.semaforo == "verde"
+          - ver += 1
+        - elsif credit.semaforo == "terminado"
+          - ter += 1
+        - tot += 1
+      .col-xs-4
+        .card.bg-color-white.padding.bottom-space
+          %h5.text-primary
+            Mes:
+            = fecha
+          - if tot > 0
+            - porcentaje = (ver * 100)/tot
+            %p
+              Verdes:
+              %b= porcentaje.to_s + "%"
+
+            - porcentaje = (ama * 100)/tot
+            %p
+              Amarillos:
+              %b= porcentaje.to_s + "%"
+
+            - porcentaje = (roj * 100)/tot
+            %p
+              Rojos:
+              %b= porcentaje.to_s + "%"
+
+            - porcentaje = (ter * 100)/tot
+            %p
+              Terminados:
+              %b= porcentaje.to_s + "%"
 
 .row.center-xs
   .col-xs-11
