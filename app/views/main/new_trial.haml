@@ -22,6 +22,7 @@
             %th Dias de Mora
             %th Tipo de credito
             %th Autorizar
+            %th Descartar
         %tbody
           - @trials.each do |trial|
             %tr
@@ -34,3 +35,35 @@
               %th= trial["diasmora_pd"]
               %th= trial["tipo_credito"]
               %th= link_to "Autorizar", create_trial_root_path(trial: trial), class: "btn btn-danger", method: :post, data: {confirm: "Estas seguro!"}
+              %th= link_to "Descartar", ingresar_discarded_trials_path(id_credito: trial["id_credito"].to_i), class: "btn btn-warning", method: :post, data: {confirm: "Estas seguro!"}
+
+.row.center-xs
+  .col-xs-11
+    %h2 Juicios descartados
+    .table-responsive
+      %table.table.table-striped.table-hover
+        %thead
+          %tr
+            %th Id Credito
+            %th Id Socio
+            %th Nombres
+            %th Saldo Total
+            %th Monto Real
+            %th Oficina
+            %th Dias de Mora
+            %th Tipo de credito
+            %th Autorizar
+        %tbody
+          - @discarded.each do |discarded|
+            - trial = Oracledb.buscar_credito_by_id_credito(discarded.juicio_id)
+            - unless trial.nil?
+              %tr
+                %th= trial["id_credito"].to_i
+                %th= trial["id_socio"]
+                %th= trial["nombres"]
+                %th= trial["saldo_total"]
+                %th= trial["monto_real"]
+                %th= trial["sucursal"]
+                %th= trial["diasmora_pd"]
+                %th= trial["tipo_credito"]
+                %th= link_to "Activar", discarded_trial_path(discarded), class: "btn btn-warning", method: :delete, data: {confirm: "Estas seguro!"}

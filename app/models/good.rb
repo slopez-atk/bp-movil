@@ -171,6 +171,7 @@ class Good < ApplicationRecord
     r +=Insolvency.pluck(:credit_id)
     r +=WithoutGood.pluck(:credit_id)
     r +=PendingTrial.pluck(:credit_id)
+    r +=DiscardedTrial.pluck(:juicio_id)
 
     ids_repetidos = Array.new
     creditos.each_with_index do |credit, i|

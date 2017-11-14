@@ -18,6 +18,9 @@ Rails.application.routes.draw do
   resources :good_activities
   resources :good_stages
   resources :lawyers
+  resources :discarded_trials, only:[:destroy] do
+    collection {post :ingresar}
+  end
   devise_for :users, controllers: {
       sessions: 'authentication/sessions',
       registrations: 'authentication/registrations'

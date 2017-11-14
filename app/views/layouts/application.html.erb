@@ -18,7 +18,7 @@
       <%= notice %><%= alert %>
       <span style="float: right" class="close-parent">X</span>
     </p>
-    <%= render "partials/navigations/main_navigation" %>
+    <%= render "partials/navigations/main_navigation" if action_name != 'home' %>
     <%= yield %>
   </body>
 </html>

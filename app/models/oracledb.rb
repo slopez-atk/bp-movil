@@ -349,4 +349,18 @@ class Oracledb < ApplicationRecord
   end
 
 
+  def self.buscar_credito_by_id_credito id_credito
+    filename =  "creditos_nuevos.txt"
+    data = Marshal.load File.read(Rails.public_path.join("creditos",filename))
+    data.each do |row|
+      if row['id_credito'] == id_credito
+        resultado = row
+        return resultado
+      end
+    end
+    return nil
+  end
+
+
+
 end
