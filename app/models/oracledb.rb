@@ -126,9 +126,9 @@ class Oracledb < ApplicationRecord
             (select sc.codigo_numero_id from socios so, socios_datos_conyuges sc where so.codigo_socio=sc.codigo_socio
       and so.mcli_numero_id=(select numero_id from socios_garantias_fiduciarias where c.numero_credito=numero_credito and num_registro=2))
        cony_garante2,
-      (select gara_avaluo_comercial from socios_garantias_reales where numero_credito=t.numero_operacion) valor_avaluo_comercial,
-       (select gara_avaluo_catastral from socios_garantias_reales where numero_credito=t.numero_operacion) valor_avaluo_catastral,
-       (select gara_avaluo from socios_garantias_reales where numero_credito=t.numero_operacion) avaluo_titulo,
+      (select MAX(gara_avaluo_comercial) from socios_garantias_reales where numero_credito=t.numero_operacion) valor_avaluo_comercial,
+       (select MAX(gara_avaluo_catastral) from socios_garantias_reales where numero_credito=t.numero_operacion) valor_avaluo_catastral,
+       (select MAX(gara_avaluo) from socios_garantias_reales where numero_credito=t.numero_operacion) avaluo_titulo,
        t.interes_ordinario interes,
        t.interes_sobre_mora mora,
        t.valor_gtos_recup_cart_jud gastos_judiciales,
@@ -272,9 +272,9 @@ class Oracledb < ApplicationRecord
             (select sc.codigo_numero_id from socios so, socios_datos_conyuges sc where so.codigo_socio=sc.codigo_socio
       and so.mcli_numero_id=(select numero_id from socios_garantias_fiduciarias where c.numero_credito=numero_credito and num_registro=2))
        cony_garante2,
-      (select gara_avaluo_comercial from socios_garantias_reales where numero_credito=t.numero_operacion) valor_avaluo_comercial,
-       (select gara_avaluo_catastral from socios_garantias_reales where numero_credito=t.numero_operacion) valor_avaluo_catastral,
-       (select gara_avaluo from socios_garantias_reales where numero_credito=t.numero_operacion) avaluo_titulo,
+      (select MAX(gara_avaluo_comercial) from socios_garantias_reales where numero_credito=t.numero_operacion) valor_avaluo_comercial,
+       (select MAX(gara_avaluo_catastral) from socios_garantias_reales where numero_credito=t.numero_operacion) valor_avaluo_catastral,
+       (select MAX(gara_avaluo) from socios_garantias_reales where numero_credito=t.numero_operacion) avaluo_titulo,
        t.interes_ordinario interes,
        t.interes_sobre_mora mora,
        t.valor_gtos_recup_cart_jud gastos_judiciales,
@@ -285,10 +285,7 @@ class Oracledb < ApplicationRecord
 
       from temp_c02 t, cred_creditos c
       where t.dias_morocidad>=96 and c.codigo_grupo in (2,4)--consumo y micro
-      --where t.dias_morocidad>=271 and c.codigo_grupo in (3) --inmobiliario
-      --where t.dias_morocidad>=156 and c.codigo_grupo in (1) --comerciales no existen
-      and c.numero_credito=t.numero_operacion
-    ")
+      and c.numero_credito=t.numero_operacion")
     if results.present?
       return results
     else
@@ -341,9 +338,9 @@ class Oracledb < ApplicationRecord
       (select monto_real from cred_creditos where numero_credito=t.numero_operacion)monto_real,
       t.saldo_total,t.cuota_credito valor_cancela,t.dias_morocidad AS diasmora_pd,t.provision_especifica AS provision_requerida,t.calificacion_propia,
 
-      (select gara_avaluo_comercial from socios_garantias_reales where numero_credito=t.numero_operacion) valor_avaluo_comercial,
-       (select gara_avaluo_catastral from socios_garantias_reales where numero_credito=t.numero_operacion) valor_avaluo_catastral,
-       (select gara_avaluo from socios_garantias_reales where numero_credito=t.numero_operacion) avaluo_titulo,
+      (select MAX(gara_avaluo_comercial) from socios_garantias_reales where numero_credito=t.numero_operacion) valor_avaluo_comercial,
+       (select MAX(gara_avaluo_catastral) from socios_garantias_reales where numero_credito=t.numero_operacion) valor_avaluo_catastral,
+       (select MAX(gara_avaluo) from socios_garantias_reales where numero_credito=t.numero_operacion) avaluo_titulo,
        t.interes_ordinario interes,
        t.interes_sobre_mora mora,
        t.valor_gtos_recup_cart_jud gastos_judiciales,
