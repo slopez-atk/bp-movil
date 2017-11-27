@@ -47,6 +47,7 @@ class Insolvency < ApplicationRecord
   belongs_to :insolvency_stage
   belongs_to :insolvency_activity
   belongs_to :lawyer
+  belongs_to :user
 
   # Scopes
   scope :activos, -> { where(estado: "Activo") }

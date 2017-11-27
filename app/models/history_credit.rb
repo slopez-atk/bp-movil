@@ -30,6 +30,8 @@ class HistoryCredit < ApplicationRecord
   scope :agencia, ->(agencia){where("agencia LIKE ?", "#{agencia}")}
   scope :asesor, ->(asesor){where("asesor LIKE ?", "#{asesor}")}
 
+  scope :asesores_cobranzas, ->(id){where(user_id: id)}
+
   # Recibe un id_credito, un mes y todos los datos
   # y regresa el valor del semaforo
   def self.buscar_fecha(id_credito, fecha, datos)

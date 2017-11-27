@@ -31,10 +31,75 @@
   margin: 0px !important;
 }
 
-.login_position{
-  position: relative;
-  top: 155px;
+.app-background{
+  overflow: inherit;
+  width: 100%;
+  height: 100%;
+  background-image: url("#{asset_path('app-backgroung.png')}");
+  background-size: contain;
+  background-repeat: repeat;
+  margin: 0px !important;
 }
+
+.logo-creditos-judiciales{
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  background-image: url("#{asset_path('logo-judiciales.png')}");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 0px !important;
+}
+
+.logo-creditos{
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  background-image: url("#{asset_path('logo-creditos.png')}");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 0px !important;
+}
+
+.logo-recursos-humanos{
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  background-image: url("#{asset_path('logo-rrhh.png')}");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 0px !important;
+}
+
+.logo-agencias{
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  background-image: url("#{asset_path('logo-agencias.png')}");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 0px !important;
+}
+
+.logo-desempenio-social{
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  background-image: url("#{asset_path('logo-desempenio-social.png')}");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 0px !important;
+}
+
+//.login_position{
+//  position: relative;
+//  top: 130px;
+//}
 
 .navbar.main{
   border-radius: 0px;

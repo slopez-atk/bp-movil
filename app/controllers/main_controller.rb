@@ -14,10 +14,14 @@ class MainController < ApplicationController
 
   # Controlador de la pantalla principal del modulo de creditos
   def home_creditos
-    if current_user.permissions == 5 or current_user.permissions == 4
+    if current_user.permissions == 5
       @conBienes = Good.activados.ultimos.includes(:good_stage, :good_activity)
       @sinBienes =  WithoutGood.activados.ultimos.includes(:withoutgood_stage, :without_good_activity)
       @insolvencias = Insolvency.activados.ultimos.includes(:insolvency_stage, :insolvency_activity)
+    elsif current_user.permissions == 4
+      @conBienes = current_user.goods.activados.ultimos.includes(:good_stage, :good_activity)
+      @sinBienes = current_user.without_goods.activados.ultimos.includes(:withoutgood_stage, :without_good_activity)
+      @insolvencias = current_user.insolvencies.activados.ultimos.includes(:insolvency_stage, :insolvency_activity)
     else
       @fechas = HistoryCredit.obtener_fechas_guardadas
     end
@@ -38,6 +42,7 @@ class MainController < ApplicationController
     # microcreditos = Oracledb.getCreditosMicrocreditos.to_a
     # consumos = Oracledb.getCreditosConsumo.to_a
     # @trials = inmobiliarios + productivos + microcreditos + consumos
+
     @discarded = DiscardedTrial.all
     @trials = Good.filtrar_creditos(Oracledb.obtener_creditos_pendientes)
   end
@@ -121,7 +126,7 @@ class MainController < ApplicationController
   # se autorizan desde la jefatura de credito para que pueda ser enviado
   # a juicio
   def create_trial
-    trial = params[:trial]
+    trial = JSON.parse(params[:trial])
     pending_trial = PendingTrial.new
     pending_trial.bienes= trial["bienes"]
     pending_trial.calificacion_propia= trial["calificacion_propia"]
@@ -156,11 +161,19 @@ class MainController < ApplicationController
     pending_trial.cony_garante2 = trial["cony_garante2"]
     pending_trial.calificacion = trial["calificacion_propia"]
 
+    pending_trial.valor_avaluo_comercial = trial["valor_avaluo_comercial"]
+    pending_trial.valor_avaluo_catastral = trial["valor_avaluo_catastral"]
+    pending_trial.avaluo_titulo = trial["avaluo_titulo"]
+    pending_trial.interes = trial["interes"]
+    pending_trial.mora = trial["mora"]
+    pending_trial.gastos_judiciales = trial["gastos_judiciales"]
+    pending_trial.user_id = params['user']['user_id']
+
     respond_to do |format|
       if pending_trial.save
         format.html { redirect_to new_trials_root_path, notice: 'Credito autorizado' }
       else
-        format.html { redirect_to new_trials_root_path, notice: "Algo salio mal!" }
+        format.html { redirect_to new_trials_root_path, notice: "Asegurate de seleccionar un asesor!" }
       end
     end
 
@@ -180,6 +193,7 @@ class MainController < ApplicationController
         trial_json = @trial.as_json.to_h
         trial_json.except!("id", "withoutgood_stage_id", "without_good_activity_id", "fcalificacion_juicio","juicio_id","fentrega_juicios","created_at")
         @insolvencia = Insolvency.new(trial_json)
+
         @insolvencia.credit_id = "I-" + @insolvencia.credit_id
         @insolvencia.estado = "Insolvencia"
         @insolvencia.insolvency_stage = InsolvencyStage.first
@@ -241,6 +255,10 @@ class MainController < ApplicationController
 
   def listado_juicios
     case params[:estado]
+      when "Activos"
+        @conBienes = Good.activos.includes(:lawyer, :good_stage, :good_activity)
+        @sinBienes = WithoutGood.activos.includes(:lawyer, :withoutgood_stage, :without_good_activity)
+        @insolvencias = Insolvency.activos.includes(:lawyer, :insolvency_stage, :insolvency_activity)
       when "Terminado"
         @conBienes = Good.terminados.includes(:lawyer, :good_stage, :good_activity)
         @sinBienes = WithoutGood.terminados.includes(:lawyer, :withoutgood_stage, :without_good_activity)

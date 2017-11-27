@@ -2,9 +2,10 @@
 %html
   %head
     %title Cacmu
+    %meta{name:"viewport", content:"width=device-width,user-scalable=no"}
     = csrf_meta_tags
     = favicon_link_tag "ico_nav.png"
-    %link{rel: "stylesheet", href: "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"}
+    %link{rel: "stylesheet", href: "//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"}
 
     = stylesheet_link_tag    'application', media: 'all', :'data-turbolinks-track' => 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
@@ -12,7 +13,7 @@
     %link{rel: "stylesheet", href: "https://fonts.googleapis.com/css?family=Lato:300,400,700,900"}
     %link{rel: "stylesheet", href: "https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.css"}
     = javascript_pack_tag "lawyer_group"
-  %body
+  %body.app-background
     = render "partials/navigations/creditos_navigation"
     %div{style:"#{'display:none;' if notice.nil? && alert.nil?}", class: "large-padding bg-color-red-500 color-white text-center no-margin"}
       = notice

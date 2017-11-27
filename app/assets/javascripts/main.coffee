@@ -12,6 +12,13 @@ $(document).on "turbolinks:load", ()->
 
   $(':checkbox').checkbox();
 
+#  $(".ingresar-pending-trial").on 'click', (e)->
+#    e.preventDefault();
+#    console.log($(this).parent().parent().parent().find('form'));
+#    $(this).parent().parent().parent().find('form')[0].submit();
+
+
+
 
 $(document).on "best_in_place:success", (ev)->
   location.reload()

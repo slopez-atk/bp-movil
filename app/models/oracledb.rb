@@ -3,7 +3,8 @@ class Oracledb < ApplicationRecord
 
   def self.getCreditosInmobiliarios
     # results = connection.exec_query("Select * from inmobiliario")
-    results = connection.exec_query("select
+    results = connection.exec_query("
+      select
       t.numero_operacion ID_CREDITO,
       t.codcl ID_SOCIO,
       (select s.mcli_apellido_pat||' '||s.mcli_apellido_mat||' '||s.mcli_nombres from socios s where s.codigo_socio=c.codigo_socio)as NOMBRES,
@@ -124,10 +125,20 @@ class Oracledb < ApplicationRecord
             (select numero_id from socios_garantias_fiduciarias where c.numero_credito=numero_credito and num_registro=2)ci_garante2,
             (select sc.codigo_numero_id from socios so, socios_datos_conyuges sc where so.codigo_socio=sc.codigo_socio
       and so.mcli_numero_id=(select numero_id from socios_garantias_fiduciarias where c.numero_credito=numero_credito and num_registro=2))
-       cony_garante2
+       cony_garante2,
+      (select gara_avaluo_comercial from socios_garantias_reales where numero_credito=t.numero_operacion) valor_avaluo_comercial,
+       (select gara_avaluo_catastral from socios_garantias_reales where numero_credito=t.numero_operacion) valor_avaluo_catastral,
+       (select gara_avaluo from socios_garantias_reales where numero_credito=t.numero_operacion) avaluo_titulo,
+       t.interes_ordinario interes,
+       t.interes_sobre_mora mora,
+       t.valor_gtos_recup_cart_jud gastos_judiciales,
+       t.valor_gtos_recup_cart_extjud gastos_extra_judicial,
+       t.valor_demanda_judicial demanda_judicial,
+       (t.saldo_total + t.interes_ordinario+t.interes_sobre_mora+t.valor_gtos_recup_cart_extjud+t.valor_gtos_recup_cart_jud+t.valor_demanda_judicial)
+       total_adeudado
 
       from temp_c02 t, cred_creditos c
-      where t.dias_morocidad>=271 and c.codigo_grupo in (3)
+      where t.dias_morocidad>=271 and c.codigo_grupo in (3) --inmobiliario
       and c.numero_credito=t.numero_operacion")
     if results.present?
       return results
@@ -260,7 +271,17 @@ class Oracledb < ApplicationRecord
             (select numero_id from socios_garantias_fiduciarias where c.numero_credito=numero_credito and num_registro=2)ci_garante2,
             (select sc.codigo_numero_id from socios so, socios_datos_conyuges sc where so.codigo_socio=sc.codigo_socio
       and so.mcli_numero_id=(select numero_id from socios_garantias_fiduciarias where c.numero_credito=numero_credito and num_registro=2))
-       cony_garante2
+       cony_garante2,
+      (select gara_avaluo_comercial from socios_garantias_reales where numero_credito=t.numero_operacion) valor_avaluo_comercial,
+       (select gara_avaluo_catastral from socios_garantias_reales where numero_credito=t.numero_operacion) valor_avaluo_catastral,
+       (select gara_avaluo from socios_garantias_reales where numero_credito=t.numero_operacion) avaluo_titulo,
+       t.interes_ordinario interes,
+       t.interes_sobre_mora mora,
+       t.valor_gtos_recup_cart_jud gastos_judiciales,
+       t.valor_gtos_recup_cart_extjud gastos_extra_judicial,
+       t.valor_demanda_judicial demanda_judicial,
+       (t.saldo_total + t.interes_ordinario+t.interes_sobre_mora+t.valor_gtos_recup_cart_extjud+t.valor_gtos_recup_cart_jud+t.valor_demanda_judicial)
+       total_adeudado
 
       from temp_c02 t, cred_creditos c
       where t.dias_morocidad>=96 and c.codigo_grupo in (2,4)--consumo y micro
@@ -315,11 +336,23 @@ class Oracledb < ApplicationRecord
         return resultado
       end
     end
-    results = connection.exec_query("select
-    (select monto_real from cred_creditos where numero_credito=t.numero_operacion)monto_real,
-    t.saldo_total,t.cuota_credito valor_cancela,t.dias_morocidad AS diasmora_pd,t.provision_especifica AS provision_requerida,t.calificacion_propia
-    from temp_c02 t
-    where t.numero_operacion='" + credit_id +"'")
+    # results = {monto_real: '100', saldo_total: "200" }
+     results = connection.exec_query("select
+      (select monto_real from cred_creditos where numero_credito=t.numero_operacion)monto_real,
+      t.saldo_total,t.cuota_credito valor_cancela,t.dias_morocidad AS diasmora_pd,t.provision_especifica AS provision_requerida,t.calificacion_propia,
+
+      (select gara_avaluo_comercial from socios_garantias_reales where numero_credito=t.numero_operacion) valor_avaluo_comercial,
+       (select gara_avaluo_catastral from socios_garantias_reales where numero_credito=t.numero_operacion) valor_avaluo_catastral,
+       (select gara_avaluo from socios_garantias_reales where numero_credito=t.numero_operacion) avaluo_titulo,
+       t.interes_ordinario interes,
+       t.interes_sobre_mora mora,
+       t.valor_gtos_recup_cart_jud gastos_judiciales,
+       t.valor_gtos_recup_cart_extjud gastos_extra_judicial,
+       t.valor_demanda_judicial demanda_judicial,
+       (t.saldo_total + t.interes_ordinario+t.interes_sobre_mora+t.valor_gtos_recup_cart_extjud+t.valor_gtos_recup_cart_jud+t.valor_demanda_judicial)
+       total_adeudado
+      from temp_c02 t
+      where t.numero_operacion='" + credit_id + "'")
     if results.present?
       return results[0]
     else

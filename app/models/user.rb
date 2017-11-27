@@ -28,6 +28,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  has_many :goods
+  has_many :without_goods
+  has_many :insolvencies
+  has_many :pending_trials
+
   def full_name
     self.name + " " + self.lastname
   end

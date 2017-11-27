@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171114025413) do
+ActiveRecord::Schema.define(version: 20171120025938) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,9 +84,17 @@ ActiveRecord::Schema.define(version: 20171114025413) do
     t.string "cony_garante2"
     t.string "propietario_bienes"
     t.string "calificacion"
+    t.bigint "user_id"
+    t.string "valor_avaluo_comercial"
+    t.string "valor_avaluo_catastral"
+    t.string "avaluo_titulo"
+    t.string "interes"
+    t.string "mora"
+    t.string "gastos_judiciales"
     t.index ["good_activity_id"], name: "index_goods_on_good_activity_id"
     t.index ["good_stage_id"], name: "index_goods_on_good_stage_id"
     t.index ["lawyer_id"], name: "index_goods_on_lawyer_id"
+    t.index ["user_id"], name: "index_goods_on_user_id"
   end
 
   create_table "history_credits", force: :cascade do |t|
@@ -102,6 +110,7 @@ ActiveRecord::Schema.define(version: 20171114025413) do
     t.datetime "updated_at", null: false
     t.string "mes"
     t.string "tipo_credito"
+    t.integer "user_id"
   end
 
   create_table "insolvencies", force: :cascade do |t|
@@ -151,9 +160,17 @@ ActiveRecord::Schema.define(version: 20171114025413) do
     t.string "cony_garante2"
     t.string "propietario_bienes"
     t.string "calificacion"
+    t.bigint "user_id"
+    t.string "valor_avaluo_comercial"
+    t.string "valor_avaluo_catastral"
+    t.string "avaluo_titulo"
+    t.string "interes"
+    t.string "mora"
+    t.string "gastos_judiciales"
     t.index ["insolvency_activity_id"], name: "index_insolvencies_on_insolvency_activity_id"
     t.index ["insolvency_stage_id"], name: "index_insolvencies_on_insolvency_stage_id"
     t.index ["lawyer_id"], name: "index_insolvencies_on_lawyer_id"
+    t.index ["user_id"], name: "index_insolvencies_on_user_id"
   end
 
   create_table "insolvency_activities", force: :cascade do |t|
@@ -217,6 +234,14 @@ ActiveRecord::Schema.define(version: 20171114025413) do
     t.string "cony_garante2"
     t.string "propietario_bienes"
     t.string "calificacion"
+    t.bigint "user_id"
+    t.string "valor_avaluo_comercial"
+    t.string "valor_avaluo_catastral"
+    t.string "avaluo_titulo"
+    t.string "interes"
+    t.string "mora"
+    t.string "gastos_judiciales"
+    t.index ["user_id"], name: "index_pending_trials_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -296,7 +321,15 @@ ActiveRecord::Schema.define(version: 20171114025413) do
     t.string "cony_garante2"
     t.string "propietario_bienes"
     t.string "calificacion"
+    t.bigint "user_id"
+    t.string "valor_avaluo_comercial"
+    t.string "valor_avaluo_catastral"
+    t.string "avaluo_titulo"
+    t.string "interes"
+    t.string "mora"
+    t.string "gastos_judiciales"
     t.index ["lawyer_id"], name: "index_without_goods_on_lawyer_id"
+    t.index ["user_id"], name: "index_without_goods_on_user_id"
     t.index ["without_good_activity_id"], name: "index_without_goods_on_without_good_activity_id"
     t.index ["withoutgood_stage_id"], name: "index_without_goods_on_withoutgood_stage_id"
   end
@@ -313,12 +346,16 @@ ActiveRecord::Schema.define(version: 20171114025413) do
   add_foreign_key "goods", "good_activities"
   add_foreign_key "goods", "good_stages"
   add_foreign_key "goods", "lawyers"
+  add_foreign_key "goods", "users"
   add_foreign_key "insolvencies", "insolvency_activities"
   add_foreign_key "insolvencies", "insolvency_stages"
   add_foreign_key "insolvencies", "lawyers"
+  add_foreign_key "insolvencies", "users"
   add_foreign_key "insolvency_activities", "insolvency_stages"
+  add_foreign_key "pending_trials", "users"
   add_foreign_key "without_good_activities", "withoutgood_stages"
   add_foreign_key "without_goods", "lawyers"
+  add_foreign_key "without_goods", "users"
   add_foreign_key "without_goods", "without_good_activities"
   add_foreign_key "without_goods", "withoutgood_stages"
 end

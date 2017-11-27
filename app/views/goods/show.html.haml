@@ -20,7 +20,7 @@
         %li.active
           %a{href: "#tab1"}Datos del Crédito
         %li
-          %a{href: "#tab2"}Datos del Cliente
+          %a{href: "#tab2"}Datos de la Socia(o)
         %li
           %a{href: "#tab3"}Saldos
         %li
@@ -80,7 +80,7 @@
 
 
         .tab-pane{id: "tab2"}
-          %h4.text-center Datos del Cliente
+          %h4.text-center Datos de la Socia(o)
           %hr
           .row.text-left
             .col-xs-6
@@ -119,7 +119,7 @@
           %h4.text-center Datos Crediticios
           %hr
           .row.text-left
-            .col-xs-6
+            .col-xs-4
               %p
                 %b.text-primary Monto real:
                 = @variables["monto_real"]
@@ -129,7 +129,13 @@
               %p
                 %b.text-primary Valor cancela:
                 = @variables["valor_cancela"]
-            .col-xs-6
+              %p
+                %b.text-primary Gastos extra judiciales:
+                = @variables["gastos_extra_judicial"]
+              %p
+                %b.text-primary Valor Judicial:
+                = @variables["valor_judicial"]
+            .col-xs-4
               %p
                 %b.text-primary Días de mora:
                 = @variables["diasmora_pd"]
@@ -139,6 +145,22 @@
               %p
                 %b.text-primary Calificación propia:
                 = @variables["calificacion_propia"]
+              %p
+                %b.text-primary Demanda Judicial:
+                = @variables["demanda_judicial"]
+            .col-xs-4
+              %p
+                %b.text-primary Interés:
+                = @variables["interes"]
+              %p
+                %b.text-primary Mora:
+                = @variables["mora"]
+              %p
+                %b.text-primary Gasto judiciales:
+                = @variables["gastos_judiciales"]
+              %p
+                %b.text-primary Total Adeudado:
+                = @variables["total_adeudado"]
 
 
         .tab-pane{id: "tab4"}
@@ -184,7 +206,7 @@
 
 
         .tab-pane{id: "tab5"}
-          %h4.text-center Datos Extras
+          %h4.text-center Detalles
           %hr
           .row.text-left
             .col-xs-4
@@ -210,10 +232,20 @@
               %p
                 %b.text-primary Garantia fiduciaria:
                 = @good.garantia_fiduciaria
-            .col-xs-4
               %p
                 %b.text-primary Valor cartera castigada:
                 = @good.valor_cartera_castigada
+            .col-xs-4
+              %p
+                %b.text-primary Valor avalúo comercial:
+                = @variables["valor_avaluo_comercial"]
+              %p
+                %b.text-primary Valor avalúo catastral:
+                = @variables["valor_avaluo_catastral"]
+              %p
+                %b.text-primary Avalúo título:
+                = @variables["avaluo_titulo"]
+
 
         .tab-pane{id: "tab6"}
           %h4.text-center Datos de los Garantes

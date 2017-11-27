@@ -35,6 +35,9 @@
 
 class PendingTrial < ApplicationRecord
 
+  validates_presence_of :user_id
+  belongs_to :user
+
   def self.pending_trials_count
     PendingTrial.count
   end

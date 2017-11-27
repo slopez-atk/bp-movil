@@ -19,18 +19,25 @@
     .dialog
       .container
         = form_tag report_history_credits_path, class: "form-inline" do
-          .col-xs-4
+          .col-xs-12
             .form-group
               %label Abogados
               = collection_select(:lawyer, :full_name, Lawyer.all, :name, :full_name, prompt: "Todos", class: "form-control")
-          .col-xs-4
+          .col-xs-12
             .form-group
               %label Agencias
               = select_tag("agencia", options_for_select(HistoryCredit.obtener_agencias), prompt: "Todos")
-          .col-xs-4
+          .col-xs-12
             .form-group
               %label Asesores
               = select_tag("asesores", options_for_select(HistoryCredit.obtener_asesores), prompt: "Todos")
+          .col-xs-12
+            .form-group
+              %label Asesor C.
+              = collection_select(:user, :user_id, User.where(permissions: 4), :id, :full_name, prompt: "Todos", class: "form-control")
+
+
+
           = hidden_field_tag "inicio", @inicio
           = hidden_field_tag "fin", @fin
           .col-xs-12
@@ -47,6 +54,9 @@
             %p.text-left
               Asesor
               %b= @filtros[:asesor]
+            %p.text-left
+              Asesor
+              %b= @filtros[:asesores_cobranzas]
 
 
 

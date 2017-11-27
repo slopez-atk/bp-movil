@@ -47,6 +47,9 @@ class WithoutGood < ApplicationRecord
   belongs_to :withoutgood_stage
   belongs_to :without_good_activity
   belongs_to :lawyer
+  belongs_to :user
+
+
   after_create :delete_pending, :unless => :skip_callbacks
   attr_accessor :callback_skip
 # Scopes

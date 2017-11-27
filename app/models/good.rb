@@ -47,6 +47,8 @@ class Good < ApplicationRecord
   belongs_to :good_stage
   belongs_to :good_activity
   belongs_to :lawyer
+  belongs_to :user
+
   after_create :delete_pending, :unless => :skip_callbacks
   attr_accessor :callback_skip
 

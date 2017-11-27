@@ -5,7 +5,7 @@ class PendingTrialsController < ApplicationController
   # GET /pending_trials
   # GET /pending_trials.json
   def index
-    @pending_trials = PendingTrial.all
+    @pending_trials = current_user.pending_trials
   end
 
   # GET /pending_trials/1
@@ -28,7 +28,7 @@ class PendingTrialsController < ApplicationController
 
     respond_to do |format|
       if params["setting"]["flag_bienes"] == "SI"
-        @good = Good.new(pending_trial_params)
+        @good = current_user.goods.new(pending_trial_params)
         @good.good_stage_id = 1
         @good.lawyer_id = params["lawyer"]["lawyer_id"]
         @good.good_activity_id = 1
@@ -44,7 +44,7 @@ class PendingTrialsController < ApplicationController
 
         end
       else
-        @withoutgood = WithoutGood.new(pending_trial_params)
+        @withoutgood = current_user.without_goods.new(pending_trial_params)
         @withoutgood.withoutgood_stage_id = 1
         @withoutgood.lawyer_id = params["lawyer"]["lawyer_id"]
         @withoutgood.without_good_activity_id = 1

@@ -14,7 +14,6 @@ class HistoryCreditsController < ApplicationController
 
   # Visualiza el historial de creditos
   def report
-
       if params["inicio"] == "" or params["fin"] == ""
         redirect_to creditos_root_path, notice: "Debes seleccionar dos fechas!"
         return false
@@ -33,18 +32,28 @@ class HistoryCreditsController < ApplicationController
 
       if params["lawyer"].present?
 
-
+        id_asesor = params[:user]["user_id"]
         if params["lawyer"]["full_name"] == ""; abogado = "%%" else abogado = params["lawyer"]["full_name"] end
         if params["asesores"] == ""; asesor = "%%" else asesor = params["asesores"] end
         if params["agencia"] == ""; agencia = "%%" else agencia = params["agencia"] end
 
-        @original = HistoryCredit.filtrado(@arreglo).abogado(abogado).asesor(asesor).agencia(agencia)
+        if id_asesor != ''
+          @original = HistoryCredit.filtrado(@arreglo).abogado(abogado).asesor(asesor).agencia(agencia).asesores_cobranzas(id_asesor)
+        else
+          @original = HistoryCredit.filtrado(@arreglo).abogado(abogado).asesor(asesor).agencia(agencia)
+        end
+
         @history_credits = @original.group(:credit_id, :id)
 
         if agencia == "%%"; agencia = "Todos" else agencia end
         if abogado == "%%"; abogado = "Todos" else abogado end
         if asesor == "%%"; asesor = "Todos" else agencia end
-        @filtros = {asesor: asesor, abogado: abogado, agencia: agencia}
+
+        if id_asesor != ''
+          @filtros = {asesor: asesor, abogado: abogado, agencia: agencia, asesores_cobranzas: User.find(id_asesor).full_name}
+        else
+          @filtros = {asesor: asesor, abogado: abogado, agencia: agencia}
+        end
       else
         @original = HistoryCredit.filtrado(@arreglo)
         @history_credits = @original.group(:credit_id, :id)
@@ -68,12 +77,12 @@ class HistoryCreditsController < ApplicationController
 
         else
           semaforo = credit.semaforo
-          HistoryCredit.create(credit_id: credit.credit_id, socio_id: credit.socio_id, cedula: credit.cedula, agencia: credit.sucursal, abogado: credit.lawyer.full_name, asesor: credit.oficial_credito, mes: date, estado: credit.estado, semaforo: semaforo[0], tipo_credito: "bienes")
+          HistoryCredit.create(credit_id: credit.credit_id, socio_id: credit.socio_id, cedula: credit.cedula, agencia: credit.sucursal, abogado: credit.lawyer.full_name, asesor: credit.oficial_credito, mes: date, estado: credit.estado, semaforo: semaforo[0], user_id: credit.user_id, tipo_credito: "bienes")
 
         end
       else
         semaforo = credit.semaforo
-        HistoryCredit.create(credit_id: credit.credit_id, socio_id: credit.socio_id, cedula: credit.cedula, agencia: credit.sucursal, abogado: credit.lawyer.full_name, asesor: credit.oficial_credito, mes: date, estado: credit.estado, semaforo: semaforo[0], tipo_credito: "bienes")
+        HistoryCredit.create(credit_id: credit.credit_id, socio_id: credit.socio_id, cedula: credit.cedula, agencia: credit.sucursal, abogado: credit.lawyer.full_name, asesor: credit.oficial_credito, mes: date, estado: credit.estado, semaforo: semaforo[0], user_id: credit.user_id, tipo_credito: "bienes")
       end
 
     end
@@ -85,11 +94,11 @@ class HistoryCreditsController < ApplicationController
 
         else
           semaforo = credit.semaforo
-          HistoryCredit.create(credit_id: credit.credit_id, socio_id: credit.socio_id, cedula: credit.cedula, agencia: credit.sucursal, abogado: credit.lawyer.full_name, asesor: credit.oficial_credito, mes: date, estado: credit.estado, semaforo: semaforo[0], tipo_credito: "sinbienes")
+          HistoryCredit.create(credit_id: credit.credit_id, socio_id: credit.socio_id, cedula: credit.cedula, agencia: credit.sucursal, abogado: credit.lawyer.full_name, asesor: credit.oficial_credito, mes: date, estado: credit.estado, semaforo: semaforo[0], user_id: credit.user_id, tipo_credito: "sinbienes")
         end
       else
         semaforo = credit.semaforo
-        HistoryCredit.create(credit_id: credit.credit_id, socio_id: credit.socio_id, cedula: credit.cedula, agencia: credit.sucursal, abogado: credit.lawyer.full_name, asesor: credit.oficial_credito, mes: date, estado: credit.estado, semaforo: semaforo[0], tipo_credito: "sinbienes")
+        HistoryCredit.create(credit_id: credit.credit_id, socio_id: credit.socio_id, cedula: credit.cedula, agencia: credit.sucursal, abogado: credit.lawyer.full_name, asesor: credit.oficial_credito, mes: date, estado: credit.estado, semaforo: semaforo[0], user_id: credit.user_id, tipo_credito: "sinbienes")
 
       end
     end
@@ -101,11 +110,11 @@ class HistoryCreditsController < ApplicationController
 
         else
           semaforo = credit.semaforo
-          HistoryCredit.create(credit_id: credit.credit_id, socio_id: credit.socio_id, cedula: credit.cedula, agencia: credit.sucursal, abogado: credit.lawyer.full_name, asesor: credit.oficial_credito, mes: date, estado: credit.estado, semaforo: semaforo[0], tipo_credito: "insolvencia")
+          HistoryCredit.create(credit_id: credit.credit_id, socio_id: credit.socio_id, cedula: credit.cedula, agencia: credit.sucursal, abogado: credit.lawyer.full_name, asesor: credit.oficial_credito, mes: date, estado: credit.estado, semaforo: semaforo[0], user_id: credit.user_id, tipo_credito: "insolvencia")
         end
       else
         semaforo = credit.semaforo
-        HistoryCredit.create(credit_id: credit.credit_id, socio_id: credit.socio_id, cedula: credit.cedula, agencia: credit.sucursal, abogado: credit.lawyer.full_name, asesor: credit.oficial_credito, mes: date, estado: credit.estado, semaforo: semaforo[0], tipo_credito: "insolvencia")
+        HistoryCredit.create(credit_id: credit.credit_id, socio_id: credit.socio_id, cedula: credit.cedula, agencia: credit.sucursal, abogado: credit.lawyer.full_name, asesor: credit.oficial_credito, mes: date, estado: credit.estado, semaforo: semaforo[0], user_id: credit.user_id, tipo_credito: "insolvencia")
 
       end
     end

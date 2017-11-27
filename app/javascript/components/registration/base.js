@@ -6,15 +6,16 @@ export const styles = {
     marginTop: '1em'
   },
   underlineStyle: {
-    borderColor: blueA400
+    borderColor: '#ffce00'
   },
   floatingLabelFocusStyle: {
-    color: blueA400
+    color: '#ffce00'
   },
   leftSpace: {
     marginLeft: '1em'
   },
-  red: redA400
+  red: redA400,
+  gris: '#595753'
 };
 
 export class Base extends React.Component {

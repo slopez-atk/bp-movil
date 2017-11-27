@@ -25,17 +25,78 @@
             %th Descartar
         %tbody
           - @trials.each do |trial|
-            %tr
-              %th= trial["id_credito"].to_i
-              %th= trial["id_socio"]
-              %th= trial["nombres"]
-              %th= trial["saldo_total"]
-              %th= trial["monto_real"]
-              %th= trial["sucursal"]
-              %th= trial["diasmora_pd"]
-              %th= trial["tipo_credito"]
-              %th= link_to "Autorizar", create_trial_root_path(trial: trial), class: "btn btn-danger", method: :post, data: {confirm: "Estas seguro!"}
-              %th= link_to "Descartar", ingresar_discarded_trials_path(id_credito: trial["id_credito"].to_i), class: "btn btn-warning", method: :post, data: {confirm: "Estas seguro!"}
+            - unless trial["saldo_total"] == 1
+              %tr
+                %th= trial["id_credito"].to_i
+                %th= trial["id_socio"]
+                %th= trial["nombres"]
+                %th= trial["saldo_total"]
+                %th= trial["monto_real"]
+                %th= trial["sucursal"]
+                %th= trial["diasmora_pd"]
+                %th= trial["tipo_credito"]
+                %th
+                  %a.btn.btn-danger.mostrar-modal{data: {toggle:"modal", target:"#modal#{trial["id_credito"]}"}}
+                    Autorizar
+                %th= link_to "Descartar", ingresar_discarded_trials_path(id_credito: trial["id_credito"].to_i), class: "btn btn-warning", method: :post, data: {confirm: "Estas seguro!"}
+                .modal.fade{tabindex:"-1", role:"dialog", id: "modal#{trial["id_credito"]}"}
+                  .modal-dialog{role: "document"}
+                    = form_tag create_trial_root_path, method: :post do
+                      .modal-content
+                        .modal-header
+                          %h4.modal-title Asignación del asesor
+                        .modal-body
+                          %p Selecciona el asesor que será responsable de este juicio.
+                          = collection_select(:user, :user_id, User.where(permissions: 4), :id, :full_name, prompt: true)
+                        .modal-footer
+                          = hidden_field_tag 'trial', trial.to_json
+                          = submit_tag "Autorizar", class: "btn btn-primary ingresar-pending-trial"
+
+.row.center-xs
+  .col-xs-11
+    %h2 Créditos castigados
+    .table-responsive
+      %table.table.table-striped.table-hover
+        %thead
+          %tr
+            %th Id Credito
+            %th Id Socio
+            %th Nombres
+            %th Saldo Total
+            %th Monto Real
+            %th Oficina
+            %th Dias de Mora
+            %th Tipo de credito
+            %th Autorizar
+            %th Descartar
+        %tbody
+          - @trials.each do |trial|
+            - if trial["saldo_total"] == 1
+              %tr
+                %th= trial["id_credito"].to_i
+                %th= trial["id_socio"]
+                %th= trial["nombres"]
+                %th= trial["saldo_total"]
+                %th= trial["monto_real"]
+                %th= trial["sucursal"]
+                %th= trial["diasmora_pd"]
+                %th= trial["tipo_credito"]
+                %th
+                  %a.btn.btn-danger.mostrar-modal{data: {toggle:"modal", target:"#modal#{trial["id_credito"]}"}}
+                    Autorizar
+                %th= link_to "Descartar", ingresar_discarded_trials_path(id_credito: trial["id_credito"].to_i), class: "btn btn-warning", method: :post, data: {confirm: "Estas seguro!"}
+                .modal.fade{tabindex:"-1", role:"dialog", id: "modal#{trial["id_credito"]}"}
+                  .modal-dialog{role: "document"}
+                    = form_tag create_trial_root_path, method: :post do
+                      .modal-content
+                        .modal-header
+                          %h4.modal-title Asignación del asesor
+                        .modal-body
+                          %p Selecciona el asesor que será responsable de este juicio.
+                          = collection_select(:user, :user_id, User.where(permissions: 4), :id, :full_name, prompt: true)
+                        .modal-footer
+                          = hidden_field_tag 'trial', trial.to_json
+                          = submit_tag "Autorizar", class: "btn btn-primary ingresar-pending-trial"
 
 .row.center-xs
   .col-xs-11
