@@ -86,24 +86,24 @@
                 = @without_good.cedula
               %p
                 %b.text-primary Teléfono:
-                = @variables.telefono
+                = @variables["telefono"]
               %p
                 %b.text-primary Celular:
-                = @variables.celular
+                = @variables["celular"]
 
             .col-xs-6
               %p
                 %b.text-primary Dirección:
-                = @variables.direccion
+                = @variables["direccion"]
               %p
                 %b.text-primary Sector:
-                = @variables.sector
+                = @variables["sector"]
               %p
                 %b.text-primary Parroquia:
-                = @variables.parroquia
+                = @variables["parroquia"]
               %p
                 %b.text-primary Cantón:
-                = @variables.canton
+                = @variables["canton"]
               %p
                 %b.text-primary Sucursal:
                 = @without_good.sucursal
@@ -267,10 +267,10 @@
             .col-xs-4
               %p
                 %b.text-primary Dirección garante:
-                = @variables.dir_garante
+                = @variables["dir_garante"]
               %p
                 %b.text-primary Teléfono garante:
-                = @variables.tel_garante
+                = @variables["tel_garante"]
 
         .tab-pane{id: "tab7"}
           .row
