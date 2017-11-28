@@ -337,17 +337,38 @@ class Oracledb < ApplicationRecord
      results = connection.exec_query("select
       (select monto_real from cred_creditos where numero_credito=t.numero_operacion)monto_real,
       t.saldo_total,t.cuota_credito valor_cancela,t.dias_morocidad AS diasmora_pd,t.provision_especifica AS provision_requerida,t.calificacion_propia,
-
-      (select MAX(gara_avaluo_comercial) from socios_garantias_reales where numero_credito=t.numero_operacion) valor_avaluo_comercial,
-       (select MAX(gara_avaluo_catastral) from socios_garantias_reales where numero_credito=t.numero_operacion) valor_avaluo_catastral,
-       (select MAX(gara_avaluo) from socios_garantias_reales where numero_credito=t.numero_operacion) avaluo_titulo,
+      (select gara_avaluo_comercial from socios_garantias_reales where numero_credito=t.numero_operacion) valor_avaluo_comercial,
+       (select gara_avaluo_catastral from socios_garantias_reales where numero_credito=t.numero_operacion) valor_avaluo_catastral,
+       (select gara_avaluo from socios_garantias_reales where numero_credito=t.numero_operacion) avaluo_titulo,
        t.interes_ordinario interes,
        t.interes_sobre_mora mora,
        t.valor_gtos_recup_cart_jud gastos_judiciales,
        t.valor_gtos_recup_cart_extjud gastos_extra_judicial,
        t.valor_demanda_judicial demanda_judicial,
        (t.saldo_total + t.interes_ordinario+t.interes_sobre_mora+t.valor_gtos_recup_cart_extjud+t.valor_gtos_recup_cart_jud+t.valor_demanda_judicial)
-       total_adeudado
+       total_adeudado,
+       t.codcl socio,
+       (select mcli_telefonos from socios_direcciones where codigo_socio=t.codcl) telefono,
+       (select mcli_telefono_celular from socios_direcciones where codigo_socio=t.codcl) celular,
+       (select mcli_calle_prin ||' '||mcli_numerocasa||' '||mcli_calle_secu from socios_direcciones where codigo_socio=t.codcl) direccion,
+       (select mcli_sector from socios_direcciones where codigo_socio=t.codcl)sector,
+       (
+          SELECT descripcion from Sifv_Parroquias d, SOCIOS_DIRECCIONES SD
+              WHERE d.codigo_pais = substr(sd.mcli_lugar_dir,1,2)
+              and d.codigo_provincia = substr(sd.mcli_lugar_dir,3,2)
+              and d.codigo_ciudad = substr(sd.mcli_lugar_dir,5,2)
+              and d.codigo_parroquia = substr(sd.mcli_lugar_dir,7,2)
+              and sd.codigo_socio=t.codcl
+       ) AS PARROQUIA,
+       (
+          SELECT descripcion from sifv_ciudades d, SOCIOS_DIRECCIONES SD
+              WHERE d.codigo_pais = substr(sd.mcli_lugar_dir,1,2)
+              and d.codigo_provincia = substr(sd.mcli_lugar_dir,3,2)
+              and d.codigo_ciudad = substr(sd.mcli_lugar_dir,5,2)
+            and sd.codigo_socio=t.codcl
+        ) AS CANTON,
+       (select max(gara_calle_prin ||' '||gara_numerocasa||' '||gara_calle_secu) from socios_garantes_direcciones where codigo_socio=t.codcl and num_registro=1) direccion_garante,
+       (select max(gara_telefonos) from socios_garantes_direcciones  where codigo_socio=t.codcl and num_registro=1) telefono_garante
       from temp_c02 t
       where t.numero_operacion='" + credit_id + "'")
     if results.present?
@@ -390,7 +411,4 @@ class Oracledb < ApplicationRecord
     end
     return nil
   end
-
-
-
 end
