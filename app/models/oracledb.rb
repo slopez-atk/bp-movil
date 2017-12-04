@@ -7,7 +7,7 @@ class Oracledb < ApplicationRecord
       select
       t.numero_operacion ID_CREDITO,
       t.codcl ID_SOCIO,
-      (select s.mcli_apellido_pat||' '||s.mcli_apellido_mat||' '||s.mcli_nombres from socios s where s.codigo_socio=c.codigo_socio)as NOMBRES,
+      (select s.mcli_razon_social||''||s.mcli_apellido_pat||' '||s.mcli_apellido_mat||' '||s.mcli_nombres from socios s where s.codigo_socio=c.codigo_socio)as NOMBRES,
       t.identificacion CEDULA,
       (select max(mcli_telefonos) from socios_direcciones where codigo_socio=c.codigo_socio)TELEFONO,
       (select max(mcli_telefono_celular) from socios_direcciones where codigo_socio=c.codigo_socio )CELULAR,
@@ -153,7 +153,7 @@ class Oracledb < ApplicationRecord
       select
       t.numero_operacion ID_CREDITO,
       t.codcl ID_SOCIO,
-      (select s.mcli_apellido_pat||' '||s.mcli_apellido_mat||' '||s.mcli_nombres from socios s where s.codigo_socio=c.codigo_socio)as NOMBRES,
+      (select s.mcli_razon_social||''||s.mcli_apellido_pat||' '||s.mcli_apellido_mat||' '||s.mcli_nombres from socios s where s.codigo_socio=c.codigo_socio)as NOMBRES,
       t.identificacion CEDULA,
       (select max(mcli_telefonos) from socios_direcciones where codigo_socio=c.codigo_socio)TELEFONO,
       (select max(mcli_telefono_celular) from socios_direcciones where codigo_socio=c.codigo_socio )CELULAR,
@@ -343,9 +343,9 @@ class Oracledb < ApplicationRecord
        t.interes_ordinario interes,
        t.interes_sobre_mora mora,
        t.valor_gtos_recup_cart_jud gastos_judiciales,
-       t.valor_gtos_recup_cart_extjud gastos_extra_judicial,
+       (case when t.valor_gtos_recup_cart_extjud is null then 0 else t.valor_gtos_recup_cart_extjud end) gastos_extra_judicial,
        t.valor_demanda_judicial demanda_judicial,
-       (t.saldo_total + t.interes_ordinario+t.interes_sobre_mora+t.valor_gtos_recup_cart_extjud+t.valor_gtos_recup_cart_jud+t.valor_demanda_judicial)
+       (t.saldo_total + t.interes_ordinario+t.interes_sobre_mora+(case when t.valor_gtos_recup_cart_extjud is null then 0 else t.valor_gtos_recup_cart_extjud end)+t.valor_gtos_recup_cart_jud+t.valor_demanda_judicial)
        total_adeudado,
        t.codcl socio,
        (select mcli_telefonos from socios_direcciones where codigo_socio=t.codcl) telefono,
