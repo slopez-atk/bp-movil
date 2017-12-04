@@ -69,7 +69,7 @@ class MainController < ApplicationController
     @rojos = Array.new
     # Consulto todos los juicios excepto los reestructurados y en funcion al semaforo
     # aumento su respeectiva variable para poder graficarlos al ultimo
-    Good.activados.each do |trial|
+    Good.sin_reestructurados.each do |trial|
       if trial.semaforo[0] == 'rojo'
         @cantidades_semafotos[:rojos] = @cantidades_semafotos[:rojos] + 1
         @rojos.push(trial)
@@ -82,7 +82,7 @@ class MainController < ApplicationController
       end
     end
 
-    Insolvency.activados.each do | trial|
+    Insolvency.sin_reestructurados.each do | trial|
       if trial.semaforo[0] == 'rojo'
         @cantidades_semafotos[:rojos] = @cantidades_semafotos[:rojos] + 1
         @rojos.push(trial)
@@ -95,7 +95,7 @@ class MainController < ApplicationController
       end
     end
 
-    WithoutGood.activados.each do | trial|
+    WithoutGood.sin_reestructurados.each do | trial|
       if trial.semaforo[0] == 'rojo'
         @cantidades_semafotos[:rojos] = @cantidades_semafotos[:rojos] + 1
         @rojos.push(trial)
@@ -116,7 +116,8 @@ class MainController < ApplicationController
                        Reingresos: Good.reingresos.count + Insolvency.reingresos.count + WithoutGood.reingresos.count,
                        Insolvencia: Good.insolvencias.count + Insolvency.insolvencias.count + WithoutGood.insolvencias.count,
                        Abandono: Good.abandonados.count + Insolvency.abandonados.count + WithoutGood.abandonados.count,
-                       Cancelados: Good.cancelados.count + Insolvency.cancelados.count + WithoutGood.cancelados.count
+                       Cancelados: Good.cancelados.count + Insolvency.cancelados.count + WithoutGood.cancelados.count,
+                       Reestructurado: Good.reestructurados.count + Insolvency.reestructurados.count + WithoutGood.reestructurados.count
     }
 
 
@@ -243,9 +244,12 @@ class MainController < ApplicationController
 
 
     @juicio_reingresado.estado = "Reingreso"
+
     respond_to do |format|
       if @juicio_reingresado.save
-        @trial.update(estado: "Abandono")
+        if params[:estado] != 'Reestructurado'
+          @trial.update(estado: "Abandono")
+        end
         format.html{ redirect_to @juicio_reingresado, notice: 'Se reingresó exitosamente el crédito'}
       else
         format.html{ redirect_to @juicio_reingresado, notice: 'Algo salió mal! Intentalo de nuevo'}

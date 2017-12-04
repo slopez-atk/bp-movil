@@ -63,7 +63,7 @@ class WithoutGood < ApplicationRecord
   scope :ultimos, ->{ order("created_at DESC")}
 
   scope :activados, ->{ where(estado: ["Activo", "Reingreso", "Insolvencia", "Reestructurado"])}
-  scope :sin_reestructurados, -> { where("estado IS NOT 'Reestructurado'") }
+  scope :sin_reestructurados, -> { where(estado: ["Activo", "Reingreso", "Insolvencia"]) }
 
 
   def etapa_estimada

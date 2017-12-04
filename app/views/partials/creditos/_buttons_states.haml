@@ -1,10 +1,13 @@
-.nav.nav-pills
+.nav.nav-pills.top-space
   %li= link_to "Terminado", update_trial_state_path(:id => trial.id, :tipo_juicio => tipo, :state => 'Terminado'), method: :post, class: "btn btn-inverse", data: {confirm: "Estás segur@?"}
   %li= link_to "Abandono", update_trial_state_path(:id => trial.id, :tipo_juicio => tipo, :state => 'Abandono'), method: :post, class: "btn btn-inverse", data: {confirm: "Estás segur@?"}
   %li= link_to "Cancelar", update_trial_state_path(:id => trial.id, :tipo_juicio => tipo, :state => 'Cancelado'), method: :post, class: "btn btn-inverse", data: {confirm: "Estás segur@?"}
   %li= link_to "Reestructurado", update_trial_state_path(:id => trial.id, :tipo_juicio => tipo, :state => 'Reestructurado'), method: :post, class: "btn btn-inverse", data: {confirm: "Estás segur@?"}
   %li= link_to "Activar", update_trial_state_path(:id => trial.id, :tipo_juicio => tipo, :state => 'Activo'), method: :post, class: "btn btn-inverse", data: {confirm: "Estás segur@?"}
-  %li= link_to "Reingresar", reingreso_juicios_path(:id => trial.id, :tipo_juicio => tipo), method: :post, class: "btn btn-inverse", data: {confirm: "Estás segur@?"} unless trial.estado == 'Reingreso'
+  - if trial.estado == "Reestructurado"
+    %li= link_to "Reingresar", reingreso_juicios_path(:id => trial.id, :tipo_juicio => tipo, :estado => 'Reestructurado'), method: :post, class: "btn btn-inverse", data: {confirm: "Estás segur@?"} unless trial.estado == 'Reingreso'
+  - else
+    %li= link_to "Reingresar", reingreso_juicios_path(:id => trial.id, :tipo_juicio => tipo), method: :post, class: "btn btn-inverse", data: {confirm: "Estás segur@?"} unless trial.estado == 'Reingreso'
   - if tipo == "bienes"
     %li= link_to "Convertir a Sin Bienes", cambiar_tipo_juicio_path(estado_actual: tipo,juicio: trial.id), method: :post, data: {confirm: "Estás segur@?"}
   - elsif tipo == "sinbienes"

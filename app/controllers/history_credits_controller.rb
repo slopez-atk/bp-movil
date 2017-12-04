@@ -71,7 +71,7 @@ class HistoryCreditsController < ApplicationController
     date = 1.month.ago.strftime('%m-%Y')
     @goods.each do |credit|
       # Cancelados, abandonos
-      if credit.estado == "Terminado" or credit.estado == "Abandono" or credit.estado == "Cancelado"
+      if credit.estado == "Terminado" or credit.estado == "Abandono" or credit.estado == "Cancelado" or credit.estado == "Reestructurado"
         result = HistoryCredit.buscar_creditos_finalizados credit.credit_id
         if result.present?
 
@@ -88,7 +88,7 @@ class HistoryCreditsController < ApplicationController
     end
 
     @withoutgoods.each do |credit|
-      if credit.estado == "Terminado" or credit.estado == "Abandono" or credit.estado == "Cancelado"
+      if credit.estado == "Terminado" or credit.estado == "Abandono" or credit.estado == "Cancelado" or credit.estado == "Reestructurado"
         result = HistoryCredit.buscar_creditos_finalizados credit.credit_id
         if result.present?
 
@@ -104,7 +104,7 @@ class HistoryCreditsController < ApplicationController
     end
 
     @insolvencies.each do |credit|
-      if credit.estado == "Terminado" or credit.estado == "Abandono" or credit.estado == "Cancelado"
+      if credit.estado == "Terminado" or credit.estado == "Abandono" or credit.estado == "Cancelado" or credit.estado == "Reestructurado"
         result = HistoryCredit.buscar_creditos_finalizados credit.credit_id
         if result.present?
 
