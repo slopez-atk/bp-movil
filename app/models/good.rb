@@ -228,7 +228,7 @@ class Good < ApplicationRecord
         # nombre_etapa_estimada = juicio.etapa_estimada
         # month = GoodStage.find_by_name(nombre_etapa_estimada).months
         # juicio.update(created_at: Date.current - month.month)
-        juicio.update(created_at: Date.current - juicio.good_stage.months.month)
+        juicio.update(created_at: Date.current - juicio.good_stage.months.month - 27.day)
       end
     end
   end
