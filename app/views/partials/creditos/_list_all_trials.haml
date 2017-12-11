@@ -18,8 +18,10 @@
             %th Nombre
             %th Id Crédito
             %th Id Socio
+            %th Id Juicio
             %th Cédula
             %th Etapa Actual
+            %th Actividad
             %th Etapa Estimada
             %th Estado
             %th Semaforo
@@ -31,8 +33,10 @@
               %td= trial.nombres
               %td= trial.credit_id
               %td= trial.socio_id
+              %td= trial.juicio_id
               %td= trial.cedula
-              %td= trial.good_stage.name
+              %td= best_in_place_if(trial.user == current_user, trial, :good_stage_id, :as => :select, collection: GoodStage.collection)
+              %td= best_in_place_if(trial.user == current_user, trial, :good_activity_id, :as => :select, collection: trial.good_stage.get_activities)
               %td= trial.etapa_estimada
               %td= trial.estado
               %td
@@ -50,8 +54,10 @@
             %th Nombre
             %th Id Crédito
             %th Id Socio
+            %th Id Juicio
             %th Cédula
             %th Etapa Actual
+            %th Actividad
             %th Etapa Estimada
             %th Estado
             %th Semaforo
@@ -64,8 +70,10 @@
               %td= trial.nombres
               %td= trial.credit_id
               %td= trial.socio_id
+              %td= trial.juicio_id
               %td= trial.cedula
-              %td= trial.withoutgood_stage.name
+              %td= best_in_place_if(trial.user == current_user, trial, :withoutgood_stage_id, :as => :select, collection: WithoutgoodStage.collection)
+              %td= best_in_place_if(trial.user == current_user, trial, :without_good_activity_id, :as => :select, collection: trial.withoutgood_stage.get_activities)
               %td= trial.etapa_estimada
               %td= trial.estado
               %td
@@ -84,8 +92,10 @@
             %th Nombre
             %th Id Crédito
             %th Id Socio
+            %th Id Juicio
             %th Cédula
             %th Etapa Actual
+            %th Actividad
             %th Etapa Estimada
             %th Estado
             %th Semaforo
@@ -98,8 +108,10 @@
               %td= trial.nombres
               %td= trial.credit_id
               %td= trial.socio_id
+              %td= trial.juicio_id
               %td= trial.cedula
-              %td= trial.insolvency_stage.name
+              %td= best_in_place_if(trial.user == current_user,trial, :insolvency_stage_id, :as => :select, collection: InsolvencyStage.collection)
+              %td= best_in_place_if(trial.user == current_user,trial, :insolvency_activity_id, :as => :select, collection: trial.insolvency_stage.get_activities)
               %td= trial.etapa_estimada
               %td= trial.estado
               %td

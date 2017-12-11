@@ -411,4 +411,177 @@ class Oracledb < ApplicationRecord
     end
     return nil
   end
+
+  #   Modulo de Creditos
+  def self.obtener_creditos_por_vencer fecha_inicio, fecha_fin, agencia, asesor, opcional
+
+
+    firstWeek = [
+    {
+        id_credito: 17654,
+        id_socio: 23423,
+        saldo: 23800,
+        nombres: 'Santiago Lopez',
+        fecha: '1/12/2017',
+        agencia: 'Matriz',
+        asesor: 'Roberto'},
+    {
+        id_credito: 9999345,
+        id_socio: 456354,
+        saldo: 3000,
+        nombres: 'Sebastian Lopez',
+        fecha: '1/12/2017',
+        agencia: 'La Merced',
+        asesor: 'Romel'},
+    {
+        id_credito: 234,
+        id_socio: 867,
+        saldo: 1000,
+        nombres: 'Valentina Aguirre',
+        fecha: '2/12/2017',
+        agencia: 'Atuntaqui',
+        asesor: 'Daniela'
+    },
+    {
+        id_credito: 5467,
+        id_socio: 567,
+        saldo: 4000,
+        nombres: 'Cristian Guerra',
+        fecha: '2/12/2017',
+        agencia: 'La Merced',
+        asesor: 'Chloe'
+    },
+    {
+        id_credito: 17345654,
+        id_socio: 7585,
+        saldo: 1000,
+        nombres: 'Tatiana Lopez',
+        fecha: '3/12/2017',
+        agencia: 'La Merced',
+        asesor: 'Israel'
+    },
+    {
+        id_credito: 4564,
+        id_socio: 765,
+        saldo: 1000,
+        nombres: 'Isabella Lopez',
+        fecha: '4/12/2017',
+        agencia: 'Matriz',
+        asesor: 'Santiago'
+    }]
+    secondWeek = [{
+        id_credito: 17654,
+        id_socio: 23423,
+        saldo: 2000,
+        nombres: 'Santiago Lopez',
+        fecha: '8/12/2017',
+        agencia: 'Matriz',
+        asesor: 'Rooberto'
+    },{
+        id_credito: 234,
+        id_socio: 867,
+        saldo: 2000,
+        nombres: 'Valentina Aguirre',
+        fecha: '9/12/2017',
+        agencia: 'Atuntaqui',
+        asesor: 'Daniela'
+    },{
+        id_credito: 17345654,
+        id_socio: 7585,
+        saldo: 2000,
+        nombres: 'Tatiana Lopez',
+        fecha: '10/12/2017',
+        agencia: 'La Merced',
+        asesor: 'Israel'
+    },{
+        id_credito: 4564,
+        id_socio: 765,
+        saldo: 2000,
+        nombres: 'Isabella Lopez',
+        fecha: '12/12/2017',
+        agencia: 'Matriz',
+        asesor: 'Santiago'
+    }]
+
+    thirdWeek = [
+        {
+         id_credito: 17654,
+         id_socio: 23423,
+         saldo: 3000,
+         nombres: 'Santiago Lopez',
+         fecha: '16/12/2017',
+         agencia: 'Matriz',
+         asesor: 'Roberto'
+        },{
+         id_credito: 234,
+         id_socio: 867,
+         saldo: 3000,
+         nombres: 'Valentina Aguirre',
+         fecha: '17/12/2017',
+         agencia: 'Atuntaqui',
+         asesor: 'Daniela'
+        },{
+         id_credito: 17345654,
+         id_socio: 7585,
+         saldo: 3000,
+         nombres: 'Tatiana Lopez',
+         fecha: '18/12/2017',
+         agencia: 'La Merced',
+         asesor: 'Israel'
+        },{
+         id_credito: 4564,
+         id_socio: 765,
+         saldo: 3000,
+         nombres: 'Isabella Lopez',
+         fecha: '19/12/2017',
+         agencia: 'Matriz',
+         asesor: 'Santiago'
+        }]
+
+    fourthWeek = [{
+        id_credito: 17654,
+        id_socio: 23423,
+        saldo: 4000,
+        nombres: 'Santiago Lopez',
+        fecha: '24/12/2017',
+        agencia: 'Matriz',
+        asesor: 'Daniela'
+    },{
+        id_credito: 234,
+        id_socio: 867,
+        saldo: 4000,
+        nombres: 'Valentina Aguirre',
+        fecha: '25/12/2017',
+        agencia: 'La Merced',
+        asesor: 'Daniela'
+    },{
+        id_credito: 17345654,
+        id_socio: 7585,
+        saldo: 4000,
+        nombres: 'Tatiana Lopez',
+        fecha: '26/12/2017',
+        agencia: 'La Merced',
+        asesor: 'Daniela'
+    },{
+        id_credito: 4564,
+        id_socio: 765,
+        saldo: 4000,
+        nombres: 'Isabella Lopez',
+        fecha: '27/12/2017',
+        agencia: 'Matriz',
+        asesor: 'Daniela'
+    }]
+
+    case opcional
+      when 'firstWeek'
+        return firstWeek;
+      when 'secondWeek'
+        return secondWeek;
+      when 'thirdWeek'
+        return thirdWeek;
+      when 'fourthWeek'
+        return fourthWeek;
+    end
+
+  end
 end

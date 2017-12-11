@@ -7,10 +7,13 @@
     "formsy-material-ui": "^0.6.3",
     "formsy-react": "^0.19.5",
     "material-ui": "^0.19.1",
+    "moment": "^2.19.4",
     "prop-types": "^15.5.10",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
+    "react": "15.6.1",
+    "react-bootstrap-table": "^4.2.0",
+    "react-dom": "15.6.1",
     "reqwest": "^2.0.5",
+    "webpack-merge": "^4.1.1",
     "webpacker-react": "^0.3.0"
   },
   "devDependencies": {

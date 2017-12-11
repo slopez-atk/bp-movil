@@ -293,6 +293,7 @@ class MainController < ApplicationController
   def set_layout
     return "creditos_judiciales" if action_name == "home_creditos" or action_name == "new_trial" or action_name == "evaluacion_resultados" or action_name == "search"or action_name == "listado_juicios"
     return "creditos_judiciales" if action_name == "stage"
+
     super
   end
 
@@ -338,4 +339,6 @@ class MainController < ApplicationController
       end
     end
   end
+
+
 end

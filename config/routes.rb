@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   mount RailsAdmin::Engine => '/administracion', as: 'rails_admin'
   resources :history_credits do
     collection { post :report }
@@ -51,4 +52,16 @@ Rails.application.routes.draw do
   get '/juicios', to: 'main#listado_juicios', as: :listado_juicios
   # Ruta del metodo para cambiar un juicio de bienes a sin bienes y al contrario
   post '/juicio/update', to: "main#change_trial_type", as: :cambiar_tipo_juicio
+
+
+#   Modulo de creditos
+  get '/credits', to: 'credits#index', as: :credits_root
+
+  namespace :credits do
+    post 'creditos_por_vencer'
+    post 'creditos_vencidos'
+    get 'cosechas'
+    get 'matrices'
+    get 'clientes_vip'
+  end
 end

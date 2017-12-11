@@ -1,4 +1,4 @@
-%ul.breadcrumb
+%ul.breadcrumb.big-top-space
   %li
     = link_to "Dashboard", root_path
   %li
@@ -21,8 +21,8 @@
         %thead
           %tr
             %th Nombre
-            %th Id Crédito
             %th Id Socio
+            %th Id Juicio
             %th Cédula
             %th Etapa Actual
             %th Proceso
@@ -34,8 +34,8 @@
             - semaforos = trial.semaforo
             %tr
               %td= trial.nombres
-              %td= trial.credit_id
               %td= trial.socio_id
+              %td.table-width= trial.juicio_id
               %td= trial.cedula
               %td= best_in_place(trial, :good_stage_id, :as => :select, collection: GoodStage.collection)
               %td= best_in_place(trial, :good_activity_id, :as => :select, collection: trial.good_stage.get_activities)
@@ -54,8 +54,8 @@
         %thead
           %tr
             %th Nombre
-            %th Id Crédito
             %th Id Socio
+            %th Id Juicio
             %th Cédula
             %th Etapa Actual
             %th Proceso
@@ -67,8 +67,8 @@
             - semaforos = trial.semaforo
             %tr
               %td= trial.nombres
-              %td= trial.credit_id
               %td= trial.socio_id
+              %td= trial.juicio_id
               %td= trial.cedula
               %td= best_in_place(trial, :withoutgood_stage_id, :as => :select, collection: WithoutgoodStage.collection)
               %td= best_in_place(trial, :without_good_activity_id, :as => :select, collection: trial.withoutgood_stage.get_activities)
@@ -87,8 +87,8 @@
         %thead
           %tr
             %th Nombre
-            %th Id Crédito
             %th Id Socio
+            %th Id Juicio
             %th Cédula
             %th Etapa Actual
             %th Proceso
@@ -100,8 +100,8 @@
             - semaforos = trial.semaforo
             %tr
               %td= trial.nombres
-              %td= trial.credit_id
               %td= trial.socio_id
+              %td= trial.juicio_id
               %td= trial.cedula
               %td= best_in_place(trial, :insolvency_stage_id, :as => :select, collection: InsolvencyStage.collection)
               %td= best_in_place(trial, :insolvency_activity_id, :as => :select, collection: trial.insolvency_stage.get_activities)

@@ -13,8 +13,10 @@
 class GoodStage < ApplicationRecord
   has_many :good_activities
 
+  scope :ultimos, ->{ order("months ASC")}
+
   def self.collection
-    GoodStage.select("id, name").map {|x| [x.id, x.name] }
+    GoodStage.ultimos.select("id, name").map {|x| [x.id, x.name] }
   end
 
   def get_activities

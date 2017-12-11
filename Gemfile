@@ -80,6 +80,9 @@ gem 'capistrano-rbenv', '~> 2.1'
 # Consola remota
 gem 'capistrano-rails-console', require: false
 
+# Utilidades
+gem 'react-rails'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
