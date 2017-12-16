@@ -29,8 +29,6 @@ class CreditosPorVencerForm extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      fechaInicio: 'vacio',
-      fechaFin: '',
       agencia: '',
       asesor: '',
       canSubmit: false
@@ -51,13 +49,6 @@ class CreditosPorVencerForm extends React.Component{
     this.setState({
       canSubmit: false
     })
-  }
-
-  syncFechas(event, date, fieldName){
-    let value = moment(date).format('DD-MM-YYYY');
-    let jsonState = {};
-    jsonState[fieldName] = value;
-    this.setState(jsonState)
   }
 
   syncAgencia = (event, value, index) => {
@@ -87,25 +78,8 @@ class CreditosPorVencerForm extends React.Component{
                 <input type="hidden" name="authenticity_token" value={this.props.authenticity_token} readOnly={true} />
                 <input type="hidden" name="agencia" value={this.state.agencia} readOnly={true} />
                 <input type="hidden" name="asesor" value={this.state.asesor} readOnly={true} />
-                <input type="hidden" name="fechaInicio" value={this.state.fechaInicio} readOnly={true} />
-                <input type="hidden" name="fechaFin" value={this.state.fechaFin} readOnly={true} />
               </div>
-              <div>
-                <FormsyDate
-                  floatingLabelStyle={{color: muiTheme.palette.primary1Color}}
-                  onChange={ (ev, date)=> this.syncFechas(ev, date, 'fechaInicio') }
-                  name="fecha1"
-                  required
-                  floatingLabelText="Fecha de Inicio"/>
-              </div>
-              <div>
-                <FormsyDate
-                  floatingLabelStyle={{color: muiTheme.palette.primary1Color}}
-                  onChange={ (ev, date)=> this.syncFechas(ev, date, 'fechaFin') }
-                  name="fecha2"
-                  required
-                  floatingLabelText="Fecha de Finalizacion"/>
-              </div>
+
               <div>
                 <FormsySelect
                   style={{textAlign: 'left'}}
@@ -114,9 +88,15 @@ class CreditosPorVencerForm extends React.Component{
                   floatingLabelStyle={{color: muiTheme.palette.primary1Color}}
                   name="agencia"
                   onChange={this.syncAgencia}>
-                  <MenuItem value={'%%'} primaryText="Todos" />
+                  <MenuItem value={' '} primaryText="Todos" />
                   <MenuItem value={'Matriz'} primaryText="Matriz" />
                   <MenuItem value={'La Merced'} primaryText="La Merced" />
+                  <MenuItem value={'Cuenca del Lago San Pablo'} primaryText="Cuenca del Lago San Pablo" />
+                  <MenuItem value={'Cuenca del Rio Mira'} primaryText="Cuenca del Rio Mira" />
+                  <MenuItem value={'Economia Solidaria'} primaryText="Economia Solidaria" />
+                  <MenuItem value={'Frontera Norte'} primaryText="Frontera Norte" />
+                  <MenuItem value={'Servimóvil'} primaryText="Servimóvil" />
+                  <MenuItem value={'Valle Fertil'} primaryText="Valle Fertil" />
                 </FormsySelect>
               </div>
               <div>
@@ -127,9 +107,26 @@ class CreditosPorVencerForm extends React.Component{
                   floatingLabelStyle={{color: muiTheme.palette.primary1Color}}
                   name="asesor"
                   onChange={this.syncAsesor}>
-                  <MenuItem value={'%%'} primaryText="Todos" />
-                  <MenuItem value={'Valentina'} primaryText="Valentina" />
-                  <MenuItem value={'Daniela'} primaryText="Daniela" />
+                  <MenuItem value={' '} primaryText="Todos" />
+                  <MenuItem value={'PAREDES VICTORIA'} primaryText="PAREDES VICTORIA" />
+                  <MenuItem value={'TERAN MARITZA'} primaryText="TERAN MARITZA" />
+                  <MenuItem value={'RODRIGUEZ WILLIAM'} primaryText="RODRIGUEZ WILLIAM" />
+                  <MenuItem value={'CHANDI VERONICA'} primaryText="CHANDI VERONICA" />
+                  <MenuItem value={'SANCHEZ ANDREA'} primaryText="SANCHEZ ANDREA" />
+                  <MenuItem value={'ALARCON JUAN CARLOS'} primaryText="ALARCON JUAN CARLOS" />
+                  <MenuItem value={'CHAMORRO ANDRES'} primaryText="CHAMORRO ANDRES" />
+                  <MenuItem value={'RODRIGUEZ JORGE'} primaryText="RODRIGUEZ JORGE" />
+                  <MenuItem value={'PAZMINO MARCELIA'} primaryText="PAZMINO MARCELIA" />
+                  <MenuItem value={'DUQUE GABRIELA'} primaryText="DUQUE GABRIELA" />
+                  <MenuItem value={'DELGADO CRISTINA'} primaryText="DELGADO CRISTINA" />
+                  <MenuItem value={'CHANDI SILVIA'} primaryText="CHANDI SILVIA" />
+                  <MenuItem value={'BENAVIDES ROMEL'} primaryText="BENAVIDES ROMEL" />
+                  <MenuItem value={'CHAPI BYRON'} primaryText="CHAPI BYRON" />
+                  <MenuItem value={'INSUASTI SANDRA'} primaryText="INSUASTI SANDRA" />
+                  <MenuItem value={'CATUCUAGO MARINA'} primaryText="CATUCUAGO MARINA" />
+                  <MenuItem value={'HIDROBO STIWAR'} primaryText="HIDROBO STIWAR" />
+                  <MenuItem value={'ANDRADE EDISON'} primaryText="ANDRADE EDISON" />
+                  <MenuItem value={'ALMEIDA FRANCISCO'} primaryText="ALMEIDA FRANCISCO" />
                 </FormsySelect>
               </div>
               <div>

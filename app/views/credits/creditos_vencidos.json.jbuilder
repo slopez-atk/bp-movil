@@ -1,0 +1,1 @@
+json.array! @data, partial: 'credits/credit', as: :credit

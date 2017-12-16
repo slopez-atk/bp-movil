@@ -9,6 +9,7 @@ import ImageFilter3 from 'material-ui/svg-icons/image/filter-3';
 import ImageFilter4 from 'material-ui/svg-icons/image/filter-3';
 import EditoMonetizationOn from 'material-ui/svg-icons/editor/monetization-on';
 import EditoformatListNumbered from 'material-ui/svg-icons/editor/format-list-numbered';
+import AlertWarning from 'material-ui/svg-icons/alert/warning';
 
 const style = {
   height: 100,
@@ -30,13 +31,25 @@ class PerMonthPercent extends React.Component{
   }
 
   getData = () => {
-    let totalSaldo = this.props.first[0] + this.props.second[0] + this.props.third[0] + this.props.fourth[0];
+    let SaldoFirst = parseFloat(this.props.first[0]);
+    let SaldoSecond = parseFloat(this.props.second[0]);
+    let SaldoThird = parseFloat(this.props.third[0]);
+    let SaldoFourth = parseFloat(this.props.fourth[0]);
+
+    let ProvisionFirst = parseFloat(this.props.first[2]);
+    let ProvisionSecond = parseFloat(this.props.second[2]);
+    let ProvisionThird = parseFloat(this.props.third[2]);
+    let ProvisionFourth = parseFloat(this.props.fourth[2]);
+
+    let totalSaldo = SaldoFirst + SaldoSecond + SaldoThird + SaldoFourth;
     let totalCantidad = this.props.first[1] + this.props.second[1] + this.props.third[1] + this.props.fourth[1];
-    let first = [Number(((this.props.first[0] * 100)/totalSaldo).toFixed(2)),Number(((this.props.first[1] * 100)/totalCantidad).toFixed(2))];
-    let second = [Number(((this.props.second[0] * 100)/totalSaldo).toFixed(2)),Number(((this.props.second[1] * 100)/totalCantidad).toFixed(2))];
-    let third = [Number(((this.props.third[0] * 100)/totalSaldo).toFixed(2)),Number(((this.props.third[1] * 100)/totalCantidad).toFixed(2))];
-    let fourth = [Number(((this.props.fourth[0] * 100)/totalSaldo).toFixed(2)),Number(((this.props.fourth[1] * 100)/totalCantidad).toFixed(2))];
-    console.log(first)
+    let totalProvision = ProvisionFirst + ProvisionSecond + ProvisionThird + ProvisionFourth;
+
+    let first = [Number(((SaldoFirst * 100)/totalSaldo).toFixed(2)),Number(((this.props.first[1] * 100)/totalCantidad).toFixed(2)),Number(((ProvisionFirst * 100)/totalProvision).toFixed(2))];
+    let second = [Number(((SaldoSecond * 100)/totalSaldo).toFixed(2)),Number(((this.props.second[1] * 100)/totalCantidad).toFixed(2)), Number(((ProvisionSecond * 100)/totalProvision).toFixed(2))];
+    let third = [Number(((SaldoThird * 100)/totalSaldo).toFixed(2)),Number(((this.props.third[1] * 100)/totalCantidad).toFixed(2)), Number(((ProvisionThird * 100)/totalProvision).toFixed(2))];
+    let fourth = [Number(((SaldoFourth * 100)/totalSaldo).toFixed(2)),Number(((this.props.fourth[1] * 100)/totalCantidad).toFixed(2)), Number(((ProvisionFourth * 100)/totalProvision).toFixed(2))];
+
     this.setState({
       first: first,
       second: second,
@@ -59,6 +72,7 @@ class PerMonthPercent extends React.Component{
               <Subheader>Porcentajes</Subheader>
               <ListItem primaryText={"Saldo: " + this.state.first[0] +" %"}  leftIcon={<EditoMonetizationOn/>} />
               <ListItem primaryText={"Cantidad: " + this.state.first[1] + " %"} leftIcon={<EditoformatListNumbered/>} />
+              <ListItem primaryText={"Provisión: " + this.state.first[2] + " %"} leftIcon={<AlertWarning/>} />
             </List>
           </Paper>
         </div>
@@ -70,6 +84,7 @@ class PerMonthPercent extends React.Component{
               <Subheader>Porcentajes</Subheader>
               <ListItem primaryText={"Saldo: " + this.state.second[0] +" %"}  leftIcon={<EditoMonetizationOn/>} />
               <ListItem primaryText={"Cantidad: " + this.state.second[1] + " %"} leftIcon={<EditoformatListNumbered/>} />
+              <ListItem primaryText={"Provisión: " + this.state.second[2] + " %"} leftIcon={<AlertWarning/>} />
             </List>
           </Paper>
         </div>
@@ -81,6 +96,7 @@ class PerMonthPercent extends React.Component{
               <Subheader>Porcentajes</Subheader>
               <ListItem primaryText={"Saldo: " + this.state.third[0] +" %"}  leftIcon={<EditoMonetizationOn/>} />
               <ListItem primaryText={"Cantidad: " + this.state.third[1] + " %"} leftIcon={<EditoformatListNumbered/>} />
+              <ListItem primaryText={"Provisión: " + this.state.third[2] + " %"} leftIcon={<AlertWarning/>} />
             </List>
           </Paper>
         </div>
@@ -92,6 +108,7 @@ class PerMonthPercent extends React.Component{
               <Subheader>Porcentajes</Subheader>
               <ListItem primaryText={"Saldo: " + this.state.fourth[0] +" %"}  leftIcon={<EditoMonetizationOn/>} />
               <ListItem primaryText={"Cantidad: " + this.state.fourth[1] + " %"} leftIcon={<EditoformatListNumbered/>} />
+              <ListItem primaryText={"Provisión: " + this.state.fourth[2] + " %"} leftIcon={<AlertWarning/>} />
             </List>
           </Paper>
         </div>

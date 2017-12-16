@@ -17,6 +17,7 @@ class TableDates extends React.Component{
     // Para sumar el saldo de una fecha
     let saldo = 0;
     let cantidad = 0;
+    let provision = 0;
 
     // Recupero el array de datos junto con el array que tiene las fechas entre semana
     let data = this.props.DataWeek;
@@ -25,18 +26,22 @@ class TableDates extends React.Component{
     // Arrays para ir guardando la sumatoria de saldos del dia y la cantidad por dia
     let saldos = [];
     let cantidades = [];
+    let provisiones = [];
 
     for(let i=0; i<dates.length; i++){
       saldo = 0;
       cantidad = 0;
+      provision = 0;
       for(let j=0; j<data[dates[i]].length; j++){
-        saldo += data[dates[i]][j]['saldo'];
+        saldo += parseFloat(data[dates[i]][j]['saldo']);
+        provision += parseFloat(data[dates[i]][j]['provision']);
         cantidad ++;
       }
-      saldos.push(saldo);
+      saldos.push(saldo.toFixed(2));
       cantidades.push(cantidad);
+      provisiones.push(provision.toFixed(2))
     }
-    return [saldos, cantidades];
+    return [saldos, cantidades,provisiones];
   }
 
   getBody(saldos){
@@ -60,12 +65,16 @@ class TableDates extends React.Component{
             </thead>
             <tbody>
               <tr>
-                <td>Saldos</td>
-                { this.getBody(datos[0])}
+                <th>Saldos</th>
+                { this.getBody(datos[0]) }
               </tr>
               <tr>
                 <th>Cantidades</th>
-                { this.getBody(datos[1])}
+                { this.getBody(datos[1]) }
+              </tr>
+              <tr>
+                <th>Provisiones</th>
+                { this.getBody(datos[2]) }
               </tr>
             </tbody>
           </table>

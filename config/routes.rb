@@ -59,7 +59,7 @@ Rails.application.routes.draw do
 
   namespace :credits do
     post 'creditos_por_vencer'
-    post 'creditos_vencidos'
+    get 'creditos_vencidos'
     get 'cosechas'
     get 'matrices'
     get 'clientes_vip'

@@ -6,10 +6,34 @@ class CreditsController < ApplicationController
 
   def creditos_por_vencer
     # Obtengo los creditos por semana
-    @firstWeek = Oracledb.obtener_creditos_por_vencer Date.new(Date.current.year,Date.current.month,1), Date.new(Time.current.year,Time.current.month,7), "%%", "%%",'firstWeek'
-    @secondWeek = Oracledb.obtener_creditos_por_vencer Date.new(Date.current.year,Date.current.month,8), Date.new(Time.current.year,Time.current.month,14), "%%", "%%",'secondWeek'
-    @thirdWeek = Oracledb.obtener_creditos_por_vencer Date.new(Date.current.year,Date.current.month,15), Date.new(Time.current.year,Time.current.month,21), "%%", "%%",'thirdWeek'
-    @fourthWeek = Oracledb.obtener_creditos_por_vencer Date.new(Date.current.year,Date.current.month,22), Date.new(Time.current.year,Time.current.month,-1), "%%", "%%",'fourthWeek'
+    @firstWeek = Oracledb.obtener_creditos_por_vencer Date.new(Date.current.year,Date.current.month,1), Date.new(Time.current.year,Time.current.month,7), params['agencia'], params['asesor'],'firstWeek'
+    @secondWeek = Oracledb.obtener_creditos_por_vencer Date.new(Date.current.year,Date.current.month,8), Date.new(Time.current.year,Time.current.month,14), params['agencia'], params['asesor'],'secondWeek'
+    @thirdWeek = Oracledb.obtener_creditos_por_vencer Date.new(Date.current.year,Date.current.month,15), Date.new(Time.current.year,Time.current.month,21), params['agencia'], params['asesor'],'thirdWeek'
+    @fourthWeek = Oracledb.obtener_creditos_por_vencer Date.new(Date.current.year,Date.current.month,22), Date.new(Time.current.year,Time.current.month,-1), params['agencia'],params['asesor'],'fourthWeek'
+
+    @firstWeek.each do |row|
+      row['saldo'] = row['saldo'].to_f
+      row['provision'] = row['provision'].to_f
+    end
+
+
+    @secondWeek.each do |row|
+      row['saldo'] = row['saldo'].to_f
+      row['provision'] = row['provision'].to_f
+    end
+
+
+    @thirdWeek.each do |row|
+      row['saldo'] = row['saldo'].to_f
+      row['provision'] = row['provision'].to_f
+    end
+
+
+    @fourthWeek.each do |row|
+      row['saldo'] = row['saldo'].to_f
+      row['provision'] = row['provision'].to_f
+    end
+
 
     # Obtengo un array lleno de las fechas intermedias entre las semanas
     @firstArrayDates= Array.new
@@ -87,9 +111,35 @@ class CreditsController < ApplicationController
       array.push(credit)
       @fourthHash[credit["fecha"]] = array
     end
+
+
   end
 
   def creditos_vencidos
+
+    if params['consulta_detalles_asesor'].present?
+      @data = Oracledb.obtener_creditos_de_asesor params["asesor"]["nombre"]
+      respond_to do |format|
+        format.json { render :layout => false, :text => @data.to_json }
+      end
+      return
+    end
+
+
+    @tipoReporte = "asesor"
+    @data = Oracledb.obtener_creditos_por_asesor params["fecha"], params["diaInicio"], params["diaFin"]
+
+
+
+    # @tipoReporte = "agencia"
+    # @data = Oracledb.obtener_creditos_por_agencia params["fecha"], params["diaInicio"], params["diaFin"]
+    #  if params["tipoReporte"] == "asesor"
+    #    @tipoReporte = "asesor"
+    #    @data = Oracledb.obtener_creditos_por_asesor params["fecha"].to_date.strftime('%d-%m-%Y'), params["diaInicio"], params["diaFin"]
+    #  else
+    #    @tipoReporte = "agencia"
+    #    @data = Oracledb.obtener_creditos_por_agencia params["fecha"].to_date.strftime('%d-%m-%Y'), params["diaInicio"], params["diaFin"]
+    # end
   end
 
   def cosechas
