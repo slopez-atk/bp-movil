@@ -1,40 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="80e436f7-3cf3-4a79-b522-a1f65f1de881" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/javascript/components/Cosechas/TablaCoshechas.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/javascript/components/Cosechas/TablaCreditos.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/javascript/components/CreditosConcedidos/CreditosTable.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/javascript/components/CreditosConcedidos/ReporteAgencias.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/javascript/components/CreditosConcedidos/ReporteAsesor.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/javascript/components/CreditsForms/CreditosConcedidosForm.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/javascript/components/MatrizTransicion/ListCredits.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/javascript/components/MatrizTransicion/MatrizSaldos.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/javascript/packs/MatrizTransicion.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/javascript/packs/cosechas.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/javascript/packs/creditos_concedidos.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/credits/_credito_concedido.json.jbuilder" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/credits/creditos_concedidos.haml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/credits/creditos_concedidos.json.jbuilder" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/credits_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/credits_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascript/components/CreditosPorVencer/PerMonth.js" afterPath="$PROJECT_DIR$/app/javascript/components/CreditosPorVencer/PerMonth.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascript/components/CreditosPorVencer/PerMonthPercent.js" afterPath="$PROJECT_DIR$/app/javascript/components/CreditosPorVencer/PerMonthPercent.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascript/components/CreditosPorVencer/PerWeek.js" afterPath="$PROJECT_DIR$/app/javascript/components/CreditosPorVencer/PerWeek.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascript/components/CreditosVencidos/CreditosTable.js" afterPath="$PROJECT_DIR$/app/javascript/components/CreditosVencidos/CreditosTable.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascript/components/CreditosVencidos/ReporteAgencias.js" afterPath="$PROJECT_DIR$/app/javascript/components/CreditosVencidos/ReporteAgencias.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascript/components/CreditosVencidos/ReporteAsesor.js" afterPath="$PROJECT_DIR$/app/javascript/components/CreditosVencidos/ReporteAsesor.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascript/components/CreditsForms/MatrizTransicionForm.js" afterPath="$PROJECT_DIR$/app/javascript/components/CreditsForms/MatrizTransicionForm.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascript/packs/creditos_vencidos.js" afterPath="$PROJECT_DIR$/app/javascript/packs/creditos_vencidos.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascript/packs/credits.js" afterPath="$PROJECT_DIR$/app/javascript/packs/credits.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/oracledb.rb" afterPath="$PROJECT_DIR$/app/models/oracledb.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/credits/_credit.json.jbuilder" afterPath="$PROJECT_DIR$/app/views/credits/_credit.json.jbuilder" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/credits/cosechas.html.haml" afterPath="$PROJECT_DIR$/app/views/credits/cosechas.html.haml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/credits/creditos_vencidos.html.haml" afterPath="$PROJECT_DIR$/app/views/credits/creditos_vencidos.html.haml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/credits/matrices.html.haml" afterPath="$PROJECT_DIR$/app/views/credits/matrices.html.haml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/creditos.haml" afterPath="$PROJECT_DIR$/app/views/layouts/creditos.haml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/routes.rb" afterPath="$PROJECT_DIR$/config/routes.rb" />
-    </list>
+    <list default="true" id="80e436f7-3cf3-4a79-b522-a1f65f1de881" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
     <ignored path="$PROJECT_DIR$/public/system/" />
@@ -53,25 +20,25 @@
         <entry file="file://$PROJECT_DIR$/app/javascript/components/Cosechas/TablaCoshechas.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="369">
-              <caret line="95" column="26" lean-forward="true" selection-start-line="95" selection-start-column="26" selection-end-line="95" selection-end-column="26" />
+              <caret line="95" column="26" lean-forward="false" selection-start-line="95" selection-start-column="26" selection-end-line="95" selection-end-column="26" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
-                <marker date="1514178149000" expanded="true" signature="2306:2740" ph="..." />
-                <marker date="1514178149000" expanded="true" signature="2842:4184" ph="..." />
-                <marker date="1514178149000" expanded="true" signature="2891:4171" ph="..." />
-                <marker date="1514178149000" expanded="true" signature="2936:4154" ph="..." />
-                <marker date="1514178149000" expanded="true" signature="3013:4137" ph="..." />
-                <marker date="1514178149000" expanded="true" signature="3093:3980" ph="..." />
-                <marker date="1514178149000" expanded="true" signature="3120:3326" ph="..." />
-                <marker date="1514178149000" expanded="true" signature="3200:3212" ph="..." />
-                <marker date="1514178149000" expanded="true" signature="3353:3951" ph="..." />
-                <marker date="1514178149000" expanded="true" signature="3412:3424" ph="..." />
-                <marker date="1514178149000" expanded="true" signature="3517:3529" ph="..." />
-                <marker date="1514178149000" expanded="true" signature="3627:3639" ph="..." />
-                <marker date="1514178149000" expanded="true" signature="3756:3768" ph="..." />
-                <marker date="1514178149000" expanded="true" signature="3877:3889" ph="..." />
-                <marker date="1514178149000" expanded="true" signature="4054:4116" ph="..." />
-                <marker date="1514178149000" expanded="true" signature="4055:4090" ph="..." />
+                <marker date="1514179657000" expanded="true" signature="2306:2740" ph="..." />
+                <marker date="1514179657000" expanded="true" signature="2842:4184" ph="..." />
+                <marker date="1514179657000" expanded="true" signature="2891:4171" ph="..." />
+                <marker date="1514179657000" expanded="true" signature="2936:4154" ph="..." />
+                <marker date="1514179657000" expanded="true" signature="3013:4137" ph="..." />
+                <marker date="1514179657000" expanded="true" signature="3093:3980" ph="..." />
+                <marker date="1514179657000" expanded="true" signature="3120:3326" ph="..." />
+                <marker date="1514179657000" expanded="true" signature="3200:3212" ph="..." />
+                <marker date="1514179657000" expanded="true" signature="3353:3951" ph="..." />
+                <marker date="1514179657000" expanded="true" signature="3412:3424" ph="..." />
+                <marker date="1514179657000" expanded="true" signature="3517:3529" ph="..." />
+                <marker date="1514179657000" expanded="true" signature="3627:3639" ph="..." />
+                <marker date="1514179657000" expanded="true" signature="3756:3768" ph="..." />
+                <marker date="1514179657000" expanded="true" signature="3877:3889" ph="..." />
+                <marker date="1514179657000" expanded="true" signature="4054:4116" ph="..." />
+                <marker date="1514179657000" expanded="true" signature="4055:4090" ph="..." />
               </folding>
             </state>
           </provider>
@@ -80,8 +47,8 @@
       <file leaf-file-name="cosechas.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/javascript/packs/cosechas.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="212">
-              <caret line="59" column="13" lean-forward="true" selection-start-line="59" selection-start-column="13" selection-end-line="59" selection-end-column="13" />
+            <state relative-caret-position="419">
+              <caret line="68" column="53" lean-forward="false" selection-start-line="68" selection-start-column="53" selection-end-line="68" selection-end-column="53" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -115,7 +82,7 @@
         <entry file="file://$PROJECT_DIR$/app/javascript/packs/creditos_concedidos.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="390">
-              <caret line="97" column="16" lean-forward="true" selection-start-line="91" selection-start-column="10" selection-end-line="97" selection-end-column="16" />
+              <caret line="97" column="16" lean-forward="false" selection-start-line="91" selection-start-column="10" selection-end-line="97" selection-end-column="16" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -248,12 +215,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1514173941108</updated>
-      <workItem from="1514173944709" duration="4559000" />
+      <workItem from="1514173944709" duration="4619000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4559000" />
+    <option name="totallyTimeSpent" value="4619000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="773" extended-state="0" />
@@ -292,25 +259,25 @@
     <entry file="file://$PROJECT_DIR$/app/javascript/components/Cosechas/TablaCoshechas.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="369">
-          <caret line="95" column="26" lean-forward="true" selection-start-line="95" selection-start-column="26" selection-end-line="95" selection-end-column="26" />
+          <caret line="95" column="26" lean-forward="false" selection-start-line="95" selection-start-column="26" selection-end-line="95" selection-end-column="26" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
-            <marker date="1514178149000" expanded="true" signature="2306:2740" ph="..." />
-            <marker date="1514178149000" expanded="true" signature="2842:4184" ph="..." />
-            <marker date="1514178149000" expanded="true" signature="2891:4171" ph="..." />
-            <marker date="1514178149000" expanded="true" signature="2936:4154" ph="..." />
-            <marker date="1514178149000" expanded="true" signature="3013:4137" ph="..." />
-            <marker date="1514178149000" expanded="true" signature="3093:3980" ph="..." />
-            <marker date="1514178149000" expanded="true" signature="3120:3326" ph="..." />
-            <marker date="1514178149000" expanded="true" signature="3200:3212" ph="..." />
-            <marker date="1514178149000" expanded="true" signature="3353:3951" ph="..." />
-            <marker date="1514178149000" expanded="true" signature="3412:3424" ph="..." />
-            <marker date="1514178149000" expanded="true" signature="3517:3529" ph="..." />
-            <marker date="1514178149000" expanded="true" signature="3627:3639" ph="..." />
-            <marker date="1514178149000" expanded="true" signature="3756:3768" ph="..." />
-            <marker date="1514178149000" expanded="true" signature="3877:3889" ph="..." />
-            <marker date="1514178149000" expanded="true" signature="4054:4116" ph="..." />
-            <marker date="1514178149000" expanded="true" signature="4055:4090" ph="..." />
+            <marker date="1514179657000" expanded="true" signature="2306:2740" ph="..." />
+            <marker date="1514179657000" expanded="true" signature="2842:4184" ph="..." />
+            <marker date="1514179657000" expanded="true" signature="2891:4171" ph="..." />
+            <marker date="1514179657000" expanded="true" signature="2936:4154" ph="..." />
+            <marker date="1514179657000" expanded="true" signature="3013:4137" ph="..." />
+            <marker date="1514179657000" expanded="true" signature="3093:3980" ph="..." />
+            <marker date="1514179657000" expanded="true" signature="3120:3326" ph="..." />
+            <marker date="1514179657000" expanded="true" signature="3200:3212" ph="..." />
+            <marker date="1514179657000" expanded="true" signature="3353:3951" ph="..." />
+            <marker date="1514179657000" expanded="true" signature="3412:3424" ph="..." />
+            <marker date="1514179657000" expanded="true" signature="3517:3529" ph="..." />
+            <marker date="1514179657000" expanded="true" signature="3627:3639" ph="..." />
+            <marker date="1514179657000" expanded="true" signature="3756:3768" ph="..." />
+            <marker date="1514179657000" expanded="true" signature="3877:3889" ph="..." />
+            <marker date="1514179657000" expanded="true" signature="4054:4116" ph="..." />
+            <marker date="1514179657000" expanded="true" signature="4055:4090" ph="..." />
           </folding>
         </state>
       </provider>
@@ -320,7 +287,7 @@
         <state relative-caret-position="261">
           <caret line="33" column="86" lean-forward="true" selection-start-line="33" selection-start-column="39" selection-end-line="33" selection-end-column="86" />
           <folding>
-            <element signature="e#0#26#0" expanded="true" />
+            <element signature="e#0#26#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -330,7 +297,7 @@
         <state relative-caret-position="620">
           <caret line="67" column="29" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="67" selection-end-column="29" />
           <folding>
-            <element signature="e#0#26#0" expanded="true" />
+            <element signature="e#0#26#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -356,7 +323,7 @@
     <entry file="file://$PROJECT_DIR$/app/javascript/packs/creditos_concedidos.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
-          <caret line="97" column="16" lean-forward="true" selection-start-line="91" selection-start-column="10" selection-end-line="97" selection-end-column="16" />
+          <caret line="97" column="16" lean-forward="false" selection-start-line="91" selection-start-column="10" selection-end-line="97" selection-end-column="16" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
@@ -365,8 +332,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/javascript/packs/cosechas.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="59" column="13" lean-forward="true" selection-start-line="59" selection-start-column="13" selection-end-line="59" selection-end-column="13" />
+        <state relative-caret-position="419">
+          <caret line="68" column="53" lean-forward="false" selection-start-line="68" selection-start-column="53" selection-end-line="68" selection-end-column="53" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
