@@ -1,2 +1,7 @@
-%h1 Credits#matrices
-%p Find me in app/views/credits/matrices.html.haml
+.row.center-xs
+  .col-xs-11.col-xs-offset
+    = react_component "MatrizTransicion",
+    data: @hash_datos,
+    cantidades: @hash_cantidades,
+    saldos: @hash_saldos,
+    matriz: @matriz

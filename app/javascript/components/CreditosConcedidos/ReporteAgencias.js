@@ -2,6 +2,7 @@ import React from 'react';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 import Paper from 'material-ui/Paper';
 import RaiseButton from 'material-ui/RaisedButton';
+import 'react-bootstrap-table/dist/react-bootstrap-table.min.css';
 
 class ReporteAgencias extends React.Component{
   constructor(props){
@@ -49,7 +50,7 @@ class ReporteAgencias extends React.Component{
       suma_saldo_cartera += parseFloat(data[i]["saldo_cartera"]);
       suma_num_creditos += data[i]["num_creditos"];
     }
-    let totales = {sucursales: 'Total', num_creditos: suma_num_creditos, cap_activo: suma_cap_activo.toFixed(2), cap_ndevenga: suma_cap_ndevenga.toFixed(2), cap_vencido:suma_cap_vencido.toFixed(2), cartera_afectada:suma_cartera_afectada.toFixed(2), saldo_cartera:suma_saldo_cartera.toFixed(2)}
+    let totales = {sucursales: 'Total', num_creditos: suma_num_creditos ,cap_activo: suma_cap_activo.toFixed(2), cap_ndevenga: suma_cap_ndevenga.toFixed(2), cap_vencido:suma_cap_vencido.toFixed(2), cartera_afectada:suma_cartera_afectada.toFixed(2), saldo_cartera:suma_saldo_cartera.toFixed(2)}
     data.push(totales);
   }
 
@@ -65,7 +66,7 @@ class ReporteAgencias extends React.Component{
         <BootstrapTable ref='table' data={ this.props.data } pagination exportCSV={ true } hover striped options={options}>
           <TableHeaderColumn dataField='sucursales' isKey={ true } dataSort={ true } width='280'>Sucursales</TableHeaderColumn>
           <TableHeaderColumn dataField='num_creditos'  width='150'># Creditos</TableHeaderColumn>
-          <TableHeaderColumn dataField='monto_credito'  width='150'>Monto Creditos</TableHeaderColumn>
+          <TableHeaderColumn dataField='monto_credito'  width='150'>Monto Credito</TableHeaderColumn>
           <TableHeaderColumn dataField='cap_activo' dataSort={ true } width='150'>Cap Activo</TableHeaderColumn>
           <TableHeaderColumn dataField='cap_ndevenga' dataSort={ true } width='150'>Cap No Devenga</TableHeaderColumn>
           <TableHeaderColumn dataField='cap_vencido' dataSort={ true } width='150'>Cap Vencido</TableHeaderColumn>
@@ -73,6 +74,8 @@ class ReporteAgencias extends React.Component{
           <TableHeaderColumn dataField='saldo_cartera' dataSort={ true } width='150'>Saldo Cartera</TableHeaderColumn>
           <TableHeaderColumn dataField='mora' width='150' dataFormat={this.CalculoMora}>% Mora</TableHeaderColumn>
         </BootstrapTable>
+
+
       </Paper>
     );
   }

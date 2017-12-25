@@ -55,7 +55,7 @@ class PerWeek extends React.Component{
         <TableHeaderColumn dataField='nombre' dataSort={ true } filter={ { type: 'TextFilter', delay: 1000 }}>NOMBRES</TableHeaderColumn>
         <TableHeaderColumn dataField='saldo' dataSort={ true }>SALDO</TableHeaderColumn>
         <TableHeaderColumn dataField='fecha' dataSort={ true }  filter={ { type: 'TextFilter', delay: 1000 }}>FECHA</TableHeaderColumn>
-        <TableHeaderColumn dataField='sucursal' dataSort={ true }>AGENCIA</TableHeaderColumn>
+        <TableHeaderColumn dataField='sucursal' dataSort={ true }>Sucursal</TableHeaderColumn>
         <TableHeaderColumn dataField='asesor' dataSort={ true }>ASESOR</TableHeaderColumn>
       </BootstrapTable>
     );

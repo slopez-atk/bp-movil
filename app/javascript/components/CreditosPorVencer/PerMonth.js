@@ -31,12 +31,14 @@ class PerMonth extends  React.Component{
     let saldo = 0;
     let contador = 0;
     let provision = 0;
+    let pago = 0;
     for(let i=0; i < data.length; i++){
       saldo += parseFloat(data[i]["saldo"]);
       provision += parseFloat(data[i]["provision"]);
+      pago += parseFloat(data[i]["pago"]);
       contador = contador + 1;
     }
-    return [saldo.toFixed(2),contador,provision.toFixed(2)]
+    return [saldo.toFixed(2),contador,provision.toFixed(2),pago.toFixed(2)]
   }
 
 

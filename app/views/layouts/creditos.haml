@@ -6,6 +6,7 @@
     = csrf_meta_tags
     = favicon_link_tag "ico_nav.png"
     %link{rel: "stylesheet", href: "//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"}
+    %link{rel: "stylesheet", href: "https://npmcdn.com/react-bootstrap-table/dist/react-bootstrap-table.min.css"}
     %script{src: "https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react.min.js"}
     %script{src: "https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react-dom.min.js"}
     = stylesheet_link_tag    'application', media: 'all', :'data-turbolinks-track' => 'reload'
@@ -16,6 +17,9 @@
     %link{rel: "stylesheet", href: "https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.css"}
     = javascript_pack_tag "creditos_por_vencer"
     = javascript_pack_tag "creditos_vencidos"
+    = javascript_pack_tag "creditos_concedidos"
+    = javascript_pack_tag "cosechas"
+    = javascript_pack_tag "MatrizTransicion"
     = javascript_pack_tag "creditos_navigation"
     = javascript_pack_tag "credits"
   %body.app-background

@@ -1,8 +1,8 @@
 import React from 'react';
 import WebpackerReact from 'webpacker-react';
-import ReporteAsesor from '../components/CreditosVencidos/ReporteAsesor';
-import CreditosTable from '../components/CreditosVencidos/CreditosTable';
-import ReporteAgencias from '../components/CreditosVencidos/ReporteAgencias';
+import ReporteAsesor from '../components/CreditosConcedidos/ReporteAsesor';
+import CreditosTable from '../components/CreditosConcedidos/CreditosTable';
+import ReporteAgencias from '../components/CreditosConcedidos/ReporteAgencias';
 import reqwest from 'reqwest';
 
 //Material ui
@@ -23,7 +23,7 @@ const muiTheme = getMuiTheme({
   }
 });
 
-class CreditosVencidos extends React.Component{
+class CreditosConcedidos extends React.Component{
 
   constructor(props){
     super(props);
@@ -47,7 +47,8 @@ class CreditosVencidos extends React.Component{
           nombre: data,
           diaInicio: this.props.diaInicio,
           diaFin: this.props.diaFin,
-          fecha: this.props.fecha,
+          fechaInicio: this.props.fechaInicio,
+          fechaFin: this.props.fechaFin,
         }
       },
       headers: {
@@ -81,7 +82,7 @@ class CreditosVencidos extends React.Component{
     if( this.props.tipoReporte === "asesor"){
       return(
         <div>
-          <h4 style={{color: muiTheme.palette.accent1Color}}>Consulta de créditos vencidos por asesores</h4>
+          <h4 style={{color: muiTheme.palette.accent1Color}}>Consulta de créditos concedidos por asesores</h4>
           <div>
             <ReporteAsesor data={ this.props.data } onClick={ this.showAsesor }/>
           </div>
@@ -118,4 +119,4 @@ class CreditosVencidos extends React.Component{
   }
 }
 
-WebpackerReact.setup({CreditosVencidos});
+WebpackerReact.setup({CreditosConcedidos});

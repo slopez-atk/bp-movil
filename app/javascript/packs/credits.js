@@ -1,6 +1,8 @@
 import React from 'react';
 import CreditosPorVencerForm from '../components/CreditsForms/CreditosPorVencerForm';
 import CreditosVencidosForm from '../components/CreditsForms/CreditosVencidosForm';
+import MatrizTransicionForm from '../components/CreditsForms/MatrizTransicionForm';
+import CreditosConcedidosForm from '../components/CreditsForms/CreditosConcedidosForm';
 
 class Credits extends React.Component{
   constructor(props){
@@ -21,7 +23,19 @@ class Credits extends React.Component{
             url='/credits/creditos_vencidos'
             title='Consultar creditos vencidos'
             authenticity_token={ this.props.authenticity_token }/>
+
+          <MatrizTransicionForm
+            url='/credits/matrices'
+            authenticity_token={ this.props.authenticity_token }
+            title= "Matriz de transicion"/>
+
+          <CreditosConcedidosForm
+            url='/credits/creditos_concedidos'
+            title='Consultar creditos concedidos'
+            authenticity_token={ this.props.authenticity_token }/>
         </div>
+
+
       </div>
     );
   }
