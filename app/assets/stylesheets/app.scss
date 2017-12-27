@@ -1,3 +1,15 @@
+.container {
+  background-color: #f2f2f2;
+  padding: 10px;
+  border: 2px solid #CCCCCC;
+  max-width: 900px;
+  margin: 0 auto;
+  height: 470px;
+  display: flex;
+  flex-flow: column wrap; /* Shorthand – you could use ‘flex-direction: column’ and ‘flex-wrap: wrap’ instead */
+  justify-content: flex-start;
+  align-items: flex-start;
+}
 .bg-color-white {
   background-color: white;
 }

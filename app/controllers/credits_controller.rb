@@ -1,4 +1,6 @@
 class CreditsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :authenticate_creditos
 
   def index
   end
@@ -135,7 +137,6 @@ class CreditsController < ApplicationController
   end
 
   def creditos_vencidos
-
     if params['consulta_detalles_asesor'].present?
       @data = Oracledb.obtener_creditos_de_asesor params["asesor"]["nombre"], params["asesor"]["diaInicio"],params["asesor"]["diaFin"],params["asesor"]["fecha"]
       respond_to do |format|
@@ -161,6 +162,7 @@ class CreditsController < ApplicationController
   end
 
   def creditos_concedidos
+
     if params['consulta_detalles_asesor'].present?
       @data = Oracledb.obtener_creditos_concedidos_de_un_asesor params["asesor"]["nombre"], params["asesor"]["fechaInicio"],params["asesor"]["fechaFin"],params["asesor"]["diaInicio"], params["asesor"]["diaFin"]
       @data.to_json
@@ -170,8 +172,8 @@ class CreditsController < ApplicationController
       return
     end
 
-    @tipoReporte = "agencia"
-    # @tipoReporte = params['tipoReporte']
+    # @tipoReporte = "agencia"
+    @tipoReporte = params['tipoReporte']
     @diaInicio = params["diaInicio"]
     @diaFin = params["diaFin"]
     @fechaInicio = params["fechaInicio"]
@@ -185,8 +187,8 @@ class CreditsController < ApplicationController
       @data = Oracledb.obtener_creditos_concedidos_por_asesor params["fechaInicio"].to_date.strftime('%d-%m-%Y'), params["fechaFin"].to_date.strftime('%d-%m-%Y'), params["diaInicio"], params["diaFin"]
       # @data = Oracledb.obtener_creditos_concedidos_por_asesor '', '', params["diaInicio"], params["diaFin"]
     else
-      # @data = Oracledb.obtener_creditos_concedidos_por_agencia params["fechaInicio"].to_date.strftime('%d-%m-%Y'), params["fechaFin"].to_date.strftime('%d-%m-%Y'), params["diaInicio"], params["diaFin"]
-      @data = Oracledb.obtener_creditos_concedidos_por_agencia '', '', params["diaInicio"], params["diaFin"]
+      @data = Oracledb.obtener_creditos_concedidos_por_agencia params["fechaInicio"].to_date.strftime('%d-%m-%Y'), params["fechaFin"].to_date.strftime('%d-%m-%Y'), params["diaInicio"], params["diaFin"]
+      # @data = Oracledb.obtener_creditos_concedidos_por_agencia '', '', params["diaInicio"], params["diaFin"]
     end
   end
 
@@ -333,5 +335,12 @@ class CreditsController < ApplicationController
   def set_layout
     return "creditos"
     super
+  end
+
+  protected
+  def authenticate_creditos
+    unless current_user.permissions == 5 || current_user.permissions == 7 || current_user.permissions == 3 || current_user.permissions == 8
+      redirect_to root_path, notice: "No estás autorizado!"
+    end
   end
 end

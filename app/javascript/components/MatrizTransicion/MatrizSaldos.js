@@ -38,7 +38,7 @@ class MatrizSaldos extends React.Component{
           matrizDatos[i][j] = 0
         } else {
           let n = data[c1][c2];
-          n.toFixed(2);
+          n = Math.round(n * 100) / 100;
           matrizDatos[i][j] = n;
         }
       }

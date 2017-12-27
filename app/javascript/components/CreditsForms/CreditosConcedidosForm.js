@@ -78,8 +78,8 @@ class CreditosVencidosForm extends React.Component{
   render(){
     return(
       <MuiThemeProvider muiTheme={getMuiTheme(muiTheme)}>
-        <div className="col-xs-12 col-md-5">
-          <Paper zDepth={3} rounded={true} className="padding">
+        <div>
+          <Paper zDepth={3} rounded={true} className="padding top-space">
             <h5 style={{color: muiTheme.palette.accent1Color}}>{ this.props.title }</h5>
             <Formsy.Form
               onValid={()=> this.enableSubmitButton()}
@@ -90,9 +90,8 @@ class CreditosVencidosForm extends React.Component{
               ref="form">
               <div>
                 <input type="hidden" name="authenticity_token" value={this.props.authenticity_token} readOnly={true} />
-                <input type="hidden" name="diaInicio" value={this.state.agencia} readOnly={true} />
-                <input type="hidden" name="diaFin" value={this.state.asesor} readOnly={true} />
-                <input type="hidden" name="tipoReporte" value={this.state.fechaFin} readOnly={true} />
+                <input type="hidden" name="diaInicio" value={this.state.diaInicio} readOnly={true} />
+                <input type="hidden" name="diaFin" value={this.state.diaFin} readOnly={true} />
               </div>
               <div>
                 <FormsyDate
@@ -133,7 +132,7 @@ class CreditosVencidosForm extends React.Component{
                   validationError="Introduce solo numeros"/>
               </div>
               <div className="row">
-                <div className="col-xs-10 col-xs-offset-2">
+                <div className="col-xs-7 col-xs-offset-2">
                   <RadioButtonGroup name="tipoReporte" defaultSelected="agencia">
                     <RadioButton
                       value="agencia"

@@ -77,8 +77,8 @@ class CreditosVencidosForm extends React.Component{
   render(){
     return(
       <MuiThemeProvider muiTheme={getMuiTheme(muiTheme)}>
-        <div className="col-xs-12 col-md-5">
-          <Paper zDepth={3} rounded={true} className="padding">
+        <div>
+          <Paper zDepth={3} rounded={true} className="padding top-space">
             <h5 style={{color: muiTheme.palette.accent1Color}}>{ this.props.title }</h5>
             <Formsy.Form
               onValid={()=> this.enableSubmitButton()}
@@ -124,7 +124,7 @@ class CreditosVencidosForm extends React.Component{
                   validationError="Introduce solo numeros"/>
               </div>
               <div className="row">
-                <div className="col-xs-10 col-xs-offset-2">
+                <div className="col-xs-7 col-xs-offset-2">
                   <RadioButtonGroup name="tipoReporte" defaultSelected="agencia">
                     <RadioButton
                       value="agencia"

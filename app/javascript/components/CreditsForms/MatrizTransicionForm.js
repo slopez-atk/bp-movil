@@ -73,8 +73,8 @@ class MatrizTransicionForm extends React.Component{
   render(){
     return(
       <MuiThemeProvider muiTheme={getMuiTheme(muiTheme)}>
-        <div className="col-xs-12 col-md-5">
-          <Paper zDepth={3} rounded={true} className="padding">
+        <div>
+          <Paper zDepth={3} rounded={true} className="padding top-space">
             <h5 style={{color: muiTheme.palette.accent1Color}}>{ this.props.title }</h5>
             <Formsy.Form
               onValid={()=> this.enableSubmitButton()}

@@ -61,7 +61,7 @@ Rails.application.routes.draw do
     post 'creditos_por_vencer'
     post 'creditos_vencidos'
     post 'creditos_concedidos'
-    get 'cosechas'
+    post 'cosechas'
     post 'matrices'
     get 'clientes_vip'
   end

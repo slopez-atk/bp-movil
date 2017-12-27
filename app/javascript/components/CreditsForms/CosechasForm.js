@@ -9,11 +9,13 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
 import MenuItem from 'material-ui/MenuItem';
 import Paper from 'material-ui/Paper';
+import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
 
 // Formsy
 import { FormsyDate } from 'formsy-material-ui';
 import { FormsySelect } from 'formsy-material-ui';
 import Formsy from 'formsy-react';
+import FormsyText from 'formsy-material-ui/lib/FormsyText';
 
 const muiTheme = getMuiTheme({
   palette: {
@@ -24,13 +26,18 @@ const muiTheme = getMuiTheme({
 });
 
 
-class CreditosPorVencerForm extends React.Component{
+
+
+class CosechasForm extends React.Component{
 
   constructor(props){
     super(props);
     this.state = {
       agencia: '',
       asesor: '',
+      fechaConsulta: '',
+      diaInicio: 0,
+      diaFin: 0,
       canSubmit: false
     }
   }
@@ -50,6 +57,23 @@ class CreditosPorVencerForm extends React.Component{
       canSubmit: false
     })
   }
+
+  syncFechas(event, date, fieldName){
+    let value = moment(date).format('DD-MM-YYYY');
+    let jsonState = {};
+    jsonState[fieldName] = value;
+    this.setState(jsonState)
+  }
+
+  syncDiaInicio = (event, value) => {
+    this.setState({
+      diaInicio: value
+    });
+  };
+
+  syncDiaFin = (event, value) => this.setState({
+    diaFin: value
+  });
 
   syncAgencia = (event, value, index) => {
     this.setState({
@@ -76,10 +100,41 @@ class CreditosPorVencerForm extends React.Component{
               ref="form">
               <div>
                 <input type="hidden" name="authenticity_token" value={this.props.authenticity_token} readOnly={true} />
+                <input type="hidden" name="diaInicio" value={this.state.diaInicio} readOnly={true} />
+                <input type="hidden" name="diaFin" value={this.state.diaFin} readOnly={true} />
                 <input type="hidden" name="agencia" value={this.state.agencia} readOnly={true} />
                 <input type="hidden" name="asesor" value={this.state.asesor} readOnly={true} />
               </div>
-
+              <div>
+                <FormsyDate
+                  floatingLabelStyle={{color: muiTheme.palette.primary1Color}}
+                  onChange={ (ev, date)=> this.syncFechas(ev, date, 'fechaConsulta') }
+                  name="fecha"
+                  required
+                  floatingLabelText="Fecha del reporte"/>
+              </div>
+              <div>
+                <FormsyText
+                  floatingLabelStyle={{color: muiTheme.palette.primary1Color}}
+                  floatingLabelText="Mora desde"
+                  required
+                  name="diaInicio"
+                  type="number"
+                  validations="isNumeric"
+                  onChange={ (event, value) => this.syncDiaInicio(event, value) }
+                  validationError="Introduce solo numeros"/>
+              </div>
+              <div>
+                <FormsyText
+                  floatingLabelStyle={{color: muiTheme.palette.primary1Color}}
+                  floatingLabelText="Mora hasta"
+                  required
+                  name="diaFin"
+                  type="number"
+                  validations="isNumeric"
+                  onChange={ (event, value) => this.syncDiaFin(event, value) }
+                  validationError="Introduce solo numeros"/>
+              </div>
               <div>
                 <FormsySelect
                   style={{textAlign: 'left'}}
@@ -147,4 +202,4 @@ class CreditosPorVencerForm extends React.Component{
   }
 }
 
-export default CreditosPorVencerForm;
+export default CosechasForm;
