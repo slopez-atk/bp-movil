@@ -14,6 +14,7 @@ import Paper from 'material-ui/Paper';
 import { FormsyDate } from 'formsy-material-ui';
 import { FormsySelect } from 'formsy-material-ui';
 import Formsy from 'formsy-react';
+import FormsyText from 'formsy-material-ui/lib/FormsyText';
 
 const muiTheme = getMuiTheme({
   palette: {
@@ -31,7 +32,9 @@ class CreditosPorVencerForm extends React.Component{
     this.state = {
       agencia: '',
       asesor: '',
-      canSubmit: false
+      canSubmit: false,
+      diaInicio: 0,
+      diaFin: 0,
     }
   }
 
@@ -55,7 +58,17 @@ class CreditosPorVencerForm extends React.Component{
     this.setState({
       agencia: value
     });
-  }
+  };
+
+  syncDiaInicio = (event, value) => {
+    this.setState({
+      diaInicio: value
+    });
+  };
+
+  syncDiaFin = (event, value) => this.setState({
+    diaFin: value
+  });
 
   syncAsesor = (event, value, index) => this.setState({
     asesor: value
@@ -78,6 +91,31 @@ class CreditosPorVencerForm extends React.Component{
                 <input type="hidden" name="authenticity_token" value={this.props.authenticity_token} readOnly={true} />
                 <input type="hidden" name="agencia" value={this.state.agencia} readOnly={true} />
                 <input type="hidden" name="asesor" value={this.state.asesor} readOnly={true} />
+                <input type="hidden" name="diaInicio" value={this.state.diaInicio} readOnly={true} />
+                <input type="hidden" name="diaFin" value={this.state.diaFin} readOnly={true} />
+              </div>
+
+              <div>
+                <FormsyText
+                  floatingLabelStyle={{color: muiTheme.palette.primary1Color}}
+                  floatingLabelText="Mora desde"
+                  required
+                  name="diaInicio"
+                  type="number"
+                  validations="isNumeric"
+                  onChange={ (event, value) => this.syncDiaInicio(event, value) }
+                  validationError="Introduce solo numeros"/>
+              </div>
+              <div>
+                <FormsyText
+                  floatingLabelStyle={{color: muiTheme.palette.primary1Color}}
+                  floatingLabelText="Mora hasta"
+                  required
+                  name="diaFin"
+                  type="number"
+                  validations="isNumeric"
+                  onChange={ (event, value) => this.syncDiaFin(event, value) }
+                  validationError="Introduce solo numeros"/>
               </div>
 
               <div>

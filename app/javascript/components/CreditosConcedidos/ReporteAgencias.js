@@ -42,6 +42,7 @@ class ReporteAgencias extends React.Component{
     let suma_cartera_afectada = 0;
     let suma_saldo_cartera = 0;
     let suma_num_creditos = 0;
+    let suma_monto_credito = 0;
     for(let i=0; i<data.length; i++){
       suma_cap_activo += parseFloat(data[i]["cap_activo"]);
       suma_cap_ndevenga += parseFloat(data[i]["cap_ndevenga"]);
@@ -49,8 +50,9 @@ class ReporteAgencias extends React.Component{
       suma_cartera_afectada += parseFloat(data[i]["cartera_afectada"]);
       suma_saldo_cartera += parseFloat(data[i]["saldo_cartera"]);
       suma_num_creditos += data[i]["num_creditos"];
+      suma_monto_credito += parseFloat(data[i]["monto_credito"]);
     }
-    let totales = {sucursales: 'Total', num_creditos: suma_num_creditos ,cap_activo: suma_cap_activo.toFixed(2), cap_ndevenga: suma_cap_ndevenga.toFixed(2), cap_vencido:suma_cap_vencido.toFixed(2), cartera_afectada:suma_cartera_afectada.toFixed(2), saldo_cartera:suma_saldo_cartera.toFixed(2)}
+    let totales = {sucursales: 'Total', num_creditos: suma_num_creditos, monto_credito: suma_monto_credito ,cap_activo: suma_cap_activo.toFixed(2), cap_ndevenga: suma_cap_ndevenga.toFixed(2), cap_vencido:suma_cap_vencido.toFixed(2), cartera_afectada:suma_cartera_afectada.toFixed(2), saldo_cartera:suma_saldo_cartera.toFixed(2)}
     data.push(totales);
   }
 
@@ -65,8 +67,8 @@ class ReporteAgencias extends React.Component{
 
         <BootstrapTable ref='table' data={ this.props.data } pagination exportCSV={ true } hover striped options={options}>
           <TableHeaderColumn dataField='sucursales' isKey={ true } dataSort={ true } width='280'>Sucursales</TableHeaderColumn>
-          <TableHeaderColumn dataField='num_creditos'  width='150'># Creditos</TableHeaderColumn>
-          <TableHeaderColumn dataField='monto_credito'  width='150'>Monto Credito</TableHeaderColumn>
+          <TableHeaderColumn dataField='num_creditos'  dataSort={ true } width='150'># Creditos</TableHeaderColumn>
+          <TableHeaderColumn dataField='monto_credito'  dataSort={ true } width='150'>Monto Credito</TableHeaderColumn>
           <TableHeaderColumn dataField='cap_activo' dataSort={ true } width='150'>Cap Activo</TableHeaderColumn>
           <TableHeaderColumn dataField='cap_ndevenga' dataSort={ true } width='150'>Cap No Devenga</TableHeaderColumn>
           <TableHeaderColumn dataField='cap_vencido' dataSort={ true } width='150'>Cap Vencido</TableHeaderColumn>

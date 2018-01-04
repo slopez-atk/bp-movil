@@ -28,7 +28,7 @@ class TablaCoshechas extends React.Component {
       let fila = this.getRow(yearKey);
       result.push(fila[0]);
       result.push(
-        <TableRow style={{textAlign: 'center', backgroundColor: "#FFC107", color: 'white'}}>
+        <TableRow style={{textAlign: 'center', backgroundColor: "#FFF176", fontWeight: "bold"}}>
           <TableRowColumn/>
           <TableRowColumn>TOTAL</TableRowColumn>
           <TableRowColumn>{ fila[1] }</TableRowColumn>
@@ -94,7 +94,7 @@ class TablaCoshechas extends React.Component {
           <TableRowColumn>{ data[row] }</TableRowColumn>
           <TableRowColumn>{ this.props.saldos[yearKey][row]}</TableRowColumn>
           <TableRowColumn>
-            <RaisedButton label="Ver" secondary onClick={()=>  this.props.onClick(yearKey, row)}/>
+            <RaisedButton label="Ver" backgroundColor={"#595753"} labelColor={"white"} onClick={()=>  this.props.onClick(yearKey, row)}/>
           </TableRowColumn>
         </TableRow>
       );

@@ -46,7 +46,7 @@ class ReporteAsesor extends React.Component{
           <BootstrapTable ref='table' data={ this.props.data } pagination exportCSV={ true } hover striped options={options}>
             <TableHeaderColumn dataField='asesores' isKey={ true } dataSort={ true } width='200'>Asesores</TableHeaderColumn>
             <TableHeaderColumn dataField='num_creditos'  dataSort={ true } width='150'># Creditos</TableHeaderColumn>
-            <TableHeaderColumn dataField='monto_creditos'  dataSort={ true } width='150'>Monto C.</TableHeaderColumn>
+            <TableHeaderColumn dataField='monto_credito'  dataSort={ true } width='150'>Monto C.</TableHeaderColumn>
             <TableHeaderColumn dataField='cap_activo' dataSort={ true } width='150'>Cap Activo</TableHeaderColumn>
             <TableHeaderColumn dataField='cap_ndevenga' dataSort={ true } width='150'>Cap No Devenga</TableHeaderColumn>
             <TableHeaderColumn dataField='cap_vencido' dataSort={ true } width='150'>Cap Vencido</TableHeaderColumn>

@@ -63,6 +63,8 @@ Rails.application.routes.draw do
     post 'creditos_concedidos'
     post 'cosechas'
     post 'matrices'
+    get 'cartera_recuperada'
+    get 'report'
     get 'clientes_vip'
   end
 end
