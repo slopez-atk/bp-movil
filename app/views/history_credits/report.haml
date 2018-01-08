@@ -81,13 +81,19 @@
             %tr
               - if history_credit.tipo_credito == "bienes"
                 %th
-                  = link_to "Ver", good_path(Good.buscar_por_idCredito history_credit.credit_id), class: "btn btn-inverse", target: :_blank
+                  - good_temp = Good.buscar_por_idCredito history_credit.credit_id
+                  - unless good_temp.nil?
+                    = link_to "Ver", good_path(good_temp), class: "btn btn-inverse", target: :_blank
               - elsif history_credit.tipo_credito == "sinbienes"
                 %th
-                  = link_to "Ver", without_good_path(WithoutGood.buscar_por_idCredito history_credit.credit_id), class: "btn btn-inverse", target: :_blank
+                  - without_good_temp = WithoutGood.buscar_por_idCredito history_credit.credit_id
+                  - unless without_good_temp.nil?
+                    = link_to "Ver", without_good_path(without_good_temp), class: "btn btn-inverse", target: :_blank
               - else
                 %th
-                  = link_to "Ver", insolvency_path(Insolvency.buscar_por_idCredito history_credit.credit_id), class: "btn btn-inverse", target: :_blank
+                  - insolvency_temp = Insolvency.buscar_por_idCredito history_credit.credit_id
+                  - unless insolvency_temp.nil?
+                    = link_to "Ver", insolvency_path(insolvency_temp), class: "btn btn-inverse", target: :_blank
               %td= history_credit.cedula
               %td= history_credit.credit_id
               %td= history_credit.socio_id

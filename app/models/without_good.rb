@@ -110,7 +110,6 @@ class WithoutGood < ApplicationRecord
         fecha_etapa_estimada = self.created_at + 1.month
         fecha_proxima_etapa =  self.created_at + 2.month
       when "Acta sorteo judicial"
-        puts "Entro"
         fecha_etapa_estimada = self.created_at + 2.month
         fecha_proxima_etapa =  self.created_at + 5.month
       when "Citaciones finalizadas - razón"
@@ -144,11 +143,9 @@ class WithoutGood < ApplicationRecord
       # Días que han pasado desde la fecha que empieza la etapa hasta ahora
       # si es negativo quiere decir que esta adelantado y se encuentra en una etapa a futuro
       dias_transcurridos_desde_etapa_actual = (Date.current - fecha_etapa_actual).to_i
-      puts "Dias transcurridos #{dias_transcurridos_desde_etapa_actual}"
       # Almacena los días que hay desde etapa actual hasta la estimada si es negativo
       # quiere decir que se encuentra  adelantado entre etapas
       dias_entre_etapas = (fecha_etapa_estimada.to_date - fecha_etapa_actual).to_i
-      puts "Dias entre etapas #{dias_entre_etapas}"
       # Si los días que han transcurrido son mayores al numero total de días entre las etapas es
       # porque esta trasado una etapa, se valida que sean positivos porque cuando son negativos
       # quiere decir que esta adelantado

@@ -202,6 +202,7 @@ class Good < ApplicationRecord
   end
 
   def self.buscar_por_idCredito id
+    id_original = id
     if id[0] == "R" or id[0] == "I"
       id = id[2..id.length]
     end

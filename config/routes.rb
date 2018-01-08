@@ -54,7 +54,7 @@ Rails.application.routes.draw do
   post '/juicio/update', to: "main#change_trial_type", as: :cambiar_tipo_juicio
 
 
-#   Modulo de creditos
+  #   Modulo de creditos
   get '/credits', to: 'credits#index', as: :credits_root
 
   namespace :credits do
@@ -63,8 +63,12 @@ Rails.application.routes.draw do
     post 'creditos_concedidos'
     post 'cosechas'
     post 'matrices'
-    get 'cartera_recuperada'
-    get 'report'
+    post 'cartera_recuperada'
+    post 'indicadores_creditos_vigentes'
+    post 'indicadores_creditos_colocados'
     get 'clientes_vip'
   end
+
+  # Medulo de Agencias
+  get '/agencias', to: 'agencias#index', as: :agencias_root
 end

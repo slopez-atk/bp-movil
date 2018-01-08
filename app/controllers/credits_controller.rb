@@ -471,11 +471,210 @@ class CreditsController < ApplicationController
   end
 
 
-  def report
+  def indicadores_creditos_vigentes
+    @data = Oracledb.indicadores_creditos_vigentes params["fecha"], params["diaInicio"], params["diaFin"], params["agencia"], params["asesor"]
+    @hash_genero = Hash.new
+    @hash_sector = Hash.new
+    @hash_tipo_credito = Hash.new
+    @hash_origen_recursos = Hash.new
+
+    @generos = Array.new
+    @sectores = Array.new
+    @tipos_credito = Array.new
+    @origenes_recursos = Array.new
+
+    @data.each do |row|
+      row.stringify_keys!
+      # Genero
+      if @hash_genero[row["genero"]].nil?
+        @hash_genero[row["genero"]] = {clave: row["genero"], cantidad: 1, saldo: row["saldo"].to_f.round(2), cap_activo: row["cap_activo"].to_f.round(2), cap_ndevenga: row["cap_ndevenga"].to_f.round(2), cartera_riesgo: row["cartera_riesgo"].to_f.round(2), cap_vencido: row["cap_vencido"].to_f.round(2)}
+      else
+        @hash_genero[row["genero"]][:cantidad] += 1
+        @hash_genero[row["genero"]][:saldo] += row["saldo"].to_f.round(2)
+        @hash_genero[row["genero"]][:cap_activo] += row["cap_activo"].to_f.round(2)
+        @hash_genero[row["genero"]][:cap_ndevenga] += row["cap_ndevenga"].to_f.round(2)
+        @hash_genero[row["genero"]][:cartera_riesgo] += row["cartera_riesgo"].to_f.round(2)
+        @hash_genero[row["genero"]][:cap_vencido] += row["cap_vencido"].to_f.round(2)
+      end
+
+      #Sector
+      if @hash_sector[row["sector"]].nil?
+        @hash_sector[row["sector"]] = {clave: row["sector"], cantidad: 1, saldo: row["saldo"].to_f.round(2), cap_activo: row["cap_activo"].to_f.round(2), cap_ndevenga: row["cap_ndevenga"].to_f.round(2), cartera_riesgo: row["cartera_riesgo"].to_f.round(2), cap_vencido: row["cap_vencido"].to_f.round(2)}
+      else
+        @hash_sector[row["sector"]][:cantidad] += 1
+        @hash_sector[row["sector"]][:saldo] += row["saldo"].to_f.round(2)
+        @hash_sector[row["sector"]][:cap_activo] += row["cap_activo"].to_f.round(2)
+        @hash_sector[row["sector"]][:cap_ndevenga] += row["cap_ndevenga"].to_f.round(2)
+        @hash_sector[row["sector"]][:cartera_riesgo] += row["cartera_riesgo"].to_f.round(2)
+        @hash_sector[row["sector"]][:cap_vencido] += row["cap_vencido"].to_f.round(2)
+      end
+
+      # Tipo de Credito
+      if @hash_tipo_credito[row["tipo_credito"]].nil?
+        @hash_tipo_credito[row["tipo_credito"]] = {clave: row["tipo_credito"], cantidad: 1, saldo: row["saldo"].to_f.round(2), cap_activo: row["cap_activo"].to_f.round(2), cap_ndevenga: row["cap_ndevenga"].to_f.round(2), cartera_riesgo: row["cartera_riesgo"].to_f.round(2), cap_vencido: row["cap_vencido"].to_f.round(2)}
+      else
+        @hash_tipo_credito[row["tipo_credito"]][:cantidad] += 1
+        @hash_tipo_credito[row["tipo_credito"]][:saldo] += row["saldo"].to_f.round(2)
+        @hash_tipo_credito[row["tipo_credito"]][:cap_activo] += row["cap_activo"].to_f.round(2)
+        @hash_tipo_credito[row["tipo_credito"]][:cap_ndevenga] += row["cap_ndevenga"].to_f.round(2)
+        @hash_tipo_credito[row["tipo_credito"]][:cartera_riesgo] += row["cartera_riesgo"].to_f.round(2)
+        @hash_tipo_credito[row["tipo_credito"]][:cap_vencido] += row["cap_vencido"].to_f.round(2)
+      end
+
+      # Origen Recursos
+      if @hash_origen_recursos[row["origen_recursos"]].nil?
+        @hash_origen_recursos[row["origen_recursos"]] = {clave: row["origen_recursos"], cantidad: 1, saldo: row["saldo"].to_f.round(2), cap_activo: row["cap_activo"].to_f.round(2), cap_ndevenga: row["cap_ndevenga"].to_f.round(2), cartera_riesgo: row["cartera_riesgo"].to_f.round(2), cap_vencido: row["cap_vencido"].to_f.round(2)}
+      else
+        @hash_origen_recursos[row["origen_recursos"]][:cantidad] += 1
+        @hash_origen_recursos[row["origen_recursos"]][:saldo] += row["saldo"].to_f.round(2)
+        @hash_origen_recursos[row["origen_recursos"]][:cap_activo] += row["cap_activo"].to_f.round(2)
+        @hash_origen_recursos[row["origen_recursos"]][:cap_ndevenga] += row["cap_ndevenga"].to_f.round(2)
+        @hash_origen_recursos[row["origen_recursos"]][:cartera_riesgo] += row["cartera_riesgo"].to_f.round(2)
+        @hash_origen_recursos[row["origen_recursos"]][:cap_vencido] += row["cap_vencido"].to_f.round(2)
+      end
+    end
+
+
+    @hash_genero.each do |row|
+      row[1].stringify_keys!
+      row[1]["saldo"] = row[1]["saldo"].round(2)
+      row[1]["cap_activo"] = row[1]["cap_activo"].round(2)
+      row[1]["cap_ndevenga"] = row[1]["cap_ndevenga"].round(2)
+      row[1]["cartera_riesgo"] = row[1]["cartera_riesgo"].round(2)
+      row[1]["cap_vencido"] = row[1]["cap_vencido"].round(2)
+      @generos.push(row[1])
+    end
+    @hash_sector.each do |row|
+      row[1].stringify_keys!
+      row[1]["saldo"] = row[1]["saldo"].round(2)
+      row[1]["cap_activo"] = row[1]["cap_activo"].round(2)
+      row[1]["cap_ndevenga"] = row[1]["cap_ndevenga"].round(2)
+      row[1]["cartera_riesgo"] = row[1]["cartera_riesgo"].round(2)
+      row[1]["cap_vencido"] = row[1]["cap_vencido"].round(2)
+      @sectores.push(row[1])
+    end
+    @hash_tipo_credito.each do |row|
+      row[1].stringify_keys!
+      row[1]["saldo"] = row[1]["saldo"].round(2)
+      row[1]["cap_activo"] = row[1]["cap_activo"].round(2)
+      row[1]["cap_ndevenga"] = row[1]["cap_ndevenga"].round(2)
+      row[1]["cartera_riesgo"] = row[1]["cartera_riesgo"].round(2)
+      row[1]["cap_vencido"] = row[1]["cap_vencido"].round(2)
+      @tipos_credito.push(row[1])
+    end
+    @hash_origen_recursos.each do |row|
+      row[1].stringify_keys!
+      row[1]["saldo"] = row[1]["saldo"].round(2)
+      row[1]["cap_activo"] = row[1]["cap_activo"].round(2)
+      row[1]["cap_ndevenga"] = row[1]["cap_ndevenga"].round(2)
+      row[1]["cartera_riesgo"] = row[1]["cartera_riesgo"].round(2)
+      row[1]["cap_vencido"] = row[1]["cap_vencido"].round(2)
+      @origenes_recursos.push(row[1])
+    end
 
   end
 
-  def clientes_vip
+  def indicadores_creditos_colocados
+    @data = Oracledb.indicadores_creditos_colocados params["fechaInicio"], params["fechaFin"], params["diaInicio"], params["diaFin"], params["agencia"], params["asesor"]
+
+    @hash_genero = Hash.new
+    @hash_sector = Hash.new
+    @hash_tipo_credito = Hash.new
+    @hash_origen_recursos = Hash.new
+
+    @generos = Array.new
+    @sectores = Array.new
+    @tipos_credito = Array.new
+    @origenes_recursos = Array.new
+
+    @data.each do |row|
+      row.stringify_keys!
+      # Genero
+      if @hash_genero[row["genero"]].nil?
+        @hash_genero[row["genero"]] = {clave: row["genero"], cantidad: 1, saldo: row["saldo"].to_f.round(2), cap_activo: row["cap_activo"].to_f.round(2), cap_ndevenga: row["cap_ndevenga"].to_f.round(2), cartera_riesgo: row["cartera_riesgo"].to_f.round(2), cap_vencido: row["cap_vencido"].to_f.round(2)}
+      else
+        @hash_genero[row["genero"]][:cantidad] += 1
+        @hash_genero[row["genero"]][:saldo] += row["saldo"].to_f.round(2)
+        @hash_genero[row["genero"]][:cap_activo] += row["cap_activo"].to_f.round(2)
+        @hash_genero[row["genero"]][:cap_ndevenga] += row["cap_ndevenga"].to_f.round(2)
+        @hash_genero[row["genero"]][:cartera_riesgo] += row["cartera_riesgo"].to_f.round(2)
+        @hash_genero[row["genero"]][:cap_vencido] += row["cap_vencido"].to_f.round(2)
+      end
+
+      #Sector
+      if @hash_sector[row["sector"]].nil?
+        @hash_sector[row["sector"]] = {clave: row["sector"], cantidad: 1, saldo: row["saldo"].to_f.round(2), cap_activo: row["cap_activo"].to_f.round(2), cap_ndevenga: row["cap_ndevenga"].to_f.round(2), cartera_riesgo: row["cartera_riesgo"].to_f.round(2), cap_vencido: row["cap_vencido"].to_f.round(2)}
+      else
+        @hash_sector[row["sector"]][:cantidad] += 1
+        @hash_sector[row["sector"]][:saldo] += row["saldo"].to_f.round(2)
+        @hash_sector[row["sector"]][:cap_activo] += row["cap_activo"].to_f.round(2)
+        @hash_sector[row["sector"]][:cap_ndevenga] += row["cap_ndevenga"].to_f.round(2)
+        @hash_sector[row["sector"]][:cartera_riesgo] += row["cartera_riesgo"].to_f.round(2)
+        @hash_sector[row["sector"]][:cap_vencido] += row["cap_vencido"].to_f.round(2)
+      end
+
+      # Tipo de Credito
+      if @hash_tipo_credito[row["tipo_credito"]].nil?
+        @hash_tipo_credito[row["tipo_credito"]] = {clave: row["tipo_credito"], cantidad: 1, saldo: row["saldo"].to_f.round(2), cap_activo: row["cap_activo"].to_f.round(2), cap_ndevenga: row["cap_ndevenga"].to_f.round(2), cartera_riesgo: row["cartera_riesgo"].to_f.round(2), cap_vencido: row["cap_vencido"].to_f.round(2)}
+      else
+        @hash_tipo_credito[row["tipo_credito"]][:cantidad] += 1
+        @hash_tipo_credito[row["tipo_credito"]][:saldo] += row["saldo"].to_f.round(2)
+        @hash_tipo_credito[row["tipo_credito"]][:cap_activo] += row["cap_activo"].to_f.round(2)
+        @hash_tipo_credito[row["tipo_credito"]][:cap_ndevenga] += row["cap_ndevenga"].to_f.round(2)
+        @hash_tipo_credito[row["tipo_credito"]][:cartera_riesgo] += row["cartera_riesgo"].to_f.round(2)
+        @hash_tipo_credito[row["tipo_credito"]][:cap_vencido] += row["cap_vencido"].to_f.round(2)
+      end
+
+      # Origen Recursos
+      if @hash_origen_recursos[row["origen_recursos"]].nil?
+        @hash_origen_recursos[row["origen_recursos"]] = {clave: row["origen_recursos"], cantidad: 1, saldo: row["saldo"].to_f.round(2), cap_activo: row["cap_activo"].to_f.round(2), cap_ndevenga: row["cap_ndevenga"].to_f.round(2), cartera_riesgo: row["cartera_riesgo"].to_f.round(2), cap_vencido: row["cap_vencido"].to_f.round(2)}
+      else
+        @hash_origen_recursos[row["origen_recursos"]][:cantidad] += 1
+        @hash_origen_recursos[row["origen_recursos"]][:saldo] += row["saldo"].to_f.round(2)
+        @hash_origen_recursos[row["origen_recursos"]][:cap_activo] += row["cap_activo"].to_f.round(2)
+        @hash_origen_recursos[row["origen_recursos"]][:cap_ndevenga] += row["cap_ndevenga"].to_f.round(2)
+        @hash_origen_recursos[row["origen_recursos"]][:cartera_riesgo] += row["cartera_riesgo"].to_f.round(2)
+        @hash_origen_recursos[row["origen_recursos"]][:cap_vencido] += row["cap_vencido"].to_f.round(2)
+      end
+    end
+
+
+    @hash_genero.each do |row|
+      row[1].stringify_keys!
+      row[1]["saldo"] = row[1]["saldo"].round(2)
+      row[1]["cap_activo"] = row[1]["cap_activo"].round(2)
+      row[1]["cap_ndevenga"] = row[1]["cap_ndevenga"].round(2)
+      row[1]["cartera_riesgo"] = row[1]["cartera_riesgo"].round(2)
+      row[1]["cap_vencido"] = row[1]["cap_vencido"].round(2)
+      @generos.push(row[1])
+    end
+    @hash_sector.each do |row|
+      row[1].stringify_keys!
+      row[1]["saldo"] = row[1]["saldo"].round(2)
+      row[1]["cap_activo"] = row[1]["cap_activo"].round(2)
+      row[1]["cap_ndevenga"] = row[1]["cap_ndevenga"].round(2)
+      row[1]["cartera_riesgo"] = row[1]["cartera_riesgo"].round(2)
+      row[1]["cap_vencido"] = row[1]["cap_vencido"].round(2)
+      @sectores.push(row[1])
+    end
+    @hash_tipo_credito.each do |row|
+      row[1].stringify_keys!
+      row[1]["saldo"] = row[1]["saldo"].round(2)
+      row[1]["cap_activo"] = row[1]["cap_activo"].round(2)
+      row[1]["cap_ndevenga"] = row[1]["cap_ndevenga"].round(2)
+      row[1]["cartera_riesgo"] = row[1]["cartera_riesgo"].round(2)
+      row[1]["cap_vencido"] = row[1]["cap_vencido"].round(2)
+      @tipos_credito.push(row[1])
+    end
+    @hash_origen_recursos.each do |row|
+      row[1].stringify_keys!
+      row[1]["saldo"] = row[1]["saldo"].round(2)
+      row[1]["cap_activo"] = row[1]["cap_activo"].round(2)
+      row[1]["cap_ndevenga"] = row[1]["cap_ndevenga"].round(2)
+      row[1]["cartera_riesgo"] = row[1]["cartera_riesgo"].round(2)
+      row[1]["cap_vencido"] = row[1]["cap_vencido"].round(2)
+      @origenes_recursos.push(row[1])
+    end
   end
 
   def set_layout

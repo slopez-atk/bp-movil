@@ -5,8 +5,8 @@ class Oracledb < ApplicationRecord
     # results = connection.exec_query("Select * from inmobiliario")
     results = connection.exec_query("
       select
-      t.numero_operacion credito,
-      t.codcl socio,
+      t.numero_operacion id_credito,
+      t.codcl id_socio,
       (select s.mcli_razon_social||''||s.mcli_apellido_pat||' '||s.mcli_apellido_mat||' '||s.mcli_nombres from socios s where s.codigo_socio=c.codigo_socio)as NOMBRES,
       t.identificacion CEDULA,
       (select max(mcli_telefonos) from socios_direcciones where codigo_socio=c.codigo_socio)TELEFONO,
@@ -151,8 +151,8 @@ class Oracledb < ApplicationRecord
     # results = connection.exec_query("Select * from consumo")
     results = connection.exec_query("
       select
-      t.numero_operacion credito,
-      t.codcl socio,
+      t.numero_operacion id_credito,
+      t.codcl id_socio,
       (select s.mcli_razon_social||''||s.mcli_apellido_pat||' '||s.mcli_apellido_mat||' '||s.mcli_nombres from socios s where s.codigo_socio=c.codigo_socio)as NOMBRES,
       t.identificacion CEDULA,
       (select max(mcli_telefonos) from socios_direcciones where codigo_socio=c.codigo_socio)TELEFONO,
@@ -400,7 +400,7 @@ class Oracledb < ApplicationRecord
   end
 
 
-  def self.buscar_credito_by_credito credito
+  def self.buscar_credito_by_id_credito credito
     filename =  "creditos_nuevos.txt"
     data = Marshal.load File.read(Rails.public_path.join("creditos",filename))
     data.each do |row|
@@ -676,7 +676,7 @@ class Oracledb < ApplicationRecord
     )pago_realizado,
 
     (select round(t.provision_especifica,2) from temp_c02 t where t.numero_operacion=ct.numero_credito) provision,
-    ct.fecfincal fecha,
+    -- ct.fecfincal fecha,
     (select t.Dias_Morocidad from temp_c02 t where t.numero_operacion=ct.numero_credito) dias_mora,
     (select descripcion from  sifv_sucursales s, cred_creditos c where numero_credito=ct.numero_credito and c.codigo_sucursal=s.codigo_sucursal) sucursal ,
     (select usu_apellidos||' '||usu_nombres from  sifv_usuarios_sistema s, cred_creditos c where numero_credito=ct.numero_credito and c.oficre=s.codigo_usuario) cartera_heredada,
@@ -2729,5 +2729,149 @@ class Oracledb < ApplicationRecord
         fecha_concesion: '12-10-2012'
     }]
     return data;
+  end
+
+
+  def self.indicadores_creditos_vigentes fecha, dia_inicio, dia_fin, agencia, asesor
+    # results = connection.exec_query("")
+    # if results.present?
+    #   return results
+    # else
+    #   return {}
+    # end
+    data =[
+      {
+        genero: 'masculino',
+        origen_recursos: 'kiva',
+        sector: 'Rural',
+        tipo_credito: 'Microcredito',
+        saldo: '2000',
+        cap_activo: '23452.234',
+        cap_ndevenga: '6323.542',
+        cartera_riesgo: '92823',
+        cap_vencido: '98243.928'
+      },
+      {
+        genero: 'femenino',
+        origen_recursos: 'triods',
+        sector: 'Urbano',
+        tipo_credito: 'Consumo',
+        saldo: '1000',
+        cap_activo: '23452.234',
+        cap_ndevenga: '6323.542',
+        cartera_riesgo: '92823',
+        cap_vencido: '98243.928'
+      },
+      {
+        genero: 'juridico',
+        origen_recursos: 'kiva',
+        sector: 'Rural',
+        tipo_credito: 'Comercial',
+        saldo: '3000',
+        cap_activo: '543.234',
+        cap_ndevenga: '7524.542',
+        cartera_riesgo: '7546.75',
+        cap_vencido: '56464.56'
+      },
+      {
+        genero: 'masculino',
+        origen_recursos: 'kiva',
+        sector: 'Urbano',
+        tipo_credito: 'Comercial',
+        saldo: '4000',
+        cap_activo: '653.234',
+        cap_ndevenga: '856.542',
+        cartera_riesgo: '124748',
+        cap_vencido: '674687.928'
+      },
+      {
+          genero: 'juridico',
+          origen_recursos: 'extra',
+          sector: 'Urbano',
+          tipo_credito: 'Comercial',
+          saldo: '100',
+          cap_activo: '100',
+          cap_ndevenga: '100',
+          cartera_riesgo: '100',
+          cap_vencido: '100'
+      },{
+          genero: 'xxxxx',
+          origen_recursos: 'extra',
+          sector: 'Urbano',
+          tipo_credito: 'Comercial',
+          saldo: '100',
+          cap_activo: '100',
+          cap_ndevenga: '100',
+          cartera_riesgo: '100',
+          cap_vencido: '100'
+      }
+    ]
+
+  end
+
+  def self.indicadores_creditos_colocados fecha_inicio, fecha_fin, dia_inicio, dia_fin, agencia, asesor
+    # results = connection.exec_query("")
+    # if results.present?
+    #   return results
+    # else
+    #   return {}
+    # end
+    data =[
+      {
+        genero: 'masculino',
+        origen_recursos: 'kiva',
+        sector: 'Rural',
+        tipo_credito: 'Microcredito',
+        saldo: '2000',
+        cap_activo: '23452.234',
+        cap_ndevenga: '6323.542',
+        cartera_riesgo: '92823',
+        cap_vencido: '98243.928'
+      },
+      {
+        genero: 'femenino',
+        origen_recursos: 'triods',
+        sector: 'Urbano',
+        tipo_credito: 'Consumo',
+        saldo: '1000',
+        cap_activo: '23452.234',
+        cap_ndevenga: '6323.542',
+        cartera_riesgo: '92823',
+        cap_vencido: '98243.928'
+      },
+      {
+        genero: 'juridico',
+        origen_recursos: 'kiva',
+        sector: 'Rural',
+        tipo_credito: 'Comercial',
+        saldo: '3000',
+        cap_activo: '543.234',
+        cap_ndevenga: '7524.542',
+        cartera_riesgo: '7546.75',
+        cap_vencido: '56464.56'
+      },
+      {
+        genero: 'masculino',
+        origen_recursos: 'kiva',
+        sector: 'Urbano',
+        tipo_credito: 'Comercial',
+        saldo: '4000',
+        cap_activo: '653.234',
+        cap_ndevenga: '856.542',
+        cartera_riesgo: '124748',
+        cap_vencido: '674687.928'
+      },
+      {
+        genero: 'juridico',
+        origen_recursos: 'extra',
+        sector: 'Urbano',
+        tipo_credito: 'Comercial',
+        saldo: '100',
+        cap_activo: '100',
+        cap_ndevenga: '100',
+        cartera_riesgo: '100',
+        cap_vencido: '100'
+        }
+    ]
   end
 end

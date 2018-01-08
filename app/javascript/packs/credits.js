@@ -4,6 +4,8 @@ import CreditosVencidosForm from '../components/CreditsForms/CreditosVencidosFor
 import MatrizTransicionForm from '../components/CreditsForms/MatrizTransicionForm';
 import CreditosConcedidosForm from '../components/CreditsForms/CreditosConcedidosForm';
 import CosechasForm from "../components/CreditsForms/CosechasForm";
+import IndicadoresVigentesForm from '../components/CreditsForms/IndicadoresVigentesForm';
+import IndicadoresCreditosColocadosForm from '../components/CreditsForms/IndicadoresCreditosColocadosForm';
 
 class Credits extends React.Component{
   constructor(props){
@@ -49,6 +51,29 @@ class Credits extends React.Component{
               url = '/credits/creditos_por_vencer'
               title = 'Consultar creditos por vencer'/>
           </div>
+
+          <div className="col-xs-12 col-md-5">
+            <CreditosPorVencerForm
+              authenticity_token={ this.props.authenticity_token }
+              url = '/credits/cartera_recuperada'
+              title = 'Cartera Recuperada'/>
+          </div>
+
+          <div className="col-xs-12 col-md-5">
+            <IndicadoresVigentesForm
+              url='/credits/indicadores_creditos_vigentes'
+              title='Indicadores creditos vigentes'
+              authenticity_token={ this.props.authenticity_token }/>
+          </div>
+
+          <div className="col-xs-12 col-md-5">
+            <IndicadoresCreditosColocadosForm
+              url='/credits/indicadores_creditos_colocados'
+              title='Indicadores creditos colocados'
+              authenticity_token={ this.props.authenticity_token }/>
+          </div>
+
+
         </div>
       );
     } else if(this.props.permissions == 7){
@@ -74,6 +99,27 @@ class Credits extends React.Component{
               authenticity_token={ this.props.authenticity_token }
               url = '/credits/creditos_por_vencer'
               title = 'Consultar creditos por vencer'/>
+          </div>
+
+          <div className="col-xs-12 col-md-5">
+            <CreditosPorVencerForm
+              authenticity_token={ this.props.authenticity_token }
+              url = '/credits/cartera_recuperada'
+              title = 'Cartera Recuperada'/>
+          </div>
+
+          <div className="col-xs-12 col-md-5">
+            <IndicadoresVigentesForm
+              url='/credits/indicadores_creditos_vigentes'
+              title='Indicadores creditos vigentes'
+              authenticity_token={ this.props.authenticity_token }/>
+          </div>
+
+          <div className="col-xs-12 col-md-5">
+            <IndicadoresCreditosColocadosForm
+              url='/credits/indicadores_creditos_colocados'
+              title='Indicadores creditos colocados'
+              authenticity_token={ this.props.authenticity_token }/>
           </div>
         </div>
       );
