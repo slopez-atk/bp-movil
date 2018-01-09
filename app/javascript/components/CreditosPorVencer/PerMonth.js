@@ -32,13 +32,15 @@ class PerMonth extends  React.Component{
     let contador = 0;
     let provision = 0;
     let pago = 0;
+    let valor_recuperado = 0;
     for(let i=0; i < data.length; i++){
       saldo += parseFloat(data[i]["saldo"]);
       provision += parseFloat(data[i]["provision"]);
       pago += parseFloat(data[i]["pago"]);
+      valor_recuperado += parseFloat(data[i]["valor_recuperado"]);
       contador = contador + 1;
     }
-    return [saldo.toFixed(2),contador,provision.toFixed(2),pago.toFixed(2)]
+    return [saldo.toFixed(2),contador,provision.toFixed(2),pago.toFixed(2),valor_recuperado.toFixed(2)]
   }
 
 
@@ -70,9 +72,10 @@ class PerMonth extends  React.Component{
                 <div className="col-xs-12 col-md-3">
                   <List>
                     <Subheader>Datos Totales</Subheader>
-                    <ListItem primaryText={"Saldo: " + first[0]}  leftIcon={<EditoMonetizationOn/>} />
+                    <ListItem primaryText={"Valores Cuotas: " + first[0]}  leftIcon={<EditoMonetizationOn/>} />
                     <ListItem primaryText={"Cantidad: " + first[1]} leftIcon={<EditoformatListNumbered/>} />
                     <ListItem primaryText={"Provisión: " + first[2]} leftIcon={<AlertWarning/>} />
+                    <ListItem primaryText={"Valor Recuperado: " + first[4]}  leftIcon={<EditoMonetizationOn/>} />
                   </List>
                 </div>
                 <div className="col-xs-12 col-md-9">
@@ -97,9 +100,10 @@ class PerMonth extends  React.Component{
                 <div className="col-xs-12 col-md-3">
                   <List>
                     <Subheader>Datos Totales</Subheader>
-                    <ListItem primaryText={"Saldo: " + second[0]}  leftIcon={<EditoMonetizationOn/>} />
+                    <ListItem primaryText={"Valores Cuotas: " + second[0]}  leftIcon={<EditoMonetizationOn/>} />
                     <ListItem primaryText={"Cantidad: " + second[1]} leftIcon={<EditoformatListNumbered/>} />
                     <ListItem primaryText={"Provisión: " + second[2]} leftIcon={<AlertWarning/>} />
+                    <ListItem primaryText={"Valor Recuperado: " + second[4]}  leftIcon={<EditoMonetizationOn/>} />
                   </List>
                 </div>
                 <div className="col-xs-12 col-md-9">
@@ -124,9 +128,10 @@ class PerMonth extends  React.Component{
                 <div className="col-xs-12 col-md-3">
                   <List>
                     <Subheader>Datos Totales</Subheader>
-                    <ListItem primaryText={"Saldo: " + third[0]}  leftIcon={<EditoMonetizationOn/>} />
+                    <ListItem primaryText={"Valores Cuotas: " + third[0]}  leftIcon={<EditoMonetizationOn/>} />
                     <ListItem primaryText={"Cantidad: " + third[1]} leftIcon={<EditoformatListNumbered/>} />
                     <ListItem primaryText={"Provisión: " + third[2]} leftIcon={<AlertWarning/>} />
+                    <ListItem primaryText={"Valor Recuperado: " + third[4]}  leftIcon={<EditoMonetizationOn/>} />
                   </List>
                 </div>
                 <div className="col-xs-12 col-md-9">
@@ -151,9 +156,10 @@ class PerMonth extends  React.Component{
                 <div className="col-xs-12 col-md-3">
                   <List>
                     <Subheader>Datos Totales</Subheader>
-                    <ListItem primaryText={"Saldo: " + fourth[0]}  leftIcon={<EditoMonetizationOn/>} />
+                    <ListItem primaryText={"Valores Cuotas: " + fourth[0]}  leftIcon={<EditoMonetizationOn/>} />
                     <ListItem primaryText={"Cantidad: " + fourth[1]} leftIcon={<EditoformatListNumbered/>} />
                     <ListItem primaryText={"Provisión: " + fourth[2]} leftIcon={<AlertWarning/>} />
+                    <ListItem primaryText={"Valor Recuperado: " + fourth[4]}  leftIcon={<EditoMonetizationOn/>} />
                   </List>
                 </div>
                 <div className="col-xs-12 col-md-9">

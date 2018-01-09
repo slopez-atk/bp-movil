@@ -50,20 +50,22 @@ class PerWeek extends React.Component{
     };
     return(
       <BootstrapTable ref='table' data={ data } pagination exportCSV={ true } striped hover condensed options={ options }>
-        <TableHeaderColumn dataField='credito' isKey={ true } dataSort={ true }>Crédito</TableHeaderColumn>
-        <TableHeaderColumn dataField='socio' dataSort={ true }>Socio</TableHeaderColumn>
-        <TableHeaderColumn dataField='nombre' dataSort={ true } filter={ { type: 'TextFilter', delay: 1000 }}>Nombres</TableHeaderColumn>
-        <TableHeaderColumn dataField='fecha_concesion' dataSort={ true } filter={ { type: 'TextFilter', delay: 1000 }}>Fecha Concesion</TableHeaderColumn>
-        <TableHeaderColumn dataField='monto_real' dataSort={ true } filter={ { type: 'TextFilter', delay: 1000 }}>Monto Real</TableHeaderColumn>
-        <TableHeaderColumn dataField='saldo_cartera' dataSort={ true }>Saldo Cartera</TableHeaderColumn>
-        <TableHeaderColumn dataField='saldo' dataSort={ true }>Valor Cuota</TableHeaderColumn>
-        <TableHeaderColumn dataField='fecha' dataSort={ true }  filter={ { type: 'TextFilter', delay: 1000 }}>Fecha proxima cuota</TableHeaderColumn>
-        <TableHeaderColumn dataField='pago' dataSort={ true }  filter={ { type: 'TextFilter', delay: 1000 }}>Pago Realizado</TableHeaderColumn>
-        <TableHeaderColumn dataField='pago_realizado' dataSort={ true }  filter={ { type: 'TextFilter', delay: 1000 }}>Fecha Pago Realizado</TableHeaderColumn>
-        <TableHeaderColumn dataField='dias_mora' dataSort={ true }  filter={ { type: 'TextFilter', delay: 1000 }}>Dias mora</TableHeaderColumn>
-        <TableHeaderColumn dataField='sucursal' dataSort={ true }>Sucursal</TableHeaderColumn>
-        <TableHeaderColumn dataField='cartera_heredada' dataSort={ true }>Cartera Heredada</TableHeaderColumn>
-        <TableHeaderColumn dataField='asesor' dataSort={ true }>ASESOR</TableHeaderColumn>
+        <TableHeaderColumn dataField='credito' isKey={ true } dataSort={ true } width={"300"} filter={ { type: 'TextFilter', delay: 1000 }}>Crédito</TableHeaderColumn>
+        <TableHeaderColumn dataField='socio' dataSort={ true } width={300} filter={ { type: 'TextFilter', delay: 1000 }}>Socio</TableHeaderColumn>
+        <TableHeaderColumn dataField='nombre' dataSort={ true } filter={ { type: 'TextFilter', delay: 1000 }} width={"340"}>Nombres</TableHeaderColumn>
+        <TableHeaderColumn dataField='fecha_concesion' dataSort={ true } filter={ { type: 'TextFilter', delay: 1000 }} width={"300"}>Fecha Concesion</TableHeaderColumn>
+        <TableHeaderColumn dataField='monto_real' dataSort={ true } filter={ { type: 'TextFilter', delay: 1000 }} width={"300"}>Monto Real</TableHeaderColumn>
+        <TableHeaderColumn dataField='saldo_cartera' dataSort={ true } width={"300"}>Saldo Cartera</TableHeaderColumn>
+        <TableHeaderColumn dataField='saldo' dataSort={ true } width={"300"}>Valor Cuota</TableHeaderColumn>
+        <TableHeaderColumn dataField='fecha' dataSort={ true }  filter={ { type: 'TextFilter', delay: 1000 }} width={"300"}>Fecha proxima cuota</TableHeaderColumn>
+        <TableHeaderColumn dataField='pago' dataSort={ true }  filter={ { type: 'TextFilter', delay: 1000 }} width={"300"}>Pago Realizado</TableHeaderColumn>
+        <TableHeaderColumn dataField='pago_realizado' dataSort={ true }  filter={ { type: 'TextFilter', delay: 1000 }} width={"300"}>Fecha Pago Realizado</TableHeaderColumn>
+        <TableHeaderColumn dataField='valor_recuperado' dataSort={ true }  filter={ { type: 'TextFilter', delay: 1000 }} width={"300"}>Fecha Pago Realizado</TableHeaderColumn>
+        <TableHeaderColumn dataField='fecha_prox_pago_variable' dataSort={ true }  filter={ { type: 'TextFilter', delay: 1000 }} width={"300"}>Fecha Pago Realizado</TableHeaderColumn>
+        <TableHeaderColumn dataField='dias_mora' dataSort={ true }  filter={ { type: 'TextFilter', delay: 1000 }} width={"300"}>Dias mora</TableHeaderColumn>
+        <TableHeaderColumn dataField='sucursal' dataSort={ true } width={"300"}>Sucursal</TableHeaderColumn>
+        <TableHeaderColumn dataField='cartera_heredada' dataSort={ true } width={"300"}>Cartera Heredada</TableHeaderColumn>
+        <TableHeaderColumn dataField='asesor' dataSort={ true } width={"300"}>ASESOR</TableHeaderColumn>
       </BootstrapTable>
     );
   }

@@ -4,6 +4,8 @@ import CreditosPorVencerForm from '../components/CreditsForms/CreditosPorVencerF
 import CreditosVencidosForm from '../components/CreditsForms/CreditosVencidosForm';
 import CreditosConcedidosForm from '../components/CreditsForms/CreditosConcedidosForm';
 import MatrizTransicionForm from '../components/CreditsForms/MatrizTransicionForm';
+import IndicadoresVigentesForm from '../components/CreditsForms/IndicadoresVigentesForm';
+import IndicadoresCreditosColocadosForm from '../components/CreditsForms/IndicadoresCreditosColocadosForm';
 
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
@@ -88,7 +90,9 @@ class CreditosNavigation extends React.Component {
       openModalCreditosVencidos: false,
       openModalMatrizRiesgos: false,
       openModalCreditosConcedidos: false,
-      openModalCosechas: false
+      openModalCosechas: false,
+      openModalIndicadoresColocados: false,
+      openModalIndicadoresVigentes: false
     };
   }
 
@@ -116,6 +120,12 @@ class CreditosNavigation extends React.Component {
   handleModal5 = () => {
     this.setState({openModalCosechas: !this.state.openModalCosechas});
   };
+  handleModal6 = () => {
+    this.setState({openModalCosechas: !this.state.openModalIndicadoresVigentes});
+  };
+  handleModal7 = () => {
+    this.setState({openModalCosechas: !this.state.openModalIndicadoresColocados});
+  };
 
   handleLocation = (action) => {
     switch (action) {
@@ -126,6 +136,129 @@ class CreditosNavigation extends React.Component {
         window.location = '/';
     }
   };
+
+  getMenuItems(){
+    let permissions = this.props.permissions;
+    if(permissions == 5 || permissions == 3){
+      return(
+        <div>
+          <MenuItem
+            primaryText="Cartera Por Vencer"
+            leftIcon={ <ActionAssessment color='#444444'/>}
+            style={{color: '#444444'}}
+            onClick={ this.handleModal1 }
+          />
+          <Divider/>
+          <MenuItem
+            primaryText="Cartera Vencida"
+            leftIcon={ <ActionFeedback color='#444444'/>}
+            style={{color: '#444444'}}
+            onClick={ this.handleModal2 }
+          />
+          <Divider/>
+          <MenuItem
+            primaryText="Cartera Concedida"
+            leftIcon={ <ActionAssessment color='#444444'/>}
+            style={{color: '#444444'}}
+            onClick={ this.handleModal4 }
+          />
+          <Divider/>
+          <MenuItem
+            primaryText="Matrices de Riesgo"
+            leftIcon={ <ActionAssessment color='#444444'/>}
+            style={{color: '#444444'}}
+            onClick={ this.handleModal3 }
+          />
+          <Divider/>
+          <MenuItem
+            primaryText="Cosechas"
+            leftIcon={ <ActionAssessment color='#444444'/>}
+            style={{color: '#444444'}}
+            onClick={ this.handleModal5 }
+          />
+          <Divider/>
+          <MenuItem
+            primaryText="Indicadores C. Vigentes"
+            leftIcon={ <ActionAssessment color='#444444'/>}
+            style={{color: '#444444'}}
+          />
+          <Divider/>
+          <MenuItem
+            primaryText="Indicadores C. Colocados"
+            leftIcon={ <ActionAssessment color='#444444'/>}
+            style={{color: '#444444'}}
+          />
+        </div>
+      );
+    } else if(permissions === 7){
+      return(
+        <div>
+          <MenuItem
+            primaryText="Cartera Por Vencer"
+            leftIcon={ <ActionAssessment color='#444444'/>}
+            style={{color: '#444444'}}
+            onClick={ this.handleModal1 }
+          />
+          <Divider/>
+          <MenuItem
+            primaryText="Cartera Vencida"
+            leftIcon={ <ActionFeedback color='#444444'/>}
+            style={{color: '#444444'}}
+            onClick={ this.handleModal2 }
+          />
+          <Divider/>
+          <MenuItem
+            primaryText="Cartera Concedida"
+            leftIcon={ <ActionAssessment color='#444444'/>}
+            style={{color: '#444444'}}
+            onClick={ this.handleModal4 }
+          />
+          <Divider/>
+          <MenuItem
+            primaryText="Indicadores C. Vigentes"
+            leftIcon={ <ActionAssessment color='#444444'/>}
+            style={{color: '#444444'}}
+          />
+          <Divider/>
+          <MenuItem
+            primaryText="Indicadores C. Colocados"
+            leftIcon={ <ActionAssessment color='#444444'/>}
+            style={{color: '#444444'}}
+          />
+        </div>
+      );
+    } else if(permissions === 8){
+      return(
+        <div>
+          <MenuItem
+            primaryText="Matrices de Riesgo"
+            leftIcon={ <ActionAssessment color='#444444'/>}
+            style={{color: '#444444'}}
+            onClick={ this.handleModal3 }
+          />
+          <Divider/>
+          <MenuItem
+            primaryText="Cosechas"
+            leftIcon={ <ActionAssessment color='#444444'/>}
+            style={{color: '#444444'}}
+            onClick={ this.handleModal5 }
+          />
+          <Divider/>
+          <MenuItem
+            primaryText="Indicadores C. Vigentes"
+            leftIcon={ <ActionAssessment color='#444444'/>}
+            style={{color: '#444444'}}
+          />
+          <Divider/>
+          <MenuItem
+            primaryText="Indicadores C. Colocados"
+            leftIcon={ <ActionAssessment color='#444444'/>}
+            style={{color: '#444444'}}
+          />
+        </div>
+      );
+    }
+  }
 
 
   render(){
@@ -164,6 +297,20 @@ class CreditosNavigation extends React.Component {
         onClick={this.handleModal5}
       />,
     ];
+    const actions6 = [
+      <FlatButton
+        label="Cancelar"
+        primary={true}
+        onClick={this.handleModal6}
+      />,
+    ];
+    const actions7 = [
+      <FlatButton
+        label="Cancelar"
+        primary={true}
+        onClick={this.handleModal7}
+      />,
+    ];
     return(
       <MuiThemeProvider muiTheme={getMuiTheme(muiTheme)}>
         <div>
@@ -188,44 +335,8 @@ class CreditosNavigation extends React.Component {
               style={{color: '#444444'}}
               onClick={()=> this.handleLocation('home') }
             />
-            <MenuItem
-              primaryText="Cartera Por Vencer"
-              leftIcon={ <ActionAssessment color='#444444'/>}
-              style={{color: '#444444'}}
-              onClick={ this.handleModal1 }
-            />
-            <Divider/>
-            <MenuItem
-              primaryText="Cartera Vencida"
-              leftIcon={ <ActionFeedback color='#444444'/>}
-              style={{color: '#444444'}}
-              onClick={ this.handleModal2 }
-            />
-            <Divider/>
-            <MenuItem
-              primaryText="Matrices de Riesgo"
-              leftIcon={ <ActionAssessment color='#444444'/>}
-              style={{color: '#444444'}}
-              onClick={ this.handleModal3 }
-            />
-            <Divider/>
-            <MenuItem
-              primaryText="Cartera Concedida"
-              leftIcon={ <ActionAssessment color='#444444'/>}
-              style={{color: '#444444'}}
-              onClick={ this.handleModal4 }
-            />
-            <MenuItem
-              primaryText="Cosechas"
-              leftIcon={ <ActionAssessment color='#444444'/>}
-              style={{color: '#444444'}}
-              onClick={ this.handleModal5 }
-            />
-            <MenuItem
-              primaryText="Socias(os) VIP"
-              leftIcon={ <ActionAssessment color='#444444'/>}
-              style={{color: '#444444'}}
-            />
+            { this.getMenuItems() }
+
           </Drawer>
 
           <div>
@@ -329,6 +440,46 @@ class CreditosNavigation extends React.Component {
               </div>
             </Dialog>
           </div>
+
+          <div>
+            <Dialog
+              modal={true}
+              contentStyle={customContentStyle}
+              open={ this.state.openModalIndicadoresVigentes }
+              actions={actions6}
+              autoScrollBodyContent={true}>
+              <div className="row center-xs middle-xs">
+                <h4 style={{color: "#2E3092"}}>Indicadores de Creditos Vigentes</h4>
+                <div className="col-xs-10" style={styles.div}>
+                  <IndicadoresVigentesForm
+                    url='/credits/indicadores_creditos_vigentes'
+                    title='Indicadores creditos vigentes'
+                    authenticity_token={ this.props.authenticity_token }/>
+                </div>
+              </div>
+            </Dialog>
+          </div>
+
+          <div>
+            <Dialog
+              modal={true}
+              contentStyle={customContentStyle}
+              open={ this.state.openModalIndicadoresColocados }
+              actions={actions7}
+              autoScrollBodyContent={true}>
+              <div className="row center-xs middle-xs">
+                <h4 style={{color: "#2E3092"}}>Indicadores de Creditos Colocados</h4>
+                <div className="col-xs-10" style={styles.div}>
+                  <IndicadoresCreditosColocadosForm
+                    url='/credits/indicadores_creditos_colocados'
+                    title='Indicadores creditos colocados'
+                    authenticity_token={ this.props.authenticity_token }/>
+                </div>
+              </div>
+            </Dialog>
+          </div>
+
+
 
 
         </div>

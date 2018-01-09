@@ -18,6 +18,7 @@ class TableDates extends React.Component{
     let saldo = 0;
     let cantidad = 0;
     let provision = 0;
+    let valor_recuperado = 0;
 
     // Recupero el array de datos junto con el array que tiene las fechas entre semana
     let data = this.props.DataWeek;
@@ -27,6 +28,7 @@ class TableDates extends React.Component{
     let saldos = [];
     let cantidades = [];
     let provisiones = [];
+    let valores_recuperados = [];
 
     for(let i=0; i<dates.length; i++){
       saldo = 0;
@@ -35,13 +37,15 @@ class TableDates extends React.Component{
       for(let j=0; j<data[dates[i]].length; j++){
         saldo += parseFloat(data[dates[i]][j]['saldo']);
         provision += parseFloat(data[dates[i]][j]['provision']);
+        valor_recuperado += parseFloat(data[dates[i]][j]['valor_recuperado']);
         cantidad ++;
       }
       saldos.push(saldo.toFixed(2));
       cantidades.push(cantidad);
-      provisiones.push(provision.toFixed(2))
+      provisiones.push(provision.toFixed(2));
+      valores_recuperados.push(valor_recuperado.toFixed(2));
     }
-    return [saldos, cantidades,provisiones];
+    return [saldos, cantidades,provisiones, valores_recuperados];
   }
 
   getBody(saldos){
@@ -75,6 +79,10 @@ class TableDates extends React.Component{
               <tr>
                 <th>Provisiones</th>
                 { this.getBody(datos[2]) }
+              </tr>
+              <tr>
+                <th>Valor Recuperado</th>
+                { this.getBody(datos[3]) }
               </tr>
             </tbody>
           </table>

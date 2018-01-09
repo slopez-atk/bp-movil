@@ -20,16 +20,16 @@ development:
   password:
 
 development_sec:
-  adapter: postgresql
-  encoding: utf8
-  database: ClientesPOS
-  pool: 5
-  username: santy
-  password:
-#  adapter: oracle_enhanced
-#  database: "(DESCRIPTION= (ADDRESS_LIST=(ADDRESS=(PROTOCOL=tcp)(HOST=192.100.1.50)(PORT=1521)))(CONNECT_TIMEOUT=5)(TCP_CONNECT_TIMEOUT=5)(CONNECT_DATA=(SERVICE_NAME=cacmu)))"
-#  username: COOPCACMU
-#  password: COOPCACMU
+#  adapter: postgresql
+#  encoding: utf8
+#  database: ClientesPOS
+#  pool: 5
+#  username: santy
+#  password:
+  adapter: oracle_enhanced
+  database: "(DESCRIPTION= (ADDRESS_LIST=(ADDRESS=(PROTOCOL=tcp)(HOST=192.100.1.50)(PORT=1521)))(CONNECT_TIMEOUT=5)(TCP_CONNECT_TIMEOUT=5)(CONNECT_DATA=(SERVICE_NAME=cacmu)))"
+  username: COOPCACMU
+  password: COOPCACMU
 
 
 # Warning: The database defined as "test" will be erased and
