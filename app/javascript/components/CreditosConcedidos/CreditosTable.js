@@ -31,32 +31,32 @@ class CreditosTable extends React.Component{
         <Paper zDepth={3} className="top-space padding">
           <div>
             <BootstrapTable ref='table' data={ this.props.data } pagination exportCSV={ true }  hover options={options}>
-              <TableHeaderColumn dataField='fecha_ingreso' isKey={ true } dataSort={ true } width='100'>Fecha Ingreso</TableHeaderColumn>
-              <TableHeaderColumn dataField='socio' dataSort={ true } width='150'>Socio</TableHeaderColumn>
-              <TableHeaderColumn dataField='credito' dataSort={ true } width='150'>credito</TableHeaderColumn>
-              <TableHeaderColumn dataField='origen_recursos' dataSort={ true } width='150'>origen</TableHeaderColumn>
-              <TableHeaderColumn dataField='provision_requerida' dataSort={ true } width='150'>provision</TableHeaderColumn>
-              <TableHeaderColumn dataField='codigo_perioc' dataSort={ true } width='150'>codigo p</TableHeaderColumn>
-              <TableHeaderColumn dataField='cuotas_credito' dataSort={ true } width='150'>cuotas credito</TableHeaderColumn>
-              <TableHeaderColumn dataField='nombre' dataSort={ true } width='150'>nombre</TableHeaderColumn>
-              <TableHeaderColumn dataField='tip_id' dataSort={ true } width='150'>tip</TableHeaderColumn>
-              <TableHeaderColumn dataField='cedula' dataSort={ true } width='150'>cedula</TableHeaderColumn>
+              <TableHeaderColumn dataField='fecha_ingreso' isKey={ true } dataSort={ true } width='280'>Fecha Ingreso</TableHeaderColumn>
+              <TableHeaderColumn dataField='socio' dataSort={ true } width='280'>Socio</TableHeaderColumn>
+              <TableHeaderColumn dataField='credito' dataSort={ true } width='280'>credito</TableHeaderColumn>
+              <TableHeaderColumn dataField='origen_recursos' dataSort={ true } width='280'>origen</TableHeaderColumn>
+              <TableHeaderColumn dataField='provision_requerida' dataSort={ true } width='280'>provision</TableHeaderColumn>
+              <TableHeaderColumn dataField='codigo_perioc' dataSort={ true } width='280'>codigo p</TableHeaderColumn>
+              <TableHeaderColumn dataField='cuotas_credito' dataSort={ true } width='280'>cuotas credito</TableHeaderColumn>
+              <TableHeaderColumn dataField='nombre' dataSort={ true } width='350'>nombre</TableHeaderColumn>
+              <TableHeaderColumn dataField='tip_id' dataSort={ true } width='200'>tip</TableHeaderColumn>
+              <TableHeaderColumn dataField='cedula' dataSort={ true } width='250'>cedula</TableHeaderColumn>
               <TableHeaderColumn dataField='genero' dataSort={ true } width='150'>genero</TableHeaderColumn>
               <TableHeaderColumn dataField='edad' dataSort={ true } width='150'>edad</TableHeaderColumn>
-              <TableHeaderColumn dataField='fecha_nacimiento' dataSort={ true } width='150'>Fecha Nac</TableHeaderColumn>
+              <TableHeaderColumn dataField='fecha_nacimiento' dataSort={ true } width='280'>Fecha Nac</TableHeaderColumn>
               <TableHeaderColumn dataField='calificacion' dataSort={ true } width='150'>Calificacion</TableHeaderColumn>
-              <TableHeaderColumn dataField='cap_activo' dataSort={ true } width='150'>Cap. Activo</TableHeaderColumn>
-              <TableHeaderColumn dataField='cap_ndevenga' dataSort={ true } width='150'>Cap No Devenga</TableHeaderColumn>
-              <TableHeaderColumn dataField='cap_vencido' dataSort={ true } width='150'>Cap Vencido</TableHeaderColumn>
-              <TableHeaderColumn dataField='cartera_riesgo' dataSort={ true } width='150'>Cartera Riesgo</TableHeaderColumn>
-              <TableHeaderColumn dataField='saldo_cartera' dataSort={ true } width='150'>Saldo Cartera</TableHeaderColumn>
-              <TableHeaderColumn dataField='fecha_concesion' dataSort={ true } width='150'>Fecha conce.</TableHeaderColumn>
-              <TableHeaderColumn dataField='fecha_vencimiento' dataSort={ true } width='150'>Fecha Vencim</TableHeaderColumn>
-              <TableHeaderColumn dataField='valor_cancela' dataSort={ true } width='150'>Valor Cancela</TableHeaderColumn>
-              <TableHeaderColumn dataField='diasmora_pd' dataSort={ true } width='80'>Dias morosidad</TableHeaderColumn>
-              <TableHeaderColumn dataField='oficina' dataSort={ true } width='150'>Oficina</TableHeaderColumn>
-              <TableHeaderColumn dataField='cartera_heredada' dataSort={ true } width='150'>Cartera Here.</TableHeaderColumn>
-              <TableHeaderColumn dataField='asesor' dataSort={ true } width='150'>Asesor</TableHeaderColumn>
+              <TableHeaderColumn dataField='cap_activo' dataSort={ true } width='230'>Cap. Activo</TableHeaderColumn>
+              <TableHeaderColumn dataField='cap_ndevenga' dataSort={ true } width='230'>Cap No Devenga</TableHeaderColumn>
+              <TableHeaderColumn dataField='cap_vencido' dataSort={ true } width='230'>Cap Vencido</TableHeaderColumn>
+              <TableHeaderColumn dataField='cartera_riesgo' dataSort={ true } width='230'>Cartera Riesgo</TableHeaderColumn>
+              <TableHeaderColumn dataField='saldo_cartera' dataSort={ true } width='230'>Saldo Cartera</TableHeaderColumn>
+              <TableHeaderColumn dataField='fecha_concesion' dataSort={ true } width='250'>Fecha conce.</TableHeaderColumn>
+              <TableHeaderColumn dataField='fecha_vencimiento' dataSort={ true } width='250'>Fecha Vencim</TableHeaderColumn>
+              <TableHeaderColumn dataField='valor_cancela' dataSort={ true } width='230'>Valor Cancela</TableHeaderColumn>
+              <TableHeaderColumn dataField='diasmora_pd' dataSort={ true } width='120'>Dias morosidad</TableHeaderColumn>
+              <TableHeaderColumn dataField='oficina' dataSort={ true } width='250'>Oficina</TableHeaderColumn>
+              <TableHeaderColumn dataField='cartera_heredada' dataSort={ true } width='350'>Cartera Here.</TableHeaderColumn>
+              <TableHeaderColumn dataField='asesor' dataSort={ true } width='350'>Asesor</TableHeaderColumn>
             </BootstrapTable>
           </div>
         </Paper>

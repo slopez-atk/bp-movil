@@ -1,4 +1,5 @@
 import React from 'react';
+import WebpackerReact from 'webpacker-react';
 import CreditosPorVencerForm from '../components/CreditsForms/CreditosPorVencerForm';
 import CreditosVencidosForm from '../components/CreditsForms/CreditosVencidosForm';
 import MatrizTransicionForm from '../components/CreditsForms/MatrizTransicionForm';
@@ -14,135 +15,23 @@ class Credits extends React.Component{
   }
 
   getForms(){
-    if(this.props.permissions == 5 || this.props.permissions == 3){
-      return(
-        <div>
-          <div className="col-xs-12 col-md-5">
-            <MatrizTransicionForm
-              url='/credits/matrices'
-              authenticity_token={ this.props.authenticity_token }
-              title= "Matriz de transicion"/>
-          </div>
-
-          <div className="col-xs-12 col-md-5">
-            <CreditosVencidosForm
-              url='/credits/creditos_vencidos'
-              title='Consultar creditos vencidos'
-              authenticity_token={ this.props.authenticity_token }/>
-          </div>
-
-          <div className="col-xs-12 col-md-5">
-            <CreditosConcedidosForm
-              url='/credits/creditos_concedidos'
-              title='Consultar creditos concedidos'
-              authenticity_token={ this.props.authenticity_token }/>
-          </div>
-
-          <div className="col-xs-12 col-md-5">
-            <CosechasForm
-              url='/credits/cosechas'
-              title='Reporte de Cosechas'
-              authenticity_token={ this.props.authenticity_token }/>
-          </div>
-
-          <div className="col-xs-12 col-md-5">
-            <CreditosPorVencerForm
-              authenticity_token={ this.props.authenticity_token }
-              url = '/credits/creditos_por_vencer'
-              title = 'Consultar creditos por vencer'/>
-          </div>
-
-          <div className="col-xs-12 col-md-5">
-            <CreditosPorVencerForm
-              authenticity_token={ this.props.authenticity_token }
-              url = '/credits/cartera_recuperada'
-              title = 'Cartera Recuperada'/>
-          </div>
-
-          <div className="col-xs-12 col-md-5">
-            <IndicadoresVigentesForm
-              url='/credits/indicadores_creditos_vigentes'
-              title='Indicadores creditos vigentes'
-              authenticity_token={ this.props.authenticity_token }/>
-          </div>
-
-          <div className="col-xs-12 col-md-5">
-            <IndicadoresCreditosColocadosForm
-              url='/credits/indicadores_creditos_colocados'
-              title='Indicadores creditos colocados'
-              authenticity_token={ this.props.authenticity_token }/>
-          </div>
-
-
+    return(
+      <div>
+        <div className="col-xs-12 col-md-5">
+          <IndicadoresVigentesForm
+            url='/credits/indicadores_creditos_vigentes'
+            title='Indicadores creditos vigentes'
+            authenticity_token={ this.props.authenticity_token }/>
         </div>
-      );
-    } else if(this.props.permissions == 7){
-      return(
-        <div>
 
-          <div className="col-xs-12 col-md-5">
-            <CreditosVencidosForm
-              url='/credits/creditos_vencidos'
-              title='Consultar creditos vencidos'
-              authenticity_token={ this.props.authenticity_token }/>
-          </div>
-
-          <div className="col-xs-12 col-md-5">
-            <CreditosConcedidosForm
-              url='/credits/creditos_concedidos'
-              title='Consultar creditos concedidos'
-              authenticity_token={ this.props.authenticity_token }/>
-          </div>
-
-          <div className="col-xs-12 col-md-5">
-            <CreditosPorVencerForm
-              authenticity_token={ this.props.authenticity_token }
-              url = '/credits/creditos_por_vencer'
-              title = 'Consultar creditos por vencer'/>
-          </div>
-
-          <div className="col-xs-12 col-md-5">
-            <CreditosPorVencerForm
-              authenticity_token={ this.props.authenticity_token }
-              url = '/credits/cartera_recuperada'
-              title = 'Cartera Recuperada'/>
-          </div>
-
-          <div className="col-xs-12 col-md-5">
-            <IndicadoresVigentesForm
-              url='/credits/indicadores_creditos_vigentes'
-              title='Indicadores creditos vigentes'
-              authenticity_token={ this.props.authenticity_token }/>
-          </div>
-
-          <div className="col-xs-12 col-md-5">
-            <IndicadoresCreditosColocadosForm
-              url='/credits/indicadores_creditos_colocados'
-              title='Indicadores creditos colocados'
-              authenticity_token={ this.props.authenticity_token }/>
-          </div>
+        <div className="col-xs-12 col-md-5">
+          <IndicadoresCreditosColocadosForm
+            url='/credits/indicadores_creditos_colocados'
+            title='Indicadores creditos colocados'
+            authenticity_token={ this.props.authenticity_token }/>
         </div>
-      );
-    } else if( this.props.permissions == 8){
-      return(
-        <div>
-          <div className="col-xs-12 col-md-5">
-            <MatrizTransicionForm
-              url='/credits/matrices'
-              authenticity_token={ this.props.authenticity_token }
-              title= "Matriz de transicion"/>
-          </div>
-
-          <div className="col-xs-12 col-md-5">
-            <CosechasForm
-              url='/credits/cosechas'
-              title='Reporte de Cosechas'
-              authenticity_token={ this.props.authenticity_token }/>
-          </div>
-
-        </div>
-      );
-    }
+      </div>
+    );
   }
 
   render(){

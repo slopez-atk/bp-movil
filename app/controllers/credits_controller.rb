@@ -581,11 +581,14 @@ class CreditsController < ApplicationController
     @hash_sector = Hash.new
     @hash_tipo_credito = Hash.new
     @hash_origen_recursos = Hash.new
+    @hash_metodologia = Hash.new
 
+    # Voy a transformar el hash en un array por eso instancio un array para cada hash
     @generos = Array.new
     @sectores = Array.new
     @tipos_credito = Array.new
     @origenes_recursos = Array.new
+    @metodologias = Array.new
 
     @data.each do |row|
       row.stringify_keys!
@@ -636,6 +639,18 @@ class CreditsController < ApplicationController
         @hash_origen_recursos[row["origen_recursos"]][:cartera_riesgo] += row["cartera_riesgo"].to_f.round(2)
         @hash_origen_recursos[row["origen_recursos"]][:cap_vencido] += row["cap_vencido"].to_f.round(2)
       end
+
+      # Metodologia
+      if @hash_metodologia[row["metodologia"]].nil?
+        @hash_metodologia[row["metodologia"]] = {clave: row["origen_recursos"], cantidad: 1, saldo: row["saldo"].to_f.round(2), cap_activo: row["cap_activo"].to_f.round(2), cap_ndevenga: row["cap_ndevenga"].to_f.round(2), cartera_riesgo: row["cartera_riesgo"].to_f.round(2), cap_vencido: row["cap_vencido"].to_f.round(2)}
+      else
+        @hash_metodologia[row["metodologia"]][:cantidad] += 1
+        @hash_metodologia[row["metodologia"]][:saldo] += row["saldo"].to_f.round(2)
+        @hash_metodologia[row["metodologia"]][:cap_activo] += row["cap_activo"].to_f.round(2)
+        @hash_metodologia[row["metodologia"]][:cap_ndevenga] += row["cap_ndevenga"].to_f.round(2)
+        @hash_metodologia[row["metodologia"]][:cartera_riesgo] += row["cartera_riesgo"].to_f.round(2)
+        @hash_metodologia[row["metodologia"]][:cap_vencido] += row["cap_vencido"].to_f.round(2)
+      end
     end
 
 
@@ -674,6 +689,15 @@ class CreditsController < ApplicationController
       row[1]["cartera_riesgo"] = row[1]["cartera_riesgo"].round(2)
       row[1]["cap_vencido"] = row[1]["cap_vencido"].round(2)
       @origenes_recursos.push(row[1])
+    end
+    @hash_metodologia.each do |row|
+      row[1].stringify_keys!
+      row[1]["saldo"] = row[1]["saldo"].round(2)
+      row[1]["cap_activo"] = row[1]["cap_activo"].round(2)
+      row[1]["cap_ndevenga"] = row[1]["cap_ndevenga"].round(2)
+      row[1]["cartera_riesgo"] = row[1]["cartera_riesgo"].round(2)
+      row[1]["cap_vencido"] = row[1]["cap_vencido"].round(2)
+      @metodologias.push(row[1])
     end
   end
 

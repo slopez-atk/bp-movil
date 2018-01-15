@@ -1,4 +1,5 @@
 import React from "react";
+import WebpackerReact from 'webpacker-react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import IndicadoresTable from '../components/CreditsIndicadores/IndicadoresTable';
@@ -38,6 +39,10 @@ class CreditosIndicadores extends React.Component{
 
           <div>
             <IndicadoresTable title={"Indicador de Origen de Recursos"} data={ this.props.origenes_recursos }/>
+          </div>
+
+          <div>
+            <IndicadoresTable title={"Indicador de Metodología"} data={ this.props.metodologias }/>
           </div>
         </div>
       </MuiThemeProvider>

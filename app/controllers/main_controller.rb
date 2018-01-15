@@ -308,10 +308,7 @@ class MainController < ApplicationController
       nuevo_juicio.withoutgood_stage_id = 1#WithoutgoodStage.find_by_name(juicio.good_stage.name)
       nuevo_juicio.without_good_activity_id = 1
       nuevo_juicio.callback_skip = true
-      puts "\n ===== Datos del juicio ===== \n"
-      puts nuevo_juicio
-      puts "\n ======= Dato de la etapa ===== \n"
-      puts WithoutgoodStage.find_by_name(juicio.good_stage.name)
+
       respond_to do |format|
         if nuevo_juicio.save
           nuevo_juicio.update(created_at: juicio.created_at, updated_at: juicio.updated_at)

@@ -2796,7 +2796,8 @@ class Oracledb < ApplicationRecord
              (SELECT max(DS.TIPO_SECTOR)
                   FROM SOCIOS_DIRECCIONES DS WHERE TH1.SOCIO = DS.CODIGO_SOCIO
                   AND DS.FECHA_INGRESO = (SELECT MAX(X.FECHA_INGRESO) FROM SOCIOS_DIRECCIONES X WHERE X.CODIGO_SOCIO = TH1.SOCIO)
-                  )AS SECTOR
+                  )AS SECTOR,
+             (select metodologia from cred_creditos where numero_credito=TH1.NUMERO_CREDITO)metodologia
     FROM(
       SELECT
           MAX(TH.FECHA_INGRESO)FECHA_INGRESO,
@@ -2971,7 +2972,7 @@ class Oracledb < ApplicationRecord
     where TH1.DIASMORA_PD between #{dia_inicio.to_i} and #{dia_fin.to_i}
     and   TH1.SUCURSAL like ('%#{agencia}%')
     ")
-
+    
     if results.present?
       return results
     else
@@ -3055,7 +3056,6 @@ class Oracledb < ApplicationRecord
       agencia = ""
     end
 
-
     results = connection.exec_query("
     SELECT
     TH1.FECHA_INGRESO FECHA_INGRESO,
@@ -3111,7 +3111,8 @@ class Oracledb < ApplicationRecord
              (SELECT max(DS.TIPO_SECTOR)
                   FROM SOCIOS_DIRECCIONES DS WHERE TH1.SOCIO = DS.CODIGO_SOCIO
                   AND DS.FECHA_INGRESO = (SELECT MAX(X.FECHA_INGRESO) FROM SOCIOS_DIRECCIONES X WHERE X.CODIGO_SOCIO = TH1.SOCIO)
-                  )AS SECTOR
+                  )AS SECTOR,
+             (select metodologia from cred_creditos where numero_credito=TH1.NUMERO_CREDITO)metodologia
     FROM(
       SELECT
           MAX(TH.FECHA_INGRESO)FECHA_INGRESO,

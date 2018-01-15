@@ -21,11 +21,16 @@ import Divider from 'material-ui/Divider';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 
 //Iconos
-import ActionAssessment from 'material-ui/svg-icons/action/assessment';
 import ActionFeedback from 'material-ui/svg-icons/action/feedback';
 import ActionDns from 'material-ui/svg-icons/action/dns';
 import ActionViewQuilt from 'material-ui/svg-icons/action/view-quilt';
 import ActionHome from 'material-ui/svg-icons/action/home';
+import ViewDay from 'material-ui/svg-icons/action/view-day';
+import ViewWeek from 'material-ui/svg-icons/action/view-week';
+import DeveloperBoard from 'material-ui/svg-icons/hardware/developer-board';
+import Equalizer from 'material-ui/svg-icons/av/equalizer';
+import Event from 'material-ui/svg-icons/action/event';
+import MarkunreadMailbox from 'material-ui/svg-icons/action/markunread-mailbox';
 
 
 //Colores
@@ -121,10 +126,10 @@ class CreditosNavigation extends React.Component {
     this.setState({openModalCosechas: !this.state.openModalCosechas});
   };
   handleModal6 = () => {
-    this.setState({openModalCosechas: !this.state.openModalIndicadoresVigentes});
+    this.setState({openModalIndicadoresVigentes: !this.state.openModalIndicadoresVigentes});
   };
   handleModal7 = () => {
-    this.setState({openModalCosechas: !this.state.openModalIndicadoresColocados});
+    this.setState({openModalIndicadoresColocados: !this.state.openModalIndicadoresColocados});
   };
 
   handleLocation = (action) => {
@@ -142,9 +147,10 @@ class CreditosNavigation extends React.Component {
     if(permissions == 5 || permissions == 3){
       return(
         <div>
+          <Divider/>
           <MenuItem
             primaryText="Cartera Por Vencer"
-            leftIcon={ <ActionAssessment color='#444444'/>}
+            leftIcon={ <Event color='#444444'/>}
             style={{color: '#444444'}}
             onClick={ this.handleModal1 }
           />
@@ -158,44 +164,48 @@ class CreditosNavigation extends React.Component {
           <Divider/>
           <MenuItem
             primaryText="Cartera Concedida"
-            leftIcon={ <ActionAssessment color='#444444'/>}
+            leftIcon={ <MarkunreadMailbox color='#444444'/>}
             style={{color: '#444444'}}
             onClick={ this.handleModal4 }
           />
           <Divider/>
           <MenuItem
             primaryText="Matrices de Riesgo"
-            leftIcon={ <ActionAssessment color='#444444'/>}
+            leftIcon={ <ViewWeek color='#444444'/>}
             style={{color: '#444444'}}
             onClick={ this.handleModal3 }
           />
           <Divider/>
           <MenuItem
             primaryText="Cosechas"
-            leftIcon={ <ActionAssessment color='#444444'/>}
+            leftIcon={ <ViewDay color='#444444'/>}
             style={{color: '#444444'}}
             onClick={ this.handleModal5 }
           />
           <Divider/>
           <MenuItem
             primaryText="Indicadores C. Vigentes"
-            leftIcon={ <ActionAssessment color='#444444'/>}
+            leftIcon={ <DeveloperBoard color='#444444'/>}
             style={{color: '#444444'}}
+            onClick={ this.handleModal6 }
           />
           <Divider/>
           <MenuItem
             primaryText="Indicadores C. Colocados"
-            leftIcon={ <ActionAssessment color='#444444'/>}
+            leftIcon={ <Equalizer color='#444444'/>}
             style={{color: '#444444'}}
+            onClick={ this.handleModal7 }
           />
+          <Divider/>
         </div>
       );
     } else if(permissions === 7){
       return(
         <div>
+          <Divider/>
           <MenuItem
             primaryText="Cartera Por Vencer"
-            leftIcon={ <ActionAssessment color='#444444'/>}
+            leftIcon={ <Event color='#444444'/>}
             style={{color: '#444444'}}
             onClick={ this.handleModal1 }
           />
@@ -209,52 +219,59 @@ class CreditosNavigation extends React.Component {
           <Divider/>
           <MenuItem
             primaryText="Cartera Concedida"
-            leftIcon={ <ActionAssessment color='#444444'/>}
+            leftIcon={ <MarkunreadMailbox color='#444444'/>}
             style={{color: '#444444'}}
             onClick={ this.handleModal4 }
           />
           <Divider/>
           <MenuItem
             primaryText="Indicadores C. Vigentes"
-            leftIcon={ <ActionAssessment color='#444444'/>}
+            leftIcon={ <DeveloperBoard color='#444444'/>}
             style={{color: '#444444'}}
+            onClick={ this.handleModal6 }
           />
           <Divider/>
           <MenuItem
             primaryText="Indicadores C. Colocados"
-            leftIcon={ <ActionAssessment color='#444444'/>}
+            leftIcon={ <Equalizer color='#444444'/>}
             style={{color: '#444444'}}
+            onClick={ this.handleModal7 }
           />
+          <Divider/>
         </div>
       );
     } else if(permissions === 8){
       return(
         <div>
+          <Divider/>
           <MenuItem
             primaryText="Matrices de Riesgo"
-            leftIcon={ <ActionAssessment color='#444444'/>}
+            leftIcon={ <ViewWeek color='#444444'/>}
             style={{color: '#444444'}}
             onClick={ this.handleModal3 }
           />
           <Divider/>
           <MenuItem
             primaryText="Cosechas"
-            leftIcon={ <ActionAssessment color='#444444'/>}
+            leftIcon={ <ViewDay color='#444444'/>}
             style={{color: '#444444'}}
             onClick={ this.handleModal5 }
           />
           <Divider/>
           <MenuItem
             primaryText="Indicadores C. Vigentes"
-            leftIcon={ <ActionAssessment color='#444444'/>}
+            leftIcon={ <DeveloperBoard color='#444444'/>}
             style={{color: '#444444'}}
+            onClick={ this.handleModal6 }
           />
           <Divider/>
           <MenuItem
             primaryText="Indicadores C. Colocados"
-            leftIcon={ <ActionAssessment color='#444444'/>}
+            leftIcon={ <Equalizer color='#444444'/>}
             style={{color: '#444444'}}
+            onClick={ this.handleModal7 }
           />
+          <Divider/>
         </div>
       );
     }

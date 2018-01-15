@@ -31,8 +31,8 @@ class TablaCoshechas extends React.Component {
         <TableRow style={{textAlign: 'center', backgroundColor: "#FFF176", fontWeight: "bold"}}>
           <TableRowColumn/>
           <TableRowColumn>TOTAL</TableRowColumn>
-          <TableRowColumn>{ fila[1] }</TableRowColumn>
-          <TableRowColumn>{ fila[2] }</TableRowColumn>
+          <TableRowColumn>{ parseFloat(fila[1]).toFixed(2) }</TableRowColumn>
+          <TableRowColumn>{ parseFloat(fila[2]).toFixed(2) }</TableRowColumn>
           <TableRowColumn/>
         </TableRow>
       );
@@ -92,7 +92,7 @@ class TablaCoshechas extends React.Component {
           <TableRowColumn>{ yearKey }</TableRowColumn>
           <TableRowColumn>{ this.getNombreMes(row) }</TableRowColumn>
           <TableRowColumn>{ data[row] }</TableRowColumn>
-          <TableRowColumn>{ this.props.saldos[yearKey][row]}</TableRowColumn>
+          <TableRowColumn>{ parseFloat(this.props.saldos[yearKey][row]).toFixed(2) }</TableRowColumn>
           <TableRowColumn>
             <RaisedButton label="Ver" backgroundColor={"#595753"} labelColor={"white"} onClick={()=>  this.props.onClick(yearKey, row)}/>
           </TableRowColumn>

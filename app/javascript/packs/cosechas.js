@@ -1,5 +1,5 @@
 import React from 'react';
-import WebpackerReact from 'webpacker-react';
+
 
 // Material Ui
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';

@@ -15,9 +15,12 @@
 
     %link{rel: "stylesheet", href: "https://fonts.googleapis.com/css?family=Lato:300,400,700,900"}
     %link{rel: "stylesheet", href: "https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.css"}
+    = javascript_pack_tag "agencias/agencias"
+    = javascript_pack_tag "agencias/agencias_navigation"
+    = javascript_pack_tag "agencias/indicadores_parent"
 
   %body.app-background
-    = render "partials/navigations/modulo_creditos"
+    = render "partials/navigations/agencias_navigation"
     %div{style:"#{'display:none;' if notice.nil? && alert.nil?}", class: "large-padding bg-color-red-500 color-white text-center no-margin"}
       = notice
       = alert

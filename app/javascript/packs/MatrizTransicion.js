@@ -1,4 +1,5 @@
 import React from 'react';
+import WebpackerReact from 'webpacker-react';
 import MatrizSaldos from '../components/MatrizTransicion/MatrizSaldos';
 import ListCredits from '../components/MatrizTransicion/ListCredits';
 

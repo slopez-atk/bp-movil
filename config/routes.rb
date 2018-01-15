@@ -66,9 +66,11 @@ Rails.application.routes.draw do
     post 'cartera_recuperada'
     post 'indicadores_creditos_vigentes'
     post 'indicadores_creditos_colocados'
-    get 'clientes_vip'
   end
 
   # Medulo de Agencias
   get '/agencias', to: 'agencias#index', as: :agencias_root
+  namespace :agencias do
+    get 'indicadores_financieros'
+  end
 end

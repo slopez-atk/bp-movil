@@ -1,5 +1,4 @@
 import React from 'react';
-import WebpackerReact from 'webpacker-react';
 import reqwest from 'reqwest';
 import RaisedButton from 'material-ui/RaisedButton';
 
