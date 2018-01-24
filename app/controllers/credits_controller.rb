@@ -31,6 +31,7 @@ class CreditsController < ApplicationController
     @data.each do |row|
       row['saldo'] = row['saldo'].to_f
       row['provision'] = row['provision'].to_f
+      row['valor_recuperado'] = row['valor_recuperado'].to_f
     end
 
     @data.each do |credit|
@@ -270,7 +271,11 @@ class CreditsController < ApplicationController
 
   def creditos_vencidos
     if params['consulta_detalles_asesor'].present?
-      @data = Oracledb.obtener_creditos_de_asesor params["asesor"]["nombre"], params["asesor"]["diaInicio"],params["asesor"]["diaFin"],params["asesor"]["fecha"]
+      if params["asesor"]["nombre"].present?
+        @data = Oracledb.obtener_creditos_de_asesor params["asesor"]["nombre"], params["asesor"]["diaInicio"],params["asesor"]["diaFin"],params["asesor"]["fecha"],""
+      else
+        @data = Oracledb.obtener_creditos_de_asesor "", params["asesor"]["diaInicio"],params["asesor"]["diaFin"],params["asesor"]["fecha"],params["asesor"]["sucursal"]
+      end
       respond_to do |format|
         format.json { render :layout => false, :text => @data.to_json }
       end
@@ -305,7 +310,15 @@ class CreditsController < ApplicationController
   def creditos_concedidos
 
     if params['consulta_detalles_asesor'].present?
-      @data = Oracledb.obtener_creditos_concedidos_de_un_asesor params["asesor"]["nombre"], params["asesor"]["fechaInicio"],params["asesor"]["fechaFin"],params["asesor"]["diaInicio"], params["asesor"]["diaFin"]
+      if params["asesor"]["nombre"].present?
+        @data = Oracledb.obtener_creditos_concedidos_de_un_asesor params["asesor"]["nombre"], "","",params["asesor"]["diaInicio"], params["asesor"]["diaFin"]
+      elsif params["asesor"]["sucursal"].present?
+        @data = Oracledb.obtener_creditos_concedidos_de_un_asesor "", params["asesor"]["sucursal"],"",params["asesor"]["diaInicio"], params["asesor"]["diaFin"]
+      else
+        @data = Oracledb.obtener_creditos_concedidos_de_un_asesor "", "",params["asesor"]["grupo_credito"],params["asesor"]["diaInicio"], params["asesor"]["diaFin"]
+      end
+
+
       @data.to_json
       respond_to do |format|
         format.json { render :layout => false, :text => @data }
@@ -317,19 +330,20 @@ class CreditsController < ApplicationController
     @tipoReporte = params['tipoReporte']
     @diaInicio = params["diaInicio"]
     @diaFin = params["diaFin"]
-    @fechaInicio = params["fechaInicio"]
-    @fechaFin = params["fechaFin"]
+
 
     # @data = Oracledb.obtener_creditos_por_asesor params["fecha"], params["diaInicio"], params["diaFin"]
 
     # @tipoReporte = "agencia"
     # @data = Oracledb.obtener_creditos_por_agencia params["fecha"], params["diaInicio"], params["diaFin"]
     if @tipoReporte == "asesor"
-      @data = Oracledb.obtener_creditos_concedidos_por_asesor params["fechaInicio"].to_date.strftime('%d-%m-%Y'), params["fechaFin"].to_date.strftime('%d-%m-%Y'), params["diaInicio"], params["diaFin"]
+      @data = Oracledb.obtener_creditos_concedidos_por_asesor   params["diaInicio"], params["diaFin"]
       # @data = Oracledb.obtener_creditos_concedidos_por_asesor '', '', params["diaInicio"], params["diaFin"]
-    else
-      @data = Oracledb.obtener_creditos_concedidos_por_agencia params["fechaInicio"].to_date.strftime('%d-%m-%Y'), params["fechaFin"].to_date.strftime('%d-%m-%Y'), params["diaInicio"], params["diaFin"]
+    elsif @tipoReporte == "agencia"
+      @data = Oracledb.obtener_creditos_concedidos_por_agencia params["diaInicio"], params["diaFin"]
       # @data = Oracledb.obtener_creditos_concedidos_por_agencia '', '', params["diaInicio"], params["diaFin"]
+    else
+      @data = Oracledb.obtener_creditos_concedidos_por_grupo_credito  params["diaInicio"], params["diaFin"]
     end
   end
 
@@ -394,6 +408,20 @@ class CreditsController < ApplicationController
         end
       end
     end
+
+    # @hash_datos.each do |key, hash|
+    #   @hash_datos[key] = @hash_datos[key].sort_by
+    # end
+    #
+    # @hash_cantidades.each do |key, hash|
+    #   @hash_cantidades[key] = @hash_cantidades[key].sort_by
+    # end
+    #
+    # @hash_saldos.each do |key, hash|
+    #   @hash_saldos[key] = @hash_saldos[key].sort_by
+    # end
+
+    # raise @hash_datos.to_yaml
 
   end
 
@@ -477,11 +505,19 @@ class CreditsController < ApplicationController
     @hash_sector = Hash.new
     @hash_tipo_credito = Hash.new
     @hash_origen_recursos = Hash.new
+    @hash_metodologia = Hash.new
+    @hash_nivel_instruccion = Hash.new
+    @hash_estado_civil = Hash.new
+    @hash_rango_edad = Hash.new
 
     @generos = Array.new
     @sectores = Array.new
     @tipos_credito = Array.new
     @origenes_recursos = Array.new
+    @metodologias = Array.new
+    @niveles_instruccion = Array.new
+    @estados_civiles = Array.new
+    @rango_edades = Array.new
 
     @data.each do |row|
       row.stringify_keys!
@@ -532,6 +568,66 @@ class CreditsController < ApplicationController
         @hash_origen_recursos[row["origen_recursos"]][:cartera_riesgo] += row["cartera_riesgo"].to_f.round(2)
         @hash_origen_recursos[row["origen_recursos"]][:cap_vencido] += row["cap_vencido"].to_f.round(2)
       end
+
+      # Metodologia
+      if @hash_metodologia[row["metodologia"]].nil?
+        @hash_metodologia[row["metodologia"]] = {clave: row["metodologia"], cantidad: 1, saldo: row["saldo"].to_f.round(2), cap_activo: row["cap_activo"].to_f.round(2), cap_ndevenga: row["cap_ndevenga"].to_f.round(2), cartera_riesgo: row["cartera_riesgo"].to_f.round(2), cap_vencido: row["cap_vencido"].to_f.round(2)}
+      else
+        @hash_metodologia[row["metodologia"]][:cantidad] += 1
+        @hash_metodologia[row["metodologia"]][:saldo] += row["saldo"].to_f.round(2)
+        @hash_metodologia[row["metodologia"]][:cap_activo] += row["cap_activo"].to_f.round(2)
+        @hash_metodologia[row["metodologia"]][:cap_ndevenga] += row["cap_ndevenga"].to_f.round(2)
+        @hash_metodologia[row["metodologia"]][:cartera_riesgo] += row["cartera_riesgo"].to_f.round(2)
+        @hash_metodologia[row["metodologia"]][:cap_vencido] += row["cap_vencido"].to_f.round(2)
+      end
+
+      # Nivel de Instruccion
+      if @hash_nivel_instruccion[row["instruccion"]].nil?
+        @hash_nivel_instruccion[row["instruccion"]] = {clave: row["instruccion"], cantidad: 1, saldo: row["saldo"].to_f.round(2), cap_activo: row["cap_activo"].to_f.round(2), cap_ndevenga: row["cap_ndevenga"].to_f.round(2), cartera_riesgo: row["cartera_riesgo"].to_f.round(2), cap_vencido: row["cap_vencido"].to_f.round(2)}
+      else
+        @hash_nivel_instruccion[row["instruccion"]][:cantidad] += 1
+        @hash_nivel_instruccion[row["instruccion"]][:saldo] += row["saldo"].to_f.round(2)
+        @hash_nivel_instruccion[row["instruccion"]][:cap_activo] += row["cap_activo"].to_f.round(2)
+        @hash_nivel_instruccion[row["instruccion"]][:cap_ndevenga] += row["cap_ndevenga"].to_f.round(2)
+        @hash_nivel_instruccion[row["instruccion"]][:cartera_riesgo] += row["cartera_riesgo"].to_f.round(2)
+        @hash_nivel_instruccion[row["instruccion"]][:cap_vencido] += row["cap_vencido"].to_f.round(2)
+      end
+
+      # Estado Civil
+      if @hash_estado_civil[row["estado_civil"]].nil?
+        @hash_estado_civil[row["estado_civil"]] = {clave: row["estado_civil"], cantidad: 1, saldo: row["saldo"].to_f.round(2), cap_activo: row["cap_activo"].to_f.round(2), cap_ndevenga: row["cap_ndevenga"].to_f.round(2), cartera_riesgo: row["cartera_riesgo"].to_f.round(2), cap_vencido: row["cap_vencido"].to_f.round(2)}
+      else
+        @hash_estado_civil[row["estado_civil"]][:cantidad] += 1
+        @hash_estado_civil[row["estado_civil"]][:saldo] += row["saldo"].to_f.round(2)
+        @hash_estado_civil[row["estado_civil"]][:cap_activo] += row["cap_activo"].to_f.round(2)
+        @hash_estado_civil[row["estado_civil"]][:cap_ndevenga] += row["cap_ndevenga"].to_f.round(2)
+        @hash_estado_civil[row["estado_civil"]][:cartera_riesgo] += row["cartera_riesgo"].to_f.round(2)
+        @hash_estado_civil[row["estado_civil"]][:cap_vencido] += row["cap_vencido"].to_f.round(2)
+      end
+
+      # Rangos de Edad
+      if @hash_rango_edad[row["rango_edad"]].nil?
+        @hash_rango_edad[row["rango_edad"]] = {clave: row["rango_edad"], cantidad: 1, saldo: row["saldo"].to_f.round(2), cap_activo: row["cap_activo"].to_f.round(2), cap_ndevenga: row["cap_ndevenga"].to_f.round(2), cartera_riesgo: row["cartera_riesgo"].to_f.round(2), cap_vencido: row["cap_vencido"].to_f.round(2)}
+      else
+        @hash_rango_edad[row["rango_edad"]][:cantidad] += 1
+        @hash_rango_edad[row["rango_edad"]][:saldo] += row["saldo"].to_f.round(2)
+        @hash_rango_edad[row["rango_edad"]][:cap_activo] += row["cap_activo"].to_f.round(2)
+        @hash_rango_edad[row["rango_edad"]][:cap_ndevenga] += row["cap_ndevenga"].to_f.round(2)
+        @hash_rango_edad[row["rango_edad"]][:cartera_riesgo] += row["cartera_riesgo"].to_f.round(2)
+        @hash_rango_edad[row["rango_edad"]][:cap_vencido] += row["cap_vencido"].to_f.round(2)
+      end
+
+      # Rangos Ingreso
+      # if @hash_metodologia[row["metodologia"]].nil?
+      #   @hash_metodologia[row["metodologia"]] = {clave: row["origen_recursos"], cantidad: 1, saldo: row["saldo"].to_f.round(2), cap_activo: row["cap_activo"].to_f.round(2), cap_ndevenga: row["cap_ndevenga"].to_f.round(2), cartera_riesgo: row["cartera_riesgo"].to_f.round(2), cap_vencido: row["cap_vencido"].to_f.round(2)}
+      # else
+      #   @hash_metodologia[row["metodologia"]][:cantidad] += 1
+      #   @hash_metodologia[row["metodologia"]][:saldo] += row["saldo"].to_f.round(2)
+      #   @hash_metodologia[row["metodologia"]][:cap_activo] += row["cap_activo"].to_f.round(2)
+      #   @hash_metodologia[row["metodologia"]][:cap_ndevenga] += row["cap_ndevenga"].to_f.round(2)
+      #   @hash_metodologia[row["metodologia"]][:cartera_riesgo] += row["cartera_riesgo"].to_f.round(2)
+      #   @hash_metodologia[row["metodologia"]][:cap_vencido] += row["cap_vencido"].to_f.round(2)
+      # end
     end
 
 
@@ -570,6 +666,42 @@ class CreditsController < ApplicationController
       row[1]["cartera_riesgo"] = row[1]["cartera_riesgo"].round(2)
       row[1]["cap_vencido"] = row[1]["cap_vencido"].round(2)
       @origenes_recursos.push(row[1])
+    end
+    @hash_metodologia.each do |row|
+      row[1].stringify_keys!
+      row[1]["saldo"] = row[1]["saldo"].round(2)
+      row[1]["cap_activo"] = row[1]["cap_activo"].round(2)
+      row[1]["cap_ndevenga"] = row[1]["cap_ndevenga"].round(2)
+      row[1]["cartera_riesgo"] = row[1]["cartera_riesgo"].round(2)
+      row[1]["cap_vencido"] = row[1]["cap_vencido"].round(2)
+      @metodologias.push(row[1])
+    end
+    @hash_estado_civil.each do |row|
+      row[1].stringify_keys!
+      row[1]["saldo"] = row[1]["saldo"].round(2)
+      row[1]["cap_activo"] = row[1]["cap_activo"].round(2)
+      row[1]["cap_ndevenga"] = row[1]["cap_ndevenga"].round(2)
+      row[1]["cartera_riesgo"] = row[1]["cartera_riesgo"].round(2)
+      row[1]["cap_vencido"] = row[1]["cap_vencido"].round(2)
+      @estados_civiles.push(row[1])
+    end
+    @hash_nivel_instruccion.each do |row|
+      row[1].stringify_keys!
+      row[1]["saldo"] = row[1]["saldo"].round(2)
+      row[1]["cap_activo"] = row[1]["cap_activo"].round(2)
+      row[1]["cap_ndevenga"] = row[1]["cap_ndevenga"].round(2)
+      row[1]["cartera_riesgo"] = row[1]["cartera_riesgo"].round(2)
+      row[1]["cap_vencido"] = row[1]["cap_vencido"].round(2)
+      @niveles_instruccion.push(row[1])
+    end
+    @hash_rango_edad.each do |row|
+      row[1].stringify_keys!
+      row[1]["saldo"] = row[1]["saldo"].round(2)
+      row[1]["cap_activo"] = row[1]["cap_activo"].round(2)
+      row[1]["cap_ndevenga"] = row[1]["cap_ndevenga"].round(2)
+      row[1]["cartera_riesgo"] = row[1]["cartera_riesgo"].round(2)
+      row[1]["cap_vencido"] = row[1]["cap_vencido"].round(2)
+      @rango_edades.push(row[1])
     end
 
   end

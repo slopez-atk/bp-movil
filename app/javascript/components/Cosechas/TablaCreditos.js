@@ -31,19 +31,18 @@ class TablaCreditos extends React.Component{
           <div>
             <BootstrapTable ref='table' data={ this.props.datos } pagination exportCSV={ true }  hover options={options}>
               <TableHeaderColumn dataField='socio' isKey={ true } dataSort={ true } width='170'>Socio</TableHeaderColumn>
-              <TableHeaderColumn dataField='credito' dataSort={ true } width='170'>credito</TableHeaderColumn>
-              <TableHeaderColumn dataField='garantia_vima' dataSort={ true } width='150'>Garantia Vima</TableHeaderColumn>
+              <TableHeaderColumn dataField='nombre' dataSort={ true } width='380'>Nombre</TableHeaderColumn>
+              <TableHeaderColumn dataField='cedula' dataSort={ true } width='180'>Cedula</TableHeaderColumn>
+              <TableHeaderColumn dataField='edad' dataSort={ true } width='130'>Edad</TableHeaderColumn>
+              <TableHeaderColumn dataField='genero' dataSort={ true } width='260'>Genero</TableHeaderColumn>
+              <TableHeaderColumn dataField='credito' dataSort={ true } width='250'>credito</TableHeaderColumn>
+              <TableHeaderColumn dataField='fecha_concesion' dataSort={ true } width='250'>Fecha Concesion</TableHeaderColumn>
+              <TableHeaderColumn dataField='calificacion' dataSort={ true } width='150'>Calificacion</TableHeaderColumn>
+              <TableHeaderColumn dataField='garantia_vima' dataSort={ true } width='280'>Garantia Vima</TableHeaderColumn>
               <TableHeaderColumn dataField='cap_activo' dataSort={ true } width='150'>Cap Activo</TableHeaderColumn>
               <TableHeaderColumn dataField='cap_ndevenga' dataSort={ true } width='150'>Cap NoDevenga</TableHeaderColumn>
               <TableHeaderColumn dataField='cap_vencido' dataSort={ true } width='150'>Cap Vencido</TableHeaderColumn>
-              <TableHeaderColumn dataField='calificacion' dataSort={ true } width='150'>Calificacion</TableHeaderColumn>
               <TableHeaderColumn dataField='cartera_riesgo' dataSort={ true } width='180'>Cartera Riesgo</TableHeaderColumn>
-              <TableHeaderColumn dataField='nombre' dataSort={ true } width='180'>Nombre</TableHeaderColumn>
-              <TableHeaderColumn dataField='cedula' dataSort={ true } width='180'>Cedula</TableHeaderColumn>
-              <TableHeaderColumn dataField='edad' dataSort={ true } width='150'>Edad</TableHeaderColumn>
-              <TableHeaderColumn dataField='genero' dataSort={ true } width='180'>Genero</TableHeaderColumn>
-              <TableHeaderColumn dataField='fecha_concesion' dataSort={ true } width='280'>Fecha Concesion</TableHeaderColumn>
-
             </BootstrapTable>
           </div>
         </Paper>

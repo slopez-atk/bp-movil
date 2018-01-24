@@ -7,13 +7,7 @@ import 'react-bootstrap-table/dist/react-bootstrap-table.min.css';
 class ReporteAgencias extends React.Component{
   constructor(props){
     super(props);
-    this.state = {
-      cap_activo: 0,
-      cap_ndevenga: 0,
-      cap_vencido: 0,
-      cartera_afectada: 0,
-      saldo_cartera: 0
-    }
+    this.buttonAction = this.buttonAction.bind(this);
   }
 
   createCustomToolBar = props => {
@@ -27,32 +21,46 @@ class ReporteAgencias extends React.Component{
     );
   };
 
-  CalculoMora(cell, row){
-    let mora = ((parseFloat(row.cartera_afectada)*100)/parseFloat(row.saldo_cartera)).toFixed(2);
+  calculoCreditosMora(cell, row){
+    let creditos_mora = ((parseFloat(row.creditos_morosos)*100)/parseFloat(row.numero_creditos)).toFixed(2);
     return(
-      <p>{mora}%</p>
+      <p>{creditos_mora}%</p>
     );
+  }
+
+  calculoSaldoMora(cell, row){
+    let saldos_mora = ((parseFloat(row.saldo_capital_pend)*100)/parseFloat(row.saldo_cartera)).toFixed(2);
+    return(
+      <p>{saldos_mora}%</p>
+    );
+  }
+
+  buttonAction(cell, row){
+    if(row.sucursal === "Total"){
+      return(
+        <h5>-</h5>
+      )
+    } else {
+      return(
+        <RaiseButton primary label="Ver" onClick={()=>  this.props.onClick(row.sucursal) }/>
+      );
+    }
   }
 
   calcularSumatorias(){
     let data = this.props.data;
-    let suma_cap_activo = 0;
-    let suma_cap_ndevenga = 0;
-    let suma_cap_vencido = 0;
-    let suma_cartera_afectada = 0;
+    let suma_creditos_morosos = 0;
+    let suma_saldo_pendiente = 0;
+    let suma_numero_creditos = 0;
     let suma_saldo_cartera = 0;
-    let suma_num_creditos = 0;
-    let suma_monto_credito = 0;
     for(let i=0; i<data.length; i++){
-      suma_cap_activo += parseFloat(data[i]["cap_activo"]);
-      suma_cap_ndevenga += parseFloat(data[i]["cap_ndevenga"]);
-      suma_cap_vencido += parseFloat(data[i]["cap_vencido"]);
-      suma_cartera_afectada += parseFloat(data[i]["cartera_afectada"]);
+      suma_creditos_morosos += parseFloat(data[i]["creditos_morosos"]);
+      suma_saldo_pendiente += parseFloat(data[i]["saldo_capital_pend"]);
+      suma_numero_creditos += parseFloat(data[i]["numero_creditos"]);
       suma_saldo_cartera += parseFloat(data[i]["saldo_cartera"]);
-      suma_num_creditos += data[i]["num_creditos"];
-      suma_monto_credito += parseFloat(data[i]["monto_credito"]);
+
     }
-    let totales = {sucursales: 'Total', num_creditos: suma_num_creditos, monto_credito: suma_monto_credito ,cap_activo: suma_cap_activo.toFixed(2), cap_ndevenga: suma_cap_ndevenga.toFixed(2), cap_vencido:suma_cap_vencido.toFixed(2), cartera_afectada:suma_cartera_afectada.toFixed(2), saldo_cartera:suma_saldo_cartera.toFixed(2)}
+    let totales = {sucursal: 'Total', creditos_morosos: suma_creditos_morosos, saldo_capital_pend: suma_saldo_pendiente.toFixed(2) ,numero_creditos: suma_numero_creditos, saldo_cartera: suma_saldo_cartera.toFixed(2)};
     data.push(totales);
   }
 
@@ -66,15 +74,14 @@ class ReporteAgencias extends React.Component{
       <Paper zDepth={2} className="top-space padding">
 
         <BootstrapTable ref='table' data={ this.props.data } pagination exportCSV={ true } hover striped options={options}>
-          <TableHeaderColumn dataField='sucursales' isKey={ true } dataSort={ true } width='280'>Sucursales</TableHeaderColumn>
-          <TableHeaderColumn dataField='num_creditos'  dataSort={ true } width='150'># Creditos</TableHeaderColumn>
-          <TableHeaderColumn dataField='monto_credito'  dataSort={ true } width='150'>Monto Credito</TableHeaderColumn>
-          <TableHeaderColumn dataField='cap_activo' dataSort={ true } width='150'>Cap Activo</TableHeaderColumn>
-          <TableHeaderColumn dataField='cap_ndevenga' dataSort={ true } width='150'>Cap No Devenga</TableHeaderColumn>
-          <TableHeaderColumn dataField='cap_vencido' dataSort={ true } width='150'>Cap Vencido</TableHeaderColumn>
-          <TableHeaderColumn dataField='cartera_afectada' dataSort={ true } width='150'>Cartera Afectada</TableHeaderColumn>
-          <TableHeaderColumn dataField='saldo_cartera' dataSort={ true } width='150'>Saldo Cartera</TableHeaderColumn>
-          <TableHeaderColumn dataField='mora' width='150' dataFormat={this.CalculoMora}>% Mora</TableHeaderColumn>
+          <TableHeaderColumn dataField='sucursal' isKey={ true } dataSort={ true } width='280'>Sucursales</TableHeaderColumn>
+          <TableHeaderColumn dataField='creditos_morosos'  dataSort={ true } width='150'># Creditos Morosos</TableHeaderColumn>
+          <TableHeaderColumn dataField='saldo_capital_pend'  dataSort={ true } width='150'>Saldo Capital Pendiente</TableHeaderColumn>
+          <TableHeaderColumn dataField='numero_creditos' dataSort={ true } width='150'># Total Créditos</TableHeaderColumn>
+          <TableHeaderColumn dataField='saldo_cartera' dataSort={ true } width='150'>Saldo Total</TableHeaderColumn>
+          <TableHeaderColumn dataField='creditos_mora' width='150' dataFormat={this.calculoCreditosMora}>% Creditos Mora</TableHeaderColumn>
+          <TableHeaderColumn dataField='saldos_mora' width='150' dataFormat={this.calculoSaldoMora}>% Saldo Mora</TableHeaderColumn>
+          <TableHeaderColumn dataField='action' width='150' dataFormat={this.buttonAction}>Ver</TableHeaderColumn>
         </BootstrapTable>
 
 

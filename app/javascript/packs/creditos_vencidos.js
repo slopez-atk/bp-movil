@@ -29,9 +29,11 @@ class CreditosVencidos extends React.Component{
     super(props);
     this.state = {
       datosAsesor: [],
+      datosSucursales: [],
       open: false
     };
     this.showAsesor = this.showAsesor.bind(this);
+    this.showSucursales = this.showSucursales.bind(this);
   }
 
   showAsesor(data){
@@ -56,6 +58,36 @@ class CreditosVencidos extends React.Component{
     }).then(data => {
       this.setState({
         datosAsesor: data
+      });
+      this.SnackhandleClick();
+      console.log(data);
+    }).catch(err => {
+      console.log(err)
+    });
+
+  }
+
+  showSucursales(data){
+    reqwest({
+      url: this.props.url,
+      method: 'POST',
+      data: {
+        consulta_detalles_asesor: {
+          validation: 'si'
+        },
+        asesor: {
+          sucursal: data,
+          diaInicio: this.props.diaInicio,
+          diaFin: this.props.diaFin,
+          fecha: this.props.fecha,
+        }
+      },
+      headers: {
+        'X-CSRF-TOKEN': this.props.authenticity_token
+      }
+    }).then(data => {
+      this.setState({
+        datosSucursales: data
       });
       this.SnackhandleClick();
       console.log(data);
@@ -100,8 +132,20 @@ class CreditosVencidos extends React.Component{
     } else {
       return(
         <div>
-          <h4 style={{color: muiTheme.palette.accent1Color}}>Consulta de créditos vencidos por agencia</h4>
-          <ReporteAgencias data={ this.props.data }/>
+          <div>
+            <h4 style={{color: muiTheme.palette.accent1Color}}>Consulta de créditos vencidos por agencia</h4>
+            <ReporteAgencias data={ this.props.data } onClick={ this.showSucursales }/>
+          </div>
+          <div>
+            <CreditosTable data={ this.state.datosSucursales }/>
+          </div>
+          <div>
+            <Snackbar
+              open={this.state.open}
+              message="Datos cargados"
+              autoHideDuration={4000}
+              onRequestClose={this.SnackhandleRequestClose}/>
+          </div>
         </div>
       );
     }

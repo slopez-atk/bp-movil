@@ -1,11 +1,13 @@
 import React from 'react';
 import WebpackerReact from 'webpacker-react';
 import IndicadoresFinancieros from '../../components/Agencias/IndicadoresFinancieros/IndicadoresFinancieros';
+import Graficas from '../../components/Agencias/IndicadoresFinancieros/Graficas';
 
 //Material ui
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import Snackbar from 'material-ui/Snackbar';
+import Dialog from 'material-ui/Dialog';
+import FlatButton from 'material-ui/FlatButton';
 
 const muiTheme = getMuiTheme({
   drawer: {
@@ -20,16 +22,52 @@ const muiTheme = getMuiTheme({
   }
 });
 
+const customContentStyle = {
+  width: '100%',
+  maxWidth: 'none',
+};
+
 class IndicadoresParent extends React.Component{
   constructor(props){
     super(props);
+    this.state = {
+      dataGraphic: [],
+      titulo: '',
+      open: false
+    };
+    this.setDataGraphic = this.setDataGraphic.bind(this);
+  }
+
+  handleOpen = () => {
+    this.setState({open: true});
+  };
+
+  handleClose = () => {
+    this.setState({open: false});
+  };
+
+  setDataGraphic(data, titulo){
+    this.setState({
+      dataGraphic: data,
+      titulo: titulo
+    });
+    this.handleOpen();
   }
 
 
   render(){
+    const actions = [
+      <FlatButton
+        label="Cerrar Ventana"
+        primary={true}
+        onClick={this.handleClose}
+      />,
+    ];
     return(
       <MuiThemeProvider muiTheme={getMuiTheme(muiTheme)}>
         <div>
+          <h4 style={{color: muiTheme.palette.accent1Color}} className="top-space">Indicadores Financieros</h4>
+
           <IndicadoresFinancieros activos={this.props.activos}
           fondos= {this.props.fondos}
           recerva_prestamo={this.props.recerva_prestamo}
@@ -55,7 +93,22 @@ class IndicadoresParent extends React.Component{
           cartera_bruta={this.props.cartera_bruta}
           cartera_bruta_microcredito={this.props.cartera_bruta_microcredito}
           cartera_riesgo={this.props.cartera_riesgo}
-          patrimonio={this.props.patrimonio}/>
+          patrimonio={this.props.patrimonio}
+          onClick={this.setDataGraphic}/>
+
+
+          <Dialog
+            title={this.state.titulo}
+            actions={actions}
+            modal={true}
+            contentStyle={customContentStyle}
+            open={this.state.open}
+            autoScrollBodyContent={true}>
+
+            <Graficas data={this.state.dataGraphic} titulo={this.state.titulo}/>
+
+          </Dialog>
+
         </div>
       </MuiThemeProvider>
     );

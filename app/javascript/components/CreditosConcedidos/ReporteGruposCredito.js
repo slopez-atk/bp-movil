@@ -4,7 +4,7 @@ import Paper from 'material-ui/Paper';
 import RaiseButton from 'material-ui/RaisedButton';
 import 'react-bootstrap-table/dist/react-bootstrap-table.min.css';
 
-class ReporteAsesor extends React.Component{
+class ReporteGruposCredito extends React.Component{
   constructor(props){
     super(props);
     this.buttonAction = this.buttonAction.bind(this);
@@ -35,7 +35,6 @@ class ReporteAsesor extends React.Component{
     );
   }
 
-
   buttonAction(cell, row){
     if(row.sucursal === "Total"){
       return(
@@ -43,7 +42,7 @@ class ReporteAsesor extends React.Component{
       )
     } else {
       return(
-        <RaiseButton primary label="Ver" onClick={()=>  this.props.onClick(row.asesor) }/>
+        <RaiseButton primary label="Ver" onClick={()=>  this.props.onClick(row.grupo_credito) }/>
       );
     }
   }
@@ -61,7 +60,7 @@ class ReporteAsesor extends React.Component{
       suma_saldo_cartera += parseFloat(data[i]["saldo_cartera"]);
 
     }
-    let totales = {asesor: 'Total', creditos_morosos: suma_creditos_morosos, saldo_capital_pend: suma_saldo_pendiente.toFixed(2) ,numero_creditos: suma_numero_creditos, saldo_cartera: suma_saldo_cartera.toFixed(2)};
+    let totales = {grupo_credito: 'Total', creditos_morosos: suma_creditos_morosos, saldo_capital_pend: suma_saldo_pendiente.toFixed(2) ,numero_creditos: suma_numero_creditos, saldo_cartera: suma_saldo_cartera.toFixed(2)};
     data.push(totales);
   }
 
@@ -74,21 +73,21 @@ class ReporteAsesor extends React.Component{
     return(
       <Paper zDepth={2} className="top-space padding">
 
-          <BootstrapTable ref='table' data={ this.props.data } pagination exportCSV={ true } hover striped options={options}>
-            <TableHeaderColumn dataField='asesor' isKey={ true } dataSort={ true } width='200'>Asesores</TableHeaderColumn>
-            <TableHeaderColumn dataField='creditos_morosos'  dataSort={ true } width='150'># Creditos Morosos</TableHeaderColumn>
-            <TableHeaderColumn dataField='saldo_capital_pend'  dataSort={ true } width='150'>Saldo Capital Pendiente</TableHeaderColumn>
-            <TableHeaderColumn dataField='numero_creditos' dataSort={ true } width='150'># Total Creditos</TableHeaderColumn>
-            <TableHeaderColumn dataField='saldo_cartera' dataSort={ true } width='150'>Saldo Total</TableHeaderColumn>
-            <TableHeaderColumn dataField='creditos_mora' width='150' dataFormat={this.calculoCreditosMora}>% Creditos Mora</TableHeaderColumn>
-            <TableHeaderColumn dataField='saldos_mora' width='150' dataFormat={this.calculoSaldoMora}>% Saldo Mora</TableHeaderColumn>
-            <TableHeaderColumn dataField='action' width='150' dataFormat={this.buttonAction}>Ver</TableHeaderColumn>
+        <BootstrapTable ref='table' data={ this.props.data } pagination exportCSV={ true } hover striped options={options}>
+          <TableHeaderColumn dataField='grupo_credito' isKey={ true } dataSort={ true } width='280'>Grupo Crédito</TableHeaderColumn>
+          <TableHeaderColumn dataField='creditos_morosos'  dataSort={ true } width='150'># Créditos Morosos</TableHeaderColumn>
+          <TableHeaderColumn dataField='saldo_capital_pend'  dataSort={ true } width='150'>Saldo Capital Pendiente</TableHeaderColumn>
+          <TableHeaderColumn dataField='numero_creditos' dataSort={ true } width='150'># Total Créditos</TableHeaderColumn>
+          <TableHeaderColumn dataField='saldo_cartera' dataSort={ true } width='150'>Saldo Total</TableHeaderColumn>
+          <TableHeaderColumn dataField='creditos_mora' width='150' dataFormat={this.calculoCreditosMora}>% Créditos Mora</TableHeaderColumn>
+          <TableHeaderColumn dataField='saldos_mora' width='150' dataFormat={this.calculoSaldoMora}>% Saldo Mora</TableHeaderColumn>
+          <TableHeaderColumn dataField='action' width='150' dataFormat={this.buttonAction}>Ver</TableHeaderColumn>
+        </BootstrapTable>
 
-          </BootstrapTable>
 
       </Paper>
     );
   }
 }
 
-export default ReporteAsesor;
+export default ReporteGruposCredito;

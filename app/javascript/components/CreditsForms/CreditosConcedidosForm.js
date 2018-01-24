@@ -93,22 +93,7 @@ class CreditosVencidosForm extends React.Component{
                 <input type="hidden" name="diaInicio" value={this.state.diaInicio} readOnly={true} />
                 <input type="hidden" name="diaFin" value={this.state.diaFin} readOnly={true} />
               </div>
-              <div>
-                <FormsyDate
-                  floatingLabelStyle={{color: muiTheme.palette.primary1Color}}
-                  onChange={ (ev, date)=> this.syncFechas(ev, date, 'fechaInicio') }
-                  name="fechaInicio"
-                  required
-                  floatingLabelText="Fecha de Inicio"/>
-              </div>
-              <div>
-                <FormsyDate
-                  floatingLabelStyle={{color: muiTheme.palette.primary1Color}}
-                  onChange={ (ev, date)=> this.syncFechas(ev, date, 'fechaFin') }
-                  name="fechaFin"
-                  required
-                  floatingLabelText="Fecha de Fin"/>
-              </div>
+
               <div>
                 <FormsyText
                   floatingLabelStyle={{color: muiTheme.palette.primary1Color}}
@@ -144,7 +129,11 @@ class CreditosVencidosForm extends React.Component{
                       label="Reporte por asesor"
                       style={{marginTop: 10, marginBottom: 10}}
                     />
-
+                    <RadioButton
+                      value="grupo_credito"
+                      label="Reporte por grupo credito"
+                      style={{marginTop: 10, marginBottom: 10}}
+                    />
                   </RadioButtonGroup>
                 </div>
               </div>

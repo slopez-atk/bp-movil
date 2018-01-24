@@ -40,6 +40,7 @@ class PerMonth extends  React.Component{
       valor_recuperado += parseFloat(data[i]["valor_recuperado"]);
       contador = contador + 1;
     }
+    console.log(valor_recuperado);
     return [saldo.toFixed(2),contador,provision.toFixed(2),pago.toFixed(2),valor_recuperado.toFixed(2)]
   }
 

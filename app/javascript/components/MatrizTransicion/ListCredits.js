@@ -119,38 +119,40 @@ class ListCredits extends React.Component{
       <div className="row center-xs middle-xs">
         <div className="col-xs-12">
           <BootstrapTable ref='table' data={ this.props.data } pagination exportCSV={ true } striped hover condensed options={ options }>
-            <TableHeaderColumn dataField='credito' isKey={ true } dataSort={ true } filter={ { type: 'TextFilter', delay: 1000 }} width={'120'}>Credito</TableHeaderColumn>
             <TableHeaderColumn dataField='socio' dataSort={ true } filter={ { type: 'TextFilter', delay: 1000 }} width={'120'}>Socio</TableHeaderColumn>
-            <TableHeaderColumn dataField='garantia_vima' dataSort={ true } width={'190'}>Garantía Vima</TableHeaderColumn>
             <TableHeaderColumn dataField='nombre' dataSort={ true } filter={ { type: 'TextFilter', delay: 1000 }} width={'350'}>Nombre</TableHeaderColumn>
             <TableHeaderColumn dataField='cedula' dataSort={ true } filter={ { type: 'TextFilter', delay: 1000 }} width={'140'}>Cédula</TableHeaderColumn>
             <TableHeaderColumn dataField='edad' dataSort={ true } width={'110'}>Edad</TableHeaderColumn>
             <TableHeaderColumn dataField='genero' dataSort={ true }  width={'120'}>Genero</TableHeaderColumn>
             <TableHeaderColumn dataField='estado_civil' dataSort={ true } width={'160'}>Estado Civil</TableHeaderColumn>
             <TableHeaderColumn dataField='nivel_de_instruccion' dataSort={ true } width={'170'}>Nivel Instruccion</TableHeaderColumn>
-            <TableHeaderColumn dataField='cap_saldo' dataSort={ true } width={'160'}>Cap Saldo</TableHeaderColumn>
-            <TableHeaderColumn dataField='diasmora_pd' dataSort={ true } width={'80'}>D. Mora</TableHeaderColumn>
-            <TableHeaderColumn dataField='nom_grupo' dataSort={ true } width={'190'}>Nombre Grupo</TableHeaderColumn>
-            <TableHeaderColumn dataField='codigo_perioc' dataSort={ true } width={'130'}>Código Perioc</TableHeaderColumn>
-            <TableHeaderColumn dataField='cuotas_credito' dataSort={ true } width={'90'}>Cuotas Crédito</TableHeaderColumn>
-            <TableHeaderColumn dataField='cuotas_p' dataSort={ true } width={'90'}>Cuotas P.</TableHeaderColumn>
-            <TableHeaderColumn dataField='cuota_vencida' dataSort={ true } width={'120'}>Cuota Vencida</TableHeaderColumn>
-            <TableHeaderColumn dataField='val_credito' dataSort={ true } width={'120'}>Val Crédito</TableHeaderColumn>
-            <TableHeaderColumn dataField='cap_activo' dataSort={ true } width={'120'}>Cap Activo</TableHeaderColumn>
-            <TableHeaderColumn dataField='cap_ndevenga' dataSort={ true } width={'120'}>Cap No Devenga</TableHeaderColumn>
-            <TableHeaderColumn dataField='cap_vencido' dataSort={ true } width={'120'}>Cap Vencido</TableHeaderColumn>
-            <TableHeaderColumn dataField='cartera_riesgo' dataSort={ true } width={'150'}>Cartera Riesgo</TableHeaderColumn>
+            <TableHeaderColumn dataField='canton' dataSort={ true } width={'200'}>Cantón</TableHeaderColumn>
+            <TableHeaderColumn dataField='provincia' dataSort={ true } width={'160'}>Provincia</TableHeaderColumn>
+            <TableHeaderColumn dataField='credito' isKey={ true } dataSort={ true } filter={ { type: 'TextFilter', delay: 1000 }} width={'120'}>Credito</TableHeaderColumn>
             <TableHeaderColumn dataField='fecha_concesion' dataSort={ true } width={'280'}>Fecha Concesion</TableHeaderColumn>
             <TableHeaderColumn dataField='fecha_vencimiento' dataSort={ true } width={'280'}>Fecha Vencimiento</TableHeaderColumn>
+            <TableHeaderColumn dataField='nom_grupo' dataSort={ true } width={'190'}>Nombre Grupo</TableHeaderColumn>
+            <TableHeaderColumn dataField='garantia_vima' dataSort={ true } width={'190'}>Garantía Vima</TableHeaderColumn>
+            <TableHeaderColumn dataField='diasmora_pd' dataSort={ true } width={'170'}>D. Mora</TableHeaderColumn>
+            <TableHeaderColumn dataField='codigo_perioc' dataSort={ true } width={'170'}>Código Perioc</TableHeaderColumn>
+            <TableHeaderColumn dataField='cuotas_credito' dataSort={ true } width={'170'}>Cuotas Crédito</TableHeaderColumn>
+            <TableHeaderColumn dataField='cuotas_p' dataSort={ true } width={'170'}>Cuotas P.</TableHeaderColumn>
+            <TableHeaderColumn dataField='cuota_vencida' dataSort={ true } width={'200'}>Cuota Vencida</TableHeaderColumn>
+            <TableHeaderColumn dataField='val_credito' dataSort={ true } width={'200'}>Val Crédito</TableHeaderColumn>
+            <TableHeaderColumn dataField='cap_activo' dataSort={ true } width={'200'}>Cap Activo</TableHeaderColumn>
+            <TableHeaderColumn dataField='cap_ndevenga' dataSort={ true } width={'200'}>Cap No Devenga</TableHeaderColumn>
+            <TableHeaderColumn dataField='cap_vencido' dataSort={ true } width={'200'}>Cap Vencido</TableHeaderColumn>
+            <TableHeaderColumn dataField='cartera_riesgo' dataSort={ true } width={'150'}>Cartera Riesgo</TableHeaderColumn>
+            <TableHeaderColumn dataField='cap_saldo' dataSort={ true } width={'200'}>Cap Saldo</TableHeaderColumn>
             <TableHeaderColumn dataField='valor_cancela' dataSort={ true } width={'120'}>Valor Cancela</TableHeaderColumn>
             <TableHeaderColumn dataField='tasa' dataSort={ true } width={'120'}>Tasa</TableHeaderColumn>
             <TableHeaderColumn dataField='oficina' dataSort={ true } width={'170'}>Oficina</TableHeaderColumn>
             <TableHeaderColumn dataField='cartera_heredada' dataSort={ true } width={'280'}>Cartera H.</TableHeaderColumn>
-            <TableHeaderColumn dataField='asesor' dataSort={ true } width={'280'}>Asesor</TableHeaderColumn>
-            <TableHeaderColumn dataField='sector' dataSort={ true } width={'90'}>Sector</TableHeaderColumn>
+            <TableHeaderColumn dataField='asesor' dataSort={ true } width={'280'} filter={ { type: 'TextFilter', delay: 1000 }}>Asesor</TableHeaderColumn>
+            <TableHeaderColumn dataField='sector' dataSort={ true } width={'90'} filter={ { type: 'TextFilter', delay: 1000 }}>Sector</TableHeaderColumn>
             <TableHeaderColumn dataField='parroquia' dataSort={ true } width={'200'}>Parroquia</TableHeaderColumn>
-            <TableHeaderColumn dataField='canton' dataSort={ true } width={'200'}>Cantón</TableHeaderColumn>
-            <TableHeaderColumn dataField='provincia' dataSort={ true } width={'160'}>Provincia</TableHeaderColumn>
+            <TableHeaderColumn dataField='ae_sector' dataSort={ true } width={'450'}>Actividad Económica Sector</TableHeaderColumn>
+            <TableHeaderColumn dataField='ae_subsector' dataSort={ true } width={'450'}>Actividad Económica Subsector</TableHeaderColumn>
 
           </BootstrapTable>
         </div>

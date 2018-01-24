@@ -163,7 +163,7 @@ class CreditosNavigation extends React.Component {
           />
           <Divider/>
           <MenuItem
-            primaryText="Cartera Concedida"
+            primaryText="Eficiencia de Cartera"
             leftIcon={ <MarkunreadMailbox color='#444444'/>}
             style={{color: '#444444'}}
             onClick={ this.handleModal4 }
@@ -428,11 +428,11 @@ class CreditosNavigation extends React.Component {
               actions={actions4}
               autoScrollBodyContent={true}>
               <div className="row center-xs middle-xs">
-                <h4 style={{color: "#2E3092"}}>Cartera Concedida</h4>
+                <h4 style={{color: "#2E3092"}}>Eficiencia de la Cartera</h4>
                 <div className="col-xs-10" style={styles.div}>
                   <CreditosConcedidosForm
                     url='/credits/creditos_concedidos'
-                    title='Consultar creditos concedidos'
+                    title='Consultar eficiencia de cartera'
                     authenticity_token={ this.props.authenticity_token }/>
                 </div>
               </div>

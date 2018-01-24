@@ -34,6 +34,7 @@ class TableDates extends React.Component{
       saldo = 0;
       cantidad = 0;
       provision = 0;
+      valor_recuperado = 0;
       for(let j=0; j<data[dates[i]].length; j++){
         saldo += parseFloat(data[dates[i]][j]['saldo']);
         provision += parseFloat(data[dates[i]][j]['provision']);

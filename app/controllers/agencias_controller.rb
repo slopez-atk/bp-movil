@@ -10,15 +10,23 @@ class AgenciasController < ApplicationController
     fecha_inicial = fecha_final - 1.year
     arrego_de_fechas = extraer_fechas_entre(fecha_inicial, fecha_final)
 
-
+    terminar_ciclo = false
     arrego_de_fechas.each do |date|
-      fecha = date.to_date
-      if fecha.month == Time.now.month and fecha.year == Time.now.year
-        data = OracledbAgencias.obtener_indicadores_financieros Time.now.strftime("%d/%m/%Y").to_date - 1.day
+      if terminar_ciclo == false
+        fecha = date.to_date
+        if fecha.month == Time.now.month and fecha.year == Time.now.year
+          data = OracledbAgencias.obtener_indicadores_financieros (Time.now.strftime("%d/%m/%Y").to_date - 1.day).strftime("%d/%m/%Y")
+          terminar_ciclo = true
+          # puts ("Fecha: " + (Time.now.strftime("%d/%m/%Y").to_date - 1.day).strftime("%d/%m/%Y").to_s)
+        else
+          data = OracledbAgencias.obtener_indicadores_financieros fecha.end_of_month.strftime("%d/%m/%Y")
+          # puts ("fecha: " + (fecha.end_of_month.strftime("%d/%m/%Y")).to_s)
+        end
+        @array_de_datos.push(data)
       else
-        data = OracledbAgencias.obtener_indicadores_financieros fecha.end_of_month
+        data = OracledbAgencias.obtener_cuentas_enceradas
+        @array_de_datos.push(data)
       end
-      @array_de_datos.push(data)
     end
 
     # Activos, Fondos disponibles, Recerva por prestamo,

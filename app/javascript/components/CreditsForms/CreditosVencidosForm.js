@@ -99,7 +99,7 @@ class CreditosVencidosForm extends React.Component{
                   onChange={ (ev, date)=> this.syncFechas(ev, date, 'fechaConsulta') }
                   name="fecha"
                   required
-                  floatingLabelText="Fecha de Inicio"/>
+                  floatingLabelText="Fecha de Reporte"/>
               </div>
               <div>
                 <FormsyText

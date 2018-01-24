@@ -31,32 +31,39 @@ class CreditosTable extends React.Component{
         <Paper zDepth={3} className="top-space padding">
           <div>
             <BootstrapTable ref='table' data={ this.props.data } pagination exportCSV={ true }  hover options={options}>
-              <TableHeaderColumn dataField='fecha_ingreso' isKey={ true } dataSort={ true } width='280'>Fecha Ingreso</TableHeaderColumn>
-              <TableHeaderColumn dataField='socio' dataSort={ true } width='280'>Socio</TableHeaderColumn>
-              <TableHeaderColumn dataField='credito' dataSort={ true } width='280'>credito</TableHeaderColumn>
-              <TableHeaderColumn dataField='origen_recursos' dataSort={ true } width='280'>origen</TableHeaderColumn>
-              <TableHeaderColumn dataField='provision_requerida' dataSort={ true } width='280'>provision</TableHeaderColumn>
-              <TableHeaderColumn dataField='codigo_perioc' dataSort={ true } width='280'>codigo p</TableHeaderColumn>
-              <TableHeaderColumn dataField='cuotas_credito' dataSort={ true } width='280'>cuotas credito</TableHeaderColumn>
-              <TableHeaderColumn dataField='nombre' dataSort={ true } width='350'>nombre</TableHeaderColumn>
-              <TableHeaderColumn dataField='tip_id' dataSort={ true } width='200'>tip</TableHeaderColumn>
-              <TableHeaderColumn dataField='cedula' dataSort={ true } width='250'>cedula</TableHeaderColumn>
-              <TableHeaderColumn dataField='genero' dataSort={ true } width='150'>genero</TableHeaderColumn>
-              <TableHeaderColumn dataField='edad' dataSort={ true } width='150'>edad</TableHeaderColumn>
-              <TableHeaderColumn dataField='fecha_nacimiento' dataSort={ true } width='280'>Fecha Nac</TableHeaderColumn>
-              <TableHeaderColumn dataField='calificacion' dataSort={ true } width='150'>Calificacion</TableHeaderColumn>
-              <TableHeaderColumn dataField='cap_activo' dataSort={ true } width='230'>Cap. Activo</TableHeaderColumn>
-              <TableHeaderColumn dataField='cap_ndevenga' dataSort={ true } width='230'>Cap No Devenga</TableHeaderColumn>
-              <TableHeaderColumn dataField='cap_vencido' dataSort={ true } width='230'>Cap Vencido</TableHeaderColumn>
-              <TableHeaderColumn dataField='cartera_riesgo' dataSort={ true } width='230'>Cartera Riesgo</TableHeaderColumn>
-              <TableHeaderColumn dataField='saldo_cartera' dataSort={ true } width='230'>Saldo Cartera</TableHeaderColumn>
-              <TableHeaderColumn dataField='fecha_concesion' dataSort={ true } width='250'>Fecha conce.</TableHeaderColumn>
-              <TableHeaderColumn dataField='fecha_vencimiento' dataSort={ true } width='250'>Fecha Vencim</TableHeaderColumn>
-              <TableHeaderColumn dataField='valor_cancela' dataSort={ true } width='230'>Valor Cancela</TableHeaderColumn>
-              <TableHeaderColumn dataField='diasmora_pd' dataSort={ true } width='120'>Dias morosidad</TableHeaderColumn>
-              <TableHeaderColumn dataField='oficina' dataSort={ true } width='250'>Oficina</TableHeaderColumn>
-              <TableHeaderColumn dataField='cartera_heredada' dataSort={ true } width='350'>Cartera Here.</TableHeaderColumn>
-              <TableHeaderColumn dataField='asesor' dataSort={ true } width='350'>Asesor</TableHeaderColumn>
+              <TableHeaderColumn dataField='codigo_socio' isKey={ true } dataSort={ true } width='120'>Código Socio</TableHeaderColumn>
+              <TableHeaderColumn dataField='nombres' dataSort={ true } width='380'>Nombres</TableHeaderColumn>
+              <TableHeaderColumn dataField='cedula' dataSort={ true } width='150'>Cédula</TableHeaderColumn>
+              <TableHeaderColumn dataField='telefono' dataSort={ true } width='150'>Teléfono</TableHeaderColumn>
+              <TableHeaderColumn dataField='celular' dataSort={ true } width='150'>Celular</TableHeaderColumn>
+              <TableHeaderColumn dataField='provincia' dataSort={ true } width='150'>Provincia</TableHeaderColumn>
+              <TableHeaderColumn dataField='canton' dataSort={ true } width='250'>Cantón</TableHeaderColumn>
+              <TableHeaderColumn dataField='parroquia' dataSort={ true } width='300'>Parroquia</TableHeaderColumn>
+              <TableHeaderColumn dataField='grupo_org' dataSort={ true } width='280'>Grupo org</TableHeaderColumn>
+              <TableHeaderColumn dataField='numero_credito' dataSort={ true } width='120'>Crédito</TableHeaderColumn>
+              <TableHeaderColumn dataField='dias_vencido' dataSort={ true } width='100'>Días Vencidos</TableHeaderColumn>
+              <TableHeaderColumn dataField='saldo_disponible_ahorros' dataSort={ true } width='150'>Saldo disponible ahorros</TableHeaderColumn>
+              <TableHeaderColumn dataField='saldo_bloqueado_ahorros' dataSort={ true } width='150'>Saldo bloqueado ahorros</TableHeaderColumn>
+              <TableHeaderColumn dataField='certificados' dataSort={ true } width='150'>Certificados</TableHeaderColumn>
+              <TableHeaderColumn dataField='saldo_encaje' dataSort={ true } width='150'>Saldo Encaje</TableHeaderColumn>
+              <TableHeaderColumn dataField='saldo_cesantia' dataSort={ true } width='150'>Saldo Cesantía</TableHeaderColumn>
+              <TableHeaderColumn dataField='monto_real' dataSort={ true } width='150'>Monto Real</TableHeaderColumn>
+              <TableHeaderColumn dataField='saldo_capital_pend' dataSort={ true } width='150'>Saldo Capital Pendiente</TableHeaderColumn>
+              <TableHeaderColumn dataField='valor_cancela' dataSort={ true } width='150'>Valor Cancela</TableHeaderColumn>
+              <TableHeaderColumn dataField='valor_notificaciones' dataSort={ true } width='150'>Valor Notificaciones</TableHeaderColumn>
+              <TableHeaderColumn dataField='valor_judicial' dataSort={ true } width='150'>Valor Judicial</TableHeaderColumn>
+              <TableHeaderColumn dataField='capital_vencido' dataSort={ true } width='150'>Capital Vencido</TableHeaderColumn>
+              <TableHeaderColumn dataField='fecha_vence' dataSort={ true } width='150'>Fecha Vence</TableHeaderColumn>
+              <TableHeaderColumn dataField='total_vencido' dataSort={ true } width='150'>Total Vencido</TableHeaderColumn>
+              <TableHeaderColumn dataField='por_vencer_manana' dataSort={ true } width='150'>Por Vencer Mañana</TableHeaderColumn>
+              <TableHeaderColumn dataField='mcli_observac' dataSort={ true } width='150'>Mcli Observacion</TableHeaderColumn>
+              <TableHeaderColumn dataField='estado_judi' dataSort={ true } width='150'>Estado Judicial</TableHeaderColumn>
+              <TableHeaderColumn dataField='notificacion' dataSort={ true } width='150'>Notificación</TableHeaderColumn>
+              <TableHeaderColumn dataField='origen_recursos' dataSort={ true } width='280'>Origen de Recursos</TableHeaderColumn>
+              <TableHeaderColumn dataField='nom_grupo' dataSort={ true } width='300'>Nombre Grupo</TableHeaderColumn>
+              <TableHeaderColumn dataField='nombre_sucursal' dataSort={ true } width='280'>Agencia</TableHeaderColumn>
+              <TableHeaderColumn dataField='cartera_heredada' dataSort={ true } width='230'>Cartera Heredada</TableHeaderColumn>
+              <TableHeaderColumn dataField='asesor' dataSort={ true } width='230'>Asesor</TableHeaderColumn>
             </BootstrapTable>
           </div>
         </Paper>

@@ -4,6 +4,7 @@
   "dependencies": {
     "@rails/webpacker": "^3.0.1",
     "babel-preset-react": "^6.24.1",
+    "chart.js": "^2.7.1",
     "formsy-material-ui": "^0.6.3",
     "formsy-react": "^0.19.5",
     "material-ui": "^0.19.1",
@@ -11,6 +12,7 @@
     "prop-types": "^15.5.10",
     "react": "15.6.1",
     "react-bootstrap-table": "^4.2.0",
+    "react-chartjs-2": "^2.7.0",
     "react-dom": "15.6.1",
     "reqwest": "^2.0.5",
     "webpack-merge": "^4.1.1",

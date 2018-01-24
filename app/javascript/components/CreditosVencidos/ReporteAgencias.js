@@ -6,13 +6,7 @@ import RaiseButton from 'material-ui/RaisedButton';
 class ReporteAgencias extends React.Component{
   constructor(props){
     super(props);
-    this.state = {
-      cap_activo: 0,
-      cap_ndevenga: 0,
-      cap_vencido: 0,
-      cartera_afectada: 0,
-      saldo_cartera: 0
-    }
+    this.buttonAction = this.buttonAction.bind(this);
   }
 
   createCustomToolBar = props => {
@@ -30,6 +24,12 @@ class ReporteAgencias extends React.Component{
     let mora = ((parseFloat(row.cartera_afectada)*100)/parseFloat(row.saldo_cartera)).toFixed(2);
     return(
       <p>{mora}%</p>
+    );
+  }
+
+  buttonAction(cell, row){
+    return(
+      <RaiseButton primary label="Ver" onClick={()=>  this.props.onClick(row.sucursales) }/>
     );
   }
 
@@ -74,6 +74,7 @@ class ReporteAgencias extends React.Component{
           <TableHeaderColumn dataField='cartera_afectada' dataSort={ true } width='150'>Cartera Afectada</TableHeaderColumn>
           <TableHeaderColumn dataField='saldo_cartera' dataSort={ true } width='150'>Saldo Cartera</TableHeaderColumn>
           <TableHeaderColumn dataField='mora' width='150' dataFormat={this.CalculoMora}>% Mora</TableHeaderColumn>
+          <TableHeaderColumn dataField='action' width='150' dataFormat={this.buttonAction}>Ver</TableHeaderColumn>
         </BootstrapTable>
       </Paper>
     );

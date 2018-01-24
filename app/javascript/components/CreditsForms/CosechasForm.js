@@ -128,25 +128,25 @@ class CosechasForm extends React.Component{
                   name="asesor"
                   onChange={this.syncAsesor}>
                   <MenuItem value={' '} primaryText="Todos" />
-                  <MenuItem value={'PAREDES VICTORIA'} primaryText="PAREDES VICTORIA" />
-                  <MenuItem value={'TERAN MARITZA'} primaryText="TERAN MARITZA" />
-                  <MenuItem value={'RODRIGUEZ WILLIAM'} primaryText="RODRIGUEZ WILLIAM" />
-                  <MenuItem value={'CHANDI VERONICA'} primaryText="CHANDI VERONICA" />
-                  <MenuItem value={'SANCHEZ ANDREA'} primaryText="SANCHEZ ANDREA" />
                   <MenuItem value={'ALARCON JUAN CARLOS'} primaryText="ALARCON JUAN CARLOS" />
-                  <MenuItem value={'CHAMORRO ANDRES'} primaryText="CHAMORRO ANDRES" />
-                  <MenuItem value={'RODRIGUEZ JORGE'} primaryText="RODRIGUEZ JORGE" />
-                  <MenuItem value={'PAZMINO MARCELIA'} primaryText="PAZMINO MARCELIA" />
-                  <MenuItem value={'DUQUE GABRIELA'} primaryText="DUQUE GABRIELA" />
-                  <MenuItem value={'DELGADO CRISTINA'} primaryText="DELGADO CRISTINA" />
-                  <MenuItem value={'CHANDI SILVIA'} primaryText="CHANDI SILVIA" />
-                  <MenuItem value={'BENAVIDES ROMEL'} primaryText="BENAVIDES ROMEL" />
-                  <MenuItem value={'CHAPI BYRON'} primaryText="CHAPI BYRON" />
-                  <MenuItem value={'INSUASTI SANDRA'} primaryText="INSUASTI SANDRA" />
-                  <MenuItem value={'CATUCUAGO MARINA'} primaryText="CATUCUAGO MARINA" />
-                  <MenuItem value={'HIDROBO STIWAR'} primaryText="HIDROBO STIWAR" />
-                  <MenuItem value={'ANDRADE EDISON'} primaryText="ANDRADE EDISON" />
                   <MenuItem value={'ALMEIDA FRANCISCO'} primaryText="ALMEIDA FRANCISCO" />
+                  <MenuItem value={'ANDRADE EDISON'} primaryText="ANDRADE EDISON" />
+                  <MenuItem value={'BENAVIDES ROMEL'} primaryText="BENAVIDES ROMEL" />
+                  <MenuItem value={'CATUCUAGO MARINA'} primaryText="CATUCUAGO MARINA" />
+                  <MenuItem value={'CHAMORRO ANDRES'} primaryText="CHAMORRO ANDRES" />
+                  <MenuItem value={'CHANDI SILVIA'} primaryText="CHANDI SILVIA" />
+                  <MenuItem value={'CHANDI VERONICA'} primaryText="CHANDI VERONICA" />
+                  <MenuItem value={'CHAPI BYRON'} primaryText="CHAPI BYRON" />
+                  <MenuItem value={'DELGADO CRISTINA'} primaryText="DELGADO CRISTINA" />
+                  <MenuItem value={'DUQUE GABRIELA'} primaryText="DUQUE GABRIELA" />
+                  <MenuItem value={'HIDROBO STIWAR'} primaryText="HIDROBO STIWAR" />
+                  <MenuItem value={'INSUASTI SANDRA'} primaryText="INSUASTI SANDRA" />
+                  <MenuItem value={'PAREDES VICTORIA'} primaryText="PAREDES VICTORIA" />
+                  <MenuItem value={'PAZMINO MARCELIA'} primaryText="PAZMINO MARCELIA" />
+                  <MenuItem value={'RODRIGUEZ JORGE'} primaryText="RODRIGUEZ JORGE" />
+                  <MenuItem value={'RODRIGUEZ WILLIAM'} primaryText="RODRIGUEZ WILLIAM" />
+                  <MenuItem value={'SANCHEZ ANDREA'} primaryText="SANCHEZ ANDREA" />
+                  <MenuItem value={'TERAN MARITZA'} primaryText="TERAN MARITZA" />
                 </FormsySelect>
               </div>
               <div>

@@ -137,4 +137,44 @@ class OracledbAgencias < ApplicationRecord
       }
     ]
   end
+
+
+
+  def self.obtener_cuentas_enceradas
+    return data = [
+      {nro_cuenta: 1, valor: "0"},
+      {nro_cuenta: 11,valor: "0"},
+      {nro_cuenta: 1101,valor: "0"},
+      {nro_cuenta: 1103,valor: "0"},
+      {nro_cuenta: 14,valor: "0"},
+      {nro_cuenta: 1499, valor: "0"},
+      {nro_cuenta: 1404, valor: "0"},
+      {nro_cuenta: 1428,valor: "0"},
+      {nro_cuenta: 1452,valor: "0"},
+      {nro_cuenta: 1425,valor: "0"},
+      {nro_cuenta: 1426,valor: "0"},
+      {nro_cuenta: 1427,valor: "0"},
+      {nro_cuenta: 1449,valor: "0"},
+      {nro_cuenta: 1450,valor: "0"},
+      {nro_cuenta: 1451,valor: "0"},
+      {nro_cuenta: 2,valor: "0"},
+      {nro_cuenta: 21,valor: "0"},
+      {nro_cuenta: 2101,valor: "0"},
+      {nro_cuenta: 2103,valor: "0"},
+      {nro_cuenta: 31,valor: "0"},
+      {nro_cuenta: 5,valor: "0"},
+      {nro_cuenta: 51,valor: "0"},
+      {nro_cuenta: 5102,valor: "0"},
+      {nro_cuenta: 5103,valor: "0"},
+      {nro_cuenta: 5104,valor: "0"},
+      {nro_cuenta: 54,valor: "0"},
+      {nro_cuenta: 56,valor: "0"},
+      {nro_cuenta: 4,valor: "0"},
+      {nro_cuenta: 41,valor: "0"},
+      {nro_cuenta: 44,valor: "0"},
+      {nro_cuenta: 45,valor: "0"},
+      {nro_cuenta: 4101,valor: "0"},
+      {nro_cuenta: 4501,valor: "0"}
+    ]
+  end
 end
