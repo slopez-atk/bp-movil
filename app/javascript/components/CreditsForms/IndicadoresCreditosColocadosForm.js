@@ -106,22 +106,7 @@ class IndicadoresCreditosColocadosForm extends React.Component{
                 <input type="hidden" name="agencia" value={this.state.agencia} readOnly={true} />
                 <input type="hidden" name="asesor" value={this.state.asesor} readOnly={true} />
               </div>
-              <div>
-                <FormsyDate
-                  floatingLabelStyle={{color: muiTheme.palette.primary1Color}}
-                  onChange={ (ev, date)=> this.syncFechas(ev, date, 'fechaInicio') }
-                  name="fechaInicio"
-                  required
-                  floatingLabelText="Fecha de Inicio"/>
-              </div>
-              <div>
-                <FormsyDate
-                  floatingLabelStyle={{color: muiTheme.palette.primary1Color}}
-                  onChange={ (ev, date)=> this.syncFechas(ev, date, 'fechaFin') }
-                  name="fechaFin"
-                  required
-                  floatingLabelText="Fecha de Fin"/>
-              </div>
+              
               <div>
                 <FormsyText
                   floatingLabelStyle={{color: muiTheme.palette.primary1Color}}

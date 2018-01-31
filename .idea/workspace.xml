@@ -2,44 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="80e436f7-3cf3-4a79-b522-a1f65f1de881" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/javascript/components/Agencias/AgenciasForms/IndicadoresFinancierosForm.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/javascript/components/Agencias/IndicadoresFinancieros/Graficas.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/javascript/components/CreditosConcedidos/ReporteGruposCredito.js" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/javascript/packs/agencias/test.js" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/javascript/components/CreditsIndicadores/IndicadoresColocadosTable.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/javascript/components/CreditsIndicadores/PercentIndicadoresColocadosTable.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/javascript/components/CreditsIndicadores/PercentIndicadoresTable.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/agencias_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/agencias_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/credits_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/credits_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascript/components/Agencias/IndicadoresFinancieros/IndicadoresFinancieros.js" afterPath="$PROJECT_DIR$/app/javascript/components/Agencias/IndicadoresFinancieros/IndicadoresFinancieros.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascript/components/Cosechas/TablaCreditos.js" afterPath="$PROJECT_DIR$/app/javascript/components/Cosechas/TablaCreditos.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascript/components/CreditosConcedidos/CreditosTable.js" afterPath="$PROJECT_DIR$/app/javascript/components/CreditosConcedidos/CreditosTable.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascript/components/CreditosConcedidos/ReporteAgencias.js" afterPath="$PROJECT_DIR$/app/javascript/components/CreditosConcedidos/ReporteAgencias.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascript/components/CreditosConcedidos/ReporteAsesor.js" afterPath="$PROJECT_DIR$/app/javascript/components/CreditosConcedidos/ReporteAsesor.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascript/components/CreditosPorVencer/PerMonth.js" afterPath="$PROJECT_DIR$/app/javascript/components/CreditosPorVencer/PerMonth.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascript/components/CreditosPorVencer/PerWeek.js" afterPath="$PROJECT_DIR$/app/javascript/components/CreditosPorVencer/PerWeek.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascript/components/CreditosPorVencer/TableDates.js" afterPath="$PROJECT_DIR$/app/javascript/components/CreditosPorVencer/TableDates.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascript/components/CreditosVencidos/CreditosTable.js" afterPath="$PROJECT_DIR$/app/javascript/components/CreditosVencidos/CreditosTable.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascript/components/CreditosConcedidos/ReporteGruposCredito.js" afterPath="$PROJECT_DIR$/app/javascript/components/CreditosConcedidos/ReporteGruposCredito.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascript/components/CreditosVencidos/ReporteAgencias.js" afterPath="$PROJECT_DIR$/app/javascript/components/CreditosVencidos/ReporteAgencias.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascript/components/CreditsForms/CarteraRecuperadaForm.js" afterPath="$PROJECT_DIR$/app/javascript/components/CreditsForms/CarteraRecuperadaForm.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascript/components/CreditsForms/CosechasForm.js" afterPath="$PROJECT_DIR$/app/javascript/components/CreditsForms/CosechasForm.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascript/components/CreditsForms/CreditosConcedidosForm.js" afterPath="$PROJECT_DIR$/app/javascript/components/CreditsForms/CreditosConcedidosForm.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascript/components/CreditsForms/CreditosPorVencerForm.js" afterPath="$PROJECT_DIR$/app/javascript/components/CreditsForms/CreditosPorVencerForm.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascript/components/CreditsForms/CreditosVencidosForm.js" afterPath="$PROJECT_DIR$/app/javascript/components/CreditsForms/CreditosVencidosForm.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascript/components/CreditosVencidos/ReporteAsesor.js" afterPath="$PROJECT_DIR$/app/javascript/components/CreditosVencidos/ReporteAsesor.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascript/components/CreditsForms/IndicadoresCreditosColocadosForm.js" afterPath="$PROJECT_DIR$/app/javascript/components/CreditsForms/IndicadoresCreditosColocadosForm.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascript/components/CreditsForms/IndicadoresVigentesForm.js" afterPath="$PROJECT_DIR$/app/javascript/components/CreditsForms/IndicadoresVigentesForm.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascript/components/CreditsForms/MatrizTransicionForm.js" afterPath="$PROJECT_DIR$/app/javascript/components/CreditsForms/MatrizTransicionForm.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascript/components/MatrizTransicion/ListCredits.js" afterPath="$PROJECT_DIR$/app/javascript/components/MatrizTransicion/ListCredits.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascript/packs/agencias/indicadores_parent.js" afterPath="$PROJECT_DIR$/app/javascript/packs/agencias/indicadores_parent.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascript/packs/creditos_concedidos.js" afterPath="$PROJECT_DIR$/app/javascript/packs/creditos_concedidos.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascript/components/CreditsIndicadores/IndicadoresTable.js" afterPath="$PROJECT_DIR$/app/javascript/components/CreditsIndicadores/IndicadoresTable.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascript/packs/creditos_indicadores.js" afterPath="$PROJECT_DIR$/app/javascript/packs/creditos_indicadores.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascript/packs/creditos_navigation.js" afterPath="$PROJECT_DIR$/app/javascript/packs/creditos_navigation.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascript/packs/creditos_vencidos.js" afterPath="$PROJECT_DIR$/app/javascript/packs/creditos_vencidos.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/oracledb.rb" afterPath="$PROJECT_DIR$/app/models/oracledb.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/oracledb_agencias.rb" afterPath="$PROJECT_DIR$/app/models/oracledb_agencias.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/credits/_credito_concedido.json.jbuilder" afterPath="$PROJECT_DIR$/app/views/credits/_credito_concedido.json.jbuilder" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/credits/creditos_concedidos.haml" afterPath="$PROJECT_DIR$/app/views/credits/creditos_concedidos.haml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/credits/indicadores_creditos_colocados.haml" afterPath="$PROJECT_DIR$/app/views/credits/indicadores_creditos_colocados.haml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/credits/indicadores_creditos_vigentes.haml" afterPath="$PROJECT_DIR$/app/views/credits/indicadores_creditos_vigentes.haml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yarn.lock" afterPath="$PROJECT_DIR$/yarn.lock" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
@@ -58,18 +38,18 @@
       <file leaf-file-name="credits_controller.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/credits_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1666">
-              <caret line="694" column="26" lean-forward="false" selection-start-line="694" selection-start-column="26" selection-end-line="694" selection-end-column="26" />
+            <state relative-caret-position="409">
+              <caret line="858" column="7" lean-forward="false" selection-start-line="858" selection-start-column="7" selection-end-line="858" selection-end-column="7" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_credito_concedido.json.jbuilder" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/credits/_credito_concedido.json.jbuilder">
+      <file leaf-file-name="oracledb.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/models/oracledb.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="562" lean-forward="false" selection-start-line="0" selection-start-column="562" selection-end-line="0" selection-end-column="562" />
+            <state relative-caret-position="625">
+              <caret line="3378" column="20" lean-forward="false" selection-start-line="3378" selection-start-column="20" selection-end-line="3378" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -78,8 +58,8 @@
       <file leaf-file-name="creditos_indicadores.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/javascript/packs/creditos_indicadores.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1196">
-              <caret line="58" column="33" lean-forward="false" selection-start-line="58" selection-start-column="33" selection-end-line="58" selection-end-column="33" />
+            <state relative-caret-position="-1115">
+              <caret line="36" column="26" lean-forward="false" selection-start-line="36" selection-start-column="26" selection-end-line="36" selection-end-column="26" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -87,21 +67,41 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="oracledb.rb" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/models/oracledb.rb">
+      <file leaf-file-name="IndicadoresCreditosColocadosForm.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/javascript/components/CreditsForms/IndicadoresCreditosColocadosForm.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="319">
-              <caret line="2480" column="34" lean-forward="false" selection-start-line="2480" selection-start-column="34" selection-end-line="2480" selection-end-column="34" />
+            <state relative-caret-position="50">
+              <caret line="108" column="14" lean-forward="false" selection-start-line="108" selection-start-column="14" selection-end-line="108" selection-end-column="14" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="oracle.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/initializers/oracle.rb">
+      <file leaf-file-name="IndicadoresColocadosTable.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/javascript/components/CreditsIndicadores/IndicadoresColocadosTable.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="322">
-              <caret line="14" column="24" lean-forward="false" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
+            <state relative-caret-position="574">
+              <caret line="47" column="54" lean-forward="false" selection-start-line="47" selection-start-column="54" selection-end-line="47" selection-end-column="54" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="indicadores_creditos_vigentes.haml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/credits/indicadores_creditos_vigentes.haml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="253">
+              <caret line="11" column="18" lean-forward="false" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="indicadores_creditos_colocados.haml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/credits/indicadores_creditos_colocados.haml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="253">
+              <caret line="11" column="19" lean-forward="false" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -111,10 +111,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>cartera</find>
-      <find>buscar</find>
-      <find>Dias tra</find>
-      <find>cose</find>
       <find>Date.new</find>
       <find>extraer_fechas_entre</find>
       <find>monitoreo</find>
@@ -141,6 +137,10 @@
       <find>cosec</find>
       <find>ven</find>
       <find>st</find>
+      <find>sexo</find>
+      <find>calcularSumatorias</find>
+      <find>indicad</find>
+      <find>Servimo</find>
     </findStrings>
     <replaceStrings>
       <replace>tr</replace>
@@ -157,12 +157,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/javascript/packs/agencias/agencias.js" />
-        <option value="$PROJECT_DIR$/app/javascript/packs/agencias/IndicadoresFinencieros.js" />
-        <option value="$PROJECT_DIR$/app/javascript/packs/agencias/indicadores_finencieros.js" />
-        <option value="$PROJECT_DIR$/app/javascript/packs/agencias/indicadores_financieros.js" />
-        <option value="$PROJECT_DIR$/app/javascript/packs/agencias/financieros.js" />
-        <option value="$PROJECT_DIR$/app/javascript/packs/stages_group.js" />
         <option value="$PROJECT_DIR$/app/javascript/packs/cosechas.js" />
         <option value="$PROJECT_DIR$/app/javascript/packs/credits.js" />
         <option value="$PROJECT_DIR$/app/javascript/packs/registration.js" />
@@ -174,13 +168,10 @@
         <option value="$PROJECT_DIR$/app/assets/stylesheets/app.scss" />
         <option value="$PROJECT_DIR$/app/javascript/packs/agencias/indicadores_parent.js" />
         <option value="$PROJECT_DIR$/app/javascript/components/Agencias/IndicadoresFinancieros/Graficas.js" />
-        <option value="$PROJECT_DIR$/app/models/oracledb_agencias.rb" />
         <option value="$PROJECT_DIR$/app/javascript/components/Agencias/IndicadoresFinancieros/IndicadoresFinancieros.js" />
-        <option value="$PROJECT_DIR$/app/controllers/agencias_controller.rb" />
         <option value="$PROJECT_DIR$/app/javascript/components/CreditsForms/CarteraRecuperadaForm.js" />
         <option value="$PROJECT_DIR$/app/javascript/components/CreditsForms/CosechasForm.js" />
         <option value="$PROJECT_DIR$/app/javascript/components/CreditsForms/CreditosPorVencerForm.js" />
-        <option value="$PROJECT_DIR$/app/javascript/components/CreditsForms/IndicadoresCreditosColocadosForm.js" />
         <option value="$PROJECT_DIR$/app/javascript/components/CreditsForms/IndicadoresVigentesForm.js" />
         <option value="$PROJECT_DIR$/app/javascript/components/CreditsForms/MatrizTransicionForm.js" />
         <option value="$PROJECT_DIR$/app/javascript/components/CreditsForms/CreditosVencidosForm.js" />
@@ -193,21 +184,30 @@
         <option value="$PROJECT_DIR$/app/javascript/components/CreditsForms/CreditosConcedidosForm.js" />
         <option value="$PROJECT_DIR$/app/javascript/packs/creditos_concedidos.js" />
         <option value="$PROJECT_DIR$/app/javascript/packs/creditos_vencidos.js" />
-        <option value="$PROJECT_DIR$/app/javascript/components/CreditosVencidos/ReporteAgencias.js" />
         <option value="$PROJECT_DIR$/app/views/credits/creditos_concedidos.haml" />
         <option value="$PROJECT_DIR$/app/javascript/packs/creditos_navigation.js" />
-        <option value="$PROJECT_DIR$/app/javascript/packs/creditos_indicadores.js" />
-        <option value="$PROJECT_DIR$/app/views/credits/indicadores_creditos_vigentes.haml" />
         <option value="$PROJECT_DIR$/app/views/credits/_credito_concedido.json.jbuilder" />
-        <option value="$PROJECT_DIR$/app/javascript/components/CreditosConcedidos/ReporteAgencias.js" />
-        <option value="$PROJECT_DIR$/app/javascript/components/CreditosConcedidos/ReporteAsesor.js" />
-        <option value="$PROJECT_DIR$/app/javascript/components/CreditosConcedidos/ReporteGruposCredito.js" />
         <option value="$PROJECT_DIR$/app/javascript/components/CreditosConcedidos/CreditosTable.js" />
         <option value="$PROJECT_DIR$/app/javascript/components/CreditosPorVencer/PerWeek.js" />
         <option value="$PROJECT_DIR$/config/initializers/oracle.rb" />
         <option value="$PROJECT_DIR$/config/database.yml" />
-        <option value="$PROJECT_DIR$/app/models/oracledb.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/agencias_controller.rb" />
+        <option value="$PROJECT_DIR$/app/models/oracledb_agencias.rb" />
+        <option value="$PROJECT_DIR$/app/javascript/components/CreditsIndicadores/IndicadoresTable.js" />
+        <option value="$PROJECT_DIR$/app/javascript/components/CreditsIndicadores/PercentIndicadoresTable.js" />
+        <option value="$PROJECT_DIR$/app/javascript/components/CreditosConcedidos/ReporteAsesor.js" />
+        <option value="$PROJECT_DIR$/app/javascript/components/CreditosConcedidos/ReporteAgencias.js" />
+        <option value="$PROJECT_DIR$/app/javascript/components/CreditosConcedidos/ReporteGruposCredito.js" />
+        <option value="$PROJECT_DIR$/app/javascript/components/CreditosVencidos/ReporteAgencias.js" />
+        <option value="$PROJECT_DIR$/app/javascript/components/CreditosVencidos/ReporteAsesor.js" />
+        <option value="$PROJECT_DIR$/app/views/credits/indicadores_creditos_vigentes.haml" />
+        <option value="$PROJECT_DIR$/app/views/credits/indicadores_creditos_colocados.haml" />
+        <option value="$PROJECT_DIR$/app/javascript/packs/creditos_indicadores.js" />
+        <option value="$PROJECT_DIR$/app/javascript/components/CreditsIndicadores/PercentIndicadoresColocadosTable.js" />
+        <option value="$PROJECT_DIR$/app/javascript/components/CreditsIndicadores/IndicadoresColocadosTable.js" />
         <option value="$PROJECT_DIR$/app/controllers/credits_controller.rb" />
+        <option value="$PROJECT_DIR$/app/models/oracledb.rb" />
+        <option value="$PROJECT_DIR$/app/javascript/components/CreditsForms/IndicadoresCreditosColocadosForm.js" />
       </list>
     </option>
   </component>
@@ -240,7 +240,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="RailsProjectView" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -285,48 +284,7 @@
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="javascript" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="Agencias" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="AppCacmu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AppCacmu" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="javascript" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="Agencias" type="462c0819:PsiDirectoryNode" />
-              <item name="IndicadoresFinancieros" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="AppCacmu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AppCacmu" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="javascript" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="Cosechas" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="AppCacmu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AppCacmu" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="javascript" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
               <item name="CreditosConcedidos" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="AppCacmu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AppCacmu" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="javascript" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="CreditosPorVencer" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="AppCacmu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AppCacmu" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="javascript" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="CreditosVencidos" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="AppCacmu" type="b2602c69:ProjectViewProjectNode" />
@@ -342,7 +300,7 @@
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="javascript" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="MatrizTransicion" type="462c0819:PsiDirectoryNode" />
+              <item name="CreditsIndicadores" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="AppCacmu" type="b2602c69:ProjectViewProjectNode" />
@@ -401,11 +359,12 @@
         </subPane>
       </pane>
       <pane id="Scratches" />
+      <pane id="RailsProjectView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="SearchEverywhereHistoryKey" value="or&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/models/oracledb.rb&#10;oracle&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/config/initializers/oracle.rb&#10;database&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/config/database.yml&#10;ora&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/models/oracledb.rb&#10;credits_co&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/credits_controller.rb&#10;orac&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/models/oracledb.rb&#10;cose&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/models/oracledb.rb&#10;Orac&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/models/oracledb.rb&#10;credits_con&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/credits_controller.rb&#10;goo&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/models/good.rb&#10;Inso&#9;null&#9;null&#10;Good&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/models/good.rb&#10;credits_&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/credits_controller.rb&#10;cre&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/javascript/packs/creditos_concedidos.js&#10;credit&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/credits_controller.rb&#10;routes&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/config/routes.rb&#10;oracl&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/models/oracledb.rb&#10;data&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/config/database.yml&#10;dash&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/views/main/dashboard.haml&#10;rout&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/config/routes.rb&#10;report&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/views/credits/report.haml&#10;hi&#9;null&#9;null&#10;with&#9;null&#9;null&#10;new_tr&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/views/main/new_trial.haml&#10;credits&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/credits_controller.rb&#10;Oracle&#9;null&#9;null" />
+    <property name="SearchEverywhereHistoryKey" value="oracle&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/models/oracledb.rb&#10;or&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/models/oracledb_agencias.rb&#10;oracl&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/models/oracledb_agencias.rb&#10;orac&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/models/oracledb_agencias.rb&#10;database&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/config/database.yml&#10;ora&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/models/oracledb.rb&#10;credits_co&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/credits_controller.rb&#10;cose&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/models/oracledb.rb&#10;Orac&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/models/oracledb.rb&#10;credits_con&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/credits_controller.rb&#10;goo&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/models/good.rb&#10;Inso&#9;null&#9;null&#10;Good&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/models/good.rb&#10;credits_&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/credits_controller.rb&#10;cre&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/javascript/packs/creditos_concedidos.js&#10;credit&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/credits_controller.rb&#10;routes&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/config/routes.rb&#10;data&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/config/database.yml&#10;dash&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/views/main/dashboard.haml&#10;rout&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/config/routes.rb&#10;report&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/views/credits/report.haml&#10;hi&#9;null&#9;null&#10;with&#9;null&#9;null&#10;new_tr&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/views/main/new_trial.haml&#10;credits&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/credits_controller.rb&#10;Oracle&#9;null&#9;null" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -474,18 +433,23 @@
       <workItem from="1516751644922" duration="279000" />
       <workItem from="1516758152035" duration="13578000" />
       <workItem from="1516805375591" duration="8400000" />
-      <workItem from="1516827937509" duration="706000" />
+      <workItem from="1516827937509" duration="978000" />
+      <workItem from="1517240624555" duration="109000" />
+      <workItem from="1517281177724" duration="5100000" />
+      <workItem from="1517323396727" duration="5957000" />
+      <workItem from="1517366021135" duration="6265000" />
+      <workItem from="1517415846575" duration="3483000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="142216000" />
+    <option name="totallyTimeSpent" value="163402000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="773" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24765626" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27578124" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -512,53 +476,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="2" />
+      <option name="time" value="3" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/app.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2288">
-          <caret line="139" column="1" lean-forward="false" selection-start-line="139" selection-start-column="1" selection-end-line="139" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/partials/creditos/_jcobranzas_home_tables.haml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="19" column="44" lean-forward="false" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/javascript/components/Cosechas/TablaCoshechas.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="96" column="137" lean-forward="true" selection-start-line="96" selection-start-column="12" selection-end-line="96" selection-end-column="137" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/agencias/indicadores_financieros.haml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="529">
-          <caret line="23" column="19" lean-forward="false" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/javascript/packs/agencias/indicadores_parent.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="447">
-          <caret line="105" column="40" lean-forward="false" selection-start-line="105" selection-start-column="40" selection-end-line="105" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/javascript/components/CreditsForms/CosechasForm.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="531">
-          <caret line="148" column="82" lean-forward="false" selection-start-line="148" selection-start-column="82" selection-end-line="148" selection-end-column="82" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/javascript/components/CreditsForms/CarteraRecuperadaForm.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="506">
@@ -584,13 +506,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="592">
           <caret line="155" column="82" lean-forward="false" selection-start-line="155" selection-start-column="82" selection-end-line="155" selection-end-column="82" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/javascript/components/CreditsForms/IndicadoresCreditosColocadosForm.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="620">
-          <caret line="192" column="82" lean-forward="false" selection-start-line="192" selection-start-column="82" selection-end-line="192" selection-end-column="82" />
         </state>
       </provider>
     </entry>
@@ -643,13 +558,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/agencias_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="529">
-          <caret line="23" column="10" lean-forward="false" selection-start-line="23" selection-start-column="10" selection-end-line="23" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/javascript/components/Agencias/AgenciasForms/IndicadoresFinancierosForm.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -678,39 +586,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/javascript/components/Cosechas/TablaCreditos.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="805">
-          <caret line="38" column="89" lean-forward="false" selection-start-line="38" selection-start-column="89" selection-end-line="38" selection-end-column="89" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/javascript/components/MatrizTransicion/ListCredits.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2852">
-          <caret line="129" column="114" lean-forward="false" selection-start-line="129" selection-start-column="114" selection-end-line="129" selection-end-column="114" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/oracledb_agencias.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="6" column="8" lean-forward="false" selection-start-line="6" selection-start-column="8" selection-end-line="6" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/javascript/components/CreditosVencidos/CreditosTableAgencias.js" />
     <entry file="file://$PROJECT_DIR$/app/views/credits/_credit.json.jbuilder">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/javascript/components/CreditosVencidos/CreditosTable.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="65" selection-end-column="29" />
         </state>
       </provider>
     </entry>
@@ -728,98 +608,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/javascript/packs/creditos_vencidos.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-428">
-          <caret line="35" column="45" lean-forward="false" selection-start-line="35" selection-start-column="45" selection-end-line="35" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/javascript/components/CreditosVencidos/ReporteAgencias.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="8" column="53" lean-forward="false" selection-start-line="8" selection-start-column="53" selection-end-line="8" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/javascript/components/CreditosVencidos/ReporteAsesor.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="8" column="53" lean-forward="true" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/credits/creditos_concedidos.haml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="7" column="20" lean-forward="false" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/javascript/packs/creditos_concedidos.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2254">
-          <caret line="38" column="51" lean-forward="false" selection-start-line="38" selection-start-column="51" selection-end-line="38" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/javascript/packs/creditos_navigation.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
           <caret line="430" column="71" lean-forward="false" selection-start-line="430" selection-start-column="71" selection-end-line="430" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/credits/indicadores_creditos_vigentes.haml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="10" column="31" lean-forward="false" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/credits/_credito_concedido.json.jbuilder">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="562" lean-forward="false" selection-start-line="0" selection-start-column="562" selection-end-line="0" selection-end-column="562" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/javascript/components/CreditosConcedidos/ReporteAsesor.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="31" column="92" lean-forward="false" selection-start-line="31" selection-start-column="92" selection-end-line="31" selection-end-column="92" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/javascript/components/CreditosConcedidos/ReporteGruposCredito.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="81" column="110" lean-forward="false" selection-start-line="81" selection-start-column="110" selection-end-line="81" selection-end-column="110" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/javascript/components/CreditosConcedidos/ReporteAgencias.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-597">
-          <caret line="31" column="92" lean-forward="false" selection-start-line="31" selection-start-column="92" selection-end-line="31" selection-end-column="92" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/javascript/components/CreditosConcedidos/CreditosTable.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="470">
-          <caret line="62" column="117" lean-forward="false" selection-start-line="62" selection-start-column="117" selection-end-line="62" selection-end-column="117" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/javascript/packs/creditos_indicadores.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1196">
-          <caret line="58" column="33" lean-forward="false" selection-start-line="58" selection-start-column="33" selection-end-line="58" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -848,7 +640,27 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="413">
           <caret line="36" column="62" lean-forward="true" selection-start-line="36" selection-start-column="62" selection-end-line="36" selection-end-column="62" />
-          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/credits/_credito_concedido.json.jbuilder">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="562" lean-forward="false" selection-start-line="0" selection-start-column="562" selection-end-line="0" selection-end-column="562" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/javascript/packs/creditos_vencidos.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1575">
+          <caret line="35" column="45" lean-forward="false" selection-start-line="35" selection-start-column="45" selection-end-line="35" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/credits/creditos_concedidos.haml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="7" column="20" lean-forward="false" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
         </state>
       </provider>
     </entry>
@@ -856,22 +668,185 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="322">
           <caret line="14" column="24" lean-forward="false" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/agencias_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="17" column="104" lean-forward="false" selection-start-line="17" selection-start-column="104" selection-end-line="17" selection-end-column="104" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/javascript/components/CreditosVencidos/CreditosTable.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="42" column="61" lean-forward="false" selection-start-line="42" selection-start-column="44" selection-end-line="42" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/javascript/components/MatrizTransicion/ListCredits.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="333">
+          <caret line="132" column="59" lean-forward="false" selection-start-line="132" selection-start-column="42" selection-end-line="132" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/javascript/components/Cosechas/TablaCoshechas.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2208">
+          <caret line="99" column="8" lean-forward="true" selection-start-line="99" selection-start-column="8" selection-end-line="99" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/javascript/components/Cosechas/TablaCreditos.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="227">
+          <caret line="38" column="59" lean-forward="false" selection-start-line="38" selection-start-column="44" selection-end-line="38" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/javascript/components/CreditosConcedidos/CreditosTable.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="999">
+          <caret line="51" column="57" lean-forward="false" selection-start-line="51" selection-start-column="57" selection-end-line="51" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/javascript/packs/creditos_concedidos.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3137">
+          <caret line="38" column="51" lean-forward="false" selection-start-line="38" selection-start-column="51" selection-end-line="38" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/javascript/components/CreditosConcedidos/ReporteAgencias.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="248">
+          <caret line="30" column="29" lean-forward="false" selection-start-line="30" selection-start-column="29" selection-end-line="30" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/javascript/components/CreditosConcedidos/ReporteAsesor.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/javascript/components/CreditosConcedidos/ReporteGruposCredito.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="545">
+          <caret line="33" column="14" lean-forward="false" selection-start-line="33" selection-start-column="14" selection-end-line="33" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/javascript/components/CreditosVencidos/ReporteAgencias.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="24" column="11" lean-forward="true" selection-start-line="24" selection-start-column="11" selection-end-line="24" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/javascript/components/CreditosVencidos/ReporteAsesor.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="309">
+          <caret line="32" column="11" lean-forward="false" selection-start-line="32" selection-start-column="11" selection-end-line="32" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/oracledb_agencias.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="132" column="0" lean-forward="false" selection-start-line="132" selection-start-column="0" selection-end-line="132" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/javascript/components/CreditsIndicadores/PercentIndicadoresTable.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="107" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/javascript/components/CreditsIndicadores/IndicadoresTable.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="68" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#26#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/credits/indicadores_creditos_vigentes.haml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="11" column="18" lean-forward="false" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/javascript/components/CreditsIndicadores/PercentIndicadoresColocadosTable.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1021">
+          <caret line="7" column="73" lean-forward="false" selection-start-line="7" selection-start-column="73" selection-end-line="7" selection-end-column="73" />
+          <folding>
+            <element signature="e#0#26#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/credits/indicadores_creditos_colocados.haml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="11" column="19" lean-forward="false" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/javascript/packs/creditos_indicadores.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1115">
+          <caret line="36" column="26" lean-forward="false" selection-start-line="36" selection-start-column="26" selection-end-line="36" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/javascript/components/CreditsIndicadores/IndicadoresColocadosTable.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="574">
+          <caret line="47" column="54" lean-forward="false" selection-start-line="47" selection-start-column="54" selection-end-line="47" selection-end-column="54" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/credits_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1666">
-          <caret line="694" column="26" lean-forward="false" selection-start-line="694" selection-start-column="26" selection-end-line="694" selection-end-column="26" />
+        <state relative-caret-position="409">
+          <caret line="858" column="7" lean-forward="false" selection-start-line="858" selection-start-column="7" selection-end-line="858" selection-end-column="7" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/oracledb.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="2480" column="34" lean-forward="false" selection-start-line="2480" selection-start-column="34" selection-end-line="2480" selection-end-column="34" />
+        <state relative-caret-position="625">
+          <caret line="3378" column="20" lean-forward="false" selection-start-line="3378" selection-start-column="20" selection-end-line="3378" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/javascript/components/CreditsForms/IndicadoresCreditosColocadosForm.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="50">
+          <caret line="108" column="14" lean-forward="false" selection-start-line="108" selection-start-column="14" selection-end-line="108" selection-end-column="14" />
           <folding />
         </state>
       </provider>

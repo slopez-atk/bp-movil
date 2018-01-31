@@ -27,10 +27,11 @@ class ReporteAsesor extends React.Component{
     );
   }
 
+
   calculoMora(cell, row){
     let mora = ((parseFloat(row.cartera_afectada)*100)/parseFloat(row.saldo_cartera)).toFixed(2);
     return(
-      <p>{mora}%</p>
+      <td>{mora}%</td>
     );
   }
 

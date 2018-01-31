@@ -24,14 +24,14 @@ class ReporteAsesor extends React.Component{
   calculoCreditosMora(cell, row){
     let creditos_mora = ((parseFloat(row.creditos_morosos)*100)/parseFloat(row.numero_creditos)).toFixed(2);
     return(
-      <p>{creditos_mora}%</p>
+      <td>{creditos_mora}%</td>
     );
   }
 
   calculoSaldoMora(cell, row){
     let saldos_mora = ((parseFloat(row.saldo_capital_pend)*100)/parseFloat(row.saldo_cartera)).toFixed(2);
     return(
-      <p>{saldos_mora}%</p>
+      <td>{saldos_mora}%</td>
     );
   }
 
@@ -46,6 +46,10 @@ class ReporteAsesor extends React.Component{
         <RaiseButton primary label="Ver" onClick={()=>  this.props.onClick(row.asesor) }/>
       );
     }
+  }
+
+  componentWillMount(){
+    this.calcularSumatorias();
   }
 
   calcularSumatorias(){
@@ -70,7 +74,7 @@ class ReporteAsesor extends React.Component{
     const options = {
       toolBar: this.createCustomToolBar
     };
-    this.calcularSumatorias();
+
     return(
       <Paper zDepth={2} className="top-space padding">
 

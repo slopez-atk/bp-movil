@@ -15,7 +15,7 @@ class AgenciasController < ApplicationController
       if terminar_ciclo == false
         fecha = date.to_date
         if fecha.month == Time.now.month and fecha.year == Time.now.year
-          data = OracledbAgencias.obtener_indicadores_financieros (Time.now.strftime("%d/%m/%Y").to_date - 1.day).strftime("%d/%m/%Y")
+          data = OracledbAgencias.obtener_indicadores_financieros (Time.now.strftime("%d/%m/%Y").to_date).strftime("%d/%m/%Y")
           terminar_ciclo = true
           # puts ("Fecha: " + (Time.now.strftime("%d/%m/%Y").to_date - 1.day).strftime("%d/%m/%Y").to_s)
         else
@@ -72,45 +72,45 @@ class AgenciasController < ApplicationController
         cuenta.stringify_keys!
         if cuenta["nro_cuenta"] === 1
           @activos.push(cuenta["valor"])
-        elsif cuenta["nro_cuenta"] == 11
+        elsif cuenta["nro_cuenta"] === 11
           @fondos.push(cuenta["valor"])
-        elsif cuenta["nro_cuenta"] == 1499
+        elsif cuenta["nro_cuenta"] === 1499
           @recerva_prestamo.push(cuenta["valor"])
-        elsif cuenta["nro_cuenta"] == 2
+        elsif cuenta["nro_cuenta"] === 2
           @pasivos.push(cuenta["valor"])
-        elsif cuenta["nro_cuenta"] == 21
+        elsif cuenta["nro_cuenta"] === 21
           @obligaciones.push(cuenta["valor"])
-        elsif cuenta["nro_cuenta"] == 2101
+        elsif cuenta["nro_cuenta"] === 2101
           @deposito_vista.push(cuenta["valor"])
-        elsif cuenta["nro_cuenta"] == 2103
+        elsif cuenta["nro_cuenta"] === 2103
           @dpf.push(cuenta["valor"])
-        elsif cuenta["nro_cuenta"] == 31
+        elsif cuenta["nro_cuenta"] === 31
           @certificados_aportacion.push(cuenta["valor"])
-        elsif cuenta["nro_cuenta"] == 5
+        elsif cuenta["nro_cuenta"] === 5
           @ingresos_totales.push(cuenta["valor"])
-        elsif cuenta["nro_cuenta"] == 51
+        elsif cuenta["nro_cuenta"] === 51
           @intereses_descuentos.push(cuenta["valor"])
-        elsif cuenta["nro_cuenta"] == 5102
+        elsif cuenta["nro_cuenta"] === 5102
           @operaciones_interfinancieras.push(cuenta["valor"])
-        elsif cuenta["nro_cuenta"] == 5103
+        elsif cuenta["nro_cuenta"] === 5103
           @intereses_inversiones.push(cuenta["valor"])
-        elsif cuenta["nro_cuenta"] == 5104
+        elsif cuenta["nro_cuenta"] === 5104
           @intereses_cartera_credito.push(cuenta["valor"])
-        elsif cuenta["nro_cuenta"] == 54
+        elsif cuenta["nro_cuenta"] === 54
           @ingresos_servicio.push(cuenta["valor"])
-        elsif cuenta["nro_cuenta"] == 56
+        elsif cuenta["nro_cuenta"] === 56
           @otros_ingresos.push(cuenta["valor"])
-        elsif cuenta["nro_cuenta"] == 4
+        elsif cuenta["nro_cuenta"] === 4
           @gastos_totales.push(cuenta["valor"])
-        elsif cuenta["nro_cuenta"] == 41
+        elsif cuenta["nro_cuenta"] === 41
           @gastos_financieros.push(cuenta["valor"])
-        elsif cuenta["nro_cuenta"] == 4101
+        elsif cuenta["nro_cuenta"] === 4101
           @intereses_causados.push(cuenta["valor"])
-        elsif cuenta["nro_cuenta"] == 44
+        elsif cuenta["nro_cuenta"] === 44
           @gastos_provision.push(cuenta["valor"])
-        elsif cuenta["nro_cuenta"] == 45
+        elsif cuenta["nro_cuenta"] === 45
           @gastos_operacionales.push(cuenta["valor"])
-        elsif cuenta["nro_cuenta"] == 4501
+        elsif cuenta["nro_cuenta"] === 4501
           @gastos_personal.push(cuenta["valor"])
         end
       end
@@ -173,6 +173,7 @@ class AgenciasController < ApplicationController
 
 
     end
+
   end
 
 

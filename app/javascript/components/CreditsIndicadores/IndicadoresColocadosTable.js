@@ -1,10 +1,10 @@
 import React from 'react';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 import Paper from 'material-ui/Paper';
-import PercentIndicadoresTable from "./PercentIndicadoresTable";
+import PercentIndicadoresColocadosTable from "./PercentIndicadoresColocadosTable";
 
 
-class IndicadoresTable extends React.Component{
+class IndicadoresColocadosTable extends React.Component{
   constructor(props){
     super(props)
   }
@@ -23,18 +23,13 @@ class IndicadoresTable extends React.Component{
 
   calcularTotales(){
     let cantidad = 0;
-    let cap_activo = 0;
-    let cap_ndevenga = 0;
-    let cartera_riesgo = 0;
-    let cap_vencido = 0;
+    let monto_real = 0;
+
     for(let i=0; i < this.props.data.length; i++){
-      cap_activo += parseFloat(this.props.data[i]["cap_activo"]);
-      cap_ndevenga += parseFloat(this.props.data[i]["cap_ndevenga"]);
-      cap_vencido += parseFloat(this.props.data[i]["cap_vencido"]);
-      cartera_riesgo += parseFloat(this.props.data[i]["cartera_riesgo"]);
+      monto_real += parseFloat(this.props.data[i]["monto_real"]);
       cantidad += parseFloat(this.props.data[i]["cantidad"]);
     }
-    return [cantidad, cap_activo, cap_ndevenga, cartera_riesgo, cap_vencido];
+    return [cantidad, monto_real];
   }
 
   render(){
@@ -50,15 +45,12 @@ class IndicadoresTable extends React.Component{
             <BootstrapTable ref='table' data={ this.props.data } exportCSV={ true } hover options={options}>
               <TableHeaderColumn dataField='clave' isKey={ true } dataSort={ true } width='250'>Indicador</TableHeaderColumn>
               <TableHeaderColumn dataField='cantidad' dataSort={ true } width='250'>Cantidad</TableHeaderColumn>
-              <TableHeaderColumn dataField='cap_activo' dataSort={ true } width='250'>Capital Activo</TableHeaderColumn>
-              <TableHeaderColumn dataField='cap_ndevenga' dataSort={ true } width='250'>Capital no Devenga</TableHeaderColumn>
-              <TableHeaderColumn dataField='cartera_riesgo' dataSort={ true } width='250'>Cartera Riesgo</TableHeaderColumn>
-              <TableHeaderColumn dataField='cap_vencido' dataSort={ true } width='250'>Capital Vencido</TableHeaderColumn>
+              <TableHeaderColumn dataField='monto_real' dataSort={ true } width='250'>Monto Real</TableHeaderColumn>
             </BootstrapTable>
           </div>
           <h4 className="top-space" style={{color: "#FFC107"}}>Tabla de Porcentajes</h4>
           <div>
-            <PercentIndicadoresTable data={this.props.data} cantidad={porcentajes[0]} cap_activo={porcentajes[1]} cap_ndevenga={porcentajes[2]} cartera_riesgo={porcentajes[3]} cap_vencido={porcentajes[4]}/>
+            <PercentIndicadoresColocadosTable data={this.props.data} cantidad={porcentajes[0]} monto_real={porcentajes[1]}/>
           </div>
         </Paper>
       </div>
@@ -66,4 +58,4 @@ class IndicadoresTable extends React.Component{
   }
 }
 
-export default IndicadoresTable;
+export default IndicadoresColocadosTable;

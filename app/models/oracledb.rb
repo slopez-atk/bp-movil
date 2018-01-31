@@ -559,7 +559,6 @@ class Oracledb < ApplicationRecord
     if results.present?
       results.each do |row|
         row["fecha_concesion"] = row["fecha_concesion"].to_date.strftime('%d-%m-%Y')
-        # row["fecha_pago_realizado"] = row["fecha_pago_realizado"].to_date.strftime('%d-%m-%Y')
         row["fecha_prox_pago_variable"] = row["fecha_prox_pago_variable"].to_date.strftime('%d-%m-%Y')
         row["fecha"] = row["fecha"].to_date.strftime('%d-%m-%Y')
       end
@@ -900,6 +899,11 @@ class Oracledb < ApplicationRecord
 
   def self.obtener_creditos_de_asesor nombre, diaInicio, diaFin, fecha, agencia
 
+    if agencia === "Servimovil"
+      agencia = "Servimóvil"
+    end
+
+
     results = connection.exec_query("
     SELECT
     TH1.FECHA_INGRESO FECHA_INGRESO,
@@ -1147,6 +1151,11 @@ class Oracledb < ApplicationRecord
 
 
     if results.present?
+      results.each do |row|
+        row["fecha_ingreso"] = row["fecha_ingreso"].to_date.strftime('%d-%m-%Y')
+        row["fecha_concesion"] = row["fecha_concesion"].to_date.strftime('%d-%m-%Y')
+        row["fecha_vencimiento"] = row["fecha_vencimiento"].to_date.strftime('%d-%m-%Y')
+      end
       return results
     else
       return {}
@@ -1630,6 +1639,10 @@ class Oracledb < ApplicationRecord
     ")
 
     if results.present?
+      results.each do |row|
+        row["fecha_concesion"] = row["fecha_concesion"].to_date.strftime('%d-%m-%Y')
+        row["fecha_vencimiento"] = row["fecha_vencimiento"].to_date.strftime('%d-%m-%Y')
+      end
       return results
     else
       return {}
@@ -2147,9 +2160,10 @@ class Oracledb < ApplicationRecord
     ")
 
 
-
-
     if results.present?
+      results.each do |row|
+        row["fecha_concesion"] = row["fecha_concesion"].to_date.strftime('%d-%m-%Y')
+      end
       return results
     else
       return {}
@@ -2245,6 +2259,7 @@ class Oracledb < ApplicationRecord
     TH1.FECHA_INGRESO FECHA_INGRESO,
     (select MAX(descripcion) from cred_tipos_recursos_economicos where codigo = TH1.ORIGENR) as ORIGEN_RECURSOS,
     TH1.SOCIO,
+    th1.nom_grupo tipo_credito,
     --CASE WHEN TH1.TIP_ID = 'R' THEN TH1.EMPRESA ELSE TH1.NOMBRE END NOMBRE,
     TH1.NUMERO_CREDITO CREDITO,
     (select tt.provision_especifica from temp_c02 tt where tt.numero_operacion=th1.numero_credito)provision_requerida,
@@ -2295,7 +2310,7 @@ FROM SOCIOS_TRABAJO_PRINCIPAL AE WHERE TH1.SOCIO = AE.CODIGO_SOCIO)) ACTIVIDAD,
     --(TH1.NUM_CUOTAS) AS CUOTAS_CREDITO,
     --TH1.TIP_ID,
     --TH1.CEDULA,
-    case TH1.GENERO when 'M' then 'MASCULINO' when 'F' then 'FEMENINO' else 'JURIDICO' end sexo,
+    case TH1.GENERO when 'M' then 'MASCULINO' when 'F' then 'FEMENINO' else 'JURIDICO' end genero,
     TRUNC((SYSDATE-TH1.EDAD)/365.25)EDAD,
     (case
          when TRUNC((SYSDATE-TH1.EDAD)/365.25)>=0 and TRUNC((SYSDATE-TH1.EDAD)/365.25)<= 18 then '0-18'
@@ -2624,236 +2639,122 @@ FROM SOCIOS_TRABAJO_PRINCIPAL AE WHERE TH1.SOCIO = AE.CODIGO_SOCIO)) ACTIVIDAD,
     end
 
     results = connection.exec_query("
-    SELECT
-    TH1.FECHA_INGRESO FECHA_INGRESO,
-    (select MAX(descripcion) from cred_tipos_recursos_economicos where codigo = TH1.ORIGENR) as ORIGEN_RECURSOS,
-    TH1.SOCIO,
-    TH1.NUMERO_CREDITO CREDITO,
+    SELECT --CODIGO_SUCURSAL,
 
-    CASE WHEN TH1.TIP_ID = 'R' THEN TH1.EMPRESA ELSE TH1.NOMBRE END NOMBRE,
+(select sing_fecsoli from socios_solisoc_datos_generales where codigo_socio=cp.codigo_socio )FECHA_INGRESO,
 
-    TH1.GENERO GENERO,
+(select descripcion_grupo from cred_grupo_segmentos_credito cg where cg.codigo_grupo=cp.codigo_grupo)tipo_credito,
+    (select MAX(descripcion) from cred_tipos_recursos_economicos where codigo = cp.codigo_orirec) as ORIGEN_RECURSOS,
 
-    TH1.CALIFICACION,
-    TH1.CAP_ACTIVO,
-    TH1.CAP_NDEVENGA,
-    TH1.CAP_VENCIDO,
-    (TH1.CAP_NDEVENGA+TH1.CAP_VENCIDO)CARTERA_RIESGO,
-    (TH1.CAP_ACTIVO+
-    TH1.CAP_NDEVENGA+
-    TH1.CAP_VENCIDO)saldo_cartera,
-    /*FECHA CONCESION
-    (select min(j.fecinical) from cred_tabla_amortiza_variable j
-    where j.ordencal = (select min(i.ordencal)  from cred_tabla_amortiza_variable i
-                        where i.numero_credito = TH1.NUMERO_CREDITO)
-      and j.numero_credito = TH1.NUMERO_CREDITO) as FECHA_CONCESION,
-    /*FECHA_VENCIMIENTO
-    (select max(j.fecfincal) from cred_tabla_amortiza_variable j
-    where j.ordencal = (select max(i.ordencal)  from cred_tabla_amortiza_variable i
-                        where i.numero_credito = TH1.NUMERO_CREDITO)
-      and j.numero_credito = TH1.NUMERO_CREDITO) as FECHA_VENCIMIENTO,
-    (select SUM(ROUND(NVL(CAPITALCAL,0),2) + ROUND(NVL(INTERESCAL,0),2) + ROUND(NVL(MORACAL,0),2) +
-              ROUND(CASE WHEN trunc(fecinical)>trunc(sysdate) THEN 0 ELSE NVL(rubroscal,0) END,2)) from CRED_TABLA_AMORTIZA_VARIABLE A
-                         where a.numero_credito=TH1.numero_credito
-                         and estadocal='P')valor_cancela,
-    TH1.DIASMORA_PD,
-    */
-    TH1.SUCURSAL OFICINA,
-    TH1.NOM_OF_CRE CARTERA_HEREDADA,
-             (case when th1.oficial_credito in (44,25) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=25)
-                   when th1.oficial_credito in (75,67,49) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=49)
-                   when th1.oficial_credito in (102,43) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=102)
-                   when th1.oficial_credito in (78,37,98,95) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=78)
-                   when th1.oficial_credito in (13,14) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=14)
-                   when th1.oficial_credito in (7,28) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=7)
-                   when th1.oficial_credito in (18,5) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=5)
-                   when th1.oficial_credito in (68,6,94,47,88,112) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=94)
-                   when th1.oficial_credito in (85,26,83,48) then ('BALCON')
-                   when th1.oficial_credito in (34,77,38,33) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=34)
-                   when th1.oficial_credito in (42,122,89) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=122)
-                   when th1.oficial_credito in (114,22,73,108,15,120,19,109,17,121,21,40) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=114)
-                   else (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=th1.oficial_credito) end
-             )ASESOR,
-             (SELECT MIN(DESCRIPCION_GRUPO) FROM CRED_GRUPO_SEGMENTOS_CREDITO G WHERE G.CODIGO_GRUPO = th1.grupo_credito) AS tipo_credito,
-             (SELECT max(DS.TIPO_SECTOR)
-                  FROM SOCIOS_DIRECCIONES DS WHERE TH1.SOCIO = DS.CODIGO_SOCIO
-                  AND DS.FECHA_INGRESO = (SELECT MAX(X.FECHA_INGRESO) FROM SOCIOS_DIRECCIONES X WHERE X.CODIGO_SOCIO = TH1.SOCIO)
-                  )AS SECTOR,
-             (select metodologia from cred_creditos where numero_credito=TH1.NUMERO_CREDITO)metodologia
-    FROM(
-      SELECT
-          MAX(TH.FECHA_INGRESO)FECHA_INGRESO,
-          MAX(TH.COD_SOCIO) SOCIO,
-          TH.NUMERO_CREDITO,
-          TH.OBSERVACIONES OBSERVA,
-          MAX(NOMBRE_SOCIO)NOMBRE,
-          MAX(TH.GENERO) GENERO,
-          MAX(TH.EDAD) EDAD,
-          th.codigo_cicn activ,
-          MAX(TH.OBS_ACT)OBS_ACT,
-          th.cod_grupo grupo_credito,
-          (CASE WHEN MAX((SELECT CODIGO_GRUPO FROM CRED_GRUPO_SEGMENTOS_CREDITO WHERE CODIGO_GRUPO=TH.COD_GRUPO))=1 THEN
-                                   CASE WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN   0 AND   5 THEN 'A1'
-                                        WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN   6 AND  20 THEN 'A2'
-                                        WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  21 AND  35 THEN 'A3'
-                                        WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  36 AND  65 THEN 'B1'
-                                        WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  66 AND  95 THEN 'B2'
-                                        WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  96 AND 125 THEN 'C1'
-                                        WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN 126 AND 155 THEN 'C2'
-                                        WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN 156 AND 185 THEN 'D'
-                                   ELSE 'E'
-                                   END
-                                  --CONSUMO
-                                  WHEN MAX((SELECT CODIGO_GRUPO FROM CRED_GRUPO_SEGMENTOS_CREDITO WHERE CODIGO_GRUPO=TH.COD_GRUPO))=2 THEN
-                                   CASE WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN   0 AND  5  THEN 'A1'
-                                        WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN   6 AND  20  THEN 'A2'
-                                        WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  21 AND  35 THEN 'A3'
-                                        WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  36 AND  50 THEN 'B1'
-                                        WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  51 AND  65 THEN 'B2'
-                                        WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  66 AND  80 THEN 'C1'
-                                        WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  81 AND  95 THEN 'C2'
-                                        WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  96 AND 125 THEN 'D'
-                                   ELSE 'E'
-                                   END
-                                  --VIVIENDA
-                                   WHEN MAX((SELECT CODIGO_GRUPO FROM CRED_GRUPO_SEGMENTOS_CREDITO WHERE CODIGO_GRUPO=TH.COD_GRUPO))=3 THEN
-                                    CASE WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN   0 AND  5 THEN 'A1'
-                                         WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN   6 AND  35 THEN 'A2'
-                                         WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  36 AND  65 THEN 'A3'
-                                         WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  66 AND 120 THEN 'B1'
-                                         WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN 121 AND 180 THEN 'B2'
-                                         WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN 181 AND 210 THEN 'C1'
-                                         WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN 211 AND 270 THEN 'C2'
-                                         WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN 271 AND 450 THEN 'D'
-                                    ELSE 'E'
-                                    END
-                                   --MICROEMPRESA
-                                   WHEN MAX((SELECT CODIGO_GRUPO FROM CRED_GRUPO_SEGMENTOS_CREDITO WHERE CODIGO_GRUPO=TH.COD_GRUPO))=4 THEN
-                                    CASE WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN   0 AND  5  THEN 'A1'
-                                         WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN   6 AND  20 THEN 'A2'
-                                         WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  21 AND  35 THEN 'A3'
-                                         WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  36 AND  50 THEN 'B1'
-                                         WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  51 AND  65 THEN 'B2'
-                                         WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  66 AND  80 THEN 'C1'
-                                         WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  81 AND  95 THEN 'C2'
-                                         WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  96 AND 125 THEN 'D'
-                                    ELSE 'E'
-                                    END
-                            END) CALIFICACION,
-          MAX(TH.CODIGO_PERIOC) CODIGO_PERIOC,
-          MAX(TH.NUM_CUOTAS) NUM_CUOTAS,
-          max(th.instruccion)instruc,
-          max(th.estado_civil)est_civil,
-          MAX(TH.CED) CEDULA,
-          MAX(TH.NOMBRE_EMPRESA) EMPRESA,
-          max(th.cod_telf) telefono,
-          max(th.cod_celular) celular,
-          MAX(TH.TIPID) TIP_ID,
-          SUM(CASE WHEN TH.ESTADO_CARSEG IN('I') THEN TH.SCAPITAL ELSE 0 END) AS CAP_ACTIVO,
-          SUM(CASE WHEN TH.ESTADO_CARSEG IN('D') THEN TH.SCAPITAL ELSE 0 END) AS CAP_NDEVENGA,
-          SUM(CASE WHEN TH.ESTADO_CARSEG IN('E') THEN TH.SCAPITAL ELSE
-                   (case when (select distinct(numero_credito) from cred_tabla_amortiza_variable where estado='S' and numero_credito=th.numero_credito)=th.numero_credito then 1 else 0 end)
-          END) AS CAP_VENCIDO,
-          SUM(CASE WHEN TH.ESTADO_CARSEG IN('I','D','E') THEN TH.SCAPITAL ELSE
-           (case when (select distinct(numero_credito) from cred_tabla_amortiza_variable where estado='S' and numero_credito=th.numero_credito)=th.numero_credito then 1 else 0 end)
-            END)CAP_SALDO,
-          MAX(TH.MONTO_CREDITO) VAL_CREDITO,
-          th.of_cred oficial_credito,
-          MAX(FECHAINI) FECHA_CONCESION,
-          MAX(FECHAFIN) FECHA_VENCIMIENTO,
-          MAX(TH.TASA_TEA)TEA,
-          MAX(TH.TASA_TIR)TIR,
-          MAX(TH.TASA) TASA,
-          SUM(TH.DIASMORAPD) DIASMORA_PD,
-          (SELECT NVL(SUM(P.CAPITAL),0) FROM CRED_CABECERA_PAGOS_CREDITO P WHERE P.NUMERO_CREDITO = TH.NUMERO_CREDITO AND TRUNC(P.FECHA) <= TRUNC(TO_DATE('#{fecha_fin.to_date.strftime('%d-%m-%Y')}','DD/MM/YY'))) AS CAPITAL_CAN,
-          SUM(CASE WHEN TH.ESTADO_CARSEG IN('I','D','E') THEN TH.SCAPITAL ELSE 0 END) AS CAPITAL_PEN,
-          (
-           (SELECT NVL(SUM(P.INTERES),0) FROM CRED_CABECERA_PAGOS_CREDITO P WHERE P.NUMERO_CREDITO = TH.NUMERO_CREDITO AND TRUNC(P.FECHA) <= TRUNC(TO_DATE('#{fecha_fin.to_date.strftime('%d-%m-%Y')}','DD/MM/YY')))+
-           SUM(CASE WHEN TH.ESTADO_CARSEG IN('I','D','E') THEN TH.SINTERES ELSE 0 END)
-          ) AS INTERES_TOTAL,
-          (SELECT NVL(SUM(P.INTERES),0) FROM CRED_CABECERA_PAGOS_CREDITO P WHERE P.NUMERO_CREDITO = TH.NUMERO_CREDITO AND TRUNC(P.FECHA) <= TRUNC(TO_DATE('#{fecha_fin.to_date.strftime('%d-%m-%Y')}','DD/MM/YY'))) AS INTERES_CAN,
-          SUM(CASE WHEN TH.ESTADO_CARSEG IN('I','D','E') THEN TH.SINTERES ELSE 0 END) AS INTERES_PEN,
-          (SELECT MIN(DESCRIPCION_GRUPO) FROM CRED_GRUPO_SEGMENTOS_CREDITO G WHERE G.CODIGO_GRUPO = TH.COD_GRUPO ) AS NOM_GRUPO,
-          (SELECT MIN(DESCRIPCION)  FROM CONF_PRODUCTOS P WHERE P.CODIGO_ACT_FINANCIERA = 2 AND P.CODIGO_GRUPO = TH.COD_GRUPO AND P.CODIGO_PRODUCTO = TH.COD_PRODUCTO) AS NOM_PRODUCTO,
-          (SELECT MAX(CCD.MCLI_LUGAR_DIR) FROM SOCIOS_DIRECCIONES CCD WHERE CCD.CODIGO_SOCIO = TH.COD_SOCIO) LUGDIR,
-          MAX(TH.COD_ORIREC) ORIGENR, MAX(TH.COD_GRUPORG)GRUPORG,
-          (SELECT MIN(SS.DESCRIPCION) FROM SIFV_SUCURSALES SS WHERE SS.CODIGO_SUCURSAL = TH.COD_SUCURSAL) AS SUCURSAL,
-          (SELECT MIN(USU_APELLIDOS ||' ' || USU_NOMBRES) FROM SIFV_USUARIOS_SISTEMA SU WHERE SU.CODIGO_USUARIO = TH.COD_USUARIO ) AS NOM_USER,
-          (SELECT MIN(USU_APELLIDOS ||' ' || USU_NOMBRES) FROM SIFV_USUARIOS_SISTEMA SU WHERE SU.CODIGO_USUARIO = TH.OF_CRED ) AS NOM_OF_CRE,
-       MAX(TH.CODIGO_DESTINO)COD_DESTINO
-      FROM(
-          SELECT
-                 MAX(SDG.SING_FECSOLI) FECHA_INGRESO,
-                 CC.NUMERO_CREDITO,
-                 CH.ESTADO_CARSEG,
-                 COUNT(*) AS CONTADOR,
-                 SUM(CH.CAPITAL) AS SCAPITAL,/*------------------*/
-                 MAX(cc.num_cuotas) NUM_CUOTAS,
-                 COUNT(*) AS NUMCUOTAS,
-                 MAX(CC.CODIGO_PERIOC) CODIGO_PERIOC, /**/
-                 SUM(CH.INTACT) AS SINTERES, /*------------------*/
-                 MAX(CC.TASA_INTERES)AS TASA,
-                 (select MAX(TEA) from CRED_REGISTRA_TASA_TIR_TEA T WHERE T.NUMERO_CREDITO = CC.NUMERO_CREDITO )AS TASA_TEA,
-                 (select MAX(TIR) from CRED_REGISTRA_TASA_TIR_TEA T WHERE T.NUMERO_CREDITO = CC.NUMERO_CREDITO )AS TASA_TIR,
-                 MAX(CH.DIAMORACT)AS DIASMORAPD,
-                 SUM(CH.DIAMORACT) AS DIASMORAAC,
-                 MAX(S.CODIGO_SOCIO)COD_SOCIO,
-                 MAX(S.MCLI_NUMERO_ID)CED,
-                 MAX(S.CODIGO_IDENTIFICACION) TIPID,
-                 (MAX(S.MCLI_APELLIDO_PAT)||' '||MAX(S.MCLI_APELLIDO_MAT)||' '||MAX(S.MCLI_NOMBRES)) AS NOMBRE_SOCIO,
-                 MAX(S.MCLI_RAZON_SOCIAL) AS NOMBRE_EMPRESA,
-                 MAX(S.MCLI_SEXO) AS GENERO,
-                 MAX(S.MCLI_FECNACI) AS EDAD,
-                  /*NATTY*/
-                 MAX(S.observacion_profesion) AS OBS_ACT,
-                 /**/
-                 cc.obs_descre OBSERVACIONES,
-                 MAX(CC.MONTO_REAL)MONTO_CREDITO,
-                 MAX(CC.FECINI) FECHAINI,
-                 MAX(CC.FECFIN) FECHAFIN,
-                 MAX(CC.CODIGO_GRUPO) COD_GRUPO,
-                 MAX(CC.CODIGO_PRODUCTO) COD_PRODUCTO,
-                 MAX(CC.CODIGO_ORIREC) COD_ORIREC,
-                 MAX(SDG.CODIGO_GRUPORG) COD_GRUPORG,
-                 max(sdg.sing_telefonos) cod_telf,
-                 max(sdg.sing_telefono_celular) cod_celular,
-                 MAX(CC.CODIGO_SUCURSAL) COD_SUCURSAL,
-                 MAX(CC.CODIGO_USUARIO) COD_USUARIO,
-                 MAX(CC.OFICRE) OF_CRED,
-                 MAX(CC.CODIGO_SUBSECTOR)||MAX(cc.codigo_clasificacion_credito) CODIGO_DESTINO,
-                 max(s.codigo_instruccion)instruccion,
-                 max(s.codigo_estado_civil)estado_civil,
-                 MAX(cc.codigo_clasificacion_credito) CODIGO_CICN   --ACTIVIDAD ECONOMICA
-            FROM
-                CRED_CREDITOS CC,
-                CRED_HISTORIAL_REC_CARTERA CH,
-                SOCIOS S,
-                SOCIOS_SOLISOC_DATOS_GENERALES SDG
-           WHERE CC.NUMERO_CREDITO = CH.NUMERO_CREDITO
-             AND S.CODIGO_SOCIO = CC.CODIGO_SOCIO
-             AND S.CODIGO_SOCIO = SDG.CODIGO_SOCIO
-            AND TRUNC(CH.FGENERA) = TO_DATE('#{fecha_fin.to_date.strftime('%d-%m-%Y')}','DD/MM/YYyy')
-            and cc.fecha_credito between TO_DATE('#{fecha_inicio.to_date.strftime('%d-%m-%Y')}','DD/MM/YYyy') and TO_DATE('#{fecha_fin.to_date.strftime('%d-%m-%Y')}','DD/MM/YYyy')
-            and (case when cc.oficre in (44,25) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=25)
-                   when cc.oficre in (75,67,49) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=49)
-                   when cc.oficre in (102,43) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=102)
-                   when cc.oficre in (78,37,98,95) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=78)
-                   when cc.oficre in (13,14) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=14)
-                   when cc.oficre in (7,28) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=7)
-                   when cc.oficre in (18,5) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=5)
-                   when cc.oficre in (68,6,94,47,88,112) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=94)
-                   when cc.oficre in (34,77,38,33) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=34)
-                   when cc.oficre in (42,122,89) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=122)
-                   when cc.oficre in (114,22,73,108,15,120,19,109,17,121,21,40) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=114)
-                   else (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=cc.oficre) end
-             ) like upper ('%#{asesor}%')
-                 GROUP BY CC.NUMERO_CREDITO, CH.ESTADO_CARSEG, CC.OBS_DESCRE
-      )TH
-       GROUP BY TH.NUMERO_CREDITO, TH.COD_GRUPO, TH.COD_PRODUCTO, TH.OF_CRED, TH.COD_USUARIO, TH.COD_SUCURSAL, TH.COD_SOCIO,TH.OBSERVACIONES,th.codigo_cicn
 
-    ) TH1
-    where TH1.DIASMORA_PD between #{dia_inicio.to_i} and #{dia_fin.to_i}
-    and   TH1.SUCURSAL like ('%#{agencia}%')
+CODIGO_SOCIO,
+cp.numero_credito CREDITO,
+
+(select descripcion  from socios_profesiones  sp, socios so
+     where sp.codigo_profesion=so.codigo_profesion and so.codigo_socio=cp.codigo_socio ) PROFESION,
+nvl((select tipo_sector from socios_solisoc_datos_generales where codigo_socio=cp.codigo_socio),'NV')sector,
+    (
+    SELECT MAX(DESCRIPCION) from Sifv_Parroquias d,socios_direcciones sd
+           WHERE d.codigo_pais = substr(sd.mcli_lugar_dir,1,2)
+           and d.codigo_provincia = substr(sd.mcli_lugar_dir,3,2)
+           and d.codigo_ciudad = substr(sd.mcli_lugar_dir,5,2)
+           and d.codigo_parroquia = substr(sd.mcli_lugar_dir,7,2)
+           and sd.codigo_socio=cp.codigo_socio
+     ) AS PARROQUIA,
+     (SELECT substr(min(mcli_lugar_dir),2,6) from socios_direcciones where codigo_socio=cp.codigo_socio)codigo_parroquia,
+     (select max(descripcion) from capta_cab_grupos_organizados co, socios_solisoc_datos_generales sdg
+             where co.codigo_empresa_gruporg=sdg.codigo_gruporg and sdg.codigo_socio=cp.codigo_socio)grupo_org,
+     (case
+     when substr((select max(descripcion) from capta_cab_grupos_organizados co, socios_solisoc_datos_generales sdg
+             where co.codigo_empresa_gruporg=sdg.codigo_gruporg and sdg.codigo_socio=cp.codigo_socio),0,2)='GS' then 'SOLIDARIO'
+     when substr((select max(descripcion) from capta_cab_grupos_organizados co, socios_solisoc_datos_generales sdg
+             where co.codigo_empresa_gruporg=sdg.codigo_gruporg and sdg.codigo_socio=cp.codigo_socio),0,2)='Gs' then 'SOLIDARIO'
+     when substr((select max(descripcion) from capta_cab_grupos_organizados co, socios_solisoc_datos_generales sdg
+             where co.codigo_empresa_gruporg=sdg.codigo_gruporg and sdg.codigo_socio=cp.codigo_socio),0,2)='AS' then 'ASOCIATIVO'
+     WHEN substr((select max(descripcion) from capta_cab_grupos_organizados co, socios_solisoc_datos_generales sdg
+             where co.codigo_empresa_gruporg=sdg.codigo_gruporg and sdg.codigo_socio=cp.codigo_socio),0,4)='IN B' then 'IN BONO'
+     WHEN substr((select max(descripcion) from capta_cab_grupos_organizados co, socios_solisoc_datos_generales sdg
+             where co.codigo_empresa_gruporg=sdg.codigo_gruporg and sdg.codigo_socio=cp.codigo_socio),0,4)='IN I' then 'INDEPENDIENTE'
+     WHEN substr((select max(descripcion) from capta_cab_grupos_organizados co, socios_solisoc_datos_generales sdg
+             where co.codigo_empresa_gruporg=sdg.codigo_gruporg and sdg.codigo_socio=cp.codigo_socio),0,2)='BC' then 'BANCA COMUNAL'
+     else 'REVISAR' end         )metodologia,
+    -- instruccion
+    (select descripcion from socios_instrucciones  si, socios so where so.codigo_socio=cp.codigo_socio and si.codigo_instruccion=so.codigo_instruccion )instruccion,
+    -- estado_civil
+    (case (select codigo_estado_civil from socios where codigo_socio=cp.codigo_socio)
+          when 1 then 'Casado'
+          when 2 then 'Soltero'
+          when 3 then 'Divorciado'
+          when 4 then 'Viudo'
+          when 5 then 'Union Libre'
+          else 'No Aplica'
+  end) as ESTADO_CIVIL,
+    -- actividad
+(SELECT MAX(DESCRIPCION) FROM CRED_ACT_ECO_DEST_CRE WHERE CODIGO = (SELECT MAX(AE.CODIGO_SECTOR)
+FROM SOCIOS_TRABAJO_PRINCIPAL AE WHERE cp.codigo_socio = AE.CODIGO_SOCIO)) ACTIVIDAD,
+    (select sueldo_promedio_mensual from socios where codigo_socio=cp.codigo_socio)ingreso_mensual,
+    -- ingreso_promedio
+
+    --(TH1.NUM_CUOTAS) AS CUOTAS_CREDITO,
+    --TH1.TIP_ID,
+    --TH1.CEDULA,
+    case (select mcli_sexo from socios where codigo_socio=cp.codigo_socio) when 'M' then 'MASCULINO' when 'F' then 'FEMENINO' else 'JURIDICO' end genero,
+    TRUNC((SYSDATE-(select mcli_fecnaci from socios where codigo_socio=cp.codigo_socio))/365.25)EDAD,
+    (case
+         when TRUNC((SYSDATE-(select mcli_fecnaci from socios where codigo_socio=cp.codigo_socio))/365.25)>=0 and TRUNC((SYSDATE-(select mcli_fecnaci from socios where codigo_socio=cp.codigo_socio))/365.25)<= 18 then '0-18'
+         when TRUNC((SYSDATE-(select mcli_fecnaci from socios where codigo_socio=cp.codigo_socio))/365.25)>18 and TRUNC((SYSDATE-(select mcli_fecnaci from socios where codigo_socio=cp.codigo_socio))/365.25)<= 25 then '19-25'
+         when TRUNC((SYSDATE-(select mcli_fecnaci from socios where codigo_socio=cp.codigo_socio))/365.25)>25 and TRUNC((SYSDATE-(select mcli_fecnaci from socios where codigo_socio=cp.codigo_socio))/365.25)<= 30 then '26-30'
+         when TRUNC((SYSDATE-(select mcli_fecnaci from socios where codigo_socio=cp.codigo_socio))/365.25)>30 and TRUNC((SYSDATE-(select mcli_fecnaci from socios where codigo_socio=cp.codigo_socio))/365.25)<= 35 then '31-35'
+         when TRUNC((SYSDATE-(select mcli_fecnaci from socios where codigo_socio=cp.codigo_socio))/365.25)>35 and TRUNC((SYSDATE-(select mcli_fecnaci from socios where codigo_socio=cp.codigo_socio))/365.25)<= 40 then '36-40'
+         when TRUNC((SYSDATE-(select mcli_fecnaci from socios where codigo_socio=cp.codigo_socio))/365.25)>40 and TRUNC((SYSDATE-(select mcli_fecnaci from socios where codigo_socio=cp.codigo_socio))/365.25)<= 45 then '41-45'
+         when TRUNC((SYSDATE-(select mcli_fecnaci from socios where codigo_socio=cp.codigo_socio))/365.25)>45 and TRUNC((SYSDATE-(select mcli_fecnaci from socios where codigo_socio=cp.codigo_socio))/365.25)<= 50 then '46-50'
+         when TRUNC((SYSDATE-(select mcli_fecnaci from socios where codigo_socio=cp.codigo_socio))/365.25)>50 and TRUNC((SYSDATE-(select mcli_fecnaci from socios where codigo_socio=cp.codigo_socio))/365.25)<= 55 then '51-55'
+         when TRUNC((SYSDATE-(select mcli_fecnaci from socios where codigo_socio=cp.codigo_socio))/365.25)>55 and TRUNC((SYSDATE-(select mcli_fecnaci from socios where codigo_socio=cp.codigo_socio))/365.25)<= 60 then '56-60'
+         when TRUNC((SYSDATE-(select mcli_fecnaci from socios where codigo_socio=cp.codigo_socio))/365.25)>60 then '> 60'
+         else 'REVISA' end)rango_edad,
+         cp.monto_real MONTO_REAL,
+
+
+
+(select descripcion from sifv_sucursales where codigo_sucursal=cp.codigo_sucursal )SUCURSAL,
+(SELECT DESCRIPCION FROM CONF_PRODUCTOS WHERE CODIGO_ACT_FINANCIERA=2 AND CODIGO_PRODUCTO=CP.CODIGO_PRODUCTO) AS DESCRIPCION_PROD,
+FECHA_CREDITO,
+(case ESTADO_CRED when 'L' then 'VIGENTE' else 'CANCELADO' end)ESTADO_CREDITO ,
+CAPITAL_PORPAG,
+(case when CP.OFICRE in (44,25) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=25)
+                   when CP.OFICRE in (75,67,49) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=49)
+                   when CP.OFICRE in (102,43) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=102)
+                   when cp.oficre in (78,37,98,95) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=78)
+                   when cp.oficre in (13,14) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=14)
+                   when cp.oficre in (7,28) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=7)
+                   when cp.oficre in (18,5) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=5)
+                   when cp.oficre in (68,6,94,47,88,112) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=94)
+                   when cp.oficre in (34,77,38,33) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=34)
+                   when cp.oficre in (42,122,89) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=122)
+                   when cp.oficre in (114,22,73,108,15,120,19,109,17,121,21,40) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=114)
+                   else (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=cp.oficre) end
+)asesor,
+(SELECT TRIM(B.USU_APELLIDOS)||' '||TRIM(B.USU_NOMBRES)FROM SIFV_USUARIOS_SISTEMA B WHERE B.CODIGO_USUARIO = CP.OFICRE) AS cartera_heredada
+
+FROM CRED_CREDITOS CP
+WHERE TRUNC(FECHA_CREDITO)>=to_date('01/09/2013','dd/mm/yyyy')
+AND TRUNC(FECHA_CREDITO)<=to_date('31/12/2017','dd/mm/yyyy')
+AND (CP.ESTADO_CRED='L' OR CP.ESTADO_CRED='C')
+AND (select descripcion from sifv_sucursales where codigo_sucursal=cp.codigo_sucursal) like ('%Matr%')
+and (case when CP.OFICRE in (44,25) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=25)
+                   when CP.OFICRE in (75,67,49) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=49)
+                   when CP.OFICRE in (102,43) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=102)
+                   when cp.oficre in (78,37,98,95) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=78)
+                   when cp.oficre in (13,14) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=14)
+                   when cp.oficre in (7,28) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=7)
+                   when cp.oficre in (18,5) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=5)
+                   when cp.oficre in (68,6,94,47,88,112) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=94)
+                   when cp.oficre in (34,77,38,33) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=34)
+                   when cp.oficre in (42,122,89) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=122)
+                   when cp.oficre in (114,22,73,108,15,120,19,109,17,121,21,40) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=114)
+                   else (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=cp.oficre) end
+             ) like upper ('%%')
+
     ")
     if results.present?
       return results
@@ -3340,134 +3241,141 @@ FROM SOCIOS_TRABAJO_PRINCIPAL AE WHERE TH1.SOCIO = AE.CODIGO_SOCIO)) ACTIVIDAD,
     # data = [{socio: 2341, credito: 522, nombre: 'Santy'},
     #         {socio: 323, credito: 576, nombre: 'Dany'}]
     # return data
+    if agencia === "Servimovil"
+      agencia = "Servimóvil"
+    end
 
     results = connection.exec_query("
-    SELECT
-    d.codigo_socio,
-    case when d.sing_tipopersona=1 then mcli_apellido_pat||' '||mcli_apellido_mat||' '||mcli_nombres else mcli_razon_social end NOMBRES,
-    d.mcli_numero_id CEDULA,
-    NUMERO_CREDITO,
-    grupo_org,
-    (SELECT descripcion  FROM SIFV_SUCURSALES where codigo_sucursal=d.codigo_sucursal) NOMBRE_SUCURSAL,
-    origen_recursos,
-    (SELECT MIN(DESCRIPCION_GRUPO) FROM CRED_GRUPO_SEGMENTOS_CREDITO G WHERE G.CODIGO_GRUPO = D.CODIGO_GRUPO ) AS NOM_GRUPO,
-    CASE WHEN trunc(sysdate)-trunc(FecFINCAL)>0 THEN trunc(sysdate)-trunc(FecFINCAL) ELSE 0 END dias_vencido,
+    --eficiencia cartera por asesor y dias mora
+SELECT
+d.codigo_socio,
+case when d.sing_tipopersona=1 then mcli_apellido_pat||' '||mcli_apellido_mat||' '||mcli_nombres else mcli_razon_social end NOMBRES,
+d.mcli_numero_id CEDULA,
+NUMERO_CREDITO,
+grupo_org,
+(SELECT descripcion  FROM SIFV_SUCURSALES where codigo_sucursal=d.codigo_sucursal) NOMBRE_SUCURSAL,
+origen_recursos,
+(SELECT MIN(DESCRIPCION_GRUPO) FROM CRED_GRUPO_SEGMENTOS_CREDITO G WHERE G.CODIGO_GRUPO = D.CODIGO_GRUPO ) AS NOM_GRUPO,
+CASE WHEN trunc(sysdate)-trunc(FecFINCAL)>0 THEN trunc(sysdate)-trunc(FecFINCAL) ELSE 0 END dias_vencido,
 
-    (
-     SELECT MAX(DESCRIPCION) FROM SIFV_PROVINCIA D, socios_direcciones sd
-       WHERE D.CODIGO_PAIS = substr(sd.mcli_lugar_dir,1,2)
-         AND D.CODIGO_PROVINCIA = substr(sd.mcli_lugar_dir,3,2)
-         and sd.codigo_socio=d.codigo_socio
-    )AS PROVINCIA,
+(
+ SELECT MAX(DESCRIPCION) FROM SIFV_PROVINCIA D, socios_direcciones sd
+   WHERE D.CODIGO_PAIS = substr(sd.mcli_lugar_dir,1,2)
+     AND D.CODIGO_PROVINCIA = substr(sd.mcli_lugar_dir,3,2)
+     and sd.codigo_socio=d.codigo_socio
+)AS PROVINCIA,
 
-    (
-     SELECT MAX(DESCRIPCION) from Sifv_Ciudades d, socios_direcciones sd
-       WHERE d.codigo_pais = substr(sd.mcli_lugar_dir,1,2)
-         and d.codigo_provincia = substr(sd.mcli_lugar_dir,3,2)
-         and d.codigo_ciudad = substr(sd.mcli_lugar_dir,5,2)
-         and sd.codigo_socio=d.codigo_socio
-    ) AS CANTON,
-    (
-     SELECT MAX(DESCRIPCION) from Sifv_Parroquias d,socios_direcciones sd
-       WHERE d.codigo_pais = substr(sd.mcli_lugar_dir,1,2)
-         and d.codigo_provincia = substr(sd.mcli_lugar_dir,3,2)
-         and d.codigo_ciudad = substr(sd.mcli_lugar_dir,5,2)
-         and d.codigo_parroquia = substr(sd.mcli_lugar_dir,7,2)
-         and sd.codigo_socio=d.codigo_socio
-    ) AS PARROQUIA,
-    (SELECT max(MCLI_TELEFONOS) FROM SOCIOS_DIRECCIONES where codigo_socio=d.codigo_socio and fecha_ingreso=nvl((select max(fecha_ingreso) from SOCIOS_DIRECCIONES where codigo_socio=d.codigo_socio and rownum=1) ,to_date('01/01/1900','dd/mm/yyyy'))) TELEFONO,
-    (SELECT max(MCLI_TELEFONO_CELULAR) FROM SOCIOS_DIRECCIONES where codigo_socio=d.codigo_socio and fecha_ingreso=nvl((select max(fecha_ingreso) from SOCIOS_DIRECCIONES where codigo_socio=d.codigo_socio and rownum=1) ,to_date('01/01/1900','dd/mm/yyyy'))) CELULAR,
-    (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=d.codigo_ofcred) Cartera_Heredada,
-             (case when d.codigo_ofcred in (44,25) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=25)
-                   when d.codigo_ofcred in (75,67,49) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=49)
-                   when d.codigo_ofcred in (102,43) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=102)
-                   when d.codigo_ofcred in (78,37,98,95) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=78)
-                   when d.codigo_ofcred in (13,14) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=14)
-                   when d.codigo_ofcred in (7,28) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=7)
-                   when d.codigo_ofcred in (18,5) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=5)
-                   when d.codigo_ofcred in (68,6,94,47,88,112) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=94)
-                   when d.codigo_ofcred in (34,77,38,33) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=34)
-                   when d.codigo_ofcred in (42,122,89) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=122)
-                   when d.codigo_ofcred in (114,22,73,108,15,120,19,109,17,121,21,40) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=114)
-                   else (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=d.codigo_ofcred) end
-             )asesor,
+(
+ SELECT MAX(DESCRIPCION) from Sifv_Ciudades d, socios_direcciones sd
+   WHERE d.codigo_pais = substr(sd.mcli_lugar_dir,1,2)
+     and d.codigo_provincia = substr(sd.mcli_lugar_dir,3,2)
+     and d.codigo_ciudad = substr(sd.mcli_lugar_dir,5,2)
+     and sd.codigo_socio=d.codigo_socio
+) AS CANTON,
+(
+ SELECT MAX(DESCRIPCION) from Sifv_Parroquias d,socios_direcciones sd
+   WHERE d.codigo_pais = substr(sd.mcli_lugar_dir,1,2)
+     and d.codigo_provincia = substr(sd.mcli_lugar_dir,3,2)
+     and d.codigo_ciudad = substr(sd.mcli_lugar_dir,5,2)
+     and d.codigo_parroquia = substr(sd.mcli_lugar_dir,7,2)
+     and sd.codigo_socio=d.codigo_socio
+) AS PARROQUIA,
+(SELECT max(MCLI_TELEFONOS) FROM SOCIOS_DIRECCIONES where codigo_socio=d.codigo_socio and fecha_ingreso=nvl((select max(fecha_ingreso) from SOCIOS_DIRECCIONES where codigo_socio=d.codigo_socio and rownum=1) ,to_date('01/01/1900','dd/mm/yyyy'))) TELEFONO,
+(SELECT max(MCLI_TELEFONO_CELULAR) FROM SOCIOS_DIRECCIONES where codigo_socio=d.codigo_socio and fecha_ingreso=nvl((select max(fecha_ingreso) from SOCIOS_DIRECCIONES where codigo_socio=d.codigo_socio and rownum=1) ,to_date('01/01/1900','dd/mm/yyyy'))) CELULAR,
+(select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=d.codigo_ofcred) Cartera_Heredada,
+         (case when d.codigo_ofcred in (44,25) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=25)
+               when d.codigo_ofcred in (75,67,49) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=49)
+               when d.codigo_ofcred in (102,43) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=102)
+               when d.codigo_ofcred in (78,37,98,95) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=78)
+               when d.codigo_ofcred in (13,14) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=14)
+               when d.codigo_ofcred in (7,28) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=7)
+               when d.codigo_ofcred in (18,5) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=5)
+               when d.codigo_ofcred in (68,6,94,47,88,112) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=94)
+               when d.codigo_ofcred in (34,77,38,33) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=34)
+               when d.codigo_ofcred in (42,122,89) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=122)
+               when d.codigo_ofcred in (114,22,73,108,15,120,19,109,17,121,21,40) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=114)
+               else (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=d.codigo_ofcred) end
+         )asesor,
 
-    (select round(sum(cuen_saldo_disp),2) from capta_cuentas_socios where codigo_socio=d.codigo_socio and codigo_producto=1) as SALDO_DISPONIBLE_AHORROS,
-    (select round(sum(cuen_saldo_bloqueado),2) from capta_cuentas_socios where codigo_socio=d.codigo_socio and codigo_producto=1) as SALDO_BLOQUEADO_AHORROS,
-    (select round(sum(cuen_saldo_total),2) from capta_cuentas_socios where codigo_socio=d.codigo_socio and codigo_producto=2) as CERTIFICADOS,
-    (select round(sum(cuen_saldo_total),2) from capta_cuentas_socios where codigo_socio=d.codigo_socio and codigo_producto=4) as SALDO_ENCAJE,
-    (select round(sum(cuen_saldo_total),2) from capta_cuentas_socios where codigo_socio=d.codigo_socio and codigo_producto=7) as SALDO_CESANTIA,
-    MONTO_REAL,
-    SALDO_CAPITAL_PEND,
-    (select SUM(ROUND(NVL(CAPITALCAL,0),2) + ROUND(NVL(INTERESCAL,0),2) + ROUND(NVL(MORACAL,0),2) +
-              ROUND(CASE WHEN trunc(fecinical)>trunc(sysdate) THEN 0 ELSE NVL(rubroscal,0) END,2)) from CRED_TABLA_AMORTIZA_VARIABLE A
-                         where a.numero_credito=d.numero_credito
-                         and estadocal='P')valor_cancela,
-    VALOR_NOTIFICACIONES,
-    VALOR_JUDICIAL,
-    CAPITAL_VENCIDO,
-    FECFINCAL FECHA_VENCE,
-    (case when FECFINCAL<=trunc(sysdate) then  total_debe+valor_judicial+valor_notificaciones else 0 END)  TOTAL_VENCIDO,
-    (case when FECFINCAL>trunc(sysdate) then total_debe+valor_judicial+valor_notificaciones else 0 END)   por_vencer_manana,
-    mcli_observac,
-    case when judicial='S' then 'Demandado' else ' ' end Estado_Judi,
-              (select OBSERVACIONES_R from cred_notificaciones_credito nc where numero_credito=d.numero_credito and numero_notificacion =
-              (select max(numero_notificacion) from cred_notificaciones_credito where numero_credito=d.numero_credito)) Notificacion
-    from (
-             SELECT MIN(FECFINCAL) FECFINCAL,MAX(CODIGO_SUCURSAL) CODIGO_SUCURSAL,NUMERO_CREDITO,max(codigo_socio) CODIGO_SOCIO,
-             MAX(codigo_usuario) CODIGO_USUARIO,MAX(oficre) CODIGO_OFCRED,MAX(mcli_numero_id) MCLI_NUMERO_ID,MAX(sing_tipopersona) SING_TIPOPERSONA,
-             MAX(mcli_apellido_pat) MCLI_APELLIDO_PAT,MAX(mcli_apellido_mat) MCLI_APELLIDO_MAT,MAX(mcli_nombres) MCLI_NOMBRES,MAX(mcli_razon_social) MCLI_RAZON_SOCIAL,MAX(codigo_profesion) CODIGO_PROFESION,
-             MAX(CANT_SOLI) MONTO_REAL, grupo_org,
-             --GRUPO
-             MAX(CODIGO_GRUPO)CODIGO_GRUPO,
-             max(origen_recursos) origen_Recursos,
-             MAX(CAPITAL_PORPAG) SALDO_CAPITAL_PEND,MAX(NOTIFICACIONES) VALOR_NOTIFICACIONES,MAX(COSTO_JUDICIAL+GESTION_COBRO) VALOR_JUDICIAL,
-             SUM(CAP_ORI_CUOTA-CAPITAL_PAGADO) CAPITAL_VENCIDO,SUM(TOT_DIAS_MORA) DIAS_VENCIDO,SUM(TOTAL_DEBE) TOTAL_DEBE,MAX(MCLI_OBSERVAC) MCLI_OBSERVAC,
-             MAX(JUDICIAL) JUDICIAL
-             FROM (
-                       select FECFINCAL,cc.codigo_sucursal,cc.numero_credito,AV.ORDENCAL,cc.codigo_socio,cc.codigo_usuario,
-                       cc.oficre,s.mcli_numero_id,sdg.sing_tipopersona,
-                      -- (select * from all_all_tables where table_name like ('%REC%') )
-                       -- select * from CRED_TIPOS_RECURSOS_ECONOMICOS
-                       (SELECT max(descripcion) from CRED_TIPOS_RECURSOS_ECONOMICOS where cc.codigo_orirec=codigo)origen_recursos,
-                       mcli_apellido_pat,mcli_apellido_mat,mcli_nombres,mcli_razon_social,codigo_profesion,
-                       (select max(descripcion) from capta_cab_grupos_organizados co where co.codigo_empresa_gruporg=sdg.codigo_gruporg)grupo_org,
-                       --grupo
-                       cc.codigo_grupo,
-                       CC.CANT_SOLI,CC.NUM_CUOTAS,CC.TASA_INTERES,CC.TOT_DIAS_MORA,CC.TOT_NUM_MORAS,CC.CAPITAL_PORPAG,CC.OBS,CC.JUDICIAL,CC.COSTO_JUDICIAL, CC.GESTION_COBRO,CC.NOTIFICACIONES,
-                       (SELECT CAPITAL FROM CRED_TABLA_AMORTIZA_CONTRATADA WHERE NUMERO_CREDITO=cc.numero_credito and orden=av.ordencal) CAP_ORI_CUOTA,
-                       NVL((SELECT SUM(DP.CAPITAL) FROM CRED_CABECERA_PAGOS_CREDITO CP,CRED_DETALLE_PAGOS_CREDITO DP
-                       WHERE CP.NUMERO_CREDITO=CC.NUMERO_CREDITO AND  CP.NUMERO_CREDITO=DP.NUMERO_CREDITO AND CP.PAGO_NUMERO=DP.PAGO_NUMERO
-                       AND ORDEN=AV.ORDENCAL),0) CAPITAL_PAGADO,
-                       ROUND(CAPITALCAL+INTERESCAL+MORACAL+RUBROSCAL,2) TOTAL_DEBE,MCLI_OBSERVAC
-                       from CRED_TABLA_AMORTIZA_VARIABLE AV,cred_creditos cc,socios s,socios_solisoc_datos_generales sdg
-                       where AV.FECFINCAL<=trunc(sysdate+1) and AV.ESTADOCAL='P'
-                       and AV.numero_credito=cc.numero_credito and cc.estado_cred='L'
-                       and cc.codigo_socio=s.codigo_socio
-                       and cc.codigo_socio=sdg.codigo_socio
-                        and (case when cc.oficre in (44,25) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=25)
-                   when cc.oficre in (75,67,49) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=49)
-                   when cc.oficre in (102,43) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=102)
-                   when cc.oficre in (78,37,98,95) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=78)
-                   when cc.oficre in (13,14) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=14)
-                   when cc.oficre in (7,28) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=7)
-                   when cc.oficre in (18,5) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=5)
-                   when cc.oficre in (68,6,94,47,88,112) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=94)
-                   when cc.oficre in (34,77,38,33) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=34)
-                   when cc.oficre in (42,122,89) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=122)
-                   when cc.oficre in (114,22,73,108,15,120,19,109,17,121,21,40) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=114)
-                   else (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=cc.oficre) end
-             ) like upper ('%#{asesor}%')
-             and (SELECT descripcion_grupo from CRED_GRUPO_SEGMENTOS_CREDITO where cc.codigo_grupo=codigo_grupo) like ('%#{grupo_credito}%')
-       and (SELECT descripcion  FROM SIFV_SUCURSALES where codigo_sucursal=cc.codigo_sucursal)like ('%#{agencia}%')
-             ) T
-             group by numero_credito,grupo_org
-    )d
-    where  (CASE WHEN trunc(sysdate)-trunc(FecFINCAL)>0 THEN trunc(sysdate)-trunc(FecFINCAL) ELSE 0 END) between #{diaInicio.to_i} and #{diaFin.to_i}
-    order by codigo_socio
+(select round(sum(cuen_saldo_disp),2) from capta_cuentas_socios where codigo_socio=d.codigo_socio and codigo_producto=1) as SALDO_DISPONIBLE_AHORROS,
+(select round(sum(cuen_saldo_bloqueado),2) from capta_cuentas_socios where codigo_socio=d.codigo_socio and codigo_producto=1) as SALDO_BLOQUEADO_AHORROS,
+(select round(sum(cuen_saldo_total),2) from capta_cuentas_socios where codigo_socio=d.codigo_socio and codigo_producto=2) as CERTIFICADOS,
+(select round(sum(cuen_saldo_total),2) from capta_cuentas_socios where codigo_socio=d.codigo_socio and codigo_producto=4) as SALDO_ENCAJE,
+(select round(sum(cuen_saldo_total),2) from capta_cuentas_socios where codigo_socio=d.codigo_socio and codigo_producto=7) as SALDO_CESANTIA,
+MONTO_REAL,
+SALDO_CAPITAL_PEND,
+(select SUM(ROUND(NVL(CAPITALCAL,0),2) + ROUND(NVL(INTERESCAL,0),2) + ROUND(NVL(MORACAL,0),2) +
+          ROUND(CASE WHEN trunc(fecinical)>trunc(sysdate) THEN 0 ELSE NVL(rubroscal,0) END,2)) from CRED_TABLA_AMORTIZA_VARIABLE A
+                     where a.numero_credito=d.numero_credito
+                     and estadocal='P')valor_cancela,
+VALOR_NOTIFICACIONES,
+VALOR_JUDICIAL,
+CAPITAL_VENCIDO,
+FECFINCAL FECHA_VENCE,
+(case when FECFINCAL<=trunc(sysdate) then  total_debe+valor_judicial+valor_notificaciones else 0 END)  TOTAL_VENCIDO,
+(case when FECFINCAL>trunc(sysdate) then total_debe+valor_judicial+valor_notificaciones else 0 END)   por_vencer_manana,
+mcli_observac,
+case when judicial='S' then 'Demandado' else ' ' end Estado_Judi,
+          (select OBSERVACIONES_R from cred_notificaciones_credito nc where numero_credito=d.numero_credito and numero_notificacion =
+          (select max(numero_notificacion) from cred_notificaciones_credito where numero_credito=d.numero_credito)) Notificacion
+from (
+         SELECT MIN(FECFINCAL) FECFINCAL,MAX(CODIGO_SUCURSAL) CODIGO_SUCURSAL,NUMERO_CREDITO,max(codigo_socio) CODIGO_SOCIO,
+         MAX(codigo_usuario) CODIGO_USUARIO,MAX(oficre) CODIGO_OFCRED,MAX(mcli_numero_id) MCLI_NUMERO_ID,MAX(sing_tipopersona) SING_TIPOPERSONA,
+         MAX(mcli_apellido_pat) MCLI_APELLIDO_PAT,MAX(mcli_apellido_mat) MCLI_APELLIDO_MAT,MAX(mcli_nombres) MCLI_NOMBRES,MAX(mcli_razon_social) MCLI_RAZON_SOCIAL,MAX(codigo_profesion) CODIGO_PROFESION,
+         MAX(CANT_SOLI) MONTO_REAL, grupo_org,
+         --GRUPO
+         MAX(CODIGO_GRUPO)CODIGO_GRUPO,
+         max(origen_recursos) origen_Recursos,
+         MAX(CAPITAL_PORPAG) SALDO_CAPITAL_PEND,MAX(NOTIFICACIONES) VALOR_NOTIFICACIONES,MAX(COSTO_JUDICIAL+GESTION_COBRO) VALOR_JUDICIAL,
+         SUM(CAP_ORI_CUOTA-CAPITAL_PAGADO) CAPITAL_VENCIDO,SUM(TOT_DIAS_MORA) DIAS_VENCIDO,SUM(TOTAL_DEBE) TOTAL_DEBE,MAX(MCLI_OBSERVAC) MCLI_OBSERVAC,
+         MAX(JUDICIAL) JUDICIAL
+         FROM (
+                   select FECFINCAL,cc.codigo_sucursal,cc.numero_credito,AV.ORDENCAL,cc.codigo_socio,cc.codigo_usuario,
+                   cc.oficre,s.mcli_numero_id,sdg.sing_tipopersona,
+                  -- (select * from all_all_tables where table_name like ('%REC%') )
+                   -- select * from CRED_TIPOS_RECURSOS_ECONOMICOS
+                   (SELECT max(descripcion) from CRED_TIPOS_RECURSOS_ECONOMICOS where cc.codigo_orirec=codigo)origen_recursos,
+                   mcli_apellido_pat,mcli_apellido_mat,mcli_nombres,mcli_razon_social,codigo_profesion,
+                   (select max(descripcion) from capta_cab_grupos_organizados co where co.codigo_empresa_gruporg=sdg.codigo_gruporg)grupo_org,
+                   --grupo
+                   cc.codigo_grupo,
+                   CC.CANT_SOLI,CC.NUM_CUOTAS,CC.TASA_INTERES,CC.TOT_DIAS_MORA,CC.TOT_NUM_MORAS,CC.CAPITAL_PORPAG,CC.OBS,CC.JUDICIAL,CC.COSTO_JUDICIAL, CC.GESTION_COBRO,CC.NOTIFICACIONES,
+                   (SELECT CAPITAL FROM CRED_TABLA_AMORTIZA_CONTRATADA WHERE NUMERO_CREDITO=cc.numero_credito and orden=av.ordencal) CAP_ORI_CUOTA,
+                   NVL((SELECT SUM(DP.CAPITAL) FROM CRED_CABECERA_PAGOS_CREDITO CP,CRED_DETALLE_PAGOS_CREDITO DP
+                   WHERE CP.NUMERO_CREDITO=CC.NUMERO_CREDITO AND  CP.NUMERO_CREDITO=DP.NUMERO_CREDITO AND CP.PAGO_NUMERO=DP.PAGO_NUMERO
+                   AND ORDEN=AV.ORDENCAL),0) CAPITAL_PAGADO,
+                   ROUND(CAPITALCAL+INTERESCAL+MORACAL+RUBROSCAL,2) TOTAL_DEBE,MCLI_OBSERVAC
+                   from CRED_TABLA_AMORTIZA_VARIABLE AV,cred_creditos cc,socios s,socios_solisoc_datos_generales sdg
+                   where AV.FECFINCAL<=trunc(sysdate+1) and AV.ESTADOCAL='P'
+                   and AV.numero_credito=cc.numero_credito and cc.estado_cred='L'
+                   and cc.codigo_socio=s.codigo_socio
+                   and cc.codigo_socio=sdg.codigo_socio
+                    and (case when cc.oficre in (44,25) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=25)
+               when cc.oficre in (75,67,49) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=49)
+               when cc.oficre in (102,43) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=102)
+               when cc.oficre in (78,37,98,95) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=78)
+               when cc.oficre in (13,14) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=14)
+               when cc.oficre in (7,28) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=7)
+               when cc.oficre in (18,5) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=5)
+               when cc.oficre in (68,6,94,47,88,112) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=94)
+               when cc.oficre in (34,77,38,33) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=34)
+               when cc.oficre in (42,122,89) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=122)
+               when cc.oficre in (114,22,73,108,15,120,19,109,17,121,21,40) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=114)
+               else (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=cc.oficre) end
+         ) like upper ('%#{asesor}%')
+         and (SELECT descripcion_grupo from CRED_GRUPO_SEGMENTOS_CREDITO where cc.codigo_grupo=codigo_grupo) like ('%#{grupo_credito}%')
+   and (SELECT descripcion  FROM SIFV_SUCURSALES where codigo_sucursal=cc.codigo_sucursal)like ('%#{agencia}%')
+         ) T
+         group by numero_credito,grupo_org
+)d
+where  (CASE WHEN trunc(sysdate)-trunc(FecFINCAL)>0 THEN trunc(sysdate)-trunc(FecFINCAL) ELSE 0 END) between #{diaInicio.to_i} and #{diaFin.to_i}
+order by codigo_socio
     ")
 
     if results.present?
+      results.each do |row|
+        row["fecha_vence"] = row["fecha_vence"].to_date.strftime('%d-%m-%Y')
+      end
       return results
     else
       return {}

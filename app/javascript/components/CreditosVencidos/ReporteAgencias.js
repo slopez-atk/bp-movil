@@ -23,7 +23,7 @@ class ReporteAgencias extends React.Component{
   CalculoMora(cell, row){
     let mora = ((parseFloat(row.cartera_afectada)*100)/parseFloat(row.saldo_cartera)).toFixed(2);
     return(
-      <p>{mora}%</p>
+      <td>{mora}%</td>
     );
   }
 
@@ -55,12 +55,15 @@ class ReporteAgencias extends React.Component{
     data.push(totales);
   }
 
+  componentWillMount(){
+    this.calcularSumatorias();
+  }
+
 
   render(){
     const options = {
       toolBar: this.createCustomToolBar
     };
-    this.calcularSumatorias();
     return(
       <Paper zDepth={2} className="top-space padding">
 
