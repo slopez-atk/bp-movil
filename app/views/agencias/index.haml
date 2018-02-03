@@ -1,3 +1,5 @@
 .row.middle-xs.center-xs
-  .col-xs-11
-    = react_component "Agencias"
+  .col-xs-12.col-md-11.top-space.col-md-offset-1
+    = react_component "Agencias",
+      authenticity_token: form_authenticity_token,
+      permissions: current_user.permissions

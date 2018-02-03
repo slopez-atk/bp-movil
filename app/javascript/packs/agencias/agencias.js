@@ -1,37 +1,34 @@
 import React from 'react';
 import WebpackerReact from 'webpacker-react';
+import IndicadoresFinancierosForm from "../../components/Agencias/AgenciasForms/IndicadoresFinancierosForm";
 
-//Material ui
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import Snackbar from 'material-ui/Snackbar';
-
-const muiTheme = getMuiTheme({
-  drawer: {
-    color: '#FDD835'
-  },
-  appBar: {
-    color: '#2E3092'
-  },
-  palette: {
-    primary1Color: "#3F51B5",
-    accent1Color: "#FFC107",
-  }
-});
 
 class Agencias extends React.Component{
   constructor(props){
     super(props);
   }
 
+  getForms(){
+    return(
+      <div>
+        <div className="col-xs-12 col-md-5">
+          <IndicadoresFinancierosForm
+            url='/agencias/indicadores_financieros'
+            title='Informe de Cuentas por Agencia'
+            authenticity_token={ this.props.authenticity_token }/>
+        </div>
+      </div>
+    );
+  }
+
 
   render(){
     return(
-      <MuiThemeProvider muiTheme={getMuiTheme(muiTheme)}>
-        <div>
-
+      <div className="row center-xs middle-xs">
+        <div className="col-xs-12 col-md-11 top-space col-md-offset-1 bottom-space">
+          { this.getForms() }
         </div>
-      </MuiThemeProvider>
+      </div>
     );
   }
 }

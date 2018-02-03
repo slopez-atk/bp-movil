@@ -1,0 +1,27 @@
+!!! 5
+%html
+  %head
+    %title Cacmu
+    %meta{name:"viewport", content:"width=device-width,user-scalable=no"}
+    = csrf_meta_tags
+    = favicon_link_tag "ico_nav.png"
+    %link{rel: "stylesheet", href: "//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"}
+    %link{rel: "stylesheet", href: "https://npmcdn.com/react-bootstrap-table/dist/react-bootstrap-table.min.css"}
+    %script{src: "https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react.min.js"}
+    %script{src: "https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react-dom.min.js"}
+    = stylesheet_link_tag    'application', media: 'all', :'data-turbolinks-track' => 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag "https://www.gstatic.com/charts/loader.js"
+
+    %link{rel: "stylesheet", href: "https://fonts.googleapis.com/css?family=Lato:300,400,700,900"}
+    %link{rel: "stylesheet", href: "https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.css"}
+    = javascript_pack_tag "desempenio_social/desempenio_social_navigation"
+
+  %body.app-background
+    = render "partials/navigations/desempenio_social_navigation"
+    %div{style:"#{'display:none;' if notice.nil? && alert.nil?}", class: "large-padding bg-color-red-500 color-white text-center no-margin"}
+      = notice
+      = alert
+      %p{style: "float: right",class: "close-parent"}
+        x
+    = yield

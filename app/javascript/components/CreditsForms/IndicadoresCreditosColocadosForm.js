@@ -106,7 +106,7 @@ class IndicadoresCreditosColocadosForm extends React.Component{
                 <input type="hidden" name="agencia" value={this.state.agencia} readOnly={true} />
                 <input type="hidden" name="asesor" value={this.state.asesor} readOnly={true} />
               </div>
-              
+
               <div>
                 <FormsyText
                   floatingLabelStyle={{color: muiTheme.palette.primary1Color}}

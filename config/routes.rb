@@ -71,6 +71,12 @@ Rails.application.routes.draw do
   # Medulo de Agencias
   get '/agencias', to: 'agencias#index', as: :agencias_root
   namespace :agencias do
-    get 'indicadores_financieros'
+    post 'indicadores_financieros'
+  end
+
+  # Medulo de Desemponio Social
+  get '/desempenio_social', to: 'desempenio_social#index', as: :desempenio_social_root
+  namespace :desempenio_social do
+    get 'balance_social'
   end
 end

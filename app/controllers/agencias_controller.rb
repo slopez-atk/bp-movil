@@ -15,11 +15,11 @@ class AgenciasController < ApplicationController
       if terminar_ciclo == false
         fecha = date.to_date
         if fecha.month == Time.now.month and fecha.year == Time.now.year
-          data = OracledbAgencias.obtener_indicadores_financieros (Time.now.strftime("%d/%m/%Y").to_date).strftime("%d/%m/%Y")
+          data = OracledbAgencias.obtener_indicadores_financieros (Time.now.strftime("%d/%m/%Y").to_date - 1.day).strftime("%d/%m/%Y"), params["agencia"]
           terminar_ciclo = true
           # puts ("Fecha: " + (Time.now.strftime("%d/%m/%Y").to_date - 1.day).strftime("%d/%m/%Y").to_s)
         else
-          data = OracledbAgencias.obtener_indicadores_financieros fecha.end_of_month.strftime("%d/%m/%Y")
+          data = OracledbAgencias.obtener_indicadores_financieros fecha.end_of_month.strftime("%d/%m/%Y"), params["agencia"]
           # puts ("fecha: " + (fecha.end_of_month.strftime("%d/%m/%Y")).to_s)
         end
         @array_de_datos.push(data)
