@@ -61,7 +61,13 @@ class OracledbAgencias < ApplicationRecord
     ]
   end
 
-  def self.obtener_sumatoria_cuentas cuenta, fecha, agencia
+  def self.obtener_sumatoria_cuentas cuenta, fecha, agencia, balance = "false"
+    # if cuenta.to_i == 45
+    #   return 800
+    # else
+    #   return 100
+    # end
+
     results = connection.exec_query("
     SELECT CODIGO_SUCURSAL,
     --(select max(descripcion) from sifv_sucursales ss where ss.codigo_sucursal=codigo_sucursal)sucursal,
@@ -98,12 +104,21 @@ class OracledbAgencias < ApplicationRecord
       sumatoria += row["saldo"]
     end
 
-
-    return sumatoria;
+    if balance == "true"
+      if  cuenta.to_i == 2101 || cuenta.to_i == 2103 || cuenta.to_i == 2606 || cuenta.to_i == 2603 || cuenta.to_i == 2607 || cuenta.to_i == 2590 || cuenta.to_i == 2506 || cuenta.to_i == 5104 || cuenta.to_i == 5102 || cuenta.to_i == 5103 || cuenta.to_i == 560105 || cuenta.to_i == 5690
+        return (sumatoria * -1)
+      end
+    end
+    return sumatoria
   end
 
   # Saca la sumatoria de cuentas de toda la cooperativa
-  def self.obtener_sumatoria_cuentas_cacmu cuenta, fecha
+  def self.obtener_sumatoria_cuentas_cacmu cuenta, fecha, agencia = 0, balance = "false"
+    # if cuenta.to_i == 45
+    #   return 800
+    # else
+    #   return 100
+    # end
     results = connection.exec_query("
     SELECT CODIGO_SUCURSAL,
     --(select max(descripcion) from sifv_sucursales ss where ss.codigo_sucursal=codigo_sucursal)sucursal,
@@ -134,5 +149,11 @@ class OracledbAgencias < ApplicationRecord
     results.each do |row|
       sumatoria += row["saldo"]
     end
+    if balance == "true"
+      if  cuenta.to_i == 2101 || cuenta.to_i == 2103 || cuenta.to_i == 2606 || cuenta.to_i == 2603 || cuenta.to_i == 2607 || cuenta.to_i == 2590 || cuenta.to_i == 2506 || cuenta.to_i == 5104 || cuenta.to_i == 5102 || cuenta.to_i == 5103 || cuenta.to_i == 560105 || cuenta.to_i == 5690
+        return (sumatoria * -1)
+      end
+    end
+    return sumatoria
   end
 end

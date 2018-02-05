@@ -2,6 +2,7 @@ import React from 'react';
 import {Table, TableBody, TableFooter, TableHeader, TableHeaderColumn, tr, td} from 'material-ui/Table';
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
+import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 
 const style = {
   tr: {
@@ -61,9 +62,16 @@ class IndicadoresFinancieros extends React.Component{
   render(){
     return(
       <div>
+        <ReactHTMLTableToExcel
+          id="test-table-xls-button"
+          className="btn btn-inverse top-space bottom-space"
+          table="table-to-xls"
+          filename="tablexls"
+          sheet="tablexls"
+          buttonText="Descargar excel"/>
         <Paper zDepth={4}>
           <div className="table-responsive top-space">
-            <table className="table table-striped table-hover table-bordered padding">
+            <table className="table table-striped table-hover table-bordered padding" id="table-to-xls">
               <thead>
                 <tr>
                   <th style={style.headerRow}>Cuenta</th>
