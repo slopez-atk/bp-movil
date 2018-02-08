@@ -4,14 +4,8 @@
     <list default="true" id="80e436f7-3cf3-4a79-b522-a1f65f1de881" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/app/controllers/credits_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/credits_controller.rb" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/components/CreditsForms/IndicadoresCreditosColocadosForm.js" afterPath="$PROJECT_DIR$/app/javascript/components/CreditsForms/IndicadoresCreditosColocadosForm.js" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/components/CreditsIndicadores/IndicadoresColocadosTable.js" afterPath="$PROJECT_DIR$/app/javascript/components/CreditsIndicadores/IndicadoresColocadosTable.js" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/components/CreditsIndicadores/IndicadoresTable.js" afterPath="$PROJECT_DIR$/app/javascript/components/CreditsIndicadores/IndicadoresTable.js" />
       <change beforePath="$PROJECT_DIR$/app/javascript/packs/creditos_indicadores.js" afterPath="$PROJECT_DIR$/app/javascript/packs/creditos_indicadores.js" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/packs/creditos_navigation.js" afterPath="$PROJECT_DIR$/app/javascript/packs/creditos_navigation.js" />
-      <change beforePath="$PROJECT_DIR$/app/models/oracledb.rb" afterPath="$PROJECT_DIR$/app/models/oracledb.rb" />
-      <change beforePath="$PROJECT_DIR$/app/views/credits/indicadores_creditos_colocados.haml" afterPath="$PROJECT_DIR$/app/views/credits/indicadores_creditos_colocados.haml" />
-      <change beforePath="$PROJECT_DIR$/app/views/credits/indicadores_creditos_vigentes.haml" afterPath="$PROJECT_DIR$/app/views/credits/indicadores_creditos_vigentes.haml" />
+      <change beforePath="$PROJECT_DIR$/config/initializers/rails_admin.rb" afterPath="$PROJECT_DIR$/config/initializers/rails_admin.rb" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
@@ -34,38 +28,38 @@
       <file leaf-file-name="routes.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/routes.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-7">
+            <state relative-caret-position="935">
               <caret line="55" column="0" lean-forward="false" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="creditos_indicadores.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="creditos_indicadores.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/javascript/packs/creditos_indicadores.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="648">
-              <caret line="116" column="8" lean-forward="false" selection-start-line="116" selection-start-column="8" selection-end-line="116" selection-end-column="8" />
+            <state relative-caret-position="413">
+              <caret line="112" column="0" lean-forward="false" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="oracledb.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/oracledb.rb">
+      <file leaf-file-name="rails_admin.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/initializers/rails_admin.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="206">
-              <caret line="2648" column="29" lean-forward="false" selection-start-line="2648" selection-start-column="29" selection-end-line="2648" selection-end-column="29" />
+            <state relative-caret-position="478">
+              <caret line="42" column="44" lean-forward="false" selection-start-line="42" selection-start-column="44" selection-end-line="42" selection-end-column="44" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="credits_controller.rb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="credits_controller.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/credits_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="865" column="60" lean-forward="true" selection-start-line="865" selection-start-column="60" selection-end-line="865" selection-end-column="60" />
+            <state relative-caret-position="447">
+              <caret line="875" column="0" lean-forward="false" selection-start-line="875" selection-start-column="0" selection-end-line="875" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -81,22 +75,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CreditosConcedidosForm.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/javascript/components/CreditsForms/CreditosConcedidosForm.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="202">
-              <caret line="94" column="20" lean-forward="false" selection-start-line="94" selection-start-column="20" selection-end-line="94" selection-end-column="20" />
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="IndicadoresCreditosColocadosForm.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/javascript/components/CreditsForms/IndicadoresCreditosColocadosForm.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="786">
+            <state relative-caret-position="1938">
               <caret line="124" column="34" lean-forward="false" selection-start-line="124" selection-start-column="34" selection-end-line="124" selection-end-column="34" />
               <folding />
             </state>
@@ -106,7 +88,7 @@
       <file leaf-file-name="IndicadoresTable.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/javascript/components/CreditsIndicadores/IndicadoresTable.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="206">
+            <state relative-caret-position="782">
               <caret line="49" column="45" lean-forward="false" selection-start-line="49" selection-start-column="45" selection-end-line="49" selection-end-column="45" />
               <folding />
             </state>
@@ -163,7 +145,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/javascript/components/CreditsForms/CreditosVencidosForm.js" />
         <option value="$PROJECT_DIR$/app/javascript/components/CreditosPorVencer/PerMonth.js" />
         <option value="$PROJECT_DIR$/app/javascript/components/CreditosPorVencer/TableDates.js" />
         <option value="$PROJECT_DIR$/app/javascript/components/CreditosVencidos/CreditosTable.js" />
@@ -211,9 +192,10 @@
         <option value="$PROJECT_DIR$/app/models/oracledb.rb" />
         <option value="$PROJECT_DIR$/app/javascript/components/CreditsForms/CreditosConcedidosForm.js" />
         <option value="$PROJECT_DIR$/app/javascript/components/CreditsForms/IndicadoresCreditosColocadosForm.js" />
-        <option value="$PROJECT_DIR$/app/controllers/credits_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/credits/indicadores_creditos_colocados.haml" />
+        <option value="$PROJECT_DIR$/app/controllers/credits_controller.rb" />
         <option value="$PROJECT_DIR$/app/javascript/packs/creditos_indicadores.js" />
+        <option value="$PROJECT_DIR$/config/initializers/rails_admin.rb" />
       </list>
     </option>
   </component>
@@ -314,10 +296,22 @@
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="credits" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="AppCacmu" type="b2602c69:ProjectViewProjectNode" />
+              <item name="AppCacmu" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="AppCacmu" type="b2602c69:ProjectViewProjectNode" />
+              <item name="AppCacmu" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+              <item name="initializers" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="RailsProjectView" />
       <pane id="Scope">
         <subPane subId="Project Files">
           <expand>
@@ -382,7 +376,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="RailsProjectView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -525,33 +518,35 @@
       <workItem from="1517976372979" duration="365000" />
       <workItem from="1517979175130" duration="202000" />
       <workItem from="1518103249875" duration="5081000" />
+      <workItem from="1518110104104" duration="780000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="195451000" />
+    <option name="totallyTimeSpent" value="196231000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="773" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27578124" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -567,13 +562,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/javascript/components/CreditosConcedidos/ReporteAsesor.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/javascript/components/CreditosConcedidos/ReporteGruposCredito.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="545">
@@ -878,13 +866,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="652">
           <caret line="124" column="128" lean-forward="false" selection-start-line="124" selection-start-column="128" selection-end-line="124" selection-end-column="128" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/config/routes.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7">
+        <state relative-caret-position="935">
           <caret line="55" column="0" lean-forward="false" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
           <folding />
         </state>
@@ -894,7 +881,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-423">
           <caret line="7" column="22" lean-forward="false" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -902,9 +888,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="159">
           <caret line="308" column="20" lean-forward="false" selection-start-line="308" selection-start-column="20" selection-end-line="308" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#26#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -912,13 +895,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
           <caret line="11" column="18" lean-forward="false" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/javascript/components/CreditsIndicadores/IndicadoresTable.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
+        <state relative-caret-position="782">
           <caret line="49" column="45" lean-forward="false" selection-start-line="49" selection-start-column="45" selection-end-line="49" selection-end-column="45" />
           <folding />
         </state>
@@ -926,10 +908,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/javascript/components/CreditsForms/CreditosConcedidosForm.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
+        <state relative-caret-position="1428">
           <caret line="94" column="20" lean-forward="false" selection-start-line="94" selection-start-column="20" selection-end-line="94" selection-end-column="20" />
           <folding>
-            <element signature="e#0#26#0" expanded="true" />
+            <element signature="e#0#26#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -938,14 +920,21 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="497">
           <caret line="107" column="20" lean-forward="true" selection-start-line="91" selection-start-column="14" selection-end-line="107" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/javascript/components/CreditsForms/IndicadoresCreditosColocadosForm.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="786">
+        <state relative-caret-position="1938">
           <caret line="124" column="34" lean-forward="false" selection-start-line="124" selection-start-column="34" selection-end-line="124" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/oracledb.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45016">
+          <caret line="2648" column="29" lean-forward="false" selection-start-line="2648" selection-start-column="29" selection-end-line="2648" selection-end-column="29" />
           <folding />
         </state>
       </provider>
@@ -958,26 +947,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/javascript/packs/creditos_indicadores.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="648">
-          <caret line="116" column="8" lean-forward="false" selection-start-line="116" selection-start-column="8" selection-end-line="116" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/credits_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="865" column="60" lean-forward="true" selection-start-line="865" selection-start-column="60" selection-end-line="865" selection-end-column="60" />
+        <state relative-caret-position="447">
+          <caret line="875" column="0" lean-forward="false" selection-start-line="875" selection-start-column="0" selection-end-line="875" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/oracledb.rb">
+    <entry file="file://$PROJECT_DIR$/config/initializers/rails_admin.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="2648" column="29" lean-forward="false" selection-start-line="2648" selection-start-column="29" selection-end-line="2648" selection-end-column="29" />
+        <state relative-caret-position="478">
+          <caret line="42" column="44" lean-forward="false" selection-start-line="42" selection-start-column="44" selection-end-line="42" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/javascript/packs/creditos_indicadores.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="413">
+          <caret line="112" column="0" lean-forward="false" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
           <folding />
         </state>
       </provider>

@@ -873,6 +873,7 @@ class CreditsController < ApplicationController
       end
 
     end
+
   end
 
   def set_layout

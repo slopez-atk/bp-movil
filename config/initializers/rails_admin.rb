@@ -40,6 +40,7 @@ RailsAdmin.config do |config|
   end
 
   config.excluded_models << Oracledb
+  config.excluded_models << OracledbAgencias
 
   config.authorize_with do
     redirect_to main_app.root_path unless current_user.admin == true
