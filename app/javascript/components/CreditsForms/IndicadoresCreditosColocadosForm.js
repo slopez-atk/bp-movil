@@ -108,6 +108,25 @@ class IndicadoresCreditosColocadosForm extends React.Component{
               </div>
 
               <div>
+
+                <div>
+                  <FormsyDate
+                    floatingLabelStyle={{color: muiTheme.palette.primary1Color}}
+                    onChange={ (ev, date)=> this.syncFechas(ev, date, 'fechaInicio') }
+                    name="fechaInicio"
+                    required
+                    floatingLabelText="Fecha de Inicio"/>
+                </div>
+
+                <div>
+                  <FormsyDate
+                    floatingLabelStyle={{color: muiTheme.palette.primary1Color}}
+                    onChange={ (ev, date)=> this.syncFechas(ev, date, 'fechaFin') }
+                    name="fechaFin"
+                    required
+                    floatingLabelText="Fecha de fin"/>
+                </div>
+
                 <FormsyText
                   floatingLabelStyle={{color: muiTheme.palette.primary1Color}}
                   floatingLabelText="Desde"

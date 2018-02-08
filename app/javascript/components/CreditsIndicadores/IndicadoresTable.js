@@ -61,6 +61,8 @@ class IndicadoresTable extends React.Component{
             <PercentIndicadoresTable data={this.props.data} cantidad={porcentajes[0]} cap_activo={porcentajes[1]} cap_ndevenga={porcentajes[2]} cartera_riesgo={porcentajes[3]} cap_vencido={porcentajes[4]}/>
           </div>
         </Paper>
+
+        <Paper/>
       </div>
     );
   }

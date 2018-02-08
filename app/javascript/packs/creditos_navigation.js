@@ -218,10 +218,24 @@ class CreditosNavigation extends React.Component {
           />
           <Divider/>
           <MenuItem
-            primaryText="Cartera Concedida"
+            primaryText="Eficiencia de Cartera"
             leftIcon={ <MarkunreadMailbox color='#444444'/>}
             style={{color: '#444444'}}
             onClick={ this.handleModal4 }
+          />
+          <Divider/>
+          <MenuItem
+            primaryText="Matrices de Riesgo"
+            leftIcon={ <ViewWeek color='#444444'/>}
+            style={{color: '#444444'}}
+            onClick={ this.handleModal3 }
+          />
+          <Divider/>
+          <MenuItem
+            primaryText="Cosechas"
+            leftIcon={ <ViewDay color='#444444'/>}
+            style={{color: '#444444'}}
+            onClick={ this.handleModal5 }
           />
           <Divider/>
           <MenuItem
@@ -243,6 +257,27 @@ class CreditosNavigation extends React.Component {
     } else if(permissions === 8){
       return(
         <div>
+          <Divider/>
+          <MenuItem
+            primaryText="Cartera Por Vencer"
+            leftIcon={ <Event color='#444444'/>}
+            style={{color: '#444444'}}
+            onClick={ this.handleModal1 }
+          />
+          <Divider/>
+          <MenuItem
+            primaryText="Cartera Vencida"
+            leftIcon={ <ActionFeedback color='#444444'/>}
+            style={{color: '#444444'}}
+            onClick={ this.handleModal2 }
+          />
+          <Divider/>
+          <MenuItem
+            primaryText="Eficiencia de Cartera"
+            leftIcon={ <MarkunreadMailbox color='#444444'/>}
+            style={{color: '#444444'}}
+            onClick={ this.handleModal4 }
+          />
           <Divider/>
           <MenuItem
             primaryText="Matrices de Riesgo"

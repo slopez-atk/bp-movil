@@ -4,53 +4,55 @@ import Paper from 'material-ui/Paper';
 import PercentIndicadoresColocadosTable from "./PercentIndicadoresColocadosTable";
 
 
-class IndicadoresColocadosTable extends React.Component{
-  constructor(props){
+class IndicadoresColocadosTable extends React.Component {
+  constructor(props) {
     super(props)
   }
 
   createCustomToolBar = props => {
     return (
-      <div style={ { margin: '15px' } }>
-        { props.components.btnGroup }
+      <div style={{margin: '15px'}}>
+        {props.components.btnGroup}
         <div className='col-xs-8 col-sm-4 col-md-4 col-lg-2'>
-          { props.components.searchPanel }
+          {props.components.searchPanel}
         </div>
       </div>
     );
   };
 
 
-  calcularTotales(){
+  calcularTotales() {
     let cantidad = 0;
     let monto_real = 0;
 
-    for(let i=0; i < this.props.data.length; i++){
+    for (let i = 0; i < this.props.data.length; i++) {
       monto_real += parseFloat(this.props.data[i]["monto_real"]);
       cantidad += parseFloat(this.props.data[i]["cantidad"]);
     }
     return [cantidad, monto_real];
   }
 
-  render(){
+  render() {
     const options = {
       toolBar: this.createCustomToolBar
     };
     let porcentajes = this.calcularTotales();
-    return(
+    return (
       <div>
         <Paper zDepth={3} className="top-space padding">
-          <h4 className="top-space" style={{color: "#FFC107"}}>{ this.props.title }</h4>
+          <h4 className="top-space" style={{color: "#FFC107"}}>{this.props.title}</h4>
           <div>
-            <BootstrapTable ref='table' data={ this.props.data } exportCSV={ true } hover options={options}>
-              <TableHeaderColumn dataField='clave' isKey={ true } dataSort={ true } width='250'>Indicador</TableHeaderColumn>
-              <TableHeaderColumn dataField='cantidad' dataSort={ true } width='250'>Cantidad</TableHeaderColumn>
-              <TableHeaderColumn dataField='monto_real' dataSort={ true } width='250'>Monto Real</TableHeaderColumn>
+            <BootstrapTable ref='table' data={this.props.data} exportCSV={true} hover options={options}>
+              <TableHeaderColumn dataField='clave' isKey={true} dataSort={true}
+                                 width='250'>Indicador</TableHeaderColumn>
+              <TableHeaderColumn dataField='cantidad' dataSort={true} width='250'>Cantidad</TableHeaderColumn>
+              <TableHeaderColumn dataField='monto_real' dataSort={true} width='250'>Monto Real</TableHeaderColumn>
             </BootstrapTable>
           </div>
           <h4 className="top-space" style={{color: "#FFC107"}}>Tabla de Porcentajes</h4>
           <div>
-            <PercentIndicadoresColocadosTable data={this.props.data} cantidad={porcentajes[0]} monto_real={porcentajes[1]}/>
+            <PercentIndicadoresColocadosTable data={this.props.data} cantidad={porcentajes[0]}
+                                              monto_real={porcentajes[1]}/>
           </div>
         </Paper>
       </div>

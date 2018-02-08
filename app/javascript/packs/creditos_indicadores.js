@@ -68,6 +68,11 @@ class CreditosIndicadores extends React.Component{
           <Tab label="Edades">
             <IndicadoresTable title={"Indicador de Rango de Edades"} data={ this.props.rango_edades }/>
           </Tab>
+
+          <Tab label="Ingresos">
+            <IndicadoresTable title={"Indicador de Rango de Ingreso"} data={ this.props.rango_ingresos }/>
+          </Tab>
+
         </Tabs>
       );
     } else {
@@ -103,6 +108,10 @@ class CreditosIndicadores extends React.Component{
 
           <Tab label="Edades">
             <IndicadoresColocadosTable title={"Indicador de Rango de Edades"} data={ this.props.rango_edades }/>
+          </Tab>
+
+          <Tab label="Ingresos">
+            <IndicadoresColocadosTable title={"Indicador de Rango de Ingreso"} data={ this.props.rango_ingresos }/>
           </Tab>
         </Tabs>
       );

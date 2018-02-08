@@ -509,6 +509,7 @@ class CreditsController < ApplicationController
     @hash_nivel_instruccion = Hash.new
     @hash_estado_civil = Hash.new
     @hash_rango_edad = Hash.new
+    @hash_rango_ingresos = Hash.new
 
     @generos = Array.new
     @sectores = Array.new
@@ -518,6 +519,7 @@ class CreditsController < ApplicationController
     @niveles_instruccion = Array.new
     @estados_civiles = Array.new
     @rango_edades = Array.new
+    @rango_ingresos = Array.new
 
     @data.each do |row|
       row.stringify_keys!
@@ -618,16 +620,16 @@ class CreditsController < ApplicationController
       end
 
       # Rangos Ingreso
-      # if @hash_metodologia[row["metodologia"]].nil?
-      #   @hash_metodologia[row["metodologia"]] = {clave: row["origen_recursos"], cantidad: 1, saldo: row["saldo"].to_f.round(2), cap_activo: row["cap_activo"].to_f.round(2), cap_ndevenga: row["cap_ndevenga"].to_f.round(2), cartera_riesgo: row["cartera_riesgo"].to_f.round(2), cap_vencido: row["cap_vencido"].to_f.round(2)}
-      # else
-      #   @hash_metodologia[row["metodologia"]][:cantidad] += 1
-      #   @hash_metodologia[row["metodologia"]][:saldo] += row["saldo"].to_f.round(2)
-      #   @hash_metodologia[row["metodologia"]][:cap_activo] += row["cap_activo"].to_f.round(2)
-      #   @hash_metodologia[row["metodologia"]][:cap_ndevenga] += row["cap_ndevenga"].to_f.round(2)
-      #   @hash_metodologia[row["metodologia"]][:cartera_riesgo] += row["cartera_riesgo"].to_f.round(2)
-      #   @hash_metodologia[row["metodologia"]][:cap_vencido] += row["cap_vencido"].to_f.round(2)
-      # end
+      if @hash_rango_ingresos[row["ing_mensual_tipologia"]].nil?
+        @hash_rango_ingresos[row["ing_mensual_tipologia"]] = {clave: row["ing_mensual_tipologia"], cantidad: 1, saldo: row["saldo"].to_f.round(2), cap_activo: row["cap_activo"].to_f.round(2), cap_ndevenga: row["cap_ndevenga"].to_f.round(2), cartera_riesgo: row["cartera_riesgo"].to_f.round(2), cap_vencido: row["cap_vencido"].to_f.round(2)}
+      else
+        @hash_rango_ingresos[row["ing_mensual_tipologia"]][:cantidad] += 1
+        @hash_rango_ingresos[row["ing_mensual_tipologia"]][:saldo] += row["saldo"].to_f.round(2)
+        @hash_rango_ingresos[row["ing_mensual_tipologia"]][:cap_activo] += row["cap_activo"].to_f.round(2)
+        @hash_rango_ingresos[row["ing_mensual_tipologia"]][:cap_ndevenga] += row["cap_ndevenga"].to_f.round(2)
+        @hash_rango_ingresos[row["ing_mensual_tipologia"]][:cartera_riesgo] += row["cartera_riesgo"].to_f.round(2)
+        @hash_rango_ingresos[row["ing_mensual_tipologia"]][:cap_vencido] += row["cap_vencido"].to_f.round(2)
+      end
     end
 
 
@@ -703,6 +705,16 @@ class CreditsController < ApplicationController
       row[1]["cap_vencido"] = row[1]["cap_vencido"].round(2)
       @rango_edades.push(row[1])
     end
+    @hash_rango_ingresos.each do |row|
+      row[1].stringify_keys!
+      row[1]["saldo"] = row[1]["saldo"].round(2)
+      row[1]["cap_activo"] = row[1]["cap_activo"].round(2)
+      row[1]["cap_ndevenga"] = row[1]["cap_ndevenga"].round(2)
+      row[1]["cartera_riesgo"] = row[1]["cartera_riesgo"].round(2)
+      row[1]["cap_vencido"] = row[1]["cap_vencido"].round(2)
+      @rango_ingresos.push(row[1])
+    end
+
 
   end
 
@@ -717,6 +729,7 @@ class CreditsController < ApplicationController
     @hash_nivel_instruccion = Hash.new
     @hash_estado_civil = Hash.new
     @hash_rango_edad = Hash.new
+    @hash_rango_ingresos = Hash.new
 
     # Voy a transformar el hash en un array por eso instancio un array para cada hash
     @generos = Array.new
@@ -727,6 +740,7 @@ class CreditsController < ApplicationController
     @niveles_instruccion = Array.new
     @estados_civiles = Array.new
     @rango_edades = Array.new
+    @rango_ingresos = Array.new
 
     @data.each do |row|
       row.stringify_keys!
@@ -734,8 +748,8 @@ class CreditsController < ApplicationController
       if @hash_genero[row["genero"]].nil?
         @hash_genero[row["genero"]] = {clave: row["genero"], cantidad: 1, monto_real: row["monto_real"].to_f.round(2)}
       else
-        @hash_genero[row["genero"]][:cantidad] += 1
-        @hash_genero[row["genero"]][:monto_real] += row["monto_real"].to_f.round(2)
+        @hash_genero[row["genero"]]["cantidad"] += 1
+        @hash_genero[row["genero"]]["monto_real"] += row["monto_real"].to_f.round(2)
 
       end
 
@@ -743,8 +757,8 @@ class CreditsController < ApplicationController
       if @hash_sector[row["sector"]].nil?
         @hash_sector[row["sector"]] = {clave: row["sector"], cantidad: 1, monto_real: row["monto_real"].to_f.round(2)}
       else
-        @hash_sector[row["sector"]][:cantidad] += 1
-        @hash_sector[row["sector"]][:monto_real] += row["monto_real"].to_f.round(2)
+        @hash_sector[row["sector"]]["cantidad"] += 1
+        @hash_sector[row["sector"]]["monto_real"] += row["monto_real"].to_f.round(2)
 
       end
 
@@ -752,8 +766,8 @@ class CreditsController < ApplicationController
       if @hash_tipo_credito[row["tipo_credito"]].nil?
         @hash_tipo_credito[row["tipo_credito"]] = {clave: row["tipo_credito"], cantidad: 1, monto_real: row["monto_real"].to_f.round(2)}
       else
-        @hash_tipo_credito[row["tipo_credito"]][:cantidad] += 1
-        @hash_tipo_credito[row["tipo_credito"]][:monto_real] += row["saldo"].to_f.round(2)
+        @hash_tipo_credito[row["tipo_credito"]]["cantidad"] += 1
+        @hash_tipo_credito[row["tipo_credito"]]["monto_real"] += row["saldo"].to_f.round(2)
 
       end
 
@@ -761,16 +775,16 @@ class CreditsController < ApplicationController
       if @hash_origen_recursos[row["origen_recursos"]].nil?
         @hash_origen_recursos[row["origen_recursos"]] = {clave: row["origen_recursos"], cantidad: 1, monto_real: row["monto_real"].to_f.round(2)}
       else
-        @hash_origen_recursos[row["origen_recursos"]][:cantidad] += 1
-        @hash_origen_recursos[row["origen_recursos"]][:monto_real] += row["monto_real"].to_f.round(2)
+        @hash_origen_recursos[row["origen_recursos"]]["cantidad"] += 1
+        @hash_origen_recursos[row["origen_recursos"]]["monto_real"] += row["monto_real"].to_f.round(2)
       end
 
       # Metodologia
       if @hash_metodologia[row["metodologia"]].nil?
         @hash_metodologia[row["metodologia"]] = {clave: row["origen_recursos"], cantidad: 1, monto_real: row["monto_real"].to_f.round(2)}
       else
-        @hash_metodologia[row["metodologia"]][:cantidad] += 1
-        @hash_metodologia[row["metodologia"]][:monto_real] += row["monto_real"].to_f.round(2)
+        @hash_metodologia[row["metodologia"]]["cantidad"] += 1
+        @hash_metodologia[row["metodologia"]]["monto_real"] += row["monto_real"].to_f.round(2)
 
       end
 
@@ -779,16 +793,16 @@ class CreditsController < ApplicationController
       if @hash_nivel_instruccion[row["instruccion"]].nil?
         @hash_nivel_instruccion[row["instruccion"]] = {clave: row["instruccion"], cantidad: 1, monto_real: row["monto_real"].to_f.round(2)}
       else
-        @hash_nivel_instruccion[row["instruccion"]][:cantidad] += 1
-        @hash_nivel_instruccion[row["instruccion"]][:monto_real] += row["monto_real"].to_f.round(2)
+        @hash_nivel_instruccion[row["instruccion"]]["cantidad"] += 1
+        @hash_nivel_instruccion[row["instruccion"]]["monto_real"] += row["monto_real"].to_f.round(2)
       end
 
       # Estado Civil
       if @hash_estado_civil[row["estado_civil"]].nil?
         @hash_estado_civil[row["estado_civil"]] = {clave: row["estado_civil"], cantidad: 1, monto_real: row["monto_real"].to_f.round(2)}
       else
-        @hash_estado_civil[row["estado_civil"]][:cantidad] += 1
-        @hash_estado_civil[row["estado_civil"]][:monto_real] += row["monto_real"].to_f.round(2)
+        @hash_estado_civil[row["estado_civil"]]["cantidad"] += 1
+        @hash_estado_civil[row["estado_civil"]]["monto_real"] += row["monto_real"].to_f.round(2)
 
       end
 
@@ -796,78 +810,80 @@ class CreditsController < ApplicationController
       if @hash_rango_edad[row["rango_edad"]].nil?
         @hash_rango_edad[row["rango_edad"]] = {clave: row["rango_edad"], cantidad: 1, monto_real: row["monto_real"].to_f.round(2)}
       else
-        @hash_rango_edad[row["rango_edad"]][:cantidad] += 1
-        @hash_rango_edad[row["rango_edad"]][:monto_real] += row["monto_real"].to_f.round(2)
+        @hash_rango_edad[row["rango_edad"]]["cantidad"] += 1
+        @hash_rango_edad[row["rango_edad"]]["monto_real"] += row["monto_real"].to_f.round(2)
 
       end
 
       # Rangos Ingreso
-      # if @hash_metodologia[row["metodologia"]].nil?
-      #   @hash_metodologia[row["metodologia"]] = {clave: row["origen_recursos"], cantidad: 1, saldo: row["saldo"].to_f.round(2), cap_activo: row["cap_activo"].to_f.round(2), cap_ndevenga: row["cap_ndevenga"].to_f.round(2), cartera_riesgo: row["cartera_riesgo"].to_f.round(2), cap_vencido: row["cap_vencido"].to_f.round(2)}
-      # else
-      #   @hash_metodologia[row["metodologia"]][:cantidad] += 1
-      #   @hash_metodologia[row["metodologia"]][:saldo] += row["saldo"].to_f.round(2)
-      #   @hash_metodologia[row["metodologia"]][:cap_activo] += row["cap_activo"].to_f.round(2)
-      #   @hash_metodologia[row["metodologia"]][:cap_ndevenga] += row["cap_ndevenga"].to_f.round(2)
-      #   @hash_metodologia[row["metodologia"]][:cartera_riesgo] += row["cartera_riesgo"].to_f.round(2)
-      #   @hash_metodologia[row["metodologia"]][:cap_vencido] += row["cap_vencido"].to_f.round(2)
-      # end
-    end
+      if @hash_rango_ingresos[row["ing_mensual_tipologia"]].nil?
+        @hash_rango_ingresos[row["ing_mensual_tipologia"]] = {clave: row["ing_mensual_tipologia"], cantidad: 1, monto_real: row["monto_real"].to_f.round(2)}
+      else
+        @hash_rango_ingresos[row["ing_mensual_tipologia"]]["cantidad"] += 1
+        @hash_rango_ingresos[row["ing_mensual_tipologia"]]["monto_real"] += row["monto_real"].to_f.round(2)
+      end
 
 
-    @hash_genero.each do |row|
-      row[1].stringify_keys!
-      row[1]["monto_real"] = row[1]["monto_real"].round(2)
-      @generos.push(row[1])
-    end
-    @hash_sector.each do |row|
-      row[1].stringify_keys!
-      row[1]["monto_real"] = row[1]["monto_real"].round(2)
-      @sectores.push(row[1])
-    end
-    @hash_tipo_credito.each do |row|
-      row[1].stringify_keys!
-      row[1]["monto_real"] = row[1]["monto_real"].round(2)
+      @hash_genero.each do |row|
+        row[1].stringify_keys!
+        row[1]["monto_real"] = row[1]["monto_real"].round(2)
+        @generos.push(row[1])
+      end
+      @hash_sector.each do |row|
+        row[1].stringify_keys!
+        row[1]["monto_real"] = row[1]["monto_real"].round(2)
+        @sectores.push(row[1])
+      end
+      @hash_tipo_credito.each do |row|
+        row[1].stringify_keys!
+        row[1]["monto_real"] = row[1]["monto_real"].round(2)
 
-      @tipos_credito.push(row[1])
-    end
-    @hash_origen_recursos.each do |row|
-      row[1].stringify_keys!
-      row[1]["monto_real"] = row[1]["monto_real"].round(2)
+        @tipos_credito.push(row[1])
+      end
+      @hash_origen_recursos.each do |row|
+        row[1].stringify_keys!
+        row[1]["monto_real"] = row[1]["monto_real"].round(2)
 
-      @origenes_recursos.push(row[1])
-    end
-    @hash_metodologia.each do |row|
-      row[1].stringify_keys!
-      row[1]["monto_real"] = row[1]["monto_real"].round(2)
-      @metodologias.push(row[1])
-    end
-    @hash_estado_civil.each do |row|
-      row[1].stringify_keys!
-      row[1]["monto_real"] = row[1]["monto_real"].round(2)
-      @estados_civiles.push(row[1])
-    end
-    @hash_nivel_instruccion.each do |row|
-      row[1].stringify_keys!
-      row[1]["monto_real"] = row[1]["monto_real"].round(2)
-      @niveles_instruccion.push(row[1])
-    end
-    @hash_rango_edad.each do |row|
-      row[1].stringify_keys!
-      row[1]["monto_real"] = row[1]["monto_real"].round(2)
-      @rango_edades.push(row[1])
+        @origenes_recursos.push(row[1])
+      end
+      @hash_metodologia.each do |row|
+        row[1].stringify_keys!
+        row[1]["monto_real"] = row[1]["monto_real"].round(2)
+        @metodologias.push(row[1])
+      end
+      @hash_estado_civil.each do |row|
+        row[1].stringify_keys!
+        row[1]["monto_real"] = row[1]["monto_real"].round(2)
+        @estados_civiles.push(row[1])
+      end
+      @hash_nivel_instruccion.each do |row|
+        row[1].stringify_keys!
+        row[1]["monto_real"] = row[1]["monto_real"].round(2)
+        @niveles_instruccion.push(row[1])
+      end
+      @hash_rango_edad.each do |row|
+        row[1].stringify_keys!
+        row[1]["monto_real"] = row[1]["monto_real"].round(2)
+        @rango_edades.push(row[1])
+      end
+      @hash_rango_ingresos.each do |row|
+        row[1].stringify_keys!
+        row[1]["monto_real"] = row[1]["monto_real"].round(2)
+        @rango_ingresos.push(row[1])
+      end
+
     end
   end
 
   def set_layout
-    return "creditos"
+    return 'creditos'
     super
   end
 
   protected
   def authenticate_creditos
     unless current_user.permissions == 5 || current_user.permissions == 7 || current_user.permissions == 3 || current_user.permissions == 8
-      redirect_to root_path, notice: "No estás autorizado!"
+      redirect_to root_path, notice: 'No estás autorizado!'
     end
   end
 end
