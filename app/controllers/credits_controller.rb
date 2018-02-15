@@ -748,17 +748,19 @@ class CreditsController < ApplicationController
       if @hash_genero[row["genero"]].nil?
         @hash_genero[row["genero"]] = {clave: row["genero"], cantidad: 1, monto_real: row["monto_real"].to_f.round(2)}
       else
-        @hash_genero[row["genero"]]["cantidad"] += 1
-        @hash_genero[row["genero"]]["monto_real"] += row["monto_real"].to_f.round(2)
+        @hash_genero[row["genero"]].symbolize_keys!
+        @hash_genero[row["genero"]][:cantidad] += 1
+        @hash_genero[row["genero"]][:monto_real] += row["monto_real"].to_f.round(2)
 
       end
 
       #Sector
       if @hash_sector[row["sector"]].nil?
-        @hash_sector[row["sector"]] = {clave: row["sector"], cantidad: 1, monto_real: row["monto_real"].to_f.round(2)}
+        @hash_sector[row["sector"]] = { clave: row["sector"], cantidad: 1, monto_real: row["monto_real"].to_f.round(2)}
       else
-        @hash_sector[row["sector"]]["cantidad"] += 1
-        @hash_sector[row["sector"]]["monto_real"] += row["monto_real"].to_f.round(2)
+        @hash_sector[row["sector"]].symbolize_keys!
+        @hash_sector[row["sector"]][:cantidad] += 1
+        @hash_sector[row["sector"]][:monto_real] += row["monto_real"].to_f.round(2)
 
       end
 
@@ -766,8 +768,9 @@ class CreditsController < ApplicationController
       if @hash_tipo_credito[row["tipo_credito"]].nil?
         @hash_tipo_credito[row["tipo_credito"]] = {clave: row["tipo_credito"], cantidad: 1, monto_real: row["monto_real"].to_f.round(2)}
       else
-        @hash_tipo_credito[row["tipo_credito"]]["cantidad"] += 1
-        @hash_tipo_credito[row["tipo_credito"]]["monto_real"] += row["saldo"].to_f.round(2)
+        @hash_tipo_credito[row["tipo_credito"]].symbolize_keys!
+        @hash_tipo_credito[row["tipo_credito"]][:cantidad] += 1
+        @hash_tipo_credito[row["tipo_credito"]][:monto_real] += row["saldo"].to_f.round(2)
 
       end
 
@@ -775,16 +778,18 @@ class CreditsController < ApplicationController
       if @hash_origen_recursos[row["origen_recursos"]].nil?
         @hash_origen_recursos[row["origen_recursos"]] = {clave: row["origen_recursos"], cantidad: 1, monto_real: row["monto_real"].to_f.round(2)}
       else
-        @hash_origen_recursos[row["origen_recursos"]]["cantidad"] += 1
-        @hash_origen_recursos[row["origen_recursos"]]["monto_real"] += row["monto_real"].to_f.round(2)
+        @hash_origen_recursos[row["origen_recursos"]].symbolize_keys!
+        @hash_origen_recursos[row["origen_recursos"]][:cantidad] += 1
+        @hash_origen_recursos[row["origen_recursos"]][:monto_real] += row["monto_real"].to_f.round(2)
       end
 
       # Metodologia
       if @hash_metodologia[row["metodologia"]].nil?
-        @hash_metodologia[row["metodologia"]] = {clave: row["origen_recursos"], cantidad: 1, monto_real: row["monto_real"].to_f.round(2)}
+        @hash_metodologia[row["metodologia"]] = {clave: row["metodologia"], cantidad: 1, monto_real: row["monto_real"].to_f.round(2)}
       else
-        @hash_metodologia[row["metodologia"]]["cantidad"] += 1
-        @hash_metodologia[row["metodologia"]]["monto_real"] += row["monto_real"].to_f.round(2)
+        @hash_metodologia[row["metodologia"]].symbolize_keys!
+        @hash_metodologia[row["metodologia"]][:cantidad] += 1
+        @hash_metodologia[row["metodologia"]][:monto_real] += row["monto_real"].to_f.round(2)
 
       end
 
@@ -793,16 +798,18 @@ class CreditsController < ApplicationController
       if @hash_nivel_instruccion[row["instruccion"]].nil?
         @hash_nivel_instruccion[row["instruccion"]] = {clave: row["instruccion"], cantidad: 1, monto_real: row["monto_real"].to_f.round(2)}
       else
-        @hash_nivel_instruccion[row["instruccion"]]["cantidad"] += 1
-        @hash_nivel_instruccion[row["instruccion"]]["monto_real"] += row["monto_real"].to_f.round(2)
+        @hash_nivel_instruccion[row["instruccion"]].symbolize_keys!
+        @hash_nivel_instruccion[row["instruccion"]][:cantidad] += 1
+        @hash_nivel_instruccion[row["instruccion"]][:monto_real] += row["monto_real"].to_f.round(2)
       end
 
       # Estado Civil
       if @hash_estado_civil[row["estado_civil"]].nil?
         @hash_estado_civil[row["estado_civil"]] = {clave: row["estado_civil"], cantidad: 1, monto_real: row["monto_real"].to_f.round(2)}
       else
-        @hash_estado_civil[row["estado_civil"]]["cantidad"] += 1
-        @hash_estado_civil[row["estado_civil"]]["monto_real"] += row["monto_real"].to_f.round(2)
+        @hash_estado_civil[row["estado_civil"]].symbolize_keys!
+        @hash_estado_civil[row["estado_civil"]][:cantidad] += 1
+        @hash_estado_civil[row["estado_civil"]][:monto_real] += row["monto_real"].to_f.round(2)
 
       end
 
@@ -810,8 +817,9 @@ class CreditsController < ApplicationController
       if @hash_rango_edad[row["rango_edad"]].nil?
         @hash_rango_edad[row["rango_edad"]] = {clave: row["rango_edad"], cantidad: 1, monto_real: row["monto_real"].to_f.round(2)}
       else
-        @hash_rango_edad[row["rango_edad"]]["cantidad"] += 1
-        @hash_rango_edad[row["rango_edad"]]["monto_real"] += row["monto_real"].to_f.round(2)
+        @hash_rango_edad[row["rango_edad"]].symbolize_keys!
+        @hash_rango_edad[row["rango_edad"]][:cantidad] += 1
+        @hash_rango_edad[row["rango_edad"]][:monto_real] += row["monto_real"].to_f.round(2)
 
       end
 
@@ -819,9 +827,13 @@ class CreditsController < ApplicationController
       if @hash_rango_ingresos[row["ing_mensual_tipologia"]].nil?
         @hash_rango_ingresos[row["ing_mensual_tipologia"]] = {clave: row["ing_mensual_tipologia"], cantidad: 1, monto_real: row["monto_real"].to_f.round(2)}
       else
-        @hash_rango_ingresos[row["ing_mensual_tipologia"]]["cantidad"] += 1
-        @hash_rango_ingresos[row["ing_mensual_tipologia"]]["monto_real"] += row["monto_real"].to_f.round(2)
+        @hash_rango_ingresos[row["ing_mensual_tipologia"]].symbolize_keys!
+        @hash_rango_ingresos[row["ing_mensual_tipologia"]][:cantidad] += 1
+        @hash_rango_ingresos[row["ing_mensual_tipologia"]][:monto_real] += row["monto_real"].to_f.round(2)
       end
+
+    end
+
 
 
       @hash_genero.each do |row|
@@ -871,8 +883,6 @@ class CreditsController < ApplicationController
         row[1]["monto_real"] = row[1]["monto_real"].round(2)
         @rango_ingresos.push(row[1])
       end
-
-    end
 
   end
 

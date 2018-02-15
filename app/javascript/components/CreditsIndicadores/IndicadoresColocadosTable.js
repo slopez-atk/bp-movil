@@ -51,8 +51,7 @@ class IndicadoresColocadosTable extends React.Component {
           </div>
           <h4 className="top-space" style={{color: "#FFC107"}}>Tabla de Porcentajes</h4>
           <div>
-            <PercentIndicadoresColocadosTable data={this.props.data} cantidad={porcentajes[0]}
-                                              monto_real={porcentajes[1]}/>
+            <PercentIndicadoresColocadosTable data={this.props.data} cantidad={porcentajes[0]} monto_real={porcentajes[1]}/>
           </div>
         </Paper>
       </div>

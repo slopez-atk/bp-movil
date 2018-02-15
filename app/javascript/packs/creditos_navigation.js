@@ -136,9 +136,11 @@ class CreditosNavigation extends React.Component {
     switch (action) {
       case 'home':
         window.location = '/credits';
+        break;
 
       case 'dashboard':
         window.location = '/';
+        break;
     }
   };
 
@@ -199,7 +201,7 @@ class CreditosNavigation extends React.Component {
           <Divider/>
         </div>
       );
-    } else if(permissions === 7){
+    } else if(permissions === 7 || permissions === 6){
       return(
         <div>
           <Divider/>

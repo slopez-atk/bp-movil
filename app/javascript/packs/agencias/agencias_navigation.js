@@ -35,6 +35,7 @@ import {
   grey100, grey300, grey400, grey500,
   white, darkBlack, fullBlack,
 } from 'material-ui/styles/colors';
+import IndicadoresFinancierosForm from "../../components/Agencias/AgenciasForms/IndicadoresFinancierosForm";
 
 
 const customContentStyle = {
@@ -85,6 +86,7 @@ class AgenciasNavigation extends React.Component {
     super(props);
     this.state = {
       open: false,
+      openModalReporteCuentas: false
     };
   }
 
@@ -96,23 +98,45 @@ class AgenciasNavigation extends React.Component {
   handleClose = () => {
     this.setState({open: false});
   };
+  handleModal1 = () => {
+    this.setState({openModalReporteCuentas: !this.state.openModalReporteCuentas});
+  };
 
   handleLocation = (action) => {
     switch (action) {
       case 'home':
         window.location = '/agencias';
+        break;
 
       case 'dashboard':
         window.location = '/';
+        break;
     }
   };
 
   getMenuItems(){
     let permissions = this.props.permissions;
+    return(
+      <div>
+        <Divider/>
+        <MenuItem
+          primaryText="Reporte de Cuentas"
+          leftIcon={ <Event color='#444444'/>}
+          style={{color: '#444444'}}
+          onClick={ this.handleModal1 } />
+      </div>
+    );
   }
 
 
   render(){
+    const actions1 = [
+      <FlatButton
+        label="Cancelar"
+        primary={true}
+        onClick={this.handleModal1}
+      />,
+    ];
     return(
       <MuiThemeProvider muiTheme={getMuiTheme(muiTheme)}>
         <div>
@@ -145,6 +169,25 @@ class AgenciasNavigation extends React.Component {
             <FloatingActionButton style={styles.floatingButton}  disabled={false} onClick={ this.handleToggle } backgroundColor="#2E3092" >
               <ActionDns color="FDD835"/>
             </FloatingActionButton>
+          </div>
+
+          <div>
+            <Dialog
+              modal={true}
+              contentStyle={customContentStyle}
+              open={ this.state.openModalReporteCuentas }
+              actions={actions1}
+            >
+              <div className="row center-xs middle-xs">
+                <h4 style={{color: "#2E3092"}}>Reporte de Cuentas</h4>
+                <div className="col-xs-10" style={styles.div}>
+                  <IndicadoresFinancierosForm
+                    authenticity_token={ this.props.authenticity_token }
+                    url='/agencias/indicadores_financieros'
+                    title='Informe de Cuentas por Agencia'/>
+                </div>
+              </div>
+            </Dialog>
           </div>
 
         </div>

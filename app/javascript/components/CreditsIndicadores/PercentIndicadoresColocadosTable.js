@@ -20,7 +20,6 @@ class PercentIndicadoresColocadosTable extends React.Component{
   };
 
   calculoDePorcentajeCantidad(cell, row){
-    console.log(this.props.cantidad)
     let cantidad = ((parseFloat(cell)*100)/parseFloat(this.props.cantidad)).toFixed(2);
     return(
       <td>{cantidad}%</td>

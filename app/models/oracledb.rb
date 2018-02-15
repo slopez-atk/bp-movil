@@ -1881,293 +1881,293 @@ class Oracledb < ApplicationRecord
       agencia = ""
     end
 
-    results = connection.exec_query("
-    SELECT
-    TH1.SOCIO,
-    TH1.NUMERO_CREDITO CREDITO,
-    (select max(t.tipo_garantia) from seps_historico_c01 t where t.numero_operacion=th1.numero_credito)garantia_vima,
-
-    CASE WHEN TH1.TIP_ID = 'R' THEN TH1.EMPRESA ELSE TH1.NOMBRE END NOMBRE,
-    th1.cedula CEDULA,
-    round(((sysdate-th1.edad)/360.20),0) EDAD,
-    th1.genero GENERO,
-    (case th1.est_civil
-      when 1 then 'Casado'
-      when 2 then 'Soltero'
-      when 3 then 'Divorciado'
-      when 4 then 'Viudo'
-      when 5 then 'Union Libre'
-      else 'No Aplica'
-      end)
-      as ESTADO_CIVIL,
-      (select max(inst_descripcion) from socios_instruccion where inst_codigo = th1.instruc) nivel_de_instruccion,
-    TH1.CALIFICACION,
-    TH1.CAP_SALDO,
-    TH1.DIASMORA_PD,
-    TH1.NOM_GRUPO,
-
-    (SELECT max(descripcion) FROM CRED_ACT_ECO_DEST_CRE A WHERE A.CODIGO =TH1.activ AND A.NIVEL=5)DESTINO_CREDITO,
-    TH1.CODIGO_PERIOC,
-    (TH1.NUM_CUOTAS) AS CUOTAS_CREDITO,
-    (select count(*) from cred_tabla_amortiza_variable where estadocal='P' and numero_credito=th1.numero_credito) as cuotas_p,
-    (case when (select count(*) from cred_tabla_amortiza_variable where estadocal in ('C') and numero_credito=th1.numero_credito)=0 then 1
-    else (select max(rownum)+1 from cred_tabla_amortiza_variable ct where estadocal='C' and numero_credito=th1.numero_credito) end
-    )cuota_vencida,
-    TH1.CAP_SALDO,
-    TH1.VAL_CREDITO,
-    TH1.CAP_ACTIVO,
-    TH1.CAP_NDEVENGA,
-    TH1.CAP_VENCIDO,
-    (TH1.CAP_NDEVENGA+TH1.CAP_VENCIDO)CARTERA_RIESGO,
-    (select min(j.fecinical) from cred_tabla_amortiza_variable j
-    where j.ordencal = (select min(i.ordencal)  from cred_tabla_amortiza_variable i
-                        where i.numero_credito = TH1.NUMERO_CREDITO)
-      and j.numero_credito = TH1.NUMERO_CREDITO) as FECHA_CONCESION,
-    (select max(j.fecfincal) from cred_tabla_amortiza_variable j
-    where j.ordencal = (select max(i.ordencal)  from cred_tabla_amortiza_variable i
-                        where i.numero_credito = TH1.NUMERO_CREDITO)
-      and j.numero_credito = TH1.NUMERO_CREDITO) as FECHA_VENCIMIENTO,
-    (select SUM(ROUND(NVL(CAPITALCAL,0),2) + ROUND(NVL(INTERESCAL,0),2) + ROUND(NVL(MORACAL,0),2) +
-              ROUND(CASE WHEN trunc(fecinical)>trunc(sysdate) THEN 0 ELSE NVL(rubroscal,0) END,2)) from CRED_TABLA_AMORTIZA_VARIABLE A
-                         where a.numero_credito=TH1.numero_credito
-                         and estadocal='P')valor_cancela,
-    TH1.TASA,
-    TH1.DIASMORA_PD,
-    TH1.SUCURSAL OFICINA,
-    TH1.NOM_OF_CRE CARTERA_HEREDADA,
-             (case when th1.oficial_credito in (44,25) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=25)
-                   when th1.oficial_credito in (75,67,49) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=49)
-                   when th1.oficial_credito in (102,43) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=102)
-                   when th1.oficial_credito in (78,37,98,95) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=78)
-                   when th1.oficial_credito in (13,14) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=14)
-                   when th1.oficial_credito in (7,28) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=7)
-                   when th1.oficial_credito in (18,5) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=5)
-                   when th1.oficial_credito in (68,6,94,47,88,112) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=94)
-                   when th1.oficial_credito in (34,77,38,33) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=34)
-                   when th1.oficial_credito in (42,122,89) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=122)
-                   when th1.oficial_credito in (114,22,73,108,15,120,19,109,17,121,21,40) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=114)
-                   else (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=th1.oficial_credito) end
-             )ASESOR,
-    (SELECT max(DS.TIPO_SECTOR)
-        FROM SOCIOS_DIRECCIONES DS WHERE TH1.SOCIO = DS.CODIGO_SOCIO
-        AND DS.FECHA_INGRESO = (SELECT MAX(X.FECHA_INGRESO) FROM SOCIOS_DIRECCIONES X WHERE X.CODIGO_SOCIO = TH1.SOCIO)
-    )AS SECTOR,
-    (
-     SELECT MAX(DESCRIPCION) from Sifv_Parroquias d
-       WHERE d.codigo_pais = substr(TH1.LUGDIR,1,2)
-         and d.codigo_provincia = substr(TH1.LUGDIR,3,2)
-         and d.codigo_ciudad = substr(TH1.LUGDIR,5,2)
-         and d.codigo_parroquia = substr(TH1.LUGDIR,7,2)
-    ) AS PARROQUIA,
-    (
-     SELECT MAX(DESCRIPCION) from Sifv_Ciudades d
-       WHERE d.codigo_pais = substr(TH1.LUGDIR,1,2)
-         and d.codigo_provincia = substr(TH1.LUGDIR,3,2)
-         and d.codigo_ciudad = substr(TH1.LUGDIR,5,2)
-    ) AS CANTON,
-    (
-     SELECT MAX(DESCRIPCION) FROM SIFV_PROVINCIA D
-       WHERE D.CODIGO_PAIS = substr(TH1.LUGDIR,1,2)
-         AND D.CODIGO_PROVINCIA = substr(TH1.LUGDIR,3,2)
-    )AS PROVINCIA
-
-    FROM(
-      SELECT
-          MAX(TH.FECHA_INGRESO)FECHA_INGRESO,
-          MAX(TH.COD_SOCIO) SOCIO,
-          TH.NUMERO_CREDITO,
-          TH.OBSERVACIONES OBSERVA,
-          MAX(NOMBRE_SOCIO)NOMBRE,
-          MAX(TH.GENERO) GENERO,
-          MAX(TH.EDAD) EDAD,
-          th.codigo_cicn activ,
-          MAX(TH.OBS_ACT)OBS_ACT,
-          (CASE WHEN MAX((SELECT CODIGO_GRUPO FROM CRED_GRUPO_SEGMENTOS_CREDITO WHERE CODIGO_GRUPO=TH.COD_GRUPO))=1 THEN
-                                   CASE WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN   0 AND   5 THEN 'A1'
-                                        WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN   6 AND  20 THEN 'A2'
-                                        WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  21 AND  35 THEN 'A3'
-                                        WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  36 AND  65 THEN 'B1'
-                                        WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  66 AND  95 THEN 'B2'
-                                        WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  96 AND 125 THEN 'C1'
-                                        WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN 126 AND 155 THEN 'C2'
-                                        WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN 156 AND 185 THEN 'D'
-                                   ELSE 'E'
-                                   END
-
-                                  --CONSUMO
-                                  WHEN MAX((SELECT CODIGO_GRUPO FROM CRED_GRUPO_SEGMENTOS_CREDITO WHERE CODIGO_GRUPO=TH.COD_GRUPO))=2 THEN
-                                   CASE WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN   0 AND  5  THEN 'A1'
-                                        WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN   6 AND  20  THEN 'A2'
-                                        WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  21 AND  35 THEN 'A3'
-                                        WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  36 AND  50 THEN 'B1'
-                                        WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  51 AND  65 THEN 'B2'
-                                        WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  66 AND  80 THEN 'C1'
-                                        WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  81 AND  95 THEN 'C2'
-                                        WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  96 AND 125 THEN 'D'
-                                   ELSE 'E'
-                                   END
-
-                                  --VIVIENDA
-                                   WHEN MAX((SELECT CODIGO_GRUPO FROM CRED_GRUPO_SEGMENTOS_CREDITO WHERE CODIGO_GRUPO=TH.COD_GRUPO))=3 THEN
-                                    CASE WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN   0 AND  5 THEN 'A1'
-                                         WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN   6 AND  35 THEN 'A2'
-                                         WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  36 AND  65 THEN 'A3'
-                                         WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  66 AND 120 THEN 'B1'
-                                         WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN 121 AND 180 THEN 'B2'
-                                         WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN 181 AND 210 THEN 'C1'
-                                         WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN 211 AND 270 THEN 'C2'
-                                         WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN 271 AND 450 THEN 'D'
-                                    ELSE 'E'
-                                    END
-
-                                   --MICROEMPRESA
-                                   WHEN MAX((SELECT CODIGO_GRUPO FROM CRED_GRUPO_SEGMENTOS_CREDITO WHERE CODIGO_GRUPO=TH.COD_GRUPO))=4 THEN
-                                    CASE WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN   0 AND  5  THEN 'A1'
-                                         WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN   6 AND  20 THEN 'A2'
-                                         WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  21 AND  35 THEN 'A3'
-                                         WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  36 AND  50 THEN 'B1'
-                                         WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  51 AND  65 THEN 'B2'
-                                         WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  66 AND  80 THEN 'C1'
-                                         WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  81 AND  95 THEN 'C2'
-                                         WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  96 AND 125 THEN 'D'
-                                    ELSE 'E'
-                                    END
-                            END) CALIFICACION,
-          /**/
-          MAX(TH.CODIGO_PERIOC) CODIGO_PERIOC,
-          MAX(TH.NUM_CUOTAS) NUM_CUOTAS,
-          max(th.instruccion)instruc,
-          max(th.estado_civil)est_civil,
-          MAX(TH.CED) CEDULA,
-          MAX(TH.NOMBRE_EMPRESA) EMPRESA,
-          max(th.cod_telf) telefono,
-          max(th.cod_celular) celular,
-          MAX(TH.TIPID) TIP_ID,
-          SUM(CASE WHEN TH.ESTADO_CARSEG IN('I') THEN TH.SCAPITAL ELSE 0 END) AS CAP_ACTIVO,
-          SUM(CASE WHEN TH.ESTADO_CARSEG IN('D') THEN TH.SCAPITAL ELSE 0 END) AS CAP_NDEVENGA,
-
-           --roger
-          SUM(CASE WHEN TH.ESTADO_CARSEG IN('E') THEN TH.SCAPITAL ELSE
-                   (case when (select distinct(numero_credito) from cred_tabla_amortiza_variable where estado='S' and numero_credito=th.numero_credito)=th.numero_credito then 1 else 0 end)
-          END) AS CAP_VENCIDO,
-          --select * from cred_tabla_amortiza_variable where numero
-
-         -- SUM(CASE WHEN TH.ESTADO_CARSEG IN('E') THEN TH.SCAPITAL ELSE 0 END) AS CAP_VENCIDO,
-
-           SUM(CASE WHEN TH.ESTADO_CARSEG IN('I','D','E') THEN TH.SCAPITAL ELSE
-           (case when (select distinct(numero_credito) from cred_tabla_amortiza_variable where estado='S' and numero_credito=th.numero_credito)=th.numero_credito then 1 else 0 end)
-            END)CAP_SALDO,
-          MAX(TH.MONTO_CREDITO) VAL_CREDITO,
-          th.of_cred oficial_credito,
-          MAX(FECHAINI) FECHA_CONCESION,
-          MAX(FECHAFIN) FECHA_VENCIMIENTO,
-          MAX(TH.TASA_TEA)TEA,
-          MAX(TH.TASA_TIR)TIR,
-          MAX(TH.TASA) TASA,
-    --    SELECT *FROM CONF_ACTIV_ECO_SOCIO WHERE CODIGO='G474111'
-
-          SUM(TH.DIASMORAPD) DIASMORA_PD,                                       --to_date('05/01/2014','dd/mm/yy')
-          (SELECT NVL(SUM(P.CAPITAL),0) FROM CRED_CABECERA_PAGOS_CREDITO P WHERE P.NUMERO_CREDITO = TH.NUMERO_CREDITO AND TRUNC(P.FECHA) <= TRUNC(TO_DATE('#{fecha.to_date.strftime('%d-%m-%Y')}','DD/MM/YY'))) AS CAPITAL_CAN,
-          SUM(CASE WHEN TH.ESTADO_CARSEG IN('I','D','E') THEN TH.SCAPITAL ELSE 0 END) AS CAPITAL_PEN,
-          (
-           (SELECT NVL(SUM(P.INTERES),0) FROM CRED_CABECERA_PAGOS_CREDITO P WHERE P.NUMERO_CREDITO = TH.NUMERO_CREDITO AND TRUNC(P.FECHA) <= TRUNC(TO_DATE('#{fecha.to_date.strftime('%d-%m-%Y')}','DD/MM/YY')))+
-           SUM(CASE WHEN TH.ESTADO_CARSEG IN('I','D','E') THEN TH.SINTERES ELSE 0 END)
-          ) AS INTERES_TOTAL,
-          (SELECT NVL(SUM(P.INTERES),0) FROM CRED_CABECERA_PAGOS_CREDITO P WHERE P.NUMERO_CREDITO = TH.NUMERO_CREDITO AND TRUNC(P.FECHA) <= TRUNC(TO_DATE('#{fecha.to_date.strftime('%d-%m-%Y')}','DD/MM/YY'))) AS INTERES_CAN,
-          SUM(CASE WHEN TH.ESTADO_CARSEG IN('I','D','E') THEN TH.SINTERES ELSE 0 END) AS INTERES_PEN,
-          (SELECT MIN(DESCRIPCION_GRUPO) FROM CRED_GRUPO_SEGMENTOS_CREDITO G WHERE G.CODIGO_GRUPO = TH.COD_GRUPO ) AS NOM_GRUPO,
-          (SELECT MIN(DESCRIPCION)  FROM CONF_PRODUCTOS P WHERE P.CODIGO_ACT_FINANCIERA = 2 AND P.CODIGO_GRUPO = TH.COD_GRUPO AND P.CODIGO_PRODUCTO = TH.COD_PRODUCTO) AS NOM_PRODUCTO,
-          (SELECT MAX(CCD.MCLI_LUGAR_DIR) FROM SOCIOS_DIRECCIONES CCD WHERE CCD.CODIGO_SOCIO = TH.COD_SOCIO) LUGDIR,
-          MAX(TH.COD_ORIREC) ORIGENR, MAX(TH.COD_GRUPORG)GRUPORG,
-          (SELECT MIN(SS.DESCRIPCION) FROM SIFV_SUCURSALES SS WHERE SS.CODIGO_SUCURSAL = TH.COD_SUCURSAL) AS SUCURSAL,
-          (SELECT MIN(USU_APELLIDOS ||' ' || USU_NOMBRES) FROM SIFV_USUARIOS_SISTEMA SU WHERE SU.CODIGO_USUARIO = TH.COD_USUARIO ) AS NOM_USER,
-          (SELECT MIN(USU_APELLIDOS ||' ' || USU_NOMBRES) FROM SIFV_USUARIOS_SISTEMA SU WHERE SU.CODIGO_USUARIO = TH.OF_CRED ) AS NOM_OF_CRE,
-
-       MAX(TH.CODIGO_DESTINO)COD_DESTINO
-      FROM(
-          SELECT
-                 MAX(SDG.SING_FECSOLI) FECHA_INGRESO,
-                 CC.NUMERO_CREDITO,
-                 CH.ESTADO_CARSEG,
-                 COUNT(*) AS CONTADOR,
-                 SUM(CH.CAPITAL) AS SCAPITAL,/*------------------*/
-                 MAX(cc.num_cuotas) NUM_CUOTAS,
-                 COUNT(*) AS NUMCUOTAS,
-                 MAX(CC.CODIGO_PERIOC) CODIGO_PERIOC, /**/
-                 SUM(CH.INTACT) AS SINTERES, /*------------------*/
-                 MAX(CC.TASA_INTERES)AS TASA,
-                 (select MAX(TEA) from CRED_REGISTRA_TASA_TIR_TEA T WHERE T.NUMERO_CREDITO = CC.NUMERO_CREDITO )AS TASA_TEA,
-                 (select MAX(TIR) from CRED_REGISTRA_TASA_TIR_TEA T WHERE T.NUMERO_CREDITO = CC.NUMERO_CREDITO )AS TASA_TIR,
-                 MAX(CH.DIAMORACT)AS DIASMORAPD,
-                 SUM(CH.DIAMORACT) AS DIASMORAAC,
-                 MAX(S.CODIGO_SOCIO)COD_SOCIO,
-                 MAX(S.MCLI_NUMERO_ID)CED,
-                 MAX(S.CODIGO_IDENTIFICACION) TIPID,
-                 (MAX(S.MCLI_APELLIDO_PAT)||' '||MAX(S.MCLI_APELLIDO_MAT)||' '||MAX(S.MCLI_NOMBRES)) AS NOMBRE_SOCIO,
-                 MAX(S.MCLI_RAZON_SOCIAL) AS NOMBRE_EMPRESA,
-                 MAX(S.MCLI_SEXO) AS GENERO,
-                 MAX(S.MCLI_FECNACI) AS EDAD,
-                  /*NATTY*/
-                 MAX(S.observacion_profesion) AS OBS_ACT,
-                 /**/
-                 cc.obs_descre OBSERVACIONES,
-                 MAX(CC.MONTO_REAL)MONTO_CREDITO,
-                 MAX(CC.FECINI) FECHAINI,
-                 MAX(CC.FECFIN) FECHAFIN,
-                 MAX(CC.CODIGO_GRUPO) COD_GRUPO,
-                 MAX(CC.CODIGO_PRODUCTO) COD_PRODUCTO,
-                 MAX(CC.CODIGO_ORIREC) COD_ORIREC,
-                 MAX(SDG.CODIGO_GRUPORG) COD_GRUPORG,
-                 max(sdg.sing_telefonos) cod_telf,
-                 max(sdg.sing_telefono_celular) cod_celular,
-                 MAX(CC.CODIGO_SUCURSAL) COD_SUCURSAL,
-                 MAX(CC.CODIGO_USUARIO) COD_USUARIO,
-                 MAX(CC.OFICRE) OF_CRED,
-                 MAX(CC.CODIGO_SUBSECTOR)||MAX(cc.codigo_clasificacion_credito) CODIGO_DESTINO,
-                 max(s.codigo_instruccion)instruccion,
-                 max(s.codigo_estado_civil)estado_civil,
-                 MAX(cc.codigo_clasificacion_credito) CODIGO_CICN   --ACTIVIDAD ECONOMICA
-            FROM
-                CRED_CREDITOS CC,
-                CRED_HISTORIAL_REC_CARTERA CH,
-                SOCIOS S,
-                SOCIOS_SOLISOC_DATOS_GENERALES SDG
-           WHERE CC.NUMERO_CREDITO = CH.NUMERO_CREDITO
-             AND S.CODIGO_SOCIO = CC.CODIGO_SOCIO
-             AND S.CODIGO_SOCIO = SDG.CODIGO_SOCIO
-            AND TRUNC(CH.FGENERA) = TO_DATE('#{fecha.to_date.strftime('%d-%m-%Y')}','DD/MM/YY')
-            and  (SELECT MIN(SS.DESCRIPCION) FROM SIFV_SUCURSALES SS WHERE SS.CODIGO_SUCURSAL = cc.codigo_sucursal) like ('%#{agencia}%')
-
-            and (case when cc.oficre in (44,25) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=25)
-                   when cc.oficre in (75,67,49) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=49)
-                   when cc.oficre in (102,43) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=102)
-                   when cc.oficre in (78,37,98,95) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=78)
-                   when cc.oficre in (13,14) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=14)
-                   when cc.oficre in (7,28) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=7)
-                   when cc.oficre in (18,5) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=5)
-                   when cc.oficre in (68,6,94,47,88,112) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=94)
-                   when cc.oficre in (34,77,38,33) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=34)
-                   when cc.oficre in (42,122,89) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=122)
-                   when cc.oficre in (114,22,73,108,15,120,19,109,17,121,21,40) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=114)
-                   else (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=cc.oficre) end
-             ) like ('%#{asesor}%')
-                 GROUP BY CC.NUMERO_CREDITO, CH.ESTADO_CARSEG, CC.OBS_DESCRE
-      )TH
-       GROUP BY TH.NUMERO_CREDITO, TH.COD_GRUPO, TH.COD_PRODUCTO, TH.OF_CRED, TH.COD_USUARIO, TH.COD_SUCURSAL, TH.COD_SOCIO,TH.OBSERVACIONES,th.codigo_cicn
-
-    ) TH1
-    where (TH1.CAP_NDEVENGA+TH1.CAP_VENCIDO)>0
-    ")
-
-
-    if results.present?
-      results.each do |row|
-        row["fecha_concesion"] = row["fecha_concesion"].to_date.strftime('%d-%m-%Y')
-      end
-      return results
-    else
-      return {}
-    end
+    # results = connection.exec_query("
+    # SELECT
+    # TH1.SOCIO,
+    # TH1.NUMERO_CREDITO CREDITO,
+    # (select max(t.tipo_garantia) from seps_historico_c01 t where t.numero_operacion=th1.numero_credito)garantia_vima,
+    #
+    # CASE WHEN TH1.TIP_ID = 'R' THEN TH1.EMPRESA ELSE TH1.NOMBRE END NOMBRE,
+    # th1.cedula CEDULA,
+    # round(((sysdate-th1.edad)/360.20),0) EDAD,
+    # th1.genero GENERO,
+    # (case th1.est_civil
+    #   when 1 then 'Casado'
+    #   when 2 then 'Soltero'
+    #   when 3 then 'Divorciado'
+    #   when 4 then 'Viudo'
+    #   when 5 then 'Union Libre'
+    #   else 'No Aplica'
+    #   end)
+    #   as ESTADO_CIVIL,
+    #   (select max(inst_descripcion) from socios_instruccion where inst_codigo = th1.instruc) nivel_de_instruccion,
+    # TH1.CALIFICACION,
+    # TH1.CAP_SALDO,
+    # TH1.DIASMORA_PD,
+    # TH1.NOM_GRUPO,
+    #
+    # (SELECT max(descripcion) FROM CRED_ACT_ECO_DEST_CRE A WHERE A.CODIGO =TH1.activ AND A.NIVEL=5)DESTINO_CREDITO,
+    # TH1.CODIGO_PERIOC,
+    # (TH1.NUM_CUOTAS) AS CUOTAS_CREDITO,
+    # (select count(*) from cred_tabla_amortiza_variable where estadocal='P' and numero_credito=th1.numero_credito) as cuotas_p,
+    # (case when (select count(*) from cred_tabla_amortiza_variable where estadocal in ('C') and numero_credito=th1.numero_credito)=0 then 1
+    # else (select max(rownum)+1 from cred_tabla_amortiza_variable ct where estadocal='C' and numero_credito=th1.numero_credito) end
+    # )cuota_vencida,
+    # TH1.CAP_SALDO,
+    # TH1.VAL_CREDITO,
+    # TH1.CAP_ACTIVO,
+    # TH1.CAP_NDEVENGA,
+    # TH1.CAP_VENCIDO,
+    # (TH1.CAP_NDEVENGA+TH1.CAP_VENCIDO)CARTERA_RIESGO,
+    # (select min(j.fecinical) from cred_tabla_amortiza_variable j
+    # where j.ordencal = (select min(i.ordencal)  from cred_tabla_amortiza_variable i
+    #                     where i.numero_credito = TH1.NUMERO_CREDITO)
+    #   and j.numero_credito = TH1.NUMERO_CREDITO) as FECHA_CONCESION,
+    # (select max(j.fecfincal) from cred_tabla_amortiza_variable j
+    # where j.ordencal = (select max(i.ordencal)  from cred_tabla_amortiza_variable i
+    #                     where i.numero_credito = TH1.NUMERO_CREDITO)
+    #   and j.numero_credito = TH1.NUMERO_CREDITO) as FECHA_VENCIMIENTO,
+    # (select SUM(ROUND(NVL(CAPITALCAL,0),2) + ROUND(NVL(INTERESCAL,0),2) + ROUND(NVL(MORACAL,0),2) +
+    #           ROUND(CASE WHEN trunc(fecinical)>trunc(sysdate) THEN 0 ELSE NVL(rubroscal,0) END,2)) from CRED_TABLA_AMORTIZA_VARIABLE A
+    #                      where a.numero_credito=TH1.numero_credito
+    #                      and estadocal='P')valor_cancela,
+    # TH1.TASA,
+    # TH1.DIASMORA_PD,
+    # TH1.SUCURSAL OFICINA,
+    # TH1.NOM_OF_CRE CARTERA_HEREDADA,
+    #          (case when th1.oficial_credito in (44,25) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=25)
+    #                when th1.oficial_credito in (75,67,49) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=49)
+    #                when th1.oficial_credito in (102,43) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=102)
+    #                when th1.oficial_credito in (78,37,98,95) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=78)
+    #                when th1.oficial_credito in (13,14) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=14)
+    #                when th1.oficial_credito in (7,28) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=7)
+    #                when th1.oficial_credito in (18,5) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=5)
+    #                when th1.oficial_credito in (68,6,94,47,88,112) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=94)
+    #                when th1.oficial_credito in (34,77,38,33) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=34)
+    #                when th1.oficial_credito in (42,122,89) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=122)
+    #                when th1.oficial_credito in (114,22,73,108,15,120,19,109,17,121,21,40) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=114)
+    #                else (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=th1.oficial_credito) end
+    #          )ASESOR,
+    # (SELECT max(DS.TIPO_SECTOR)
+    #     FROM SOCIOS_DIRECCIONES DS WHERE TH1.SOCIO = DS.CODIGO_SOCIO
+    #     AND DS.FECHA_INGRESO = (SELECT MAX(X.FECHA_INGRESO) FROM SOCIOS_DIRECCIONES X WHERE X.CODIGO_SOCIO = TH1.SOCIO)
+    # )AS SECTOR,
+    # (
+    #  SELECT MAX(DESCRIPCION) from Sifv_Parroquias d
+    #    WHERE d.codigo_pais = substr(TH1.LUGDIR,1,2)
+    #      and d.codigo_provincia = substr(TH1.LUGDIR,3,2)
+    #      and d.codigo_ciudad = substr(TH1.LUGDIR,5,2)
+    #      and d.codigo_parroquia = substr(TH1.LUGDIR,7,2)
+    # ) AS PARROQUIA,
+    # (
+    #  SELECT MAX(DESCRIPCION) from Sifv_Ciudades d
+    #    WHERE d.codigo_pais = substr(TH1.LUGDIR,1,2)
+    #      and d.codigo_provincia = substr(TH1.LUGDIR,3,2)
+    #      and d.codigo_ciudad = substr(TH1.LUGDIR,5,2)
+    # ) AS CANTON,
+    # (
+    #  SELECT MAX(DESCRIPCION) FROM SIFV_PROVINCIA D
+    #    WHERE D.CODIGO_PAIS = substr(TH1.LUGDIR,1,2)
+    #      AND D.CODIGO_PROVINCIA = substr(TH1.LUGDIR,3,2)
+    # )AS PROVINCIA
+    #
+    # FROM(
+    #   SELECT
+    #       MAX(TH.FECHA_INGRESO)FECHA_INGRESO,
+    #       MAX(TH.COD_SOCIO) SOCIO,
+    #       TH.NUMERO_CREDITO,
+    #       TH.OBSERVACIONES OBSERVA,
+    #       MAX(NOMBRE_SOCIO)NOMBRE,
+    #       MAX(TH.GENERO) GENERO,
+    #       MAX(TH.EDAD) EDAD,
+    #       th.codigo_cicn activ,
+    #       MAX(TH.OBS_ACT)OBS_ACT,
+    #       (CASE WHEN MAX((SELECT CODIGO_GRUPO FROM CRED_GRUPO_SEGMENTOS_CREDITO WHERE CODIGO_GRUPO=TH.COD_GRUPO))=1 THEN
+    #                                CASE WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN   0 AND   5 THEN 'A1'
+    #                                     WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN   6 AND  20 THEN 'A2'
+    #                                     WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  21 AND  35 THEN 'A3'
+    #                                     WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  36 AND  65 THEN 'B1'
+    #                                     WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  66 AND  95 THEN 'B2'
+    #                                     WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  96 AND 125 THEN 'C1'
+    #                                     WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN 126 AND 155 THEN 'C2'
+    #                                     WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN 156 AND 185 THEN 'D'
+    #                                ELSE 'E'
+    #                                END
+    #
+    #                               --CONSUMO
+    #                               WHEN MAX((SELECT CODIGO_GRUPO FROM CRED_GRUPO_SEGMENTOS_CREDITO WHERE CODIGO_GRUPO=TH.COD_GRUPO))=2 THEN
+    #                                CASE WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN   0 AND  5  THEN 'A1'
+    #                                     WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN   6 AND  20  THEN 'A2'
+    #                                     WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  21 AND  35 THEN 'A3'
+    #                                     WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  36 AND  50 THEN 'B1'
+    #                                     WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  51 AND  65 THEN 'B2'
+    #                                     WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  66 AND  80 THEN 'C1'
+    #                                     WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  81 AND  95 THEN 'C2'
+    #                                     WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  96 AND 125 THEN 'D'
+    #                                ELSE 'E'
+    #                                END
+    #
+    #                               --VIVIENDA
+    #                                WHEN MAX((SELECT CODIGO_GRUPO FROM CRED_GRUPO_SEGMENTOS_CREDITO WHERE CODIGO_GRUPO=TH.COD_GRUPO))=3 THEN
+    #                                 CASE WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN   0 AND  5 THEN 'A1'
+    #                                      WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN   6 AND  35 THEN 'A2'
+    #                                      WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  36 AND  65 THEN 'A3'
+    #                                      WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  66 AND 120 THEN 'B1'
+    #                                      WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN 121 AND 180 THEN 'B2'
+    #                                      WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN 181 AND 210 THEN 'C1'
+    #                                      WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN 211 AND 270 THEN 'C2'
+    #                                      WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN 271 AND 450 THEN 'D'
+    #                                 ELSE 'E'
+    #                                 END
+    #
+    #                                --MICROEMPRESA
+    #                                WHEN MAX((SELECT CODIGO_GRUPO FROM CRED_GRUPO_SEGMENTOS_CREDITO WHERE CODIGO_GRUPO=TH.COD_GRUPO))=4 THEN
+    #                                 CASE WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN   0 AND  5  THEN 'A1'
+    #                                      WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN   6 AND  20 THEN 'A2'
+    #                                      WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  21 AND  35 THEN 'A3'
+    #                                      WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  36 AND  50 THEN 'B1'
+    #                                      WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  51 AND  65 THEN 'B2'
+    #                                      WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  66 AND  80 THEN 'C1'
+    #                                      WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  81 AND  95 THEN 'C2'
+    #                                      WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  96 AND 125 THEN 'D'
+    #                                 ELSE 'E'
+    #                                 END
+    #                         END) CALIFICACION,
+    #       /**/
+    #       MAX(TH.CODIGO_PERIOC) CODIGO_PERIOC,
+    #       MAX(TH.NUM_CUOTAS) NUM_CUOTAS,
+    #       max(th.instruccion)instruc,
+    #       max(th.estado_civil)est_civil,
+    #       MAX(TH.CED) CEDULA,
+    #       MAX(TH.NOMBRE_EMPRESA) EMPRESA,
+    #       max(th.cod_telf) telefono,
+    #       max(th.cod_celular) celular,
+    #       MAX(TH.TIPID) TIP_ID,
+    #       SUM(CASE WHEN TH.ESTADO_CARSEG IN('I') THEN TH.SCAPITAL ELSE 0 END) AS CAP_ACTIVO,
+    #       SUM(CASE WHEN TH.ESTADO_CARSEG IN('D') THEN TH.SCAPITAL ELSE 0 END) AS CAP_NDEVENGA,
+    #
+    #        --roger
+    #       SUM(CASE WHEN TH.ESTADO_CARSEG IN('E') THEN TH.SCAPITAL ELSE
+    #                (case when (select distinct(numero_credito) from cred_tabla_amortiza_variable where estado='S' and numero_credito=th.numero_credito)=th.numero_credito then 1 else 0 end)
+    #       END) AS CAP_VENCIDO,
+    #       --select * from cred_tabla_amortiza_variable where numero
+    #
+    #      -- SUM(CASE WHEN TH.ESTADO_CARSEG IN('E') THEN TH.SCAPITAL ELSE 0 END) AS CAP_VENCIDO,
+    #
+    #        SUM(CASE WHEN TH.ESTADO_CARSEG IN('I','D','E') THEN TH.SCAPITAL ELSE
+    #        (case when (select distinct(numero_credito) from cred_tabla_amortiza_variable where estado='S' and numero_credito=th.numero_credito)=th.numero_credito then 1 else 0 end)
+    #         END)CAP_SALDO,
+    #       MAX(TH.MONTO_CREDITO) VAL_CREDITO,
+    #       th.of_cred oficial_credito,
+    #       MAX(FECHAINI) FECHA_CONCESION,
+    #       MAX(FECHAFIN) FECHA_VENCIMIENTO,
+    #       MAX(TH.TASA_TEA)TEA,
+    #       MAX(TH.TASA_TIR)TIR,
+    #       MAX(TH.TASA) TASA,
+    # --    SELECT *FROM CONF_ACTIV_ECO_SOCIO WHERE CODIGO='G474111'
+    #
+    #       SUM(TH.DIASMORAPD) DIASMORA_PD,                                       --to_date('05/01/2014','dd/mm/yy')
+    #       (SELECT NVL(SUM(P.CAPITAL),0) FROM CRED_CABECERA_PAGOS_CREDITO P WHERE P.NUMERO_CREDITO = TH.NUMERO_CREDITO AND TRUNC(P.FECHA) <= TRUNC(TO_DATE('#{fecha.to_date.strftime('%d-%m-%Y')}','DD/MM/YY'))) AS CAPITAL_CAN,
+    #       SUM(CASE WHEN TH.ESTADO_CARSEG IN('I','D','E') THEN TH.SCAPITAL ELSE 0 END) AS CAPITAL_PEN,
+    #       (
+    #        (SELECT NVL(SUM(P.INTERES),0) FROM CRED_CABECERA_PAGOS_CREDITO P WHERE P.NUMERO_CREDITO = TH.NUMERO_CREDITO AND TRUNC(P.FECHA) <= TRUNC(TO_DATE('#{fecha.to_date.strftime('%d-%m-%Y')}','DD/MM/YY')))+
+    #        SUM(CASE WHEN TH.ESTADO_CARSEG IN('I','D','E') THEN TH.SINTERES ELSE 0 END)
+    #       ) AS INTERES_TOTAL,
+    #       (SELECT NVL(SUM(P.INTERES),0) FROM CRED_CABECERA_PAGOS_CREDITO P WHERE P.NUMERO_CREDITO = TH.NUMERO_CREDITO AND TRUNC(P.FECHA) <= TRUNC(TO_DATE('#{fecha.to_date.strftime('%d-%m-%Y')}','DD/MM/YY'))) AS INTERES_CAN,
+    #       SUM(CASE WHEN TH.ESTADO_CARSEG IN('I','D','E') THEN TH.SINTERES ELSE 0 END) AS INTERES_PEN,
+    #       (SELECT MIN(DESCRIPCION_GRUPO) FROM CRED_GRUPO_SEGMENTOS_CREDITO G WHERE G.CODIGO_GRUPO = TH.COD_GRUPO ) AS NOM_GRUPO,
+    #       (SELECT MIN(DESCRIPCION)  FROM CONF_PRODUCTOS P WHERE P.CODIGO_ACT_FINANCIERA = 2 AND P.CODIGO_GRUPO = TH.COD_GRUPO AND P.CODIGO_PRODUCTO = TH.COD_PRODUCTO) AS NOM_PRODUCTO,
+    #       (SELECT MAX(CCD.MCLI_LUGAR_DIR) FROM SOCIOS_DIRECCIONES CCD WHERE CCD.CODIGO_SOCIO = TH.COD_SOCIO) LUGDIR,
+    #       MAX(TH.COD_ORIREC) ORIGENR, MAX(TH.COD_GRUPORG)GRUPORG,
+    #       (SELECT MIN(SS.DESCRIPCION) FROM SIFV_SUCURSALES SS WHERE SS.CODIGO_SUCURSAL = TH.COD_SUCURSAL) AS SUCURSAL,
+    #       (SELECT MIN(USU_APELLIDOS ||' ' || USU_NOMBRES) FROM SIFV_USUARIOS_SISTEMA SU WHERE SU.CODIGO_USUARIO = TH.COD_USUARIO ) AS NOM_USER,
+    #       (SELECT MIN(USU_APELLIDOS ||' ' || USU_NOMBRES) FROM SIFV_USUARIOS_SISTEMA SU WHERE SU.CODIGO_USUARIO = TH.OF_CRED ) AS NOM_OF_CRE,
+    #
+    #    MAX(TH.CODIGO_DESTINO)COD_DESTINO
+    #   FROM(
+    #       SELECT
+    #              MAX(SDG.SING_FECSOLI) FECHA_INGRESO,
+    #              CC.NUMERO_CREDITO,
+    #              CH.ESTADO_CARSEG,
+    #              COUNT(*) AS CONTADOR,
+    #              SUM(CH.CAPITAL) AS SCAPITAL,/*------------------*/
+    #              MAX(cc.num_cuotas) NUM_CUOTAS,
+    #              COUNT(*) AS NUMCUOTAS,
+    #              MAX(CC.CODIGO_PERIOC) CODIGO_PERIOC, /**/
+    #              SUM(CH.INTACT) AS SINTERES, /*------------------*/
+    #              MAX(CC.TASA_INTERES)AS TASA,
+    #              (select MAX(TEA) from CRED_REGISTRA_TASA_TIR_TEA T WHERE T.NUMERO_CREDITO = CC.NUMERO_CREDITO )AS TASA_TEA,
+    #              (select MAX(TIR) from CRED_REGISTRA_TASA_TIR_TEA T WHERE T.NUMERO_CREDITO = CC.NUMERO_CREDITO )AS TASA_TIR,
+    #              MAX(CH.DIAMORACT)AS DIASMORAPD,
+    #              SUM(CH.DIAMORACT) AS DIASMORAAC,
+    #              MAX(S.CODIGO_SOCIO)COD_SOCIO,
+    #              MAX(S.MCLI_NUMERO_ID)CED,
+    #              MAX(S.CODIGO_IDENTIFICACION) TIPID,
+    #              (MAX(S.MCLI_APELLIDO_PAT)||' '||MAX(S.MCLI_APELLIDO_MAT)||' '||MAX(S.MCLI_NOMBRES)) AS NOMBRE_SOCIO,
+    #              MAX(S.MCLI_RAZON_SOCIAL) AS NOMBRE_EMPRESA,
+    #              MAX(S.MCLI_SEXO) AS GENERO,
+    #              MAX(S.MCLI_FECNACI) AS EDAD,
+    #               /*NATTY*/
+    #              MAX(S.observacion_profesion) AS OBS_ACT,
+    #              /**/
+    #              cc.obs_descre OBSERVACIONES,
+    #              MAX(CC.MONTO_REAL)MONTO_CREDITO,
+    #              MAX(CC.FECINI) FECHAINI,
+    #              MAX(CC.FECFIN) FECHAFIN,
+    #              MAX(CC.CODIGO_GRUPO) COD_GRUPO,
+    #              MAX(CC.CODIGO_PRODUCTO) COD_PRODUCTO,
+    #              MAX(CC.CODIGO_ORIREC) COD_ORIREC,
+    #              MAX(SDG.CODIGO_GRUPORG) COD_GRUPORG,
+    #              max(sdg.sing_telefonos) cod_telf,
+    #              max(sdg.sing_telefono_celular) cod_celular,
+    #              MAX(CC.CODIGO_SUCURSAL) COD_SUCURSAL,
+    #              MAX(CC.CODIGO_USUARIO) COD_USUARIO,
+    #              MAX(CC.OFICRE) OF_CRED,
+    #              MAX(CC.CODIGO_SUBSECTOR)||MAX(cc.codigo_clasificacion_credito) CODIGO_DESTINO,
+    #              max(s.codigo_instruccion)instruccion,
+    #              max(s.codigo_estado_civil)estado_civil,
+    #              MAX(cc.codigo_clasificacion_credito) CODIGO_CICN   --ACTIVIDAD ECONOMICA
+    #         FROM
+    #             CRED_CREDITOS CC,
+    #             CRED_HISTORIAL_REC_CARTERA CH,
+    #             SOCIOS S,
+    #             SOCIOS_SOLISOC_DATOS_GENERALES SDG
+    #        WHERE CC.NUMERO_CREDITO = CH.NUMERO_CREDITO
+    #          AND S.CODIGO_SOCIO = CC.CODIGO_SOCIO
+    #          AND S.CODIGO_SOCIO = SDG.CODIGO_SOCIO
+    #         AND TRUNC(CH.FGENERA) = TO_DATE('#{fecha.to_date.strftime('%d-%m-%Y')}','DD/MM/YY')
+    #         and  (SELECT MIN(SS.DESCRIPCION) FROM SIFV_SUCURSALES SS WHERE SS.CODIGO_SUCURSAL = cc.codigo_sucursal) like ('%#{agencia}%')
+    #
+    #         and (case when cc.oficre in (44,25) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=25)
+    #                when cc.oficre in (75,67,49) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=49)
+    #                when cc.oficre in (102,43) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=102)
+    #                when cc.oficre in (78,37,98,95) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=78)
+    #                when cc.oficre in (13,14) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=14)
+    #                when cc.oficre in (7,28) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=7)
+    #                when cc.oficre in (18,5) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=5)
+    #                when cc.oficre in (68,6,94,47,88,112) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=94)
+    #                when cc.oficre in (34,77,38,33) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=34)
+    #                when cc.oficre in (42,122,89) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=122)
+    #                when cc.oficre in (114,22,73,108,15,120,19,109,17,121,21,40) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=114)
+    #                else (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=cc.oficre) end
+    #          ) like ('%#{asesor}%')
+    #              GROUP BY CC.NUMERO_CREDITO, CH.ESTADO_CARSEG, CC.OBS_DESCRE
+    #   )TH
+    #    GROUP BY TH.NUMERO_CREDITO, TH.COD_GRUPO, TH.COD_PRODUCTO, TH.OF_CRED, TH.COD_USUARIO, TH.COD_SUCURSAL, TH.COD_SOCIO,TH.OBSERVACIONES,th.codigo_cicn
+    #
+    # ) TH1
+    # where (TH1.CAP_NDEVENGA+TH1.CAP_VENCIDO)>0
+    # ")
+    #
+    #
+    # if results.present?
+    #   results.each do |row|
+    #     row["fecha_concesion"] = row["fecha_concesion"].to_date.strftime('%d-%m-%Y')
+    #   end
+    #   return results
+    # else
+    #   return {}
+    # end
 
 
     data = [{
@@ -2243,7 +2243,7 @@ class Oracledb < ApplicationRecord
         tip_id: 'C',
         fecha_concesion: '12-10-2012'
     }]
-    return data;
+    return data
   end
 
 
@@ -2254,384 +2254,391 @@ class Oracledb < ApplicationRecord
     if agencia == " "
       agencia = ""
     end
-    results = connection.exec_query("
-    SELECT
-    TH1.FECHA_INGRESO FECHA_INGRESO,
-    (select MAX(descripcion) from cred_tipos_recursos_economicos where codigo = TH1.ORIGENR) as ORIGEN_RECURSOS,
-    TH1.SOCIO,
-    th1.nom_grupo tipo_credito,
-    --CASE WHEN TH1.TIP_ID = 'R' THEN TH1.EMPRESA ELSE TH1.NOMBRE END NOMBRE,
-    TH1.NUMERO_CREDITO CREDITO,
-    (select tt.provision_especifica from temp_c02 tt where tt.numero_operacion=th1.numero_credito)provision_requerida,
-    --TH1.CODIGO_PERIOC,
-     (select descripcion  from socios_profesiones  sp, socios so
-     where sp.codigo_profesion=so.codigo_profesion and so.codigo_socio=th1.socio ) PROFESION,
-
-    (
-    SELECT MAX(DESCRIPCION) from Sifv_Parroquias d,socios_direcciones sd
-           WHERE d.codigo_pais = substr(sd.mcli_lugar_dir,1,2)
-           and d.codigo_provincia = substr(sd.mcli_lugar_dir,3,2)
-           and d.codigo_ciudad = substr(sd.mcli_lugar_dir,5,2)
-           and d.codigo_parroquia = substr(sd.mcli_lugar_dir,7,2)
-           and sd.codigo_socio=TH1.SOCIO
-     ) AS PARROQUIA,
-     (SELECT substr(min(mcli_lugar_dir),2,6) from socios_direcciones where codigo_socio=th1.socio)codigo_parroquia,
-     (select max(descripcion) from capta_cab_grupos_organizados co, socios_solisoc_datos_generales sdg
-             where co.codigo_empresa_gruporg=sdg.codigo_gruporg and sdg.codigo_socio=th1.socio)grupo_org,
-     (case
-     when substr((select max(descripcion) from capta_cab_grupos_organizados co, socios_solisoc_datos_generales sdg
-             where co.codigo_empresa_gruporg=sdg.codigo_gruporg and sdg.codigo_socio=th1.socio),0,2)='GS' then 'SOLIDARIO'
-     when substr((select max(descripcion) from capta_cab_grupos_organizados co, socios_solisoc_datos_generales sdg
-             where co.codigo_empresa_gruporg=sdg.codigo_gruporg and sdg.codigo_socio=th1.socio),0,2)='AS' then 'ASOCIATIVO'
-     WHEN substr((select max(descripcion) from capta_cab_grupos_organizados co, socios_solisoc_datos_generales sdg
-             where co.codigo_empresa_gruporg=sdg.codigo_gruporg and sdg.codigo_socio=th1.socio),0,4)='IN B' then 'IN BONO'
-     WHEN substr((select max(descripcion) from capta_cab_grupos_organizados co, socios_solisoc_datos_generales sdg
-             where co.codigo_empresa_gruporg=sdg.codigo_gruporg and sdg.codigo_socio=th1.socio),0,4)='IN I' then 'INDEPENDIENTE'
-     WHEN substr((select max(descripcion) from capta_cab_grupos_organizados co, socios_solisoc_datos_generales sdg
-             where co.codigo_empresa_gruporg=sdg.codigo_gruporg and sdg.codigo_socio=th1.socio),0,2)='BC' then 'BANCA COMUNAL'
-     else 'REVISAR' end         )metodologia,
-    -- instruccion
-    (select descripcion from socios_instrucciones  si, socios so where so.codigo_socio=th1.socio and si.codigo_instruccion=so.codigo_instruccion )instruccion,
-    -- estado_civil
-    (case (select codigo_estado_civil from socios where codigo_socio=th1.socio)
-          when 1 then 'Casado'
-          when 2 then 'Soltero'
-          when 3 then 'Divorciado'
-          when 4 then 'Viudo'
-          when 5 then 'Union Libre'
-          else 'No Aplica'
-  end) as ESTADO_CIVIL,
-    -- actividad
-(SELECT MAX(DESCRIPCION) FROM CRED_ACT_ECO_DEST_CRE WHERE CODIGO = (SELECT MAX(AE.CODIGO_SECTOR)
-FROM SOCIOS_TRABAJO_PRINCIPAL AE WHERE TH1.SOCIO = AE.CODIGO_SOCIO)) ACTIVIDAD,
-    (select sueldo_promedio_mensual from socios where codigo_socio=th1.socio)ingreso_mensual,
-
-     (case when (select sueldo_promedio_mensual from socios where codigo_socio=th1.socio)<=400 then '1'
-          when (select sueldo_promedio_mensual from socios where codigo_socio=th1.socio) between 400 and 800 then '2'
-          when (select sueldo_promedio_mensual from socios where codigo_socio=th1.socio)>800 then '3'
-    else 'NO INFORMA' end
-    )ing_mensual_tipologia,
-    -- ingreso_promedio
-
-    --(TH1.NUM_CUOTAS) AS CUOTAS_CREDITO,
-    --TH1.TIP_ID,
-    --TH1.CEDULA,
-    case TH1.GENERO when 'M' then 'MASCULINO' when 'F' then 'FEMENINO' else 'JURIDICO' end genero,
-    TRUNC((SYSDATE-TH1.EDAD)/365.25)EDAD,
-    (case
-         when TRUNC((SYSDATE-TH1.EDAD)/365.25)>=0 and TRUNC((SYSDATE-TH1.EDAD)/365.25)<= 18 then '0-18'
-         when TRUNC((SYSDATE-TH1.EDAD)/365.25)>18 and TRUNC((SYSDATE-TH1.EDAD)/365.25)<= 25 then '19-25'
-         when TRUNC((SYSDATE-TH1.EDAD)/365.25)>25 and TRUNC((SYSDATE-TH1.EDAD)/365.25)<= 30 then '26-30'
-         when TRUNC((SYSDATE-TH1.EDAD)/365.25)>30 and TRUNC((SYSDATE-TH1.EDAD)/365.25)<= 35 then '31-35'
-         when TRUNC((SYSDATE-TH1.EDAD)/365.25)>35 and TRUNC((SYSDATE-TH1.EDAD)/365.25)<= 40 then '36-40'
-         when TRUNC((SYSDATE-TH1.EDAD)/365.25)>40 and TRUNC((SYSDATE-TH1.EDAD)/365.25)<= 45 then '41-45'
-         when TRUNC((SYSDATE-TH1.EDAD)/365.25)>45 and TRUNC((SYSDATE-TH1.EDAD)/365.25)<= 50 then '46-50'
-         when TRUNC((SYSDATE-TH1.EDAD)/365.25)>50 and TRUNC((SYSDATE-TH1.EDAD)/365.25)<= 55 then '51-55'
-         when TRUNC((SYSDATE-TH1.EDAD)/365.25)>55 and TRUNC((SYSDATE-TH1.EDAD)/365.25)<= 60 then '56-60'
-         when TRUNC((SYSDATE-TH1.EDAD)/365.25)>60 then '> 60'
-         else 'REVISA' end)rango_edad,
-    --th1.edad fecha_nacimiento,
-   -- TH1.CALIFICACION,
-    TH1.CAP_ACTIVO,
-    TH1.CAP_NDEVENGA,
-    TH1.CAP_VENCIDO,
-    (TH1.CAP_NDEVENGA+TH1.CAP_VENCIDO)CARTERA_RIESGO,
-    (TH1.CAP_ACTIVO+
-    TH1.CAP_NDEVENGA+
-    TH1.CAP_VENCIDO)saldo_cartera,
-
-    /*FECHA CONCESION
-    (select min(j.fecinical) from cred_tabla_amortiza_variable j
-    where j.ordencal = (select min(i.ordencal)  from cred_tabla_amortiza_variable i
-                        where i.numero_credito = TH1.NUMERO_CREDITO)
-      and j.numero_credito = TH1.NUMERO_CREDITO) as FECHA_CONCESION,
-    FECHA_VENCIMIENTO
-    (select max(j.fecfincal) from cred_tabla_amortiza_variable j
-    where j.ordencal = (select max(i.ordencal)  from cred_tabla_amortiza_variable i
-                        where i.numero_credito = TH1.NUMERO_CREDITO)
-      and j.numero_credito = TH1.NUMERO_CREDITO) as FECHA_VENCIMIENTO,*/
-    (select SUM(ROUND(NVL(CAPITALCAL,0),2) + ROUND(NVL(INTERESCAL,0),2) + ROUND(NVL(MORACAL,0),2) +
-              ROUND(CASE WHEN trunc(fecinical)>trunc(sysdate) THEN 0 ELSE NVL(rubroscal,0) END,2)) from CRED_TABLA_AMORTIZA_VARIABLE A
-                         where a.numero_credito=TH1.numero_credito
-                         and estadocal='P')valor_cancela,
-    TH1.DIASMORA_PD
-    /*TH1.SUCURSAL OFICINA,
-    TH1.NOM_OF_CRE CARTERA_HEREDADA,
-             (case when th1.oficial_credito in (44,25) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=25)
-                   when th1.oficial_credito in (75,67,49) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=49)
-                   when th1.oficial_credito in (102,43) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=102)
-                   when th1.oficial_credito in (78,37,98,95) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=78)
-                   when th1.oficial_credito in (13,14) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=14)
-                   when th1.oficial_credito in (7,28) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=7)
-                   when th1.oficial_credito in (18,5) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=5)
-                   when th1.oficial_credito in (68,6,94,47,88,112) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=94)
-                   when th1.oficial_credito in (85,26,83,48) then ('BALCON')
-                   when th1.oficial_credito in (34,77,38,33) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=34)
-                   when th1.oficial_credito in (42,122,89) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=122)
-                   when th1.oficial_credito in (114,22,73,108,15,120,19,109,17,121,21,40) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=114)
-                   else (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=th1.oficial_credito) end
-             )ASESOR*/
-
-
-    FROM(
-      SELECT
-          MAX(TH.FECHA_INGRESO)FECHA_INGRESO,
-          MAX(TH.COD_SOCIO) SOCIO,
-          TH.NUMERO_CREDITO,
-          TH.OBSERVACIONES OBSERVA,
-          MAX(NOMBRE_SOCIO)NOMBRE,
-          MAX(TH.GENERO) GENERO,
-          MAX(TH.EDAD) EDAD,
-          th.codigo_cicn activ,
-          MAX(TH.OBS_ACT)OBS_ACT,
-          (CASE WHEN MAX((SELECT CODIGO_GRUPO FROM CRED_GRUPO_SEGMENTOS_CREDITO WHERE CODIGO_GRUPO=TH.COD_GRUPO))=1 THEN
-                                   CASE WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN   0 AND   5 THEN 'A1'
-                                        WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN   6 AND  20 THEN 'A2'
-                                        WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  21 AND  35 THEN 'A3'
-                                        WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  36 AND  65 THEN 'B1'
-                                        WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  66 AND  95 THEN 'B2'
-                                        WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  96 AND 125 THEN 'C1'
-                                        WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN 126 AND 155 THEN 'C2'
-                                        WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN 156 AND 185 THEN 'D'
-                                   ELSE 'E'
-                                   END
-
-                                  --CONSUMO
-                                  WHEN MAX((SELECT CODIGO_GRUPO FROM CRED_GRUPO_SEGMENTOS_CREDITO WHERE CODIGO_GRUPO=TH.COD_GRUPO))=2 THEN
-                                   CASE WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN   0 AND  5  THEN 'A1'
-                                        WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN   6 AND  20  THEN 'A2'
-                                        WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  21 AND  35 THEN 'A3'
-                                        WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  36 AND  50 THEN 'B1'
-                                        WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  51 AND  65 THEN 'B2'
-                                        WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  66 AND  80 THEN 'C1'
-                                        WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  81 AND  95 THEN 'C2'
-                                        WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  96 AND 125 THEN 'D'
-                                   ELSE 'E'
-                                   END
-
-                                  --VIVIENDA
-                                   WHEN MAX((SELECT CODIGO_GRUPO FROM CRED_GRUPO_SEGMENTOS_CREDITO WHERE CODIGO_GRUPO=TH.COD_GRUPO))=3 THEN
-                                    CASE WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN   0 AND  5 THEN 'A1'
-                                         WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN   6 AND  35 THEN 'A2'
-                                         WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  36 AND  65 THEN 'A3'
-                                         WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  66 AND 120 THEN 'B1'
-                                         WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN 121 AND 180 THEN 'B2'
-                                         WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN 181 AND 210 THEN 'C1'
-                                         WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN 211 AND 270 THEN 'C2'
-                                         WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN 271 AND 450 THEN 'D'
-                                    ELSE 'E'
-                                    END
-
-                                   --MICROEMPRESA
-                                   WHEN MAX((SELECT CODIGO_GRUPO FROM CRED_GRUPO_SEGMENTOS_CREDITO WHERE CODIGO_GRUPO=TH.COD_GRUPO))=4 THEN
-                                    CASE WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN   0 AND  5  THEN 'A1'
-                                         WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN   6 AND  20 THEN 'A2'
-                                         WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  21 AND  35 THEN 'A3'
-                                         WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  36 AND  50 THEN 'B1'
-                                         WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  51 AND  65 THEN 'B2'
-                                         WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  66 AND  80 THEN 'C1'
-                                         WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  81 AND  95 THEN 'C2'
-                                         WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  96 AND 125 THEN 'D'
-                                    ELSE 'E'
-                                    END
-                            END) CALIFICACION,
-          /**/
-          MAX(TH.CODIGO_PERIOC) CODIGO_PERIOC,
-          MAX(TH.NUM_CUOTAS) NUM_CUOTAS,
-          max(th.instruccion)instruc,
-          max(th.estado_civil)est_civil,
-          MAX(TH.CED) CEDULA,
-          MAX(TH.NOMBRE_EMPRESA) EMPRESA,
-          max(th.cod_telf) telefono,
-          max(th.cod_celular) celular,
-          MAX(TH.TIPID) TIP_ID,
-          SUM(CASE WHEN TH.ESTADO_CARSEG IN('I') THEN TH.SCAPITAL ELSE 0 END) AS CAP_ACTIVO,
-          SUM(CASE WHEN TH.ESTADO_CARSEG IN('D') THEN TH.SCAPITAL ELSE 0 END) AS CAP_NDEVENGA,
-
-           --roger
-          SUM(CASE WHEN TH.ESTADO_CARSEG IN('E') THEN TH.SCAPITAL ELSE
-                   (case when (select distinct(numero_credito) from cred_tabla_amortiza_variable where estado='S' and numero_credito=th.numero_credito)=th.numero_credito then 1 else 0 end)
-          END) AS CAP_VENCIDO,
-          --select * from cred_tabla_amortiza_variable where numero
-
-         -- SUM(CASE WHEN TH.ESTADO_CARSEG IN('E') THEN TH.SCAPITAL ELSE 0 END) AS CAP_VENCIDO,
-
-           SUM(CASE WHEN TH.ESTADO_CARSEG IN('I','D','E') THEN TH.SCAPITAL ELSE
-           (case when (select distinct(numero_credito) from cred_tabla_amortiza_variable where estado='S' and numero_credito=th.numero_credito)=th.numero_credito then 1 else 0 end)
-            END)CAP_SALDO,
-          MAX(TH.MONTO_CREDITO) VAL_CREDITO,
-          th.of_cred oficial_credito,
-          MAX(FECHAINI) FECHA_CONCESION,
-          MAX(FECHAFIN) FECHA_VENCIMIENTO,
-          MAX(TH.TASA_TEA)TEA,
-          MAX(TH.TASA_TIR)TIR,
-          MAX(TH.TASA) TASA,
-    --    SELECT *FROM CONF_ACTIV_ECO_SOCIO WHERE CODIGO='G474111'
-
-          SUM(TH.DIASMORAPD) DIASMORA_PD,                                       --to_date('05/01/2014','dd/mm/yy')
-          (SELECT NVL(SUM(P.CAPITAL),0) FROM CRED_CABECERA_PAGOS_CREDITO P WHERE P.NUMERO_CREDITO = TH.NUMERO_CREDITO AND TRUNC(P.FECHA) <= TRUNC(TO_DATE('#{fecha.to_date.strftime('%d-%m-%Y')}','DD/MM/YY'))) AS CAPITAL_CAN,
-          SUM(CASE WHEN TH.ESTADO_CARSEG IN('I','D','E') THEN TH.SCAPITAL ELSE 0 END) AS CAPITAL_PEN,
-          (
-           (SELECT NVL(SUM(P.INTERES),0) FROM CRED_CABECERA_PAGOS_CREDITO P WHERE P.NUMERO_CREDITO = TH.NUMERO_CREDITO AND TRUNC(P.FECHA) <= TRUNC(TO_DATE('#{fecha.to_date.strftime('%d-%m-%Y')}','DD/MM/YY')))+
-           SUM(CASE WHEN TH.ESTADO_CARSEG IN('I','D','E') THEN TH.SINTERES ELSE 0 END)
-          ) AS INTERES_TOTAL,
-          (SELECT NVL(SUM(P.INTERES),0) FROM CRED_CABECERA_PAGOS_CREDITO P WHERE P.NUMERO_CREDITO = TH.NUMERO_CREDITO AND TRUNC(P.FECHA) <= TRUNC(TO_DATE('#{fecha.to_date.strftime('%d-%m-%Y')}','DD/MM/YY'))) AS INTERES_CAN,
-          SUM(CASE WHEN TH.ESTADO_CARSEG IN('I','D','E') THEN TH.SINTERES ELSE 0 END) AS INTERES_PEN,
-          (SELECT MIN(DESCRIPCION_GRUPO) FROM CRED_GRUPO_SEGMENTOS_CREDITO G WHERE G.CODIGO_GRUPO = TH.COD_GRUPO ) AS NOM_GRUPO,
-          (SELECT MIN(DESCRIPCION)  FROM CONF_PRODUCTOS P WHERE P.CODIGO_ACT_FINANCIERA = 2 AND P.CODIGO_GRUPO = TH.COD_GRUPO AND P.CODIGO_PRODUCTO = TH.COD_PRODUCTO) AS NOM_PRODUCTO,
-          (SELECT MAX(CCD.MCLI_LUGAR_DIR) FROM SOCIOS_DIRECCIONES CCD WHERE CCD.CODIGO_SOCIO = TH.COD_SOCIO) LUGDIR,
-          MAX(TH.COD_ORIREC) ORIGENR, MAX(TH.COD_GRUPORG)GRUPORG,
-          (SELECT MIN(SS.DESCRIPCION) FROM SIFV_SUCURSALES SS WHERE SS.CODIGO_SUCURSAL = TH.COD_SUCURSAL) AS SUCURSAL,
-          (SELECT MIN(USU_APELLIDOS ||' ' || USU_NOMBRES) FROM SIFV_USUARIOS_SISTEMA SU WHERE SU.CODIGO_USUARIO = TH.COD_USUARIO ) AS NOM_USER,
-          (SELECT MIN(USU_APELLIDOS ||' ' || USU_NOMBRES) FROM SIFV_USUARIOS_SISTEMA SU WHERE SU.CODIGO_USUARIO = TH.OF_CRED ) AS NOM_OF_CRE,
-
-       MAX(TH.CODIGO_DESTINO)COD_DESTINO
-      FROM(
-          SELECT
-                 MAX(SDG.SING_FECSOLI) FECHA_INGRESO,
-                 CC.NUMERO_CREDITO,
-                 CH.ESTADO_CARSEG,
-                 COUNT(*) AS CONTADOR,
-                 SUM(CH.CAPITAL) AS SCAPITAL,/*------------------*/
-                 MAX(cc.num_cuotas) NUM_CUOTAS,
-                 COUNT(*) AS NUMCUOTAS,
-                 MAX(CC.CODIGO_PERIOC) CODIGO_PERIOC, /**/
-                 SUM(CH.INTACT) AS SINTERES, /*------------------*/
-                 MAX(CC.TASA_INTERES)AS TASA,
-                 (select MAX(TEA) from CRED_REGISTRA_TASA_TIR_TEA T WHERE T.NUMERO_CREDITO = CC.NUMERO_CREDITO )AS TASA_TEA,
-                 (select MAX(TIR) from CRED_REGISTRA_TASA_TIR_TEA T WHERE T.NUMERO_CREDITO = CC.NUMERO_CREDITO )AS TASA_TIR,
-                 MAX(CH.DIAMORACT)AS DIASMORAPD,
-                 SUM(CH.DIAMORACT) AS DIASMORAAC,
-                 MAX(S.CODIGO_SOCIO)COD_SOCIO,
-                 MAX(S.MCLI_NUMERO_ID)CED,
-                 MAX(S.CODIGO_IDENTIFICACION) TIPID,
-                 (MAX(S.MCLI_APELLIDO_PAT)||' '||MAX(S.MCLI_APELLIDO_MAT)||' '||MAX(S.MCLI_NOMBRES)) AS NOMBRE_SOCIO,
-                 MAX(S.MCLI_RAZON_SOCIAL) AS NOMBRE_EMPRESA,
-                 MAX(S.MCLI_SEXO) AS GENERO,
-                 MAX(S.MCLI_FECNACI) AS EDAD,
-                  /*NATTY*/
-                 MAX(S.observacion_profesion) AS OBS_ACT,
-                 /**/
-                 cc.obs_descre OBSERVACIONES,
-                 MAX(CC.MONTO_REAL)MONTO_CREDITO,
-                 MAX(CC.FECINI) FECHAINI,
-                 MAX(CC.FECFIN) FECHAFIN,
-                 MAX(CC.CODIGO_GRUPO) COD_GRUPO,
-                 MAX(CC.CODIGO_PRODUCTO) COD_PRODUCTO,
-                 MAX(CC.CODIGO_ORIREC) COD_ORIREC,
-                 MAX(SDG.CODIGO_GRUPORG) COD_GRUPORG,
-                 max(sdg.sing_telefonos) cod_telf,
-                 max(sdg.sing_telefono_celular) cod_celular,
-                 MAX(CC.CODIGO_SUCURSAL) COD_SUCURSAL,
-                 MAX(CC.CODIGO_USUARIO) COD_USUARIO,
-                 MAX(CC.OFICRE) OF_CRED,
-                 MAX(CC.CODIGO_SUBSECTOR)||MAX(cc.codigo_clasificacion_credito) CODIGO_DESTINO,
-                 max(s.codigo_instruccion)instruccion,
-                 max(s.codigo_estado_civil)estado_civil,
-                 MAX(cc.codigo_clasificacion_credito) CODIGO_CICN   --ACTIVIDAD ECONOMICA
-            FROM
-                CRED_CREDITOS CC,
-                CRED_HISTORIAL_REC_CARTERA CH,
-                SOCIOS S,
-                SOCIOS_SOLISOC_DATOS_GENERALES SDG
-           WHERE CC.NUMERO_CREDITO = CH.NUMERO_CREDITO
-             AND S.CODIGO_SOCIO = CC.CODIGO_SOCIO
-             AND S.CODIGO_SOCIO = SDG.CODIGO_SOCIO
-            AND TRUNC(CH.FGENERA) = TO_DATE('#{fecha.to_date.strftime('%d-%m-%Y')}','DD/MM/YY')
-            and (case when cc.oficre in (44,25) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=25)
-                   when cc.oficre in (75,67,49) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=49)
-                   when cc.oficre in (102,43) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=102)
-                   when cc.oficre in (78,37,98,95) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=78)
-                   when cc.oficre in (13,14) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=14)
-                   when cc.oficre in (7,28) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=7)
-                   when cc.oficre in (18,5) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=5)
-                   when cc.oficre in (68,6,94,47,88,112) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=94)
-                   when cc.oficre in (34,77,38,33) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=34)
-                   when cc.oficre in (42,122,89) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=122)
-                   when cc.oficre in (114,22,73,108,15,120,19,109,17,121,21,40) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=114)
-                   else (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=cc.oficre) end
-             ) like upper ('%#{asesor}%')
-              and (SELECT MIN(SS.DESCRIPCION) FROM SIFV_SUCURSALES SS WHERE SS.CODIGO_SUCURSAL = cc.CODIGO_SUCURSAL) like ('%#{agencia}%')
-                 GROUP BY CC.NUMERO_CREDITO, CH.ESTADO_CARSEG, CC.OBS_DESCRE
-      )TH
-       GROUP BY TH.NUMERO_CREDITO, TH.COD_GRUPO, TH.COD_PRODUCTO, TH.OF_CRED, TH.COD_USUARIO, TH.COD_SUCURSAL, TH.COD_SOCIO,TH.OBSERVACIONES,th.codigo_cicn
-
-    ) TH1
-    where TH1.DIASMORA_PD between #{dia_inicio.to_i} and #{dia_fin.to_i}
-    ")
-
-
-
-    if results.present?
-      return results
-    else
-      return {}
-    end
+#     results = connection.exec_query("
+#     SELECT
+#     TH1.FECHA_INGRESO FECHA_INGRESO,
+#     (select MAX(descripcion) from cred_tipos_recursos_economicos where codigo = TH1.ORIGENR) as ORIGEN_RECURSOS,
+#     TH1.SOCIO,
+#     th1.nom_grupo tipo_credito,
+#     --CASE WHEN TH1.TIP_ID = 'R' THEN TH1.EMPRESA ELSE TH1.NOMBRE END NOMBRE,
+#     TH1.NUMERO_CREDITO CREDITO,
+#     (select tt.provision_especifica from temp_c02 tt where tt.numero_operacion=th1.numero_credito)provision_requerida,
+#     --TH1.CODIGO_PERIOC,
+#      (select descripcion  from socios_profesiones  sp, socios so
+#      where sp.codigo_profesion=so.codigo_profesion and so.codigo_socio=th1.socio ) PROFESION,
+#
+#     (
+#     SELECT MAX(DESCRIPCION) from Sifv_Parroquias d,socios_direcciones sd
+#            WHERE d.codigo_pais = substr(sd.mcli_lugar_dir,1,2)
+#            and d.codigo_provincia = substr(sd.mcli_lugar_dir,3,2)
+#            and d.codigo_ciudad = substr(sd.mcli_lugar_dir,5,2)
+#            and d.codigo_parroquia = substr(sd.mcli_lugar_dir,7,2)
+#            and sd.codigo_socio=TH1.SOCIO
+#      ) AS PARROQUIA,
+#      (SELECT substr(min(mcli_lugar_dir),2,6) from socios_direcciones where codigo_socio=th1.socio)codigo_parroquia,
+#      (select max(descripcion) from capta_cab_grupos_organizados co, socios_solisoc_datos_generales sdg
+#              where co.codigo_empresa_gruporg=sdg.codigo_gruporg and sdg.codigo_socio=th1.socio)grupo_org,
+#      (case
+#      when substr((select max(descripcion) from capta_cab_grupos_organizados co, socios_solisoc_datos_generales sdg
+#              where co.codigo_empresa_gruporg=sdg.codigo_gruporg and sdg.codigo_socio=th1.socio),0,2)='GS' then 'SOLIDARIO'
+#      when substr((select max(descripcion) from capta_cab_grupos_organizados co, socios_solisoc_datos_generales sdg
+#              where co.codigo_empresa_gruporg=sdg.codigo_gruporg and sdg.codigo_socio=th1.socio),0,2)='AS' then 'ASOCIATIVO'
+#      WHEN substr((select max(descripcion) from capta_cab_grupos_organizados co, socios_solisoc_datos_generales sdg
+#              where co.codigo_empresa_gruporg=sdg.codigo_gruporg and sdg.codigo_socio=th1.socio),0,4)='IN B' then 'IN BONO'
+#      WHEN substr((select max(descripcion) from capta_cab_grupos_organizados co, socios_solisoc_datos_generales sdg
+#              where co.codigo_empresa_gruporg=sdg.codigo_gruporg and sdg.codigo_socio=th1.socio),0,4)='IN I' then 'INDEPENDIENTE'
+#      WHEN substr((select max(descripcion) from capta_cab_grupos_organizados co, socios_solisoc_datos_generales sdg
+#              where co.codigo_empresa_gruporg=sdg.codigo_gruporg and sdg.codigo_socio=th1.socio),0,2)='BC' then 'BANCA COMUNAL'
+#      else 'REVISAR' end         )metodologia,
+#     -- instruccion
+#     (select descripcion from socios_instrucciones  si, socios so where so.codigo_socio=th1.socio and si.codigo_instruccion=so.codigo_instruccion )instruccion,
+#     -- estado_civil
+#     (case (select codigo_estado_civil from socios where codigo_socio=th1.socio)
+#           when 1 then 'Casado'
+#           when 2 then 'Soltero'
+#           when 3 then 'Divorciado'
+#           when 4 then 'Viudo'
+#           when 5 then 'Union Libre'
+#           else 'No Aplica'
+#   end) as ESTADO_CIVIL,
+#     -- actividad
+# (SELECT MAX(DESCRIPCION) FROM CRED_ACT_ECO_DEST_CRE WHERE CODIGO = (SELECT MAX(AE.CODIGO_SECTOR)
+# FROM SOCIOS_TRABAJO_PRINCIPAL AE WHERE TH1.SOCIO = AE.CODIGO_SOCIO)) ACTIVIDAD,
+#     (select sueldo_promedio_mensual from socios where codigo_socio=th1.socio)ingreso_mensual,
+#
+#      (case when (select sueldo_promedio_mensual from socios where codigo_socio=th1.socio)<=400 then '1'
+#           when (select sueldo_promedio_mensual from socios where codigo_socio=th1.socio) between 400 and 800 then '2'
+#           when (select sueldo_promedio_mensual from socios where codigo_socio=th1.socio)>800 then '3'
+#     else 'NO INFORMA' end
+#     )ing_mensual_tipologia,
+#     -- ingreso_promedio
+#
+#     --(TH1.NUM_CUOTAS) AS CUOTAS_CREDITO,
+#     --TH1.TIP_ID,
+#     --TH1.CEDULA,
+#     case TH1.GENERO when 'M' then 'MASCULINO' when 'F' then 'FEMENINO' else 'JURIDICO' end genero,
+#     TRUNC((SYSDATE-TH1.EDAD)/365.25)EDAD,
+#     (case
+#          when TRUNC((SYSDATE-TH1.EDAD)/365.25)>=0 and TRUNC((SYSDATE-TH1.EDAD)/365.25)<= 18 then '0-18'
+#          when TRUNC((SYSDATE-TH1.EDAD)/365.25)>18 and TRUNC((SYSDATE-TH1.EDAD)/365.25)<= 25 then '19-25'
+#          when TRUNC((SYSDATE-TH1.EDAD)/365.25)>25 and TRUNC((SYSDATE-TH1.EDAD)/365.25)<= 30 then '26-30'
+#          when TRUNC((SYSDATE-TH1.EDAD)/365.25)>30 and TRUNC((SYSDATE-TH1.EDAD)/365.25)<= 35 then '31-35'
+#          when TRUNC((SYSDATE-TH1.EDAD)/365.25)>35 and TRUNC((SYSDATE-TH1.EDAD)/365.25)<= 40 then '36-40'
+#          when TRUNC((SYSDATE-TH1.EDAD)/365.25)>40 and TRUNC((SYSDATE-TH1.EDAD)/365.25)<= 45 then '41-45'
+#          when TRUNC((SYSDATE-TH1.EDAD)/365.25)>45 and TRUNC((SYSDATE-TH1.EDAD)/365.25)<= 50 then '46-50'
+#          when TRUNC((SYSDATE-TH1.EDAD)/365.25)>50 and TRUNC((SYSDATE-TH1.EDAD)/365.25)<= 55 then '51-55'
+#          when TRUNC((SYSDATE-TH1.EDAD)/365.25)>55 and TRUNC((SYSDATE-TH1.EDAD)/365.25)<= 60 then '56-60'
+#          when TRUNC((SYSDATE-TH1.EDAD)/365.25)>60 then '> 60'
+#          else 'REVISA' end)rango_edad,
+#     --th1.edad fecha_nacimiento,
+#    -- TH1.CALIFICACION,
+#     TH1.CAP_ACTIVO,
+#     TH1.CAP_NDEVENGA,
+#     TH1.CAP_VENCIDO,
+#     (TH1.CAP_NDEVENGA+TH1.CAP_VENCIDO)CARTERA_RIESGO,
+#     (TH1.CAP_ACTIVO+
+#     TH1.CAP_NDEVENGA+
+#     TH1.CAP_VENCIDO)saldo_cartera,
+#
+#     /*FECHA CONCESION
+#     (select min(j.fecinical) from cred_tabla_amortiza_variable j
+#     where j.ordencal = (select min(i.ordencal)  from cred_tabla_amortiza_variable i
+#                         where i.numero_credito = TH1.NUMERO_CREDITO)
+#       and j.numero_credito = TH1.NUMERO_CREDITO) as FECHA_CONCESION,
+#     FECHA_VENCIMIENTO
+#     (select max(j.fecfincal) from cred_tabla_amortiza_variable j
+#     where j.ordencal = (select max(i.ordencal)  from cred_tabla_amortiza_variable i
+#                         where i.numero_credito = TH1.NUMERO_CREDITO)
+#       and j.numero_credito = TH1.NUMERO_CREDITO) as FECHA_VENCIMIENTO,*/
+#     (select SUM(ROUND(NVL(CAPITALCAL,0),2) + ROUND(NVL(INTERESCAL,0),2) + ROUND(NVL(MORACAL,0),2) +
+#               ROUND(CASE WHEN trunc(fecinical)>trunc(sysdate) THEN 0 ELSE NVL(rubroscal,0) END,2)) from CRED_TABLA_AMORTIZA_VARIABLE A
+#                          where a.numero_credito=TH1.numero_credito
+#                          and estadocal='P')valor_cancela,
+#     TH1.DIASMORA_PD
+#     /*TH1.SUCURSAL OFICINA,
+#     TH1.NOM_OF_CRE CARTERA_HEREDADA,
+#              (case when th1.oficial_credito in (44,25) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=25)
+#                    when th1.oficial_credito in (75,67,49) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=49)
+#                    when th1.oficial_credito in (102,43) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=102)
+#                    when th1.oficial_credito in (78,37,98,95) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=78)
+#                    when th1.oficial_credito in (13,14) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=14)
+#                    when th1.oficial_credito in (7,28) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=7)
+#                    when th1.oficial_credito in (18,5) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=5)
+#                    when th1.oficial_credito in (68,6,94,47,88,112) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=94)
+#                    when th1.oficial_credito in (85,26,83,48) then ('BALCON')
+#                    when th1.oficial_credito in (34,77,38,33) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=34)
+#                    when th1.oficial_credito in (42,122,89) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=122)
+#                    when th1.oficial_credito in (114,22,73,108,15,120,19,109,17,121,21,40) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=114)
+#                    else (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=th1.oficial_credito) end
+#              )ASESOR*/
+#
+#
+#     FROM(
+#       SELECT
+#           MAX(TH.FECHA_INGRESO)FECHA_INGRESO,
+#           MAX(TH.COD_SOCIO) SOCIO,
+#           TH.NUMERO_CREDITO,
+#           TH.OBSERVACIONES OBSERVA,
+#           MAX(NOMBRE_SOCIO)NOMBRE,
+#           MAX(TH.GENERO) GENERO,
+#           MAX(TH.EDAD) EDAD,
+#           th.codigo_cicn activ,
+#           MAX(TH.OBS_ACT)OBS_ACT,
+#           (CASE WHEN MAX((SELECT CODIGO_GRUPO FROM CRED_GRUPO_SEGMENTOS_CREDITO WHERE CODIGO_GRUPO=TH.COD_GRUPO))=1 THEN
+#                                    CASE WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN   0 AND   5 THEN 'A1'
+#                                         WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN   6 AND  20 THEN 'A2'
+#                                         WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  21 AND  35 THEN 'A3'
+#                                         WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  36 AND  65 THEN 'B1'
+#                                         WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  66 AND  95 THEN 'B2'
+#                                         WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  96 AND 125 THEN 'C1'
+#                                         WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN 126 AND 155 THEN 'C2'
+#                                         WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN 156 AND 185 THEN 'D'
+#                                    ELSE 'E'
+#                                    END
+#
+#                                   --CONSUMO
+#                                   WHEN MAX((SELECT CODIGO_GRUPO FROM CRED_GRUPO_SEGMENTOS_CREDITO WHERE CODIGO_GRUPO=TH.COD_GRUPO))=2 THEN
+#                                    CASE WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN   0 AND  5  THEN 'A1'
+#                                         WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN   6 AND  20  THEN 'A2'
+#                                         WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  21 AND  35 THEN 'A3'
+#                                         WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  36 AND  50 THEN 'B1'
+#                                         WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  51 AND  65 THEN 'B2'
+#                                         WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  66 AND  80 THEN 'C1'
+#                                         WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  81 AND  95 THEN 'C2'
+#                                         WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  96 AND 125 THEN 'D'
+#                                    ELSE 'E'
+#                                    END
+#
+#                                   --VIVIENDA
+#                                    WHEN MAX((SELECT CODIGO_GRUPO FROM CRED_GRUPO_SEGMENTOS_CREDITO WHERE CODIGO_GRUPO=TH.COD_GRUPO))=3 THEN
+#                                     CASE WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN   0 AND  5 THEN 'A1'
+#                                          WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN   6 AND  35 THEN 'A2'
+#                                          WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  36 AND  65 THEN 'A3'
+#                                          WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  66 AND 120 THEN 'B1'
+#                                          WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN 121 AND 180 THEN 'B2'
+#                                          WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN 181 AND 210 THEN 'C1'
+#                                          WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN 211 AND 270 THEN 'C2'
+#                                          WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN 271 AND 450 THEN 'D'
+#                                     ELSE 'E'
+#                                     END
+#
+#                                    --MICROEMPRESA
+#                                    WHEN MAX((SELECT CODIGO_GRUPO FROM CRED_GRUPO_SEGMENTOS_CREDITO WHERE CODIGO_GRUPO=TH.COD_GRUPO))=4 THEN
+#                                     CASE WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN   0 AND  5  THEN 'A1'
+#                                          WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN   6 AND  20 THEN 'A2'
+#                                          WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  21 AND  35 THEN 'A3'
+#                                          WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  36 AND  50 THEN 'B1'
+#                                          WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  51 AND  65 THEN 'B2'
+#                                          WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  66 AND  80 THEN 'C1'
+#                                          WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  81 AND  95 THEN 'C2'
+#                                          WHEN nvl(MAX(TH.DIASMORAPD),0) BETWEEN  96 AND 125 THEN 'D'
+#                                     ELSE 'E'
+#                                     END
+#                             END) CALIFICACION,
+#           /**/
+#           MAX(TH.CODIGO_PERIOC) CODIGO_PERIOC,
+#           MAX(TH.NUM_CUOTAS) NUM_CUOTAS,
+#           max(th.instruccion)instruc,
+#           max(th.estado_civil)est_civil,
+#           MAX(TH.CED) CEDULA,
+#           MAX(TH.NOMBRE_EMPRESA) EMPRESA,
+#           max(th.cod_telf) telefono,
+#           max(th.cod_celular) celular,
+#           MAX(TH.TIPID) TIP_ID,
+#           SUM(CASE WHEN TH.ESTADO_CARSEG IN('I') THEN TH.SCAPITAL ELSE 0 END) AS CAP_ACTIVO,
+#           SUM(CASE WHEN TH.ESTADO_CARSEG IN('D') THEN TH.SCAPITAL ELSE 0 END) AS CAP_NDEVENGA,
+#
+#            --roger
+#           SUM(CASE WHEN TH.ESTADO_CARSEG IN('E') THEN TH.SCAPITAL ELSE
+#                    (case when (select distinct(numero_credito) from cred_tabla_amortiza_variable where estado='S' and numero_credito=th.numero_credito)=th.numero_credito then 1 else 0 end)
+#           END) AS CAP_VENCIDO,
+#           --select * from cred_tabla_amortiza_variable where numero
+#
+#          -- SUM(CASE WHEN TH.ESTADO_CARSEG IN('E') THEN TH.SCAPITAL ELSE 0 END) AS CAP_VENCIDO,
+#
+#            SUM(CASE WHEN TH.ESTADO_CARSEG IN('I','D','E') THEN TH.SCAPITAL ELSE
+#            (case when (select distinct(numero_credito) from cred_tabla_amortiza_variable where estado='S' and numero_credito=th.numero_credito)=th.numero_credito then 1 else 0 end)
+#             END)CAP_SALDO,
+#           MAX(TH.MONTO_CREDITO) VAL_CREDITO,
+#           th.of_cred oficial_credito,
+#           MAX(FECHAINI) FECHA_CONCESION,
+#           MAX(FECHAFIN) FECHA_VENCIMIENTO,
+#           MAX(TH.TASA_TEA)TEA,
+#           MAX(TH.TASA_TIR)TIR,
+#           MAX(TH.TASA) TASA,
+#     --    SELECT *FROM CONF_ACTIV_ECO_SOCIO WHERE CODIGO='G474111'
+#
+#           SUM(TH.DIASMORAPD) DIASMORA_PD,                                       --to_date('05/01/2014','dd/mm/yy')
+#           (SELECT NVL(SUM(P.CAPITAL),0) FROM CRED_CABECERA_PAGOS_CREDITO P WHERE P.NUMERO_CREDITO = TH.NUMERO_CREDITO AND TRUNC(P.FECHA) <= TRUNC(TO_DATE('#{fecha.to_date.strftime('%d-%m-%Y')}','DD/MM/YY'))) AS CAPITAL_CAN,
+#           SUM(CASE WHEN TH.ESTADO_CARSEG IN('I','D','E') THEN TH.SCAPITAL ELSE 0 END) AS CAPITAL_PEN,
+#           (
+#            (SELECT NVL(SUM(P.INTERES),0) FROM CRED_CABECERA_PAGOS_CREDITO P WHERE P.NUMERO_CREDITO = TH.NUMERO_CREDITO AND TRUNC(P.FECHA) <= TRUNC(TO_DATE('#{fecha.to_date.strftime('%d-%m-%Y')}','DD/MM/YY')))+
+#            SUM(CASE WHEN TH.ESTADO_CARSEG IN('I','D','E') THEN TH.SINTERES ELSE 0 END)
+#           ) AS INTERES_TOTAL,
+#           (SELECT NVL(SUM(P.INTERES),0) FROM CRED_CABECERA_PAGOS_CREDITO P WHERE P.NUMERO_CREDITO = TH.NUMERO_CREDITO AND TRUNC(P.FECHA) <= TRUNC(TO_DATE('#{fecha.to_date.strftime('%d-%m-%Y')}','DD/MM/YY'))) AS INTERES_CAN,
+#           SUM(CASE WHEN TH.ESTADO_CARSEG IN('I','D','E') THEN TH.SINTERES ELSE 0 END) AS INTERES_PEN,
+#           (SELECT MIN(DESCRIPCION_GRUPO) FROM CRED_GRUPO_SEGMENTOS_CREDITO G WHERE G.CODIGO_GRUPO = TH.COD_GRUPO ) AS NOM_GRUPO,
+#           (SELECT MIN(DESCRIPCION)  FROM CONF_PRODUCTOS P WHERE P.CODIGO_ACT_FINANCIERA = 2 AND P.CODIGO_GRUPO = TH.COD_GRUPO AND P.CODIGO_PRODUCTO = TH.COD_PRODUCTO) AS NOM_PRODUCTO,
+#           (SELECT MAX(CCD.MCLI_LUGAR_DIR) FROM SOCIOS_DIRECCIONES CCD WHERE CCD.CODIGO_SOCIO = TH.COD_SOCIO) LUGDIR,
+#           MAX(TH.COD_ORIREC) ORIGENR, MAX(TH.COD_GRUPORG)GRUPORG,
+#           (SELECT MIN(SS.DESCRIPCION) FROM SIFV_SUCURSALES SS WHERE SS.CODIGO_SUCURSAL = TH.COD_SUCURSAL) AS SUCURSAL,
+#           (SELECT MIN(USU_APELLIDOS ||' ' || USU_NOMBRES) FROM SIFV_USUARIOS_SISTEMA SU WHERE SU.CODIGO_USUARIO = TH.COD_USUARIO ) AS NOM_USER,
+#           (SELECT MIN(USU_APELLIDOS ||' ' || USU_NOMBRES) FROM SIFV_USUARIOS_SISTEMA SU WHERE SU.CODIGO_USUARIO = TH.OF_CRED ) AS NOM_OF_CRE,
+#
+#        MAX(TH.CODIGO_DESTINO)COD_DESTINO
+#       FROM(
+#           SELECT
+#                  MAX(SDG.SING_FECSOLI) FECHA_INGRESO,
+#                  CC.NUMERO_CREDITO,
+#                  CH.ESTADO_CARSEG,
+#                  COUNT(*) AS CONTADOR,
+#                  SUM(CH.CAPITAL) AS SCAPITAL,/*------------------*/
+#                  MAX(cc.num_cuotas) NUM_CUOTAS,
+#                  COUNT(*) AS NUMCUOTAS,
+#                  MAX(CC.CODIGO_PERIOC) CODIGO_PERIOC, /**/
+#                  SUM(CH.INTACT) AS SINTERES, /*------------------*/
+#                  MAX(CC.TASA_INTERES)AS TASA,
+#                  (select MAX(TEA) from CRED_REGISTRA_TASA_TIR_TEA T WHERE T.NUMERO_CREDITO = CC.NUMERO_CREDITO )AS TASA_TEA,
+#                  (select MAX(TIR) from CRED_REGISTRA_TASA_TIR_TEA T WHERE T.NUMERO_CREDITO = CC.NUMERO_CREDITO )AS TASA_TIR,
+#                  MAX(CH.DIAMORACT)AS DIASMORAPD,
+#                  SUM(CH.DIAMORACT) AS DIASMORAAC,
+#                  MAX(S.CODIGO_SOCIO)COD_SOCIO,
+#                  MAX(S.MCLI_NUMERO_ID)CED,
+#                  MAX(S.CODIGO_IDENTIFICACION) TIPID,
+#                  (MAX(S.MCLI_APELLIDO_PAT)||' '||MAX(S.MCLI_APELLIDO_MAT)||' '||MAX(S.MCLI_NOMBRES)) AS NOMBRE_SOCIO,
+#                  MAX(S.MCLI_RAZON_SOCIAL) AS NOMBRE_EMPRESA,
+#                  MAX(S.MCLI_SEXO) AS GENERO,
+#                  MAX(S.MCLI_FECNACI) AS EDAD,
+#                   /*NATTY*/
+#                  MAX(S.observacion_profesion) AS OBS_ACT,
+#                  /**/
+#                  cc.obs_descre OBSERVACIONES,
+#                  MAX(CC.MONTO_REAL)MONTO_CREDITO,
+#                  MAX(CC.FECINI) FECHAINI,
+#                  MAX(CC.FECFIN) FECHAFIN,
+#                  MAX(CC.CODIGO_GRUPO) COD_GRUPO,
+#                  MAX(CC.CODIGO_PRODUCTO) COD_PRODUCTO,
+#                  MAX(CC.CODIGO_ORIREC) COD_ORIREC,
+#                  MAX(SDG.CODIGO_GRUPORG) COD_GRUPORG,
+#                  max(sdg.sing_telefonos) cod_telf,
+#                  max(sdg.sing_telefono_celular) cod_celular,
+#                  MAX(CC.CODIGO_SUCURSAL) COD_SUCURSAL,
+#                  MAX(CC.CODIGO_USUARIO) COD_USUARIO,
+#                  MAX(CC.OFICRE) OF_CRED,
+#                  MAX(CC.CODIGO_SUBSECTOR)||MAX(cc.codigo_clasificacion_credito) CODIGO_DESTINO,
+#                  max(s.codigo_instruccion)instruccion,
+#                  max(s.codigo_estado_civil)estado_civil,
+#                  MAX(cc.codigo_clasificacion_credito) CODIGO_CICN   --ACTIVIDAD ECONOMICA
+#             FROM
+#                 CRED_CREDITOS CC,
+#                 CRED_HISTORIAL_REC_CARTERA CH,
+#                 SOCIOS S,
+#                 SOCIOS_SOLISOC_DATOS_GENERALES SDG
+#            WHERE CC.NUMERO_CREDITO = CH.NUMERO_CREDITO
+#              AND S.CODIGO_SOCIO = CC.CODIGO_SOCIO
+#              AND S.CODIGO_SOCIO = SDG.CODIGO_SOCIO
+#             AND TRUNC(CH.FGENERA) = TO_DATE('#{fecha.to_date.strftime('%d-%m-%Y')}','DD/MM/YY')
+#             and (case when cc.oficre in (44,25) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=25)
+#                    when cc.oficre in (75,67,49) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=49)
+#                    when cc.oficre in (102,43) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=102)
+#                    when cc.oficre in (78,37,98,95) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=78)
+#                    when cc.oficre in (13,14) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=14)
+#                    when cc.oficre in (7,28) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=7)
+#                    when cc.oficre in (18,5) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=5)
+#                    when cc.oficre in (68,6,94,47,88,112) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=94)
+#                    when cc.oficre in (34,77,38,33) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=34)
+#                    when cc.oficre in (42,122,89) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=122)
+#                    when cc.oficre in (114,22,73,108,15,120,19,109,17,121,21,40) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=114)
+#                    else (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=cc.oficre) end
+#              ) like upper ('%#{asesor}%')
+#               and (SELECT MIN(SS.DESCRIPCION) FROM SIFV_SUCURSALES SS WHERE SS.CODIGO_SUCURSAL = cc.CODIGO_SUCURSAL) like ('%#{agencia}%')
+#                  GROUP BY CC.NUMERO_CREDITO, CH.ESTADO_CARSEG, CC.OBS_DESCRE
+#       )TH
+#        GROUP BY TH.NUMERO_CREDITO, TH.COD_GRUPO, TH.COD_PRODUCTO, TH.OF_CRED, TH.COD_USUARIO, TH.COD_SUCURSAL, TH.COD_SOCIO,TH.OBSERVACIONES,th.codigo_cicn
+#
+#     ) TH1
+#     where TH1.DIASMORA_PD between #{dia_inicio.to_i} and #{dia_fin.to_i}
+#     ")
+#
+#
+#
+#     if results.present?
+#       return results
+#     else
+#       return {}
+#     end
     data =[
       {
         genero: 'masculino',
         origen_recursos: 'kiva',
         sector: 'Rural',
         tipo_credito: 'Microcredito',
-        saldo: '2000',
-        cap_activo: '23452.234',
-        cap_ndevenga: '6323.542',
-        cartera_riesgo: '92823',
-        cap_vencido: '98243.928'
+        metodologia: 'metodo1',
+        monto_real: '1233.234',
+        instruccion: 'Superior',
+        estado_civil: 'Soltero',
+        rango_edad: '+60',
+        ing_mensual_tipologia: '2000'
+
       },
       {
         genero: 'femenino',
         origen_recursos: 'triods',
         sector: 'Urbano',
         tipo_credito: 'Consumo',
-        saldo: '1000',
-        cap_activo: '23452.234',
-        cap_ndevenga: '6323.542',
-        cartera_riesgo: '92823',
-        cap_vencido: '98243.928'
+        metodologia: 'metodo1',
+        monto_real: '23452.234',
+        instruccion: 'Superior',
+        estado_civil: 'Casado',
+        rango_edad: '+64',
+        ing_mensual_tipologia: '2000'
       },
       {
         genero: 'juridico',
         origen_recursos: 'kiva',
         sector: 'Rural',
         tipo_credito: 'Comercial',
-        saldo: '3000',
-        cap_activo: '543.234',
-        cap_ndevenga: '7524.542',
-        cartera_riesgo: '7546.75',
-        cap_vencido: '56464.56'
+        metodologia: 'metodo2',
+        monto_real: '23452.234',
+        instruccion: 'Superior',
+        estado_civil: 'Soltero',
+        rango_edad: '+60',
+        ing_mensual_tipologia: '2000'
       },
       {
         genero: 'masculino',
-        origen_recursos: 'kiva',
+        origen_recursos: 'Triods',
         sector: 'Urbano',
         tipo_credito: 'Comercial',
-        saldo: '4000',
-        cap_activo: '653.234',
-        cap_ndevenga: '856.542',
-        cartera_riesgo: '124748',
-        cap_vencido: '674687.928'
+        metodologia: 'metodo2',
+        monto_real: '23452.234',
+        instruccion: 'Superior',
+        estado_civil: 'Soltero',
+        rango_edad: '+60',
+        ing_mensual_tipologia: '2000'
       },
       {
           genero: 'juridico',
           origen_recursos: 'extra',
           sector: 'Urbano',
           tipo_credito: 'Comercial',
-          saldo: '100',
-          cap_activo: '100',
-          cap_ndevenga: '100',
-          cartera_riesgo: '100',
-          cap_vencido: '100'
+          metodologia: 'metodo3',
+          monto_real: '23452.234',
+          instruccion: 'Superior',
+          estado_civil: 'Soltero',
+          rango_edad: '+60',
+          ing_mensual_tipologia: '2000'
       },{
           genero: 'xxxxx',
           origen_recursos: 'extra',
           sector: 'Urbano',
           tipo_credito: 'Comercial',
-          saldo: '100',
-          cap_activo: '100',
-          cap_ndevenga: '100',
-          cartera_riesgo: '100',
-          cap_vencido: '100'
+          metodologia: 'metodo3',
+          monto_real: '3242.234',
+          instruccion: 'Superior',
+          estado_civil: 'Soltero',
+          rango_edad: '+60',
+          ing_mensual_tipologia: '2000'
       }
     ]
 
@@ -2731,7 +2738,7 @@ FROM SOCIOS_TRABAJO_PRINCIPAL AE WHERE TH1.SOCIO = AE.CODIGO_SOCIO)) ACTIVIDAD,
     (select descripcion from sifv_sucursales where codigo_sucursal=cp.codigo_sucursal )SUCURSAL,
     (SELECT DESCRIPCION FROM CONF_PRODUCTOS WHERE CODIGO_ACT_FINANCIERA=2 AND CODIGO_PRODUCTO=CP.CODIGO_PRODUCTO) AS DESCRIPCION_PROD,
     FECHA_CREDITO,
-    (case ESTADO_CRED when 'L' then 'VIGENTE' else 'CANCELADO' end)ESTADO_CREDITO ,
+    (case ESTADO_CRED when 'L' then 'VIGENTE' else 'CANCELADO' end)ESTADO_CREDITO,
     CAPITAL_PORPAG,
     (case when CP.OFICRE in (44,25) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=25)
                        when CP.OFICRE in (75,67,49) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=49)
@@ -2776,60 +2783,77 @@ FROM SOCIOS_TRABAJO_PRINCIPAL AE WHERE TH1.SOCIO = AE.CODIGO_SOCIO)) ACTIVIDAD,
 
 
     data =[
-      {
-        genero: 'masculino',
-        origen_recursos: 'kiva',
-        sector: 'Rural',
-        tipo_credito: 'Microcredito',
-        saldo: '2000',
-        cap_activo: '23452.234',
-        cap_ndevenga: '6323.542',
-        cartera_riesgo: '92823',
-        cap_vencido: '98243.928'
-      },
-      {
-        genero: 'femenino',
-        origen_recursos: 'triods',
-        sector: 'Urbano',
-        tipo_credito: 'Consumo',
-        saldo: '1000',
-        cap_activo: '23452.234',
-        cap_ndevenga: '6323.542',
-        cartera_riesgo: '92823',
-        cap_vencido: '98243.928'
-      },
-      {
-        genero: 'juridico',
-        origen_recursos: 'kiva',
-        sector: 'Rural',
-        tipo_credito: 'Comercial',
-        saldo: '3000',
-        cap_activo: '543.234',
-        cap_ndevenga: '7524.542',
-        cartera_riesgo: '7546.75',
-        cap_vencido: '56464.56'
-      },
-      {
-        genero: 'masculino',
-        origen_recursos: 'kiva',
-        sector: 'Urbano',
-        tipo_credito: 'Comercial',
-        saldo: '4000',
-        cap_activo: '653.234',
-        cap_ndevenga: '856.542',
-        cartera_riesgo: '124748',
-        cap_vencido: '674687.928'
-      },
-      {
-        genero: 'juridico',
-        origen_recursos: 'extra',
-        sector: 'Urbano',
-        tipo_credito: 'Comercial',
-        saldo: '100',
-        cap_activo: '100',
-        cap_ndevenga: '100',
-        cartera_riesgo: '100',
-        cap_vencido: '100'
+        {
+            genero: 'masculino',
+            origen_recursos: 'kiva',
+            sector: 'Rural',
+            tipo_credito: 'Microcredito',
+            metodologia: 'metodo1',
+            monto_real: '1233.234',
+            instruccion: 'Superior',
+            estado_civil: 'Soltero',
+            rango_edad: '+60',
+            ing_mensual_tipologia: '2000'
+
+        },
+        {
+            genero: 'femenino',
+            origen_recursos: 'triods',
+            sector: 'Urbano',
+            tipo_credito: 'Consumo',
+            metodologia: 'metodo1',
+            monto_real: '23452.234',
+            instruccion: 'Superior',
+            estado_civil: 'Casado',
+            rango_edad: '+64',
+            ing_mensual_tipologia: '2000'
+        },
+        {
+            genero: 'juridico',
+            origen_recursos: 'kiva',
+            sector: 'Rural',
+            tipo_credito: 'Comercial',
+            metodologia: 'metodo2',
+            monto_real: '23452.234',
+            instruccion: 'Superior',
+            estado_civil: 'Soltero',
+            rango_edad: '+60',
+            ing_mensual_tipologia: '2000'
+        },
+        {
+            genero: 'masculino',
+            origen_recursos: 'Triods',
+            sector: 'Urbano',
+            tipo_credito: 'Comercial',
+            metodologia: 'metodo2',
+            monto_real: '23452.234',
+            instruccion: 'Superior',
+            estado_civil: 'Soltero',
+            rango_edad: '+60',
+            ing_mensual_tipologia: '2000'
+        },
+        {
+            genero: 'juridico',
+            origen_recursos: 'extra',
+            sector: 'Urbano',
+            tipo_credito: 'Comercial',
+            metodologia: 'metodo3',
+            monto_real: '23452.234',
+            instruccion: 'Superior',
+            estado_civil: 'Soltero',
+            rango_edad: '+60',
+            ing_mensual_tipologia: '2000'
+        },{
+            genero: 'xxxxx',
+            origen_recursos: 'extra',
+            sector: 'Urbano',
+            tipo_credito: 'Comercial',
+            metodologia: 'metodo3',
+            monto_real: '3242.234',
+            instruccion: 'Superior',
+            estado_civil: 'Soltero',
+            rango_edad: '+60',
+            ing_mensual_tipologia: '2000'
         }
     ]
   end
@@ -3386,7 +3410,8 @@ order by codigo_socio
 
     if results.present?
       results.each do |row|
-        row["fecha_vence"] = row["fecha_vence"].to_date.strftime('%d-%m-%Y')
+        row['fecha_vence'] = row['fecha_vence'].to_date.strftime('%d-%m-%Y')
+        # row["sector"] = Oracledb.obtenerCodigoSecor row["sector"].to_s
       end
       return results
     else
@@ -3565,5 +3590,1033 @@ order by codigo_socio
       end
     end
     return [numero_creditos, saldo_cartera]
+  end
+  
+  def self.obtenerCodigoSecor cod_ciu
+    return "C" if cod_ciu=="010150"
+    return "B" if cod_ciu=="010151"
+    return "A" if cod_ciu=="010152"
+    return "A" if cod_ciu=="010153"
+    return "A" if cod_ciu=="010154"
+    return "B" if cod_ciu=="010155"
+    return "B" if cod_ciu=="010156"
+    return "A" if cod_ciu=="010157"
+    return "A" if cod_ciu=="010158"
+    return "A" if cod_ciu=="010159"
+    return "A" if cod_ciu=="010160"
+    return "A" if cod_ciu=="010161"
+    return "B" if cod_ciu=="010162"
+    return "B" if cod_ciu=="010163"
+    return "A" if cod_ciu=="010164"
+    return "A" if cod_ciu=="010165"
+    return "A" if cod_ciu=="010166"
+    return "B" if cod_ciu=="010167"
+    return "A" if cod_ciu=="010168"
+    return "B" if cod_ciu=="010169"
+    return "B" if cod_ciu=="010170"
+    return "A" if cod_ciu=="010171"
+    return "B" if cod_ciu=="010250"
+    return "A" if cod_ciu=="010251"
+    return "A" if cod_ciu=="010252"
+    return "B" if cod_ciu=="010350"
+    return "A" if cod_ciu=="010352"
+    return "A" if cod_ciu=="010353"
+    return "A" if cod_ciu=="010354"
+    return "A" if cod_ciu=="010356"
+    return "A" if cod_ciu=="010357"
+    return "A" if cod_ciu=="010358"
+    return "A" if cod_ciu=="010359"
+    return "A" if cod_ciu=="010360"
+    return "A" if cod_ciu=="010450"
+    return "A" if cod_ciu=="010451"
+    return "A" if cod_ciu=="010452"
+    return "A" if cod_ciu=="010453"
+    return "B" if cod_ciu=="010550"
+    return "A" if cod_ciu=="010552"
+    return "A" if cod_ciu=="010553"
+    return "A" if cod_ciu=="010554"
+    return "A" if cod_ciu=="010556"
+    return "A" if cod_ciu=="010559"
+    return "A" if cod_ciu=="010561"
+    return "A" if cod_ciu=="010562"
+    return "A" if cod_ciu=="010650"
+    return "A" if cod_ciu=="010652"
+    return "B" if cod_ciu=="010750"
+    return "B" if cod_ciu=="010751"
+    return "B" if cod_ciu=="010850"
+    return "A" if cod_ciu=="010851"
+    return "A" if cod_ciu=="010853"
+    return "A" if cod_ciu=="010950"
+    return "A" if cod_ciu=="010951"
+    return "A" if cod_ciu=="010952"
+    return "A" if cod_ciu=="010953"
+    return "A" if cod_ciu=="010954"
+    return "A" if cod_ciu=="010955"
+    return "A" if cod_ciu=="010956"
+    return "A" if cod_ciu=="011050"
+    return "A" if cod_ciu=="011051"
+    return "B" if cod_ciu=="011150"
+    return "A" if cod_ciu=="011151"
+    return "A" if cod_ciu=="011152"
+    return "A" if cod_ciu=="011153"
+    return "A" if cod_ciu=="011154"
+    return "B" if cod_ciu=="011250"
+    return "A" if cod_ciu=="011253"
+    return "B" if cod_ciu=="011350"
+    return "A" if cod_ciu=="011351"
+    return "A" if cod_ciu=="011352"
+    return "B" if cod_ciu=="011450"
+    return "A" if cod_ciu=="011550"
+    return "A" if cod_ciu=="011551"
+    return "A" if cod_ciu=="020150"
+    return "A" if cod_ciu=="020151"
+    return "A" if cod_ciu=="020153"
+    return "A" if cod_ciu=="020155"
+    return "A" if cod_ciu=="020156"
+    return "A" if cod_ciu=="020157"
+    return "A" if cod_ciu=="020158"
+    return "A" if cod_ciu=="020159"
+    return "A" if cod_ciu=="020160"
+    return "A" if cod_ciu=="020250"
+    return "A" if cod_ciu=="020251"
+    return "B" if cod_ciu=="020350"
+    return "A" if cod_ciu=="020351"
+    return "A" if cod_ciu=="020353"
+    return "A" if cod_ciu=="020354"
+    return "A" if cod_ciu=="020355"
+    return "A" if cod_ciu=="020450"
+    return "B" if cod_ciu=="020550"
+    return "A" if cod_ciu=="020551"
+    return "A" if cod_ciu=="020552"
+    return "A" if cod_ciu=="020553"
+    return "A" if cod_ciu=="020554"
+    return "A" if cod_ciu=="020555"
+    return "A" if cod_ciu=="020556"
+    return "B" if cod_ciu=="020650"
+    return "A" if cod_ciu=="020750"
+    return "B" if cod_ciu=="030150"
+    return "B" if cod_ciu=="030151"
+    return "A" if cod_ciu=="030153"
+    return "A" if cod_ciu=="030154"
+    return "B" if cod_ciu=="030155"
+    return "A" if cod_ciu=="030156"
+    return "A" if cod_ciu=="030157"
+    return "A" if cod_ciu=="030158"
+    return "A" if cod_ciu=="030160"
+    return "B" if cod_ciu=="030250"
+    return "A" if cod_ciu=="030251"
+    return "A" if cod_ciu=="030252"
+    return "A" if cod_ciu=="030253"
+    return "A" if cod_ciu=="030254"
+    return "B" if cod_ciu=="030350"
+    return "A" if cod_ciu=="030351"
+    return "A" if cod_ciu=="030352"
+    return "A" if cod_ciu=="030353"
+    return "A" if cod_ciu=="030354"
+    return "A" if cod_ciu=="030355"
+    return "A" if cod_ciu=="030356"
+    return "A" if cod_ciu=="030357"
+    return "A" if cod_ciu=="030358"
+    return "A" if cod_ciu=="030361"
+    return "A" if cod_ciu=="030362"
+    return "A" if cod_ciu=="030363"
+    return "A" if cod_ciu=="030450"
+    return "A" if cod_ciu=="030451"
+    return "A" if cod_ciu=="030452"
+    return "A" if cod_ciu=="030550"
+    return "A" if cod_ciu=="030650"
+    return "A" if cod_ciu=="030651"
+    return "A" if cod_ciu=="030750"
+    return "C" if cod_ciu=="040150"
+    return "A" if cod_ciu=="040151"
+    return "A" if cod_ciu=="040153"
+    return "A" if cod_ciu=="040154"
+    return "A" if cod_ciu=="040155"
+    return "A" if cod_ciu=="040156"
+    return "A" if cod_ciu=="040157"
+    return "A" if cod_ciu=="040158"
+    return "A" if cod_ciu=="040159"
+    return "A" if cod_ciu=="040161"
+    return "A" if cod_ciu=="040250"
+    return "A" if cod_ciu=="040251"
+    return "A" if cod_ciu=="040252"
+    return "A" if cod_ciu=="040253"
+    return "A" if cod_ciu=="040254"
+    return "A" if cod_ciu=="040255"
+    return "B" if cod_ciu=="040350"
+    return "A" if cod_ciu=="040351"
+    return "A" if cod_ciu=="040352"
+    return "B" if cod_ciu=="040353"
+    return "B" if cod_ciu=="040450"
+    return "A" if cod_ciu=="040451"
+    return "A" if cod_ciu=="040452"
+    return "A" if cod_ciu=="040453"
+    return "B" if cod_ciu=="040550"
+    return "A" if cod_ciu=="040551"
+    return "A" if cod_ciu=="040552"
+    return "A" if cod_ciu=="040553"
+    return "A" if cod_ciu=="040554"
+    return "A" if cod_ciu=="040555"
+    return "B" if cod_ciu=="040650"
+    return "A" if cod_ciu=="040651"
+    return "B" if cod_ciu=="050150"
+    return "A" if cod_ciu=="050151"
+    return "A" if cod_ciu=="050152"
+    return "A" if cod_ciu=="050153"
+    return "A" if cod_ciu=="050154"
+    return "A" if cod_ciu=="050156"
+    return "A" if cod_ciu=="050157"
+    return "A" if cod_ciu=="050158"
+    return "A" if cod_ciu=="050159"
+    return "A" if cod_ciu=="050161"
+    return "A" if cod_ciu=="050162"
+    return "A" if cod_ciu=="050250"
+    return "A" if cod_ciu=="050251"
+    return "A" if cod_ciu=="050252"
+    return "A" if cod_ciu=="050350"
+    return "A" if cod_ciu=="050351"
+    return "A" if cod_ciu=="050352"
+    return "A" if cod_ciu=="050353"
+    return "A" if cod_ciu=="050450"
+    return "A" if cod_ciu=="050451"
+    return "A" if cod_ciu=="050453"
+    return "A" if cod_ciu=="050455"
+    return "A" if cod_ciu=="050456"
+    return "A" if cod_ciu=="050457"
+    return "A" if cod_ciu=="050458"
+    return "B" if cod_ciu=="050550"
+    return "A" if cod_ciu=="050551"
+    return "A" if cod_ciu=="050552"
+    return "A" if cod_ciu=="050553"
+    return "A" if cod_ciu=="050554"
+    return "A" if cod_ciu=="050555"
+    return "A" if cod_ciu=="050650"
+    return "A" if cod_ciu=="050651"
+    return "A" if cod_ciu=="050652"
+    return "A" if cod_ciu=="050653"
+    return "A" if cod_ciu=="050750"
+    return "A" if cod_ciu=="050751"
+    return "A" if cod_ciu=="050752"
+    return "A" if cod_ciu=="050753"
+    return "A" if cod_ciu=="050754"
+    return "C" if cod_ciu=="060150"
+    return "A" if cod_ciu=="060151"
+    return "A" if cod_ciu=="060152"
+    return "A" if cod_ciu=="060153"
+    return "A" if cod_ciu=="060154"
+    return "A" if cod_ciu=="060155"
+    return "A" if cod_ciu=="060156"
+    return "A" if cod_ciu=="060157"
+    return "A" if cod_ciu=="060158"
+    return "A" if cod_ciu=="060159"
+    return "A" if cod_ciu=="060160"
+    return "A" if cod_ciu=="060161"
+    return "B" if cod_ciu=="060250"
+    return "A" if cod_ciu=="060251"
+    return "A" if cod_ciu=="060253"
+    return "A" if cod_ciu=="060254"
+    return "A" if cod_ciu=="060255"
+    return "A" if cod_ciu=="060256"
+    return "A" if cod_ciu=="060257"
+    return "A" if cod_ciu=="060258"
+    return "A" if cod_ciu=="060259"
+    return "A" if cod_ciu=="060260"
+    return "A" if cod_ciu=="060350"
+    return "A" if cod_ciu=="060351"
+    return "A" if cod_ciu=="060352"
+    return "A" if cod_ciu=="060353"
+    return "A" if cod_ciu=="060354"
+    return "A" if cod_ciu=="060450"
+    return "A" if cod_ciu=="060550"
+    return "A" if cod_ciu=="060551"
+    return "A" if cod_ciu=="060552"
+    return "A" if cod_ciu=="060553"
+    return "A" if cod_ciu=="060554"
+    return "A" if cod_ciu=="060650"
+    return "A" if cod_ciu=="060651"
+    return "A" if cod_ciu=="060652"
+    return "A" if cod_ciu=="060750"
+    return "A" if cod_ciu=="060751"
+    return "A" if cod_ciu=="060752"
+    return "A" if cod_ciu=="060753"
+    return "A" if cod_ciu=="060754"
+    return "A" if cod_ciu=="060755"
+    return "A" if cod_ciu=="060756"
+    return "A" if cod_ciu=="060757"
+    return "A" if cod_ciu=="060758"
+    return "A" if cod_ciu=="060759"
+    return "A" if cod_ciu=="060850"
+    return "B" if cod_ciu=="060950"
+    return "A" if cod_ciu=="060951"
+    return "A" if cod_ciu=="060952"
+    return "A" if cod_ciu=="060953"
+    return "A" if cod_ciu=="060954"
+    return "A" if cod_ciu=="060955"
+    return "A" if cod_ciu=="060956"
+    return "A" if cod_ciu=="061050"
+    return "B" if cod_ciu=="070150"
+    return "A" if cod_ciu=="070152"
+    return "A" if cod_ciu=="070250"
+    return "A" if cod_ciu=="070251"
+    return "A" if cod_ciu=="070254"
+    return "A" if cod_ciu=="070255"
+    return "B" if cod_ciu=="070350"
+    return "B" if cod_ciu=="070351"
+    return "B" if cod_ciu=="070352"
+    return "A" if cod_ciu=="070353"
+    return "A" if cod_ciu=="070354"
+    return "A" if cod_ciu=="070355"
+    return "A" if cod_ciu=="070450"
+    return "A" if cod_ciu=="070451"
+    return "A" if cod_ciu=="070550"
+    return "A" if cod_ciu=="070650"
+    return "A" if cod_ciu=="070651"
+    return "A" if cod_ciu=="070652"
+    return "A" if cod_ciu=="070653"
+    return "A" if cod_ciu=="070654"
+    return "A" if cod_ciu=="070750"
+    return "B" if cod_ciu=="070850"
+    return "B" if cod_ciu=="070851"
+    return "B" if cod_ciu=="070950"
+    return "A" if cod_ciu=="070951"
+    return "A" if cod_ciu=="070952"
+    return "A" if cod_ciu=="070953"
+    return "A" if cod_ciu=="070954"
+    return "A" if cod_ciu=="070955"
+    return "A" if cod_ciu=="070956"
+    return "B" if cod_ciu=="071050"
+    return "A" if cod_ciu=="071051"
+    return "A" if cod_ciu=="071052"
+    return "A" if cod_ciu=="071053"
+    return "A" if cod_ciu=="071054"
+    return "A" if cod_ciu=="071055"
+    return "A" if cod_ciu=="071056"
+    return "B" if cod_ciu=="071150"
+    return "A" if cod_ciu=="071151"
+    return "A" if cod_ciu=="071152"
+    return "A" if cod_ciu=="071153"
+    return "B" if cod_ciu=="071250"
+    return "A" if cod_ciu=="071251"
+    return "A" if cod_ciu=="071252"
+    return "B" if cod_ciu=="071253"
+    return "A" if cod_ciu=="071254"
+    return "B" if cod_ciu=="071255"
+    return "A" if cod_ciu=="071256"
+    return "A" if cod_ciu=="071257"
+    return "C" if cod_ciu=="071350"
+    return "A" if cod_ciu=="071351"
+    return "A" if cod_ciu=="071352"
+    return "A" if cod_ciu=="071353"
+    return "A" if cod_ciu=="071354"
+    return "B" if cod_ciu=="071355"
+    return "B" if cod_ciu=="071356"
+    return "B" if cod_ciu=="071357"
+    return "A" if cod_ciu=="071358"
+    return "A" if cod_ciu=="071359"
+    return "B" if cod_ciu=="071450"
+    return "A" if cod_ciu=="071451"
+    return "A" if cod_ciu=="071452"
+    return "A" if cod_ciu=="071453"
+    return "B" if cod_ciu=="080150"
+    return "A" if cod_ciu=="080152"
+    return "A" if cod_ciu=="080153"
+    return "A" if cod_ciu=="080154"
+    return "A" if cod_ciu=="080159"
+    return "A" if cod_ciu=="080163"
+    return "A" if cod_ciu=="080165"
+    return "A" if cod_ciu=="080166"
+    return "A" if cod_ciu=="080168"
+    return "A" if cod_ciu=="080250"
+    return "A" if cod_ciu=="080251"
+    return "A" if cod_ciu=="080252"
+    return "A" if cod_ciu=="080253"
+    return "A" if cod_ciu=="080254"
+    return "A" if cod_ciu=="080255"
+    return "A" if cod_ciu=="080256"
+    return "A" if cod_ciu=="080257"
+    return "A" if cod_ciu=="080258"
+    return "A" if cod_ciu=="080259"
+    return "A" if cod_ciu=="080260"
+    return "A" if cod_ciu=="080261"
+    return "A" if cod_ciu=="080262"
+    return "A" if cod_ciu=="080263"
+    return "A" if cod_ciu=="080264"
+    return "A" if cod_ciu=="080350"
+    return "A" if cod_ciu=="080351"
+    return "A" if cod_ciu=="080352"
+    return "A" if cod_ciu=="080353"
+    return "A" if cod_ciu=="080354"
+    return "A" if cod_ciu=="080355"
+    return "A" if cod_ciu=="080356"
+    return "A" if cod_ciu=="080357"
+    return "A" if cod_ciu=="080358"
+    return "A" if cod_ciu=="080450"
+    return "A" if cod_ciu=="080451"
+    return "A" if cod_ciu=="080452"
+    return "A" if cod_ciu=="080453"
+    return "A" if cod_ciu=="080454"
+    return "A" if cod_ciu=="080455"
+    return "A" if cod_ciu=="080550"
+    return "A" if cod_ciu=="080551"
+    return "A" if cod_ciu=="080552"
+    return "A" if cod_ciu=="080553"
+    return "A" if cod_ciu=="080554"
+    return "A" if cod_ciu=="080555"
+    return "A" if cod_ciu=="080556"
+    return "A" if cod_ciu=="080557"
+    return "A" if cod_ciu=="080558"
+    return "A" if cod_ciu=="080559"
+    return "A" if cod_ciu=="080560"
+    return "A" if cod_ciu=="080561"
+    return "A" if cod_ciu=="080562"
+    return "A" if cod_ciu=="080650"
+    return "A" if cod_ciu=="080651"
+    return "A" if cod_ciu=="080652"
+    return "A" if cod_ciu=="080653"
+    return "A" if cod_ciu=="080654"
+    return "A" if cod_ciu=="080750"
+    return "A" if cod_ciu=="080751"
+    return "A" if cod_ciu=="080752"
+    return "A" if cod_ciu=="080753"
+    return "A" if cod_ciu=="080754"
+    return "A" if cod_ciu=="080755"
+    return "A" if cod_ciu=="080850"
+    return "B" if cod_ciu=="090150"
+    return "A" if cod_ciu=="090152"
+    return "A" if cod_ciu=="090153"
+    return "A" if cod_ciu=="090156"
+    return "A" if cod_ciu=="090157"
+    return "A" if cod_ciu=="090158"
+    return "A" if cod_ciu=="090250"
+    return "A" if cod_ciu=="090350"
+    return "A" if cod_ciu=="090450"
+    return "A" if cod_ciu=="090550"
+    return "A" if cod_ciu=="090551"
+    return "A" if cod_ciu=="090650"
+    return "A" if cod_ciu=="090652"
+    return "A" if cod_ciu=="090653"
+    return "A" if cod_ciu=="090654"
+    return "A" if cod_ciu=="090656"
+    return "A" if cod_ciu=="090750"
+    return "A" if cod_ciu=="090850"
+    return "A" if cod_ciu=="090851"
+    return "A" if cod_ciu=="090852"
+    return "A" if cod_ciu=="090950"
+    return "A" if cod_ciu=="091050"
+    return "A" if cod_ciu=="091051"
+    return "A" if cod_ciu=="091053"
+    return "A" if cod_ciu=="091054"
+    return "A" if cod_ciu=="091150"
+    return "A" if cod_ciu=="091151"
+    return "A" if cod_ciu=="091152"
+    return "A" if cod_ciu=="091153"
+    return "A" if cod_ciu=="091154"
+    return "A" if cod_ciu=="091250"
+    return "A" if cod_ciu=="091350"
+    return "A" if cod_ciu=="091450"
+    return "A" if cod_ciu=="091451"
+    return "A" if cod_ciu=="091452"
+    return "B" if cod_ciu=="091650"
+    return "A" if cod_ciu=="091651"
+    return "A" if cod_ciu=="091850"
+    return "A" if cod_ciu=="091950"
+    return "A" if cod_ciu=="091951"
+    return "A" if cod_ciu=="091952"
+    return "A" if cod_ciu=="091953"
+    return "A" if cod_ciu=="092050"
+    return "A" if cod_ciu=="092053"
+    return "A" if cod_ciu=="092055"
+    return "A" if cod_ciu=="092056"
+    return "A" if cod_ciu=="092150"
+    return "A" if cod_ciu=="092250"
+    return "A" if cod_ciu=="092251"
+    return "A" if cod_ciu=="092350"
+    return "A" if cod_ciu=="092450"
+    return "A" if cod_ciu=="092550"
+    return "A" if cod_ciu=="092750"
+    return "A" if cod_ciu=="092850"
+    return "C" if cod_ciu=="100150"
+    return "A" if cod_ciu=="100151"
+    return "A" if cod_ciu=="100152"
+    return "A" if cod_ciu=="100153"
+    return "A" if cod_ciu=="100154"
+    return "A" if cod_ciu=="100155"
+    return "B" if cod_ciu=="100156"
+    return "B" if cod_ciu=="100157"
+    return "B" if cod_ciu=="100250"
+    return "A" if cod_ciu=="100251"
+    return "B" if cod_ciu=="100252"
+    return "B" if cod_ciu=="100253"
+    return "A" if cod_ciu=="100254"
+    return "B" if cod_ciu=="100350"
+    return "A" if cod_ciu=="100351"
+    return "A" if cod_ciu=="100352"
+    return "A" if cod_ciu=="100353"
+    return "A" if cod_ciu=="100354"
+    return "A" if cod_ciu=="100355"
+    return "A" if cod_ciu=="100356"
+    return "A" if cod_ciu=="100357"
+    return "A" if cod_ciu=="100358"
+    return "B" if cod_ciu=="100450"
+    return "A" if cod_ciu=="100451"
+    return "A" if cod_ciu=="100452"
+    return "A" if cod_ciu=="100453"
+    return "A" if cod_ciu=="100454"
+    return "A" if cod_ciu=="100455"
+    return "A" if cod_ciu=="100456"
+    return "A" if cod_ciu=="100457"
+    return "A" if cod_ciu=="100458"
+    return "A" if cod_ciu=="100459"
+    return "B" if cod_ciu=="100550"
+    return "A" if cod_ciu=="100551"
+    return "A" if cod_ciu=="100552"
+    return "A" if cod_ciu=="100553"
+    return "B" if cod_ciu=="100650"
+    return "A" if cod_ciu=="100651"
+    return "A" if cod_ciu=="100652"
+    return "A" if cod_ciu=="100653"
+    return "A" if cod_ciu=="100654"
+    return "A" if cod_ciu=="100655"
+    return "C" if cod_ciu=="110150"
+    return "A" if cod_ciu=="110151"
+    return "A" if cod_ciu=="110152"
+    return "A" if cod_ciu=="110153"
+    return "A" if cod_ciu=="110154"
+    return "A" if cod_ciu=="110155"
+    return "A" if cod_ciu=="110156"
+    return "A" if cod_ciu=="110157"
+    return "A" if cod_ciu=="110158"
+    return "A" if cod_ciu=="110159"
+    return "A" if cod_ciu=="110160"
+    return "B" if cod_ciu=="110161"
+    return "A" if cod_ciu=="110162"
+    return "A" if cod_ciu=="110163"
+    return "B" if cod_ciu=="110250"
+    return "A" if cod_ciu=="110251"
+    return "A" if cod_ciu=="110252"
+    return "A" if cod_ciu=="110253"
+    return "A" if cod_ciu=="110254"
+    return "B" if cod_ciu=="110350"
+    return "A" if cod_ciu=="110351"
+    return "A" if cod_ciu=="110352"
+    return "B" if cod_ciu=="110353"
+    return "A" if cod_ciu=="110354"
+    return "B" if cod_ciu=="110450"
+    return "A" if cod_ciu=="110451"
+    return "A" if cod_ciu=="110455"
+    return "A" if cod_ciu=="110456"
+    return "A" if cod_ciu=="110457"
+    return "A" if cod_ciu=="110550"
+    return "A" if cod_ciu=="110551"
+    return "A" if cod_ciu=="110552"
+    return "A" if cod_ciu=="110553"
+    return "A" if cod_ciu=="110554"
+    return "A" if cod_ciu=="110650"
+    return "A" if cod_ciu=="110651"
+    return "A" if cod_ciu=="110652"
+    return "A" if cod_ciu=="110653"
+    return "A" if cod_ciu=="110654"
+    return "A" if cod_ciu=="110655"
+    return "A" if cod_ciu=="110656"
+    return "B" if cod_ciu=="110750"
+    return "A" if cod_ciu=="110751"
+    return "A" if cod_ciu=="110753"
+    return "A" if cod_ciu=="110754"
+    return "A" if cod_ciu=="110756"
+    return "B" if cod_ciu=="110850"
+    return "A" if cod_ciu=="110851"
+    return "A" if cod_ciu=="110852"
+    return "A" if cod_ciu=="110853"
+    return "A" if cod_ciu=="110950"
+    return "A" if cod_ciu=="110951"
+    return "A" if cod_ciu=="110952"
+    return "A" if cod_ciu=="110954"
+    return "A" if cod_ciu=="110956"
+    return "A" if cod_ciu=="110957"
+    return "A" if cod_ciu=="110958"
+    return "A" if cod_ciu=="110959"
+    return "A" if cod_ciu=="111050"
+    return "A" if cod_ciu=="111051"
+    return "A" if cod_ciu=="111052"
+    return "A" if cod_ciu=="111053"
+    return "A" if cod_ciu=="111054"
+    return "A" if cod_ciu=="111055"
+    return "A" if cod_ciu=="111150"
+    return "A" if cod_ciu=="111151"
+    return "A" if cod_ciu=="111152"
+    return "A" if cod_ciu=="111153"
+    return "A" if cod_ciu=="111154"
+    return "A" if cod_ciu=="111155"
+    return "A" if cod_ciu=="111156"
+    return "A" if cod_ciu=="111157"
+    return "A" if cod_ciu=="111158"
+    return "A" if cod_ciu=="111159"
+    return "A" if cod_ciu=="111160"
+    return "A" if cod_ciu=="111250"
+    return "A" if cod_ciu=="111251"
+    return "A" if cod_ciu=="111252"
+    return "A" if cod_ciu=="111350"
+    return "A" if cod_ciu=="111351"
+    return "A" if cod_ciu=="111352"
+    return "A" if cod_ciu=="111353"
+    return "A" if cod_ciu=="111354"
+    return "A" if cod_ciu=="111355"
+    return "A" if cod_ciu=="111450"
+    return "A" if cod_ciu=="111451"
+    return "A" if cod_ciu=="111452"
+    return "A" if cod_ciu=="111550"
+    return "A" if cod_ciu=="111551"
+    return "A" if cod_ciu=="111552"
+    return "A" if cod_ciu=="111650"
+    return "A" if cod_ciu=="111651"
+    return "B" if cod_ciu=="120150"
+    return "A" if cod_ciu=="120152"
+    return "A" if cod_ciu=="120153"
+    return "A" if cod_ciu=="120154"
+    return "A" if cod_ciu=="120155"
+    return "A" if cod_ciu=="120250"
+    return "A" if cod_ciu=="120251"
+    return "A" if cod_ciu=="120252"
+    return "A" if cod_ciu=="120350"
+    return "A" if cod_ciu=="120450"
+    return "A" if cod_ciu=="120451"
+    return "A" if cod_ciu=="120452"
+    return "A" if cod_ciu=="120550"
+    return "A" if cod_ciu=="120553"
+    return "A" if cod_ciu=="120555"
+    return "A" if cod_ciu=="120650"
+    return "A" if cod_ciu=="120651"
+    return "A" if cod_ciu=="120750"
+    return "A" if cod_ciu=="120752"
+    return "A" if cod_ciu=="120850"
+    return "A" if cod_ciu=="120851"
+    return "A" if cod_ciu=="120950"
+    return "A" if cod_ciu=="121050"
+    return "A" if cod_ciu=="121051"
+    return "A" if cod_ciu=="121150"
+    return "A" if cod_ciu=="121250"
+    return "A" if cod_ciu=="121350"
+    return "B" if cod_ciu=="130150"
+    return "A" if cod_ciu=="130151"
+    return "A" if cod_ciu=="130152"
+    return "A" if cod_ciu=="130153"
+    return "A" if cod_ciu=="130154"
+    return "A" if cod_ciu=="130155"
+    return "A" if cod_ciu=="130156"
+    return "A" if cod_ciu=="130157"
+    return "A" if cod_ciu=="130250"
+    return "A" if cod_ciu=="130251"
+    return "A" if cod_ciu=="130252"
+    return "A" if cod_ciu=="130350"
+    return "A" if cod_ciu=="130351"
+    return "A" if cod_ciu=="130352"
+    return "A" if cod_ciu=="130353"
+    return "A" if cod_ciu=="130354"
+    return "A" if cod_ciu=="130355"
+    return "A" if cod_ciu=="130356"
+    return "A" if cod_ciu=="130357"
+    return "A" if cod_ciu=="130450"
+    return "A" if cod_ciu=="130451"
+    return "A" if cod_ciu=="130452"
+    return "A" if cod_ciu=="130550"
+    return "A" if cod_ciu=="130551"
+    return "A" if cod_ciu=="130552"
+    return "A" if cod_ciu=="130650"
+    return "A" if cod_ciu=="130651"
+    return "A" if cod_ciu=="130652"
+    return "A" if cod_ciu=="130653"
+    return "A" if cod_ciu=="130654"
+    return "A" if cod_ciu=="130656"
+    return "A" if cod_ciu=="130657"
+    return "A" if cod_ciu=="130658"
+    return "A" if cod_ciu=="130750"
+    return "B" if cod_ciu=="130850"
+    return "A" if cod_ciu=="130851"
+    return "A" if cod_ciu=="130852"
+    return "A" if cod_ciu=="130950"
+    return "A" if cod_ciu=="130952"
+    return "A" if cod_ciu=="131050"
+    return "A" if cod_ciu=="131051"
+    return "A" if cod_ciu=="131052"
+    return "A" if cod_ciu=="131053"
+    return "A" if cod_ciu=="131054"
+    return "A" if cod_ciu=="131150"
+    return "A" if cod_ciu=="131151"
+    return "A" if cod_ciu=="131152"
+    return "A" if cod_ciu=="131250"
+    return "A" if cod_ciu=="131350"
+    return "A" if cod_ciu=="131351"
+    return "A" if cod_ciu=="131352"
+    return "A" if cod_ciu=="131353"
+    return "A" if cod_ciu=="131355"
+    return "A" if cod_ciu=="131450"
+    return "A" if cod_ciu=="131453"
+    return "A" if cod_ciu=="131457"
+    return "A" if cod_ciu=="131550"
+    return "A" if cod_ciu=="131551"
+    return "A" if cod_ciu=="131552"
+    return "A" if cod_ciu=="131650"
+    return "A" if cod_ciu=="131651"
+    return "A" if cod_ciu=="131652"
+    return "A" if cod_ciu=="131653"
+    return "A" if cod_ciu=="131750"
+    return "A" if cod_ciu=="131751"
+    return "A" if cod_ciu=="131752"
+    return "A" if cod_ciu=="131753"
+    return "A" if cod_ciu=="131850"
+    return "A" if cod_ciu=="131950"
+    return "A" if cod_ciu=="131951"
+    return "A" if cod_ciu=="131952"
+    return "A" if cod_ciu=="132050"
+    return "A" if cod_ciu=="132150"
+    return "A" if cod_ciu=="132250"
+    return "A" if cod_ciu=="132251"
+    return "C" if cod_ciu=="140150"
+    return "A" if cod_ciu=="140151"
+    return "A" if cod_ciu=="140153"
+    return "A" if cod_ciu=="140156"
+    return "A" if cod_ciu=="140157"
+    return "A" if cod_ciu=="140158"
+    return "A" if cod_ciu=="140160"
+    return "A" if cod_ciu=="140162"
+    return "A" if cod_ciu=="140164"
+    return "B" if cod_ciu=="140250"
+    return "A" if cod_ciu=="140251"
+    return "A" if cod_ciu=="140252"
+    return "A" if cod_ciu=="140253"
+    return "A" if cod_ciu=="140254"
+    return "A" if cod_ciu=="140255"
+    return "A" if cod_ciu=="140256"
+    return "A" if cod_ciu=="140257"
+    return "A" if cod_ciu=="140258"
+    return "B" if cod_ciu=="140350"
+    return "A" if cod_ciu=="140351"
+    return "A" if cod_ciu=="140353"
+    return "A" if cod_ciu=="140356"
+    return "A" if cod_ciu=="140357"
+    return "A" if cod_ciu=="140358"
+    return "B" if cod_ciu=="140450"
+    return "A" if cod_ciu=="140451"
+    return "A" if cod_ciu=="140452"
+    return "A" if cod_ciu=="140454"
+    return "A" if cod_ciu=="140455"
+    return "B" if cod_ciu=="140550"
+    return "A" if cod_ciu=="140551"
+    return "A" if cod_ciu=="140552"
+    return "A" if cod_ciu=="140553"
+    return "A" if cod_ciu=="140554"
+    return "A" if cod_ciu=="140556"
+    return "A" if cod_ciu=="140557"
+    return "B" if cod_ciu=="140650"
+    return "A" if cod_ciu=="140651"
+    return "A" if cod_ciu=="140652"
+    return "A" if cod_ciu=="140655"
+    return "A" if cod_ciu=="140750"
+    return "A" if cod_ciu=="140751"
+    return "B" if cod_ciu=="140850"
+    return "A" if cod_ciu=="140851"
+    return "A" if cod_ciu=="140852"
+    return "A" if cod_ciu=="140853"
+    return "A" if cod_ciu=="140854"
+    return "A" if cod_ciu=="140950"
+    return "A" if cod_ciu=="140951"
+    return "A" if cod_ciu=="140952"
+    return "A" if cod_ciu=="140953"
+    return "A" if cod_ciu=="140954"
+    return "A" if cod_ciu=="141050"
+    return "A" if cod_ciu=="141051"
+    return "A" if cod_ciu=="141052"
+    return "A" if cod_ciu=="141150"
+    return "A" if cod_ciu=="141250"
+    return "A" if cod_ciu=="141251"
+    return "B" if cod_ciu=="150150"
+    return "A" if cod_ciu=="150151"
+    return "A" if cod_ciu=="150153"
+    return "A" if cod_ciu=="150154"
+    return "A" if cod_ciu=="150155"
+    return "A" if cod_ciu=="150156"
+    return "A" if cod_ciu=="150157"
+    return "A" if cod_ciu=="150350"
+    return "A" if cod_ciu=="150352"
+    return "A" if cod_ciu=="150354"
+    return "B" if cod_ciu=="150450"
+    return "A" if cod_ciu=="150451"
+    return "A" if cod_ciu=="150452"
+    return "A" if cod_ciu=="150453"
+    return "A" if cod_ciu=="150454"
+    return "A" if cod_ciu=="150455"
+    return "B" if cod_ciu=="150750"
+    return "A" if cod_ciu=="150751"
+    return "A" if cod_ciu=="150752"
+    return "A" if cod_ciu=="150753"
+    return "A" if cod_ciu=="150754"
+    return "A" if cod_ciu=="150756"
+    return "A" if cod_ciu=="150950"
+    return "B" if cod_ciu=="160150"
+    return "A" if cod_ciu=="160152"
+    return "A" if cod_ciu=="160154"
+    return "A" if cod_ciu=="160155"
+    return "A" if cod_ciu=="160156"
+    return "A" if cod_ciu=="160157"
+    return "A" if cod_ciu=="160158"
+    return "A" if cod_ciu=="160159"
+    return "A" if cod_ciu=="160161"
+    return "A" if cod_ciu=="160162"
+    return "A" if cod_ciu=="160163"
+    return "A" if cod_ciu=="160164"
+    return "A" if cod_ciu=="160165"
+    return "A" if cod_ciu=="160166"
+    return "B" if cod_ciu=="160250"
+    return "A" if cod_ciu=="160251"
+    return "B" if cod_ciu=="160252"
+    return "A" if cod_ciu=="160350"
+    return "A" if cod_ciu=="160351"
+    return "A" if cod_ciu=="160450"
+    return "A" if cod_ciu=="160451"
+    return "C" if cod_ciu=="170150"
+    return "C" if cod_ciu=="170151"
+    return "B" if cod_ciu=="170152"
+    return "A" if cod_ciu=="170153"
+    return "B" if cod_ciu=="170154"
+    return "C" if cod_ciu=="170155"
+    return "C" if cod_ciu=="170156"
+    return "C" if cod_ciu=="170157"
+    return "A" if cod_ciu=="170158"
+    return "A" if cod_ciu=="170159"
+    return "B" if cod_ciu=="170160"
+    return "A" if cod_ciu=="170161"
+    return "B" if cod_ciu=="170162"
+    return "B" if cod_ciu=="170163"
+    return "B" if cod_ciu=="170164"
+    return "B" if cod_ciu=="170165"
+    return "A" if cod_ciu=="170166"
+    return "A" if cod_ciu=="170168"
+    return "A" if cod_ciu=="170169"
+    return "C" if cod_ciu=="170170"
+    return "A" if cod_ciu=="170171"
+    return "A" if cod_ciu=="170172"
+    return "B" if cod_ciu=="170174"
+    return "B" if cod_ciu=="170175"
+    return "A" if cod_ciu=="170176"
+    return "C" if cod_ciu=="170177"
+    return "A" if cod_ciu=="170178"
+    return "B" if cod_ciu=="170179"
+    return "C" if cod_ciu=="170180"
+    return "A" if cod_ciu=="170181"
+    return "B" if cod_ciu=="170183"
+    return "B" if cod_ciu=="170184"
+    return "B" if cod_ciu=="170185"
+    return "B" if cod_ciu=="170186"
+    return "B" if cod_ciu=="170250"
+    return "B" if cod_ciu=="170251"
+    return "A" if cod_ciu=="170252"
+    return "A" if cod_ciu=="170253"
+    return "A" if cod_ciu=="170254"
+    return "A" if cod_ciu=="170255"
+    return "B" if cod_ciu=="170350"
+    return "B" if cod_ciu=="170351"
+    return "B" if cod_ciu=="170352"
+    return "A" if cod_ciu=="170353"
+    return "A" if cod_ciu=="170354"
+    return "A" if cod_ciu=="170355"
+    return "B" if cod_ciu=="170356"
+    return "B" if cod_ciu=="170357"
+    return "B" if cod_ciu=="170450"
+    return "A" if cod_ciu=="170451"
+    return "A" if cod_ciu=="170452"
+    return "A" if cod_ciu=="170453"
+    return "A" if cod_ciu=="170454"
+    return "C" if cod_ciu=="170550"
+    return "A" if cod_ciu=="170551"
+    return "A" if cod_ciu=="170552"
+    return "A" if cod_ciu=="170750"
+    return "A" if cod_ciu=="170751"
+    return "A" if cod_ciu=="170850"
+    return "A" if cod_ciu=="170950"
+    return "C" if cod_ciu=="180150"
+    return "A" if cod_ciu=="180151"
+    return "B" if cod_ciu=="180152"
+    return "A" if cod_ciu=="180153"
+    return "A" if cod_ciu=="180154"
+    return "A" if cod_ciu=="180155"
+    return "B" if cod_ciu=="180156"
+    return "A" if cod_ciu=="180157"
+    return "A" if cod_ciu=="180158"
+    return "A" if cod_ciu=="180159"
+    return "A" if cod_ciu=="180160"
+    return "A" if cod_ciu=="180161"
+    return "A" if cod_ciu=="180162"
+    return "B" if cod_ciu=="180163"
+    return "A" if cod_ciu=="180164"
+    return "A" if cod_ciu=="180165"
+    return "A" if cod_ciu=="180166"
+    return "A" if cod_ciu=="180167"
+    return "A" if cod_ciu=="180168"
+    return "C" if cod_ciu=="180250"
+    return "A" if cod_ciu=="180251"
+    return "B" if cod_ciu=="180252"
+    return "A" if cod_ciu=="180253"
+    return "B" if cod_ciu=="180254"
+    return "B" if cod_ciu=="180350"
+    return "A" if cod_ciu=="180450"
+    return "A" if cod_ciu=="180451"
+    return "B" if cod_ciu=="180550"
+    return "A" if cod_ciu=="180551"
+    return "A" if cod_ciu=="180552"
+    return "A" if cod_ciu=="180553"
+    return "A" if cod_ciu=="180650"
+    return "A" if cod_ciu=="180651"
+    return "A" if cod_ciu=="180652"
+    return "B" if cod_ciu=="180750"
+    return "A" if cod_ciu=="180751"
+    return "A" if cod_ciu=="180752"
+    return "A" if cod_ciu=="180753"
+    return "A" if cod_ciu=="180754"
+    return "A" if cod_ciu=="180755"
+    return "A" if cod_ciu=="180756"
+    return "A" if cod_ciu=="180757"
+    return "A" if cod_ciu=="180758"
+    return "B" if cod_ciu=="180850"
+    return "A" if cod_ciu=="180851"
+    return "A" if cod_ciu=="180852"
+    return "A" if cod_ciu=="180853"
+    return "B" if cod_ciu=="180854"
+    return "A" if cod_ciu=="180855"
+    return "A" if cod_ciu=="180856"
+    return "A" if cod_ciu=="180857"
+    return "A" if cod_ciu=="180950"
+    return "A" if cod_ciu=="180951"
+    return "C" if cod_ciu=="190150"
+    return "A" if cod_ciu=="190151"
+    return "A" if cod_ciu=="190152"
+    return "A" if cod_ciu=="190153"
+    return "A" if cod_ciu=="190155"
+    return "A" if cod_ciu=="190156"
+    return "A" if cod_ciu=="190158"
+    return "A" if cod_ciu=="190250"
+    return "A" if cod_ciu=="190251"
+    return "A" if cod_ciu=="190252"
+    return "A" if cod_ciu=="190254"
+    return "A" if cod_ciu=="190256"
+    return "A" if cod_ciu=="190259"
+    return "A" if cod_ciu=="190350"
+    return "A" if cod_ciu=="190351"
+    return "A" if cod_ciu=="190352"
+    return "A" if cod_ciu=="190450"
+    return "A" if cod_ciu=="190451"
+    return "A" if cod_ciu=="190452"
+    return "B" if cod_ciu=="190550"
+    return "A" if cod_ciu=="190551"
+    return "A" if cod_ciu=="190553"
+    return "A" if cod_ciu=="190650"
+    return "A" if cod_ciu=="190651"
+    return "A" if cod_ciu=="190652"
+    return "A" if cod_ciu=="190653"
+    return "A" if cod_ciu=="190750"
+    return "A" if cod_ciu=="190850"
+    return "A" if cod_ciu=="190851"
+    return "A" if cod_ciu=="190852"
+    return "A" if cod_ciu=="190853"
+    return "A" if cod_ciu=="190854"
+    return "A" if cod_ciu=="190950"
+    return "A" if cod_ciu=="190951"
+    return "A" if cod_ciu=="190952"
+    return "B" if cod_ciu=="200150"
+    return "B" if cod_ciu=="200151"
+    return "A" if cod_ciu=="200152"
+    return "B" if cod_ciu=="200250"
+    return "A" if cod_ciu=="200251"
+    return "B" if cod_ciu=="200350"
+    return "A" if cod_ciu=="200351"
+    return "A" if cod_ciu=="200352"
+    return "A" if cod_ciu=="210150"
+    return "A" if cod_ciu=="210152"
+    return "A" if cod_ciu=="210153"
+    return "A" if cod_ciu=="210155"
+    return "A" if cod_ciu=="210156"
+    return "A" if cod_ciu=="210157"
+    return "A" if cod_ciu=="210158"
+    return "A" if cod_ciu=="210250"
+    return "A" if cod_ciu=="210251"
+    return "A" if cod_ciu=="210252"
+    return "A" if cod_ciu=="210254"
+    return "A" if cod_ciu=="210350"
+    return "A" if cod_ciu=="210351"
+    return "A" if cod_ciu=="210352"
+    return "A" if cod_ciu=="210353"
+    return "A" if cod_ciu=="210354"
+    return "A" if cod_ciu=="210450"
+    return "A" if cod_ciu=="210451"
+    return "A" if cod_ciu=="210452"
+    return "A" if cod_ciu=="210453"
+    return "A" if cod_ciu=="210454"
+    return "A" if cod_ciu=="210455"
+    return "A" if cod_ciu=="210550"
+    return "A" if cod_ciu=="210551"
+    return "A" if cod_ciu=="210552"
+    return "A" if cod_ciu=="210553"
+    return "A" if cod_ciu=="210554"
+    return "A" if cod_ciu=="210650"
+    return "A" if cod_ciu=="210651"
+    return "A" if cod_ciu=="210652"
+    return "A" if cod_ciu=="210750"
+    return "A" if cod_ciu=="210751"
+    return "A" if cod_ciu=="210752"
+    return "A" if cod_ciu=="220150"
+    return "A" if cod_ciu=="220151"
+    return "A" if cod_ciu=="220152"
+    return "A" if cod_ciu=="220153"
+    return "A" if cod_ciu=="220154"
+    return "A" if cod_ciu=="220155"
+    return "A" if cod_ciu=="220156"
+    return "A" if cod_ciu=="220157"
+    return "A" if cod_ciu=="220158"
+    return "A" if cod_ciu=="220159"
+    return "A" if cod_ciu=="220160"
+    return "A" if cod_ciu=="220161"
+    return "A" if cod_ciu=="220250"
+    return "A" if cod_ciu=="220251"
+    return "A" if cod_ciu=="220252"
+    return "A" if cod_ciu=="220253"
+    return "A" if cod_ciu=="220254"
+    return "A" if cod_ciu=="220255"
+    return "A" if cod_ciu=="220350"
+    return "A" if cod_ciu=="220351"
+    return "A" if cod_ciu=="220352"
+    return "A" if cod_ciu=="220353"
+    return "A" if cod_ciu=="220354"
+    return "A" if cod_ciu=="220355"
+    return "A" if cod_ciu=="220356"
+    return "A" if cod_ciu=="220357"
+    return "A" if cod_ciu=="220358"
+    return "A" if cod_ciu=="220450"
+    return "A" if cod_ciu=="220451"
+    return "A" if cod_ciu=="220452"
+    return "A" if cod_ciu=="220453"
+    return "A" if cod_ciu=="220454"
+    return "A" if cod_ciu=="220455"
+    return "A" if cod_ciu=="230150"
+    return "A" if cod_ciu=="230151"
+    return "A" if cod_ciu=="230152"
+    return "A" if cod_ciu=="230153"
+    return "A" if cod_ciu=="230154"
+    return "A" if cod_ciu=="230155"
+    return "A" if cod_ciu=="230156"
+    return "A" if cod_ciu=="230157"
+    return "A" if cod_ciu=="240150"
+    return "A" if cod_ciu=="240151"
+    return "A" if cod_ciu=="240152"
+    return "A" if cod_ciu=="240153"
+    return "A" if cod_ciu=="240154"
+    return "A" if cod_ciu=="240155"
+    return "B" if cod_ciu=="240156"
+    return "A" if cod_ciu=="240250"
+    return "B" if cod_ciu=="240350"
+    return "A" if cod_ciu=="240351"
+    return "A" if cod_ciu=="240352"
+    return "A" if cod_ciu=="900151"
+    return "A" if cod_ciu=="900351"
+    return "A" if cod_ciu=="900451"
+    return "C" if cod_ciu=="020103"
   end
 end
