@@ -62,11 +62,11 @@ class OracledbAgencias < ApplicationRecord
   end
 
   def self.obtener_sumatoria_cuentas cuenta, fecha, agencia, balance = "false"
-    if cuenta.to_i == 45
-      return 800
-    else
-      return 100
-    end
+    # if cuenta.to_i == 45
+    #   return 800
+    # else
+    #   return 100
+    # end
 
     results = connection.exec_query("
     SELECT CODIGO_SUCURSAL,
@@ -114,11 +114,11 @@ class OracledbAgencias < ApplicationRecord
 
   # Saca la sumatoria de cuentas de toda la cooperativa
   def self.obtener_sumatoria_cuentas_cacmu cuenta, fecha, agencia = 0, balance = "false"
-    if cuenta.to_i == 45
-      return 800
-    else
-      return 100
-    end
+    # if cuenta.to_i == 45
+    #   return 800
+    # else
+    #   return 100
+    # end
     results = connection.exec_query("
     SELECT CODIGO_SUCURSAL,
     --(select max(descripcion) from sifv_sucursales ss where ss.codigo_sucursal=codigo_sucursal)sucursal,
