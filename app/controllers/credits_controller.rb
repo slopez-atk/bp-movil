@@ -893,7 +893,7 @@ class CreditsController < ApplicationController
 
   protected
   def authenticate_creditos
-    unless current_user.permissions == 5 || current_user.permissions == 7 || current_user.permissions == 3 || current_user.permissions == 8
+    unless current_user.permissions == 5 || current_user.permissions == 7 || current_user.permissions == 3 || current_user.permissions == 8 || current_user.permissions == 6
       redirect_to root_path, notice: 'No estás autorizado!'
     end
   end
