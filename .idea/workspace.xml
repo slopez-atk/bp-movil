@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="80e436f7-3cf3-4a79-b522-a1f65f1de881" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascript/components/CreditsForms/CarteraRecuperadaForm.js" afterPath="$PROJECT_DIR$/app/javascript/components/CreditsForms/CarteraRecuperadaForm.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascript/components/CreditsForms/CosechasForm.js" afterPath="$PROJECT_DIR$/app/javascript/components/CreditsForms/CosechasForm.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascript/components/CreditsForms/CreditosPorVencerForm.js" afterPath="$PROJECT_DIR$/app/javascript/components/CreditsForms/CreditosPorVencerForm.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascript/components/CreditsForms/IndicadoresCreditosColocadosForm.js" afterPath="$PROJECT_DIR$/app/javascript/components/CreditsForms/IndicadoresCreditosColocadosForm.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascript/components/CreditsForms/IndicadoresVigentesForm.js" afterPath="$PROJECT_DIR$/app/javascript/components/CreditsForms/IndicadoresVigentesForm.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascript/components/CreditsForms/MatrizTransicionForm.js" afterPath="$PROJECT_DIR$/app/javascript/components/CreditsForms/MatrizTransicionForm.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/oracledb.rb" afterPath="$PROJECT_DIR$/app/models/oracledb.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/partials/navigations/_main_navigation.haml" afterPath="$PROJECT_DIR$/app/views/partials/navigations/_main_navigation.haml" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
@@ -29,11 +22,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="oracledb.rb" pinned="false" current-in-tab="false">
+      <file leaf-file-name="oracledb.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/models/oracledb.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="379">
-              <caret line="423" column="25" lean-forward="false" selection-start-line="423" selection-start-column="25" selection-end-line="423" selection-end-column="25" />
+            <state relative-caret-position="334">
+              <caret line="421" column="7" lean-forward="false" selection-start-line="421" selection-start-column="7" selection-end-line="421" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -44,16 +37,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="485">
               <caret line="64" column="16" lean-forward="false" selection-start-line="64" selection-start-column="16" selection-end-line="64" selection-end-column="124" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="_main_navigation.haml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/views/partials/navigations/_main_navigation.haml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -184,8 +167,8 @@
         <option value="$PROJECT_DIR$/app/javascript/components/CreditsForms/IndicadoresCreditosColocadosForm.js" />
         <option value="$PROJECT_DIR$/app/javascript/components/CreditsForms/IndicadoresVigentesForm.js" />
         <option value="$PROJECT_DIR$/app/javascript/components/CreditsForms/MatrizTransicionForm.js" />
-        <option value="$PROJECT_DIR$/app/models/oracledb.rb" />
         <option value="$PROJECT_DIR$/app/views/partials/navigations/_main_navigation.haml" />
+        <option value="$PROJECT_DIR$/app/models/oracledb.rb" />
       </list>
     </option>
   </component>
@@ -551,12 +534,12 @@
       <workItem from="1518543014553" duration="15000" />
       <workItem from="1518544295345" duration="4968000" />
       <workItem from="1518703639816" duration="1040000" />
-      <workItem from="1520433891830" duration="4022000" />
+      <workItem from="1520433891830" duration="4305000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="207375000" />
+    <option name="totallyTimeSpent" value="207658000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="773" extended-state="0" />
@@ -989,10 +972,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/oracledb.rb">
+    <entry file="file://$PROJECT_DIR$/app/views/partials/navigations/_main_navigation.haml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="379">
-          <caret line="423" column="25" lean-forward="false" selection-start-line="423" selection-start-column="25" selection-end-line="423" selection-end-column="25" />
+        <state relative-caret-position="180">
+          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
           <folding />
         </state>
       </provider>
@@ -1005,10 +988,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/partials/navigations/_main_navigation.haml">
+    <entry file="file://$PROJECT_DIR$/app/models/oracledb.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        <state relative-caret-position="334">
+          <caret line="421" column="7" lean-forward="false" selection-start-line="421" selection-start-column="7" selection-end-line="421" selection-end-column="7" />
           <folding />
         </state>
       </provider>

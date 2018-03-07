@@ -421,8 +421,6 @@ class Oracledb < ApplicationRecord
       agencia = ""
     end
 
-    raise agencia.to_yaml
-
     results = connection.exec_query("
       select
     (select codigo_socio from cred_creditos where numero_credito=ct.numero_credito) SOCIO,
