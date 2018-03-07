@@ -2,7 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="80e436f7-3cf3-4a79-b522-a1f65f1de881" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascript/components/CreditsForms/CarteraRecuperadaForm.js" afterPath="$PROJECT_DIR$/app/javascript/components/CreditsForms/CarteraRecuperadaForm.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascript/components/CreditsForms/CosechasForm.js" afterPath="$PROJECT_DIR$/app/javascript/components/CreditsForms/CosechasForm.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascript/components/CreditsForms/CreditosPorVencerForm.js" afterPath="$PROJECT_DIR$/app/javascript/components/CreditsForms/CreditosPorVencerForm.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascript/components/CreditsForms/IndicadoresCreditosColocadosForm.js" afterPath="$PROJECT_DIR$/app/javascript/components/CreditsForms/IndicadoresCreditosColocadosForm.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascript/components/CreditsForms/IndicadoresVigentesForm.js" afterPath="$PROJECT_DIR$/app/javascript/components/CreditsForms/IndicadoresVigentesForm.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascript/components/CreditsForms/MatrizTransicionForm.js" afterPath="$PROJECT_DIR$/app/javascript/components/CreditsForms/MatrizTransicionForm.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/oracledb.rb" afterPath="$PROJECT_DIR$/app/models/oracledb.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/partials/navigations/_main_navigation.haml" afterPath="$PROJECT_DIR$/app/views/partials/navigations/_main_navigation.haml" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
@@ -22,11 +29,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="oracledb.rb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="oracledb.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/oracledb.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="335">
-              <caret line="746" column="16" lean-forward="false" selection-start-line="746" selection-start-column="16" selection-end-line="746" selection-end-column="16" />
+            <state relative-caret-position="379">
+              <caret line="423" column="25" lean-forward="false" selection-start-line="423" selection-start-column="25" selection-end-line="423" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_creditos_navigation.haml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/partials/navigations/_creditos_navigation.haml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="485">
+              <caret line="64" column="16" lean-forward="false" selection-start-line="64" selection-start-column="16" selection-end-line="64" selection-end-column="124" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_main_navigation.haml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/views/partials/navigations/_main_navigation.haml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -58,8 +85,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>TableRow</find>
-      <find>raised</find>
       <find>obtener_saldo_cartera_asesor</find>
       <find>white</find>
       <find>fff</find>
@@ -88,6 +113,8 @@
       <find>sector=</find>
       <find>ind</find>
       <find>por_venc</find>
+      <find>matriz_</find>
+      <find>creditos_po</find>
     </findStrings>
     <replaceStrings>
       <replace>tr</replace>
@@ -108,11 +135,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/javascript/components/CreditosPorVencer/TableDates.js" />
-        <option value="$PROJECT_DIR$/app/javascript/components/CreditosVencidos/CreditosTable.js" />
-        <option value="$PROJECT_DIR$/app/javascript/components/MatrizTransicion/ListCredits.js" />
-        <option value="$PROJECT_DIR$/app/javascript/components/Cosechas/TablaCreditos.js" />
-        <option value="$PROJECT_DIR$/app/javascript/components/CreditosVencidos/CreditosTableAgencias.js" />
         <option value="$PROJECT_DIR$/app/javascript/packs/creditos_concedidos.js" />
         <option value="$PROJECT_DIR$/app/javascript/packs/creditos_vencidos.js" />
         <option value="$PROJECT_DIR$/app/views/credits/creditos_concedidos.haml" />
@@ -128,7 +150,6 @@
         <option value="$PROJECT_DIR$/app/javascript/components/CreditosVencidos/ReporteAgencias.js" />
         <option value="$PROJECT_DIR$/app/javascript/components/CreditosVencidos/ReporteAsesor.js" />
         <option value="$PROJECT_DIR$/app/views/agencias/index.haml" />
-        <option value="$PROJECT_DIR$/app/javascript/components/CreditsForms/CosechasForm.js" />
         <option value="$PROJECT_DIR$/app/javascript/components/Agencias/muiThemeBase.js" />
         <option value="$PROJECT_DIR$/app/javascript/packs/agencias/agencias.js" />
         <option value="$PROJECT_DIR$/app/controllers/agencias_controller.rb" />
@@ -146,7 +167,6 @@
         <option value="$PROJECT_DIR$/app/javascript/packs/desempenio_social/balance_social.js" />
         <option value="$PROJECT_DIR$/app/views/credits/indicadores_creditos_vigentes.haml" />
         <option value="$PROJECT_DIR$/app/javascript/components/CreditsForms/CreditosConcedidosForm.js" />
-        <option value="$PROJECT_DIR$/app/javascript/components/CreditsForms/IndicadoresCreditosColocadosForm.js" />
         <option value="$PROJECT_DIR$/app/views/credits/indicadores_creditos_colocados.haml" />
         <option value="$PROJECT_DIR$/config/initializers/rails_admin.rb" />
         <option value="$PROJECT_DIR$/app/models/oracledb_agencias.rb" />
@@ -158,7 +178,14 @@
         <option value="$PROJECT_DIR$/config/routes.rb" />
         <option value="$PROJECT_DIR$/app/javascript/packs/creditos_navigation.js" />
         <option value="$PROJECT_DIR$/app/javascript/packs/agencias/agencias_navigation.js" />
+        <option value="$PROJECT_DIR$/app/javascript/components/CreditsForms/CarteraRecuperadaForm.js" />
+        <option value="$PROJECT_DIR$/app/javascript/components/CreditsForms/CosechasForm.js" />
+        <option value="$PROJECT_DIR$/app/javascript/components/CreditsForms/CreditosPorVencerForm.js" />
+        <option value="$PROJECT_DIR$/app/javascript/components/CreditsForms/IndicadoresCreditosColocadosForm.js" />
+        <option value="$PROJECT_DIR$/app/javascript/components/CreditsForms/IndicadoresVigentesForm.js" />
+        <option value="$PROJECT_DIR$/app/javascript/components/CreditsForms/MatrizTransicionForm.js" />
         <option value="$PROJECT_DIR$/app/models/oracledb.rb" />
+        <option value="$PROJECT_DIR$/app/views/partials/navigations/_main_navigation.haml" />
       </list>
     </option>
   </component>
@@ -265,14 +292,6 @@
               <item name="AppCacmu" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="javascript" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="CreditsIndicadores" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="AppCacmu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AppCacmu" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="javascript" type="462c0819:PsiDirectoryNode" />
               <item name="packs" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -287,12 +306,6 @@
               <item name="AppCacmu" type="b2602c69:ProjectViewProjectNode" />
               <item name="AppCacmu" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="AppCacmu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AppCacmu" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -300,18 +313,28 @@
               <item name="AppCacmu" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="credits" type="462c0819:PsiDirectoryNode" />
+              <item name="partials" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="AppCacmu" type="b2602c69:ProjectViewProjectNode" />
+              <item name="AppCacmu" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="partials" type="462c0819:PsiDirectoryNode" />
+              <item name="creditos" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="AppCacmu" type="b2602c69:ProjectViewProjectNode" />
+              <item name="AppCacmu" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="partials" type="462c0819:PsiDirectoryNode" />
+              <item name="navigations" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="AppCacmu" type="b2602c69:ProjectViewProjectNode" />
               <item name="AppCacmu" type="462c0819:PsiDirectoryNode" />
               <item name="config" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="AppCacmu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AppCacmu" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
-              <item name="initializers" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -528,12 +551,12 @@
       <workItem from="1518543014553" duration="15000" />
       <workItem from="1518544295345" duration="4968000" />
       <workItem from="1518703639816" duration="1040000" />
-      <workItem from="1520433891830" duration="2856000" />
+      <workItem from="1520433891830" duration="4022000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="206209000" />
+    <option name="totallyTimeSpent" value="207375000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="773" extended-state="0" />
@@ -572,48 +595,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/javascript/components/CreditosVencidos/ReporteAgencias.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="24" column="11" lean-forward="true" selection-start-line="24" selection-start-column="11" selection-end-line="24" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/javascript/components/CreditosVencidos/ReporteAsesor.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="32" column="11" lean-forward="false" selection-start-line="32" selection-start-column="11" selection-end-line="32" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/credits/index.haml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="4" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/javascript/components/Agencias/muiThemeBase.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
-          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/javascript/components/CreditsForms/CosechasForm.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2041">
-          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="7" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/javascript/packs/credits.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="263">
-          <caret line="26" column="44" lean-forward="true" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/main/dashboard.haml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="544">
@@ -668,13 +649,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="359">
           <caret line="181" column="9" lean-forward="false" selection-start-line="181" selection-start-column="9" selection-end-line="181" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/javascript/components/CreditsForms/CreditosVencidosForm.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-341">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -843,27 +817,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/javascript/components/CreditsForms/CreditosConcedidosForm.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1428">
-          <caret line="94" column="20" lean-forward="false" selection-start-line="94" selection-start-column="20" selection-end-line="94" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/javascript/components/CreditsForms/MatrizTransicionForm.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="497">
-          <caret line="107" column="20" lean-forward="true" selection-start-line="91" selection-start-column="14" selection-end-line="107" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/javascript/components/CreditsForms/IndicadoresCreditosColocadosForm.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1938">
-          <caret line="124" column="34" lean-forward="false" selection-start-line="124" selection-start-column="34" selection-end-line="124" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/initializers/rails_admin.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="478">
@@ -966,10 +919,96 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/javascript/components/CreditsForms/CarteraRecuperadaForm.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="135" column="42" lean-forward="false" selection-start-line="135" selection-start-column="42" selection-end-line="135" selection-end-column="42" />
+          <folding>
+            <element signature="e#0#26#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/javascript/components/CreditsForms/CosechasForm.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="117" column="42" lean-forward="true" selection-start-line="117" selection-start-column="42" selection-end-line="117" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/javascript/components/CreditsForms/CreditosConcedidosForm.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-715">
+          <caret line="94" column="20" lean-forward="false" selection-start-line="94" selection-start-column="20" selection-end-line="94" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/javascript/components/CreditsForms/CreditosPorVencerForm.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="135" column="42" lean-forward="true" selection-start-line="135" selection-start-column="42" selection-end-line="135" selection-end-column="42" />
+          <folding>
+            <element signature="e#0#26#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/javascript/components/CreditsForms/CreditosVencidosForm.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1255">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/javascript/components/CreditsForms/IndicadoresCreditosColocadosForm.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="466">
+          <caret line="165" column="42" lean-forward="true" selection-start-line="165" selection-start-column="42" selection-end-line="165" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/javascript/components/CreditsForms/IndicadoresVigentesForm.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="137">
+          <caret line="153" column="42" lean-forward="false" selection-start-line="153" selection-start-column="42" selection-end-line="153" selection-end-column="42" />
+          <folding>
+            <element signature="e#0#26#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/javascript/components/CreditsForms/MatrizTransicionForm.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="215">
+          <caret line="124" column="42" lean-forward="true" selection-start-line="124" selection-start-column="42" selection-end-line="124" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/oracledb.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="335">
-          <caret line="746" column="16" lean-forward="false" selection-start-line="746" selection-start-column="16" selection-end-line="746" selection-end-column="16" />
+        <state relative-caret-position="379">
+          <caret line="423" column="25" lean-forward="false" selection-start-line="423" selection-start-column="25" selection-end-line="423" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/partials/navigations/_creditos_navigation.haml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="485">
+          <caret line="64" column="16" lean-forward="false" selection-start-line="64" selection-start-column="16" selection-end-line="64" selection-end-column="124" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/partials/navigations/_main_navigation.haml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
           <folding />
         </state>
       </provider>

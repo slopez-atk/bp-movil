@@ -151,7 +151,7 @@ class IndicadoresVigentesForm extends React.Component{
                   <MenuItem value={'Cuenca del Rio Mira'} primaryText="Cuenca del Rio Mira" />
                   <MenuItem value={'Economia Solidaria'} primaryText="Economia Solidaria" />
                   <MenuItem value={'Frontera Norte'} primaryText="Frontera Norte" />
-                  <MenuItem value={'Servimóvil'} primaryText="Servimóvil" />
+                  <MenuItem value={'Servim'} primaryText="Servimóvil" />
                   <MenuItem value={'Valle Fertil'} primaryText="Valle Fertil" />
                 </FormsySelect>
               </div>
