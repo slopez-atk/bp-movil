@@ -538,7 +538,7 @@ class Oracledb < ApplicationRecord
     from cred_tabla_amortiza_contratada ct
     where trunc(ct.fecha)between to_date('#{fecha_inicio.to_date.strftime('%d-%m-%Y')}','dd/mm/yyyy') and  to_date('#{fecha_fin.to_date.strftime('%d-%m-%Y')}','dd/mm/yyyy')
     and (select estado_cred from cred_creditos where numero_credito=ct.numero_credito)in 'L'
-    and (select descripcion from  sifv_sucursales s, cred_creditos c where numero_credito=ct.numero_credito and c.codigo_sucursal=s.codigo_sucursal) like upper ('%#{agencia}%')
+    and (select descripcion from  sifv_sucursales s, cred_creditos c where numero_credito=ct.numero_credito and c.codigo_sucursal=s.codigo_sucursal) like ('%#{agencia}%')
     and ((case when (select c.oficre from cred_creditos c where c.numero_credito=ct.numero_credito) in (44,25) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=25)
                    when (select c.oficre from cred_creditos c where c.numero_credito=ct.numero_credito) in (75,67,49) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=49)
                    when (select c.oficre from cred_creditos c where c.numero_credito=ct.numero_credito) in (102,43) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=102)
@@ -566,165 +566,6 @@ class Oracledb < ApplicationRecord
     else
       return {}
     end
-
-
-    firstWeek = [
-    {
-        credito: 17654,
-        socio: 23423,
-        saldo: 23809.073,
-        nombre: 'Santiago Lopez',
-        fecha: '1-12-2017',
-        sucursal: 'Matriz',
-        asesor: 'Roberto',
-        provision: 345346.2
-    },
-    {
-        credito: 9999345,
-        socio: 4566,
-        saldo: 645334.876,
-        nombre: 'Sebastian Lopez',
-        fecha: '1-12-2017',
-        sucursal: 'La Merced',
-        asesor: 'Romel',
-        provision: 345346.24
-    },
-    {
-        credito: 234,
-        socio: 867,
-        saldo: 1023.506,
-        nombre: 'Valentina Aguirre',
-        fecha: '2-12-2017',
-        sucursal: 'Atuntaqui',
-        asesor: 'Daniela',
-        provision: 3234.25
-    },
-    {
-        credito: 5467,
-        socio: 567,
-        saldo: 406534.768,
-        nombre: 'Cristian Guerra',
-        fecha: '2/12/2017',
-        sucursal: 'La Merced',
-        asesor: 'Chloe',
-        provision: 8656.24
-    },
-    {
-        credito: 17345654,
-        socio: 7585,
-        saldo: 75685.34658,
-        nombre: 'Tatiana Lopez',
-        fecha: '3/12/2017',
-        sucursal: 'La Merced',
-        asesor: 'Israel',
-        provision: 7563.265
-    },
-    {
-        credito: 4564,
-        socio: 765,
-        saldo: 34564.5685,
-        nombre: 'Isabella Lopez',
-        fecha: '4/12/2017',
-        sucursal: 'Matriz',
-        asesor: 'Santiago',
-        provision: 5322.2
-    },{
-        credito: 17654,
-        socio: 23423,
-        saldo: 2000,
-        nombre: 'Santiago Lopez',
-        fecha: '8/12/2017',
-        sucursal: 'Matriz',
-        asesor: 'Rooberto'
-    },{
-        credito: 234,
-        socio: 867,
-        saldo: 2000,
-        nombre: 'Valentina Aguirre',
-        fecha: '9/12/2017',
-        sucursal: 'Atuntaqui',
-        asesor: 'Daniela'
-    },{
-        credito: 17345654,
-        socio: 7585,
-        saldo: 2000,
-        nombre: 'Tatiana Lopez',
-        fecha: '10/12/2017',
-        sucursal: 'La Merced',
-        asesor: 'Israel'
-    },{
-        credito: 4564,
-        socio: 765,
-        saldo: 2000,
-        nombre: 'Isabella Lopez',
-        fecha: '12/12/2017',
-        sucursal: 'Matriz',
-        asesor: 'Santiago'
-    },{
-     credito: 17654,
-     socio: 23423,
-     saldo: 3000,
-     nombre: 'Santiago Lopez',
-     fecha: '16/12/2017',
-     sucursal: 'Matriz',
-     asesor: 'Roberto'
-    },{
-     credito: 234,
-     socio: 867,
-     saldo: 3000,
-     nombre: 'Valentina Aguirre',
-     fecha: '17/12/2017',
-     sucursal: 'Atuntaqui',
-     asesor: 'Daniela'
-    },{
-     credito: 17345654,
-     socio: 7585,
-     saldo: 3000,
-     nombre: 'Tatiana Lopez',
-     fecha: '18/12/2017',
-     sucursal: 'La Merced',
-     asesor: 'Israel'
-    },{
-     credito: 4564,
-     socio: 765,
-     saldo: 3000,
-     nombre: 'Isabella Lopez',
-     fecha: '19/12/2017',
-     sucursal: 'Matriz',
-     asesor: 'Santiago'
-    },{
-        credito: 17654,
-        socio: 23423,
-        saldo: 4000,
-        nombre: 'Santiago Lopez',
-        fecha: '24/12/2017',
-        sucursal: 'Matriz',
-        asesor: 'Daniela'
-    },{
-        credito: 234,
-        socio: 867,
-        saldo: 4000,
-        nombre: 'Valentina Aguirre',
-        fecha: '25/12/2017',
-        sucursal: 'La Merced',
-        asesor: 'Daniela'
-    },{
-        credito: 17345654,
-        socio: 7585,
-        saldo: 4000,
-        nombre: 'Tatiana Lopez',
-        fecha: '26/12/2017',
-        sucursal: 'La Merced',
-        asesor: 'Daniela'
-    },{
-        credito: 4564,
-        socio: 765,
-        saldo: 4000,
-        nombre: 'Isabella Lopez',
-        fecha: '27/12/2017',
-        sucursal: 'Matriz',
-        asesor: 'Daniela'
-    }]
   end
 
   def self.cartera_recuperada fecha_inicio, fecha_fin, agencia, asesor, diaInicio, diaFin
@@ -903,7 +744,7 @@ class Oracledb < ApplicationRecord
       agencia = "Servimóvil"
     end
 
-
+    puts agencia
     results = connection.exec_query("
     SELECT
     TH1.FECHA_INGRESO FECHA_INGRESO,
@@ -1058,13 +899,13 @@ class Oracledb < ApplicationRecord
     --    SELECT *FROM CONF_ACTIV_ECO_SOCIO WHERE CODIGO='G474111'
 
           SUM(TH.DIASMORAPD) DIASMORA_PD,                                       --to_date('05/01/2014','dd/mm/yy')
-          (SELECT NVL(SUM(P.CAPITAL),0) FROM CRED_CABECERA_PAGOS_CREDITO P WHERE P.NUMERO_CREDITO = TH.NUMERO_CREDITO AND TRUNC(P.FECHA) <= TRUNC(TO_DATE('"+fecha.to_date.strftime('%d-%m-%Y')+"','DD/MM/YY'))) AS CAPITAL_CAN,
+          (SELECT NVL(SUM(P.CAPITAL),0) FROM CRED_CABECERA_PAGOS_CREDITO P WHERE P.NUMERO_CREDITO = TH.NUMERO_CREDITO AND TRUNC(P.FECHA) <= TRUNC(TO_DATE('#{fecha.to_date.strftime('%d-%m-%Y')}','DD/MM/YY'))) AS CAPITAL_CAN,
           SUM(CASE WHEN TH.ESTADO_CARSEG IN('I','D','E') THEN TH.SCAPITAL ELSE 0 END) AS CAPITAL_PEN,
           (
-           (SELECT NVL(SUM(P.INTERES),0) FROM CRED_CABECERA_PAGOS_CREDITO P WHERE P.NUMERO_CREDITO = TH.NUMERO_CREDITO AND TRUNC(P.FECHA) <= TRUNC(TO_DATE('"+fecha.to_date.strftime('%d-%m-%Y')+"','DD/MM/YY')))+
+           (SELECT NVL(SUM(P.INTERES),0) FROM CRED_CABECERA_PAGOS_CREDITO P WHERE P.NUMERO_CREDITO = TH.NUMERO_CREDITO AND TRUNC(P.FECHA) <= TRUNC(TO_DATE('#{fecha.to_date.strftime('%d-%m-%Y')}','DD/MM/YY')))+
            SUM(CASE WHEN TH.ESTADO_CARSEG IN('I','D','E') THEN TH.SINTERES ELSE 0 END)
           ) AS INTERES_TOTAL,
-          (SELECT NVL(SUM(P.INTERES),0) FROM CRED_CABECERA_PAGOS_CREDITO P WHERE P.NUMERO_CREDITO = TH.NUMERO_CREDITO AND TRUNC(P.FECHA) <= TRUNC(TO_DATE('"+fecha.to_date.strftime('%d-%m-%Y')+"','DD/MM/YY'))) AS INTERES_CAN,
+          (SELECT NVL(SUM(P.INTERES),0) FROM CRED_CABECERA_PAGOS_CREDITO P WHERE P.NUMERO_CREDITO = TH.NUMERO_CREDITO AND TRUNC(P.FECHA) <= TRUNC(TO_DATE('#{fecha.to_date.strftime('%d-%m-%Y')}','DD/MM/YY'))) AS INTERES_CAN,
           SUM(CASE WHEN TH.ESTADO_CARSEG IN('I','D','E') THEN TH.SINTERES ELSE 0 END) AS INTERES_PEN,
           (SELECT MIN(DESCRIPCION_GRUPO) FROM CRED_GRUPO_SEGMENTOS_CREDITO G WHERE G.CODIGO_GRUPO = TH.COD_GRUPO ) AS NOM_GRUPO,
           (SELECT MIN(DESCRIPCION)  FROM CONF_PRODUCTOS P WHERE P.CODIGO_ACT_FINANCIERA = 2 AND P.CODIGO_GRUPO = TH.COD_GRUPO AND P.CODIGO_PRODUCTO = TH.COD_PRODUCTO) AS NOM_PRODUCTO,
@@ -1126,7 +967,7 @@ class Oracledb < ApplicationRecord
            WHERE CC.NUMERO_CREDITO = CH.NUMERO_CREDITO
              AND S.CODIGO_SOCIO = CC.CODIGO_SOCIO
              AND S.CODIGO_SOCIO = SDG.CODIGO_SOCIO
-            AND TRUNC(CH.FGENERA) = TO_DATE('"+ fecha.to_date.strftime('%d-%m-%Y') +"','DD/MM/YY')
+            AND TRUNC(CH.FGENERA) = TO_DATE('#{fecha.to_date.strftime('%d-%m-%Y')}','DD/MM/YY')
             and (case when cc.oficre in (44,25) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=25)
                    when cc.oficre in (75,67,49) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=49)
                    when cc.oficre in (102,43) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=102)
@@ -1139,14 +980,14 @@ class Oracledb < ApplicationRecord
                    when cc.oficre in (42,122,89) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=122)
                    when cc.oficre in (114,22,73,108,15,120,19,109,17,121,21,40) then (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=114)
                    else (select usu_apellidos || ' ' || usu_nombres from sifv_usuarios_sistema where codigo_usuario=cc.oficre) end
-             ) like upper ('%"+ nombre +"%')
+             ) like upper ('%#{nombre}%')
               and (SELECT MIN(SS.DESCRIPCION) FROM SIFV_SUCURSALES SS WHERE SS.CODIGO_SUCURSAL = cc.CODIGO_SUCURSAL) like ('%#{agencia}%')
                  GROUP BY CC.NUMERO_CREDITO, CH.ESTADO_CARSEG, CC.OBS_DESCRE
       )TH
        GROUP BY TH.NUMERO_CREDITO, TH.COD_GRUPO, TH.COD_PRODUCTO, TH.OF_CRED, TH.COD_USUARIO, TH.COD_SUCURSAL, TH.COD_SOCIO,TH.OBSERVACIONES,th.codigo_cicn
 
     ) TH1
-    where TH1.DIASMORA_PD between #{diaInicio} and #{diaFin}
+    where TH1.DIASMORA_PD between #{diaInicio.to_i} and #{diaFin.to_i}
     ")
 
 
@@ -1160,35 +1001,6 @@ class Oracledb < ApplicationRecord
     else
       return {}
     end
-
-
-    data = [{
-        socio: '43532',
-        credito: '645324',
-        provision_requerida: '435.23',
-        tipo_garantia: 'Solidaria'
-    },{
-        socio: '3243',
-        credito: '765',
-        provision_requerida: '546.35',
-        tipo_garantia: 'Real'
-    },{
-        socio: '234534',
-        credito: '456',
-        provision_requerida: '234234.2433',
-        tipo_garantia: 'Hipoteca'
-    },{
-        socio: '12898',
-        credito: '34523',
-        provision_requerida: '43532.23',
-        tipo_garantia: 'Solidaria'
-    },{
-        socio: '9999',
-        credito: '89765',
-        provision_requerida: '5223.23',
-        tipo_garantia: 'Fiduciaria'
-    }]
-    return data
   end
 
   def self.obtener_creditos_por_agencia fecha, diaInicio, diaFin
