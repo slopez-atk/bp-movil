@@ -1,0 +1,26 @@
+# == Schema Information
+#
+# Table name: vacations
+#
+#  id            :integer          not null, primary key
+#  worker_id     :integer
+#  fecha_permiso :date
+#  descripcion   :string
+#  horas         :string
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  worker: one
+  fecha_permiso: 2018-03-12
+  descripcion: MyString
+  horas: MyString
+
+two:
+  worker: two
+  fecha_permiso: 2018-03-12
+  descripcion: MyString
+  horas: MyString

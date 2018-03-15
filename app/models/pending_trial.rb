@@ -31,6 +31,21 @@
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null
 #  calificacion_propia     :string
+#  nom_garante1            :string
+#  ci_garante_1            :string
+#  cony_garante1           :string
+#  nom_garante2            :string
+#  ci_garante2             :string
+#  cony_garante2           :string
+#  propietario_bienes      :string
+#  calificacion            :string
+#  user_id                 :integer
+#  valor_avaluo_comercial  :string
+#  valor_avaluo_catastral  :string
+#  avaluo_titulo           :string
+#  interes                 :string
+#  mora                    :string
+#  gastos_judiciales       :string
 #
 
 class PendingTrial < ApplicationRecord

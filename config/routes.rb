@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  resources :permission_histories
+  resources :vacations, only: [:new, :edit, :update, :destroy, :create]
+  resources :workers, except: [:index]
   mount RailsAdmin::Engine => '/administracion', as: 'rails_admin'
   resources :history_credits do
     collection { post :report }
@@ -54,6 +57,7 @@ Rails.application.routes.draw do
   post '/juicio/update', to: "main#change_trial_type", as: :cambiar_tipo_juicio
 
 
+
   #   Modulo de creditos
   get '/credits', to: 'credits#index', as: :credits_root
 
@@ -78,5 +82,12 @@ Rails.application.routes.draw do
   get '/desempenio_social', to: 'desempenio_social#index', as: :desempenio_social_root
   namespace :desempenio_social do
     post 'balance_social'
+  end
+
+  # Modulo de Recursos Humanos
+  get '/recursos_humanos', to: 'recursos_humanos#index', as: :recursos_humanos_root
+  namespace :recursos_humanos do
+    get 'vacaciones'
+    post 'guardar_historial'
   end
 end

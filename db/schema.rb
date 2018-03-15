@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171120025938) do
+ActiveRecord::Schema.define(version: 20180313211427) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -244,6 +244,17 @@ ActiveRecord::Schema.define(version: 20171120025938) do
     t.index ["user_id"], name: "index_pending_trials_on_user_id"
   end
 
+  create_table "permission_histories", force: :cascade do |t|
+    t.bigint "worker_id"
+    t.string "descripcion"
+    t.string "fecha_permiso"
+    t.string "fecha_eliminacion"
+    t.string "horas"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["worker_id"], name: "index_permission_histories_on_worker_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -264,6 +275,16 @@ ActiveRecord::Schema.define(version: 20171120025938) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "vacations", force: :cascade do |t|
+    t.bigint "worker_id"
+    t.date "fecha_permiso"
+    t.string "descripcion"
+    t.string "horas"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["worker_id"], name: "index_vacations_on_worker_id"
   end
 
   create_table "without_good_activities", force: :cascade do |t|
@@ -342,6 +363,17 @@ ActiveRecord::Schema.define(version: 20171120025938) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "workers", force: :cascade do |t|
+    t.string "fullname"
+    t.string "codigo"
+    t.string "agencia"
+    t.string "cargo"
+    t.date "fecha_ingreso"
+    t.string "fecha_calculo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   add_foreign_key "good_activities", "good_stages"
   add_foreign_key "goods", "good_activities"
   add_foreign_key "goods", "good_stages"
@@ -353,6 +385,8 @@ ActiveRecord::Schema.define(version: 20171120025938) do
   add_foreign_key "insolvencies", "users"
   add_foreign_key "insolvency_activities", "insolvency_stages"
   add_foreign_key "pending_trials", "users"
+  add_foreign_key "permission_histories", "workers"
+  add_foreign_key "vacations", "workers"
   add_foreign_key "without_good_activities", "withoutgood_stages"
   add_foreign_key "without_goods", "lawyers"
   add_foreign_key "without_goods", "users"

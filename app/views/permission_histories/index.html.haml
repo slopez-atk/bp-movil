@@ -1,0 +1,24 @@
+.row.center-xs
+  .col-xs-12.col-md-8
+    %h3= "Historial de permisos de #{@worker.fullname}"
+
+    .table-responsive
+      %table.table.table-striped.table-hover
+        %thead
+          %tr
+            %th Descripcion
+            %th Fecha permiso
+            %th Fecha guardado
+            %th Horas
+
+        %tbody
+          - @permission_histories.each do |permission_history|
+            %tr
+              %td= permission_history.descripcion
+              %td= permission_history.fecha_permiso
+              %td= permission_history.fecha_eliminacion
+              %td= permission_history.horas
+
+    %br
+
+    = link_to 'Regresar', @worker, class: "btn btn-hg btn-info"

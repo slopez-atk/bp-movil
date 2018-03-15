@@ -15,6 +15,7 @@
 #  updated_at   :datetime         not null
 #  mes          :string
 #  tipo_credito :string
+#  user_id      :integer
 #
 
 require 'test_helper'

@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Worker:
+  = @vacation.worker
+%p
+  %b Fecha permiso:
+  = @vacation.fecha_permiso
+%p
+  %b Descripcion:
+  = @vacation.descripcion
+%p
+  %b Horas:
+  = @vacation.horas
+
+= link_to 'Edit', edit_vacation_path(@vacation)
+\|
+= link_to 'Back', vacations_path

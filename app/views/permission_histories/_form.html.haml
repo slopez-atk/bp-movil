@@ -1,0 +1,25 @@
+= form_for @permission_history do |f|
+  - if @permission_history.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@permission_history.errors.count, "error")} prohibited this permission_history from being saved:"
+      %ul
+        - @permission_history.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :worker
+    = f.text_field :worker
+  .field
+    = f.label :descripcion
+    = f.text_field :descripcion
+  .field
+    = f.label :fecha_permiso
+    = f.text_field :fecha_permiso
+  .field
+    = f.label :fecha_eliminacion
+    = f.text_field :fecha_eliminacion
+  .field
+    = f.label :horas
+    = f.text_field :horas
+  .actions
+    = f.submit 'Save'

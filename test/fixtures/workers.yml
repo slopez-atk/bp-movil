@@ -1,0 +1,32 @@
+# == Schema Information
+#
+# Table name: workers
+#
+#  id            :integer          not null, primary key
+#  fullname      :string
+#  codigo        :string
+#  agencia       :string
+#  cargo         :string
+#  fecha_ingreso :date
+#  fecha_calculo :string
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  fullname: MyString
+  codigo: MyString
+  agencia: MyString
+  cargo: MyString
+  fecha_ingreso: 2018-03-12
+  fecha_calculo: MyString
+
+two:
+  fullname: MyString
+  codigo: MyString
+  agencia: MyString
+  cargo: MyString
+  fecha_ingreso: 2018-03-12
+  fecha_calculo: MyString

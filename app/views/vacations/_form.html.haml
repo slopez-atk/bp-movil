@@ -1,0 +1,29 @@
+= form_for @vacation do |f|
+  - if @vacation.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@vacation.errors.count, "error")} prohibited this vacation from being saved:"
+      %ul
+        - @vacation.errors.full_messages.each do |message|
+          %li= message
+
+  .form-group
+    = f.hidden_field :worker_id
+  .form-group
+    %p.text-left.color-blue
+      %b Fecha de Permiso
+    .input-group
+      %span.input-group-btn
+        %button{class:"btn", type:"button"}
+          Calendario
+      = text_field "vacation", :fecha_permiso, class:"form-control datepick", id: "datepicker1"
+  .form-group
+    %p.text-left.color-blue
+      %b Descripción
+    = f.text_area :descripcion, class: "form-control"
+  .form-group
+    %p.text-left.color-blue
+      %b Número de Horas
+    = f.text_field :horas, class: "form-control"
+
+  .form-group
+    = f.submit 'Enviar', class: "btn btn-success"

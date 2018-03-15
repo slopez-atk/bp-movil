@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Worker:
+  = @permission_history.worker
+%p
+  %b Descripcion:
+  = @permission_history.descripcion
+%p
+  %b Fecha permiso:
+  = @permission_history.fecha_permiso
+%p
+  %b Fecha eliminacion:
+  = @permission_history.fecha_eliminacion
+%p
+  %b Horas:
+  = @permission_history.horas
+
+= link_to 'Edit', edit_permission_history_path(@permission_history)
+\|
+= link_to 'Back', permission_histories_path

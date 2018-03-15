@@ -1,0 +1,76 @@
+.row.center-xs
+  .col-xs-11.col-md-8
+    .card.top-space.bg-color-white.padding
+      %h3.color-blue= @worker.fullname
+      = obtener_estado @dias_vigentes[1]
+      .row.center-xs.top-space
+        .col-xs-4
+          %p.text-left
+            %b.text-primary Codigo:
+            = @worker.codigo
+
+          %p.text-left
+            %b.text-primary Agencia:
+            = @worker.agencia
+        .col-xs-4
+          %p.text-left
+            %b.text-primary Cargo:
+            = @worker.cargo
+          %p.text-left
+            %b.text-primary Fecha de Ingreso:
+            = @worker.fecha_ingreso.to_date
+
+        .col-xs-12
+          .nav.nav-pills.top-space
+            - if current_user.permissions == 9
+              = link_to "Ingresar Permiso", new_vacation_path(id: @worker.id), class: "btn btn-info top-space bottom-space"
+              = link_to "Editar Empleado", edit_worker_path(@worker), class: "btn btn-info top-space bottom-space"
+            = link_to "Historial de Permisos", permission_histories_path(id: @worker.id), class: "btn btn-info top-space bottom-space"
+            - if @horas_restantes == 0
+              = link_to "Culminar Periodo", recursos_humanos_guardar_historial_path(id: @worker.id), method: :post, class: "btn btn-info"
+
+      .row.center-xs.top-space
+        .col-xs-4
+          %h6
+            %b.text-primary Días Vigentes:
+            = @dias_vigentes[0]
+        .col-xs-4
+          %h6
+            %b.text-primary Horas Restantes:
+            = @horas_restantes
+
+      .row.center-xs.top-space
+        .col-xs-4
+          %h6
+            %b.text-primary Días Restantes:
+            = (@horas_restantes / 8.0).round(1)
+        .col-xs-4
+          %h6
+            %b.text-primary Horas ocupadas:
+            = @worker.calcular_horas_consumidos
+        .col-xs-4
+          %h6
+            %b.text-primary Días ocupados:
+            = (@worker.calcular_horas_consumidos / 8.0).round(1)
+
+    .table-responsive.big-top-space
+      %table.table.table-striped.table-hover
+        %thead
+          %tr
+            %th Fecha
+            %th Descripción
+            %th Horas
+            %th
+
+        %tbody
+          - @vacations.each do |permiso|
+            %tr
+              %td= permiso.fecha_permiso
+              %td= permiso.descripcion
+              %td= permiso.horas
+              - if current_user.permissions == 10
+                %td= link_to 'Editar', edit_vacation_path(permiso), class: "btn btn-info"
+                %td= link_to 'Eliminar', permiso, method: :delete, data: { confirm: 'Estas segur@?' }, class: "btn btn-danger"
+
+  .col-xs-12
+    = link_to 'Regresar', recursos_humanos_vacaciones_path, class: "btn btn-inverse btn-hg bottom-space"
