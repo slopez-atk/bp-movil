@@ -46,7 +46,7 @@ class IndicadoresTable extends React.Component{
       <div>
         <Paper zDepth={3} className="top-space padding">
           <h4 className="top-space" style={{color: "#FFC107"}}>{ this.props.title }</h4>
-          <div>
+          <div className="table-responsive">
             <BootstrapTable ref='table' data={ this.props.data } exportCSV={ true } hover options={options}>
               <TableHeaderColumn dataField='clave' isKey={ true } dataSort={ true } width='250'>Indicador</TableHeaderColumn>
               <TableHeaderColumn dataField='cantidad' dataSort={ true } width='250'>Cantidad</TableHeaderColumn>

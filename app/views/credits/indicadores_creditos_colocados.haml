@@ -1,4 +1,12 @@
 .row.middle-xs.center-xs
+  .col-xs-12.col-md-5.top-space
+    %h4
+      %b.text-primary Agencia:
+      = @agencia
+  .col-xs-12.col-md-5.top-space
+    %h4
+      %b.text-primary Asesor:
+      = @asesor
   .col-xs-11
     = react_component "CreditosIndicadores",
     sectores: @sectores,
@@ -10,4 +18,5 @@
     estados_civiles: @estados_civiles,
     rango_edades: @rango_edades,
     rango_ingresos: @rango_ingresos,
+    sector_calculado: @sectores_calculados,
     tipo: 'Colocado'

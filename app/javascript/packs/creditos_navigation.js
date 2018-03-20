@@ -405,6 +405,7 @@ class CreditosNavigation extends React.Component {
               contentStyle={customContentStyle}
               open={ this.state.openModalCreditosVencer }
               actions={actions1}
+              autoScrollBodyContent={true}
             >
               <div className="row center-xs middle-xs">
                 <h4 style={{color: "#2E3092"}}>Cartera Por Vencer</h4>

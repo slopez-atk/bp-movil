@@ -1,6 +1,7 @@
 import React from 'react';
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
+import NumberFormat from 'react-number-format';
 import {Table, TableBody, TableFooter, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 
 class TablaCoshechas extends React.Component {
@@ -30,9 +31,9 @@ class TablaCoshechas extends React.Component {
       result.push(
         <TableRow style={{textAlign: 'center', backgroundColor: "#FFF176", fontWeight: "bold"}}>
           <TableRowColumn/>
-          <TableRowColumn>TOTAL</TableRowColumn>
-          <TableRowColumn>{ parseFloat(fila[1]).toFixed(2) }</TableRowColumn>
-          <TableRowColumn>{ parseFloat(fila[2]).toFixed(2) }</TableRowColumn>
+          <TableRowColumn style={{textAlign: 'center'}}>TOTAL</TableRowColumn>
+          <TableRowColumn style={{textAlign: 'center'}}>{ parseFloat(fila[1]).toFixed(2) }</TableRowColumn>
+          <TableRowColumn style={{textAlign: 'center'}}>{ parseFloat(fila[2]).toFixed(2) }</TableRowColumn>
           <TableRowColumn/>
         </TableRow>
       );
@@ -88,11 +89,13 @@ class TablaCoshechas extends React.Component {
       sumaSaldo += this.props.saldos[yearKey][row];
 
       result.push(
-        <TableRow>
-          <TableRowColumn>{ yearKey }</TableRowColumn>
-          <TableRowColumn>{ this.getNombreMes(row) }</TableRowColumn>
-          <TableRowColumn>{ data[row] }</TableRowColumn>
-          <TableRowColumn>{ parseFloat(this.props.saldos[yearKey][row]).toFixed(2) }</TableRowColumn>
+        <TableRow style={{textAlign: 'center'}}>
+          <TableRowColumn style={{textAlign: 'center'}}>{ yearKey }</TableRowColumn>
+          <TableRowColumn style={{textAlign: 'center'}}>{ this.getNombreMes(row) }</TableRowColumn>
+          <TableRowColumn style={{textAlign: 'center'}}>{ data[row] }</TableRowColumn>
+          <TableRowColumn style={{textAlign: 'center'}}>
+            <NumberFormat value={ parseFloat(this.props.saldos[yearKey][row]).toFixed(2) } displayType={'text'} thousandSeparator={true}/>
+          </TableRowColumn>
           <TableRowColumn>
             <RaisedButton label="Ver" backgroundColor={"#595753"} labelColor={"white"} onClick={()=>  this.props.onClick(yearKey, row)}/>
           </TableRowColumn>
@@ -120,7 +123,7 @@ class TablaCoshechas extends React.Component {
                   <TableHeaderColumn tooltip="Mes" style={{textAlign: 'center'}}>Mes</TableHeaderColumn>
                   <TableHeaderColumn tooltip="Cantidad" style={{textAlign: 'center'}}>Cantidad</TableHeaderColumn>
                   <TableHeaderColumn tooltip="Suma Cartera en Riesgo" style={{textAlign: 'center'}}>Suma Cartera</TableHeaderColumn>
-                  <TableHeaderColumn tooltip="Visualizar" style={{textAlign: 'center'}}>Ver</TableHeaderColumn>
+                  <TableHeaderColumn tooltip="Visualizar" style={{textAlign: 'left'}}>Ver</TableHeaderColumn>
                 </TableRow>
               </TableHeader>
 

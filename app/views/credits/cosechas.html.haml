@@ -1,6 +1,15 @@
 .row.middle-xs.center-xs
   .col-xs-11
-    = react_component "Cosechas",
-    datos: @hash_datos,
-    cantidades: @hash_cantidades,
-    saldos: @hash_saldos
+    .col-xs-12.col-md-5
+      %h4
+        %b.text-primary Agencia:
+        = @agencia
+    .col-xs-12.col-md-5
+      %h4
+        %b.text-primary Asesor:
+        = @asesor
+    .col-xs-12
+      = react_component "Cosechas",
+      datos: @hash_datos,
+      cantidades: @hash_cantidades,
+      saldos: @hash_saldos

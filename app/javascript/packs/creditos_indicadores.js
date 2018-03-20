@@ -45,6 +45,10 @@ class CreditosIndicadores extends React.Component{
             <IndicadoresTable title={"Indicador de Sector"} data={ this.props.sectores }/>
           </Tab>
 
+          <Tab label="Sector C.">
+            <IndicadoresTable title={"Indicador de Sector Calculado"} data={ this.props.sector_calculado }/>
+          </Tab>
+
           <Tab label="Tipo Credito">
             <IndicadoresTable title={"Indicador de Tipo de Credito"} data={ this.props.tipos_credito }/>
           </Tab>
@@ -84,6 +88,10 @@ class CreditosIndicadores extends React.Component{
 
           <Tab label="Sector">
             <IndicadoresColocadosTable title={"Indicador de Sector"} data={ this.props.sectores }/>
+          </Tab>
+
+          <Tab label="Sector C.">
+            <IndicadoresColocadosTable title={"Indicador de Sector Calculado"} data={ this.props.sector_calculado }/>
           </Tab>
 
           <Tab label="Tipo Credito">

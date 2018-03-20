@@ -9,6 +9,8 @@ class CreditsController < ApplicationController
   def creditos_por_vencer
     dia_inicio = params["diaInicio"]
     dia_fin = params["diaFin"]
+    @asesor = params['asesor']
+    @agencia = params['agencia']
     # Obtengo los creditos por semana
     @data = Oracledb.obtener_creditos_por_vencer Date.new(Date.current.year,Date.current.month,1), Date.new(Time.current.year,Time.current.month,-1), params['agencia'], params['asesor'], dia_inicio, dia_fin
     # @secondWeek = Oracledb.obtener_creditos_por_vencer Date.new(Date.current.year,Date.current.month,8), Date.new(Time.current.year,Time.current.month,14), params['agencia'], params['asesor'],'secondWeek'
@@ -142,6 +144,8 @@ class CreditsController < ApplicationController
   def cartera_recuperada
     dia_inicio = params["diaInicio"]
     dia_fin = params["diaFin"]
+    @asesor = params['asesor']
+    @agencia = params['agencia']
     # Obtengo los creditos por semana
     @data = Oracledb.cartera_recuperada Date.new(Date.current.year,Date.current.month,1), Date.new(Time.current.year,Time.current.month,-1), params['agencia'], params['asesor'], dia_inicio, dia_fin
     # @secondWeek = Oracledb.obtener_creditos_por_vencer Date.new(Date.current.year,Date.current.month,8), Date.new(Time.current.year,Time.current.month,14), params['agencia'], params['asesor'],'secondWeek'
@@ -431,7 +435,8 @@ class CreditsController < ApplicationController
     @hash_cantidades = Hash.new
     @hash_saldos = Hash.new
     @saldo_total = 0
-
+    @agencia = params["agencia"]
+    @asesor = params["asesor"]
 
     data.each do |row|
       row.stringify_keys!
@@ -501,6 +506,8 @@ class CreditsController < ApplicationController
 
   def indicadores_creditos_vigentes
     @data = Oracledb.indicadores_creditos_vigentes params["fecha"], params["diaInicio"], params["diaFin"], params["agencia"], params["asesor"]
+    @agencia = params["agencia"]
+    @asesor = params["asesor"]
     @hash_genero = Hash.new
     @hash_sector = Hash.new
     @hash_tipo_credito = Hash.new
@@ -510,6 +517,7 @@ class CreditsController < ApplicationController
     @hash_estado_civil = Hash.new
     @hash_rango_edad = Hash.new
     @hash_rango_ingresos = Hash.new
+    @hash_sector_calculado = Hash.new
 
     @generos = Array.new
     @sectores = Array.new
@@ -520,6 +528,7 @@ class CreditsController < ApplicationController
     @estados_civiles = Array.new
     @rango_edades = Array.new
     @rango_ingresos = Array.new
+    @sectores_calculados = Array.new
 
     @data.each do |row|
       row.stringify_keys!
@@ -630,6 +639,18 @@ class CreditsController < ApplicationController
         @hash_rango_ingresos[row["ing_mensual_tipologia"]][:cartera_riesgo] += row["cartera_riesgo"].to_f.round(2)
         @hash_rango_ingresos[row["ing_mensual_tipologia"]][:cap_vencido] += row["cap_vencido"].to_f.round(2)
       end
+
+      # Sector hash_sector_calculado
+      if @hash_sector_calculado[row["codigo_parroquia"]].nil?
+        @hash_sector_calculado[row["codigo_parroquia"]] = {clave: row["codigo_parroquia"], cantidad: 1, saldo: row["saldo"].to_f.round(2), cap_activo: row["cap_activo"].to_f.round(2), cap_ndevenga: row["cap_ndevenga"].to_f.round(2), cartera_riesgo: row["cartera_riesgo"].to_f.round(2), cap_vencido: row["cap_vencido"].to_f.round(2)}
+      else
+        @hash_sector_calculado[row["codigo_parroquia"]][:cantidad] += 1
+        @hash_sector_calculado[row["codigo_parroquia"]][:saldo] += row["saldo"].to_f.round(2)
+        @hash_sector_calculado[row["codigo_parroquia"]][:cap_activo] += row["cap_activo"].to_f.round(2)
+        @hash_sector_calculado[row["codigo_parroquia"]][:cap_ndevenga] += row["cap_ndevenga"].to_f.round(2)
+        @hash_sector_calculado[row["codigo_parroquia"]][:cartera_riesgo] += row["cartera_riesgo"].to_f.round(2)
+        @hash_sector_calculado[row["codigo_parroquia"]][:cap_vencido] += row["cap_vencido"].to_f.round(2)
+      end
     end
 
 
@@ -714,13 +735,23 @@ class CreditsController < ApplicationController
       row[1]["cap_vencido"] = row[1]["cap_vencido"].round(2)
       @rango_ingresos.push(row[1])
     end
+    @hash_sector_calculado.each do |row|
+      row[1].stringify_keys!
+      row[1]["saldo"] = row[1]["saldo"].round(2)
+      row[1]["cap_activo"] = row[1]["cap_activo"].round(2)
+      row[1]["cap_ndevenga"] = row[1]["cap_ndevenga"].round(2)
+      row[1]["cartera_riesgo"] = row[1]["cartera_riesgo"].round(2)
+      row[1]["cap_vencido"] = row[1]["cap_vencido"].round(2)
+      @sectores_calculados.push(row[1])
+    end
 
 
   end
 
   def indicadores_creditos_colocados
     @data = Oracledb.indicadores_creditos_colocados params["fechaInicio"], params["fechaFin"], params["diaInicio"], params["diaFin"], params["agencia"], params["asesor"]
-
+    @agencia = params["agencia"]
+    @asesor = params["asesor"]
     @hash_genero = Hash.new
     @hash_sector = Hash.new
     @hash_tipo_credito = Hash.new
@@ -730,6 +761,7 @@ class CreditsController < ApplicationController
     @hash_estado_civil = Hash.new
     @hash_rango_edad = Hash.new
     @hash_rango_ingresos = Hash.new
+    @hash_sector_calculado = Hash.new
 
     # Voy a transformar el hash en un array por eso instancio un array para cada hash
     @generos = Array.new
@@ -741,6 +773,7 @@ class CreditsController < ApplicationController
     @estados_civiles = Array.new
     @rango_edades = Array.new
     @rango_ingresos = Array.new
+    @sectores_calculados = Array.new
 
     @data.each do |row|
       row.stringify_keys!
@@ -832,6 +865,15 @@ class CreditsController < ApplicationController
         @hash_rango_ingresos[row["ing_mensual_tipologia"]][:monto_real] += row["monto_real"].to_f.round(2)
       end
 
+      # Sectores Calculados
+      if @hash_sector_calculado[row["codigo_parroquia"]].nil?
+        @hash_sector_calculado[row["codigo_parroquia"]] = {clave: row["codigo_parroquia"], cantidad: 1, monto_real: row["monto_real"].to_f.round(2)}
+      else
+        @hash_sector_calculado[row["codigo_parroquia"]].symbolize_keys!
+        @hash_sector_calculado[row["codigo_parroquia"]][:cantidad] += 1
+        @hash_sector_calculado[row["codigo_parroquia"]][:monto_real] += row["monto_real"].to_f.round(2)
+      end
+
     end
 
 
@@ -882,6 +924,11 @@ class CreditsController < ApplicationController
         row[1].stringify_keys!
         row[1]["monto_real"] = row[1]["monto_real"].round(2)
         @rango_ingresos.push(row[1])
+      end
+      @hash_sector_calculado.each do |row|
+        row[1].stringify_keys!
+        row[1]["monto_real"] = row[1]["monto_real"].round(2)
+        @sectores_calculados.push(row[1])
       end
 
   end

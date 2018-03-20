@@ -1,5 +1,6 @@
 import React from 'react';
 import Paper from 'material-ui/Paper';
+import NumberFormat from 'react-number-format';
 import {Table, TableBody, TableFooter, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 
 class MatrizSaldos extends React.Component{
@@ -124,7 +125,11 @@ class MatrizSaldos extends React.Component{
           wordWrap: 'break-word'
         };
       }
-      return <TableRowColumn style={style} key={index}>{ row }</TableRowColumn>
+      return (
+        <TableRowColumn style={style} key={index}>
+          <NumberFormat value={ row } displayType={'text'} thousandSeparator={true}/>
+        </TableRowColumn>
+      )
     });
   }
 

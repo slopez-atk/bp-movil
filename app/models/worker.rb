@@ -22,12 +22,26 @@ class Worker < ApplicationRecord
 
     if dias > 365 && dias < 540
       dias2 = (Date.current - self.fecha_ingreso.to_date).to_i
-      puts dias2
-      if dias2 >= 1825
-        [16,'rojo']
-      else
+
+      anios = Date.current.year - self.fecha_ingreso.to_date.year
+      anios = anios - 5
+      if anios < 0
         [15,'rojo']
+      elsif anios == 1
+        [16,'rojo']
+      elsif anios > 0
+        if anios > 20
+          [30,'rojo']
+        else
+          [anios + 15,'rojo']
+        end
       end
+
+      # if dias2 >= 1825
+      #
+      # else
+      #   [15,'rojo']
+      # end
     elsif dias < 330
       [0,'verde']
     elsif dias > 331 && dias < 365

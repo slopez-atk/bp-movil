@@ -1,5 +1,13 @@
 .row.center-xs
   .col-xs-11.col-xs-offset-1
+    .col-xs-12.col-md-5
+      %h4
+        %b.text-primary Agencia:
+        = @agencia
+    .col-xs-12.col-md-5
+      %h4
+        %b.text-primary Asesor:
+        = @asesor
     = react_component 'CreditosPorVencer',
     firstWeek: @firstWeek,
     secondWeek: @secondWeek,

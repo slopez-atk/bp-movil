@@ -62,6 +62,7 @@ class PerWeek extends React.Component{
         <TableHeaderColumn dataField='saldo' dataSort={ true } width={"150"}>Valor Cuota</TableHeaderColumn>
         <TableHeaderColumn dataField='pago_realizado' dataSort={ true }  filter={ { type: 'TextFilter', delay: 1000 }} width={"150"}>Pago Realizado</TableHeaderColumn>
         <TableHeaderColumn dataField='fecha_pago_realizado' dataSort={ true }  filter={ { type: 'TextFilter', delay: 1000 }} width={"300"}>Fecha Pago Realizado</TableHeaderColumn>
+        <TableHeaderColumn dataField='fecha_ultimo_pago_realizado' dataSort={ true }  filter={ { type: 'TextFilter', delay: 1000 }} width={"300"}>Fecha útlimo Pago Realizado</TableHeaderColumn>
         <TableHeaderColumn dataField='fecha' dataSort={ true }  filter={ { type: 'TextFilter', delay: 1000 }} width={"150"}>Fecha proxima cuota</TableHeaderColumn>
         <TableHeaderColumn dataField='valor_recuperado' dataSort={ true }  filter={ { type: 'TextFilter', delay: 1000 }} width={"150"}>Valor Recuperado</TableHeaderColumn>
         <TableHeaderColumn dataField='condicion_pago' dataSort={ true }  filter={ { type: 'TextFilter', delay: 1000 }} width={"150"}>Condición de Pago</TableHeaderColumn>

@@ -15,6 +15,7 @@ import MenuItem from 'material-ui/MenuItem';
 import Divider from 'material-ui/Divider';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 
+
 //Iconos
 import ActionFeedback from 'material-ui/svg-icons/action/feedback';
 import ActionDns from 'material-ui/svg-icons/action/dns';
@@ -128,15 +129,13 @@ class RecursosHumanosNavigation extends React.Component {
   }
 
   getButtons(){
-    if( this.props.permissions === 10 ){
-      return (
-        <div>
-          <FloatingActionButton style={styles.floatingButton2}  mini={true} disabled={false} onClick={ () => this.handleLocation("nuevo_trabajador") } backgroundColor="#FDD835" >
-            <MapsPersonPin color="000"/>
-          </FloatingActionButton>
-        </div>
-      )
-    }
+    return (
+      <div>
+        <FloatingActionButton style={styles.floatingButton2}  mini={true} disabled={false} onClick={ () => this.handleLocation("nuevo_trabajador") } backgroundColor="#FDD835" >
+          <MapsPersonPin color="000"/>
+        </FloatingActionButton>
+      </div>
+    )
   }
 
 
