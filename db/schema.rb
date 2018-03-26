@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180313211427) do
+ActiveRecord::Schema.define(version: 20180324204818) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -363,6 +363,16 @@ ActiveRecord::Schema.define(version: 20180313211427) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "worker_planifications", force: :cascade do |t|
+    t.bigint "worker_id"
+    t.date "start_date"
+    t.date "end_date"
+    t.string "horas_estimadas"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["worker_id"], name: "index_worker_planifications_on_worker_id"
+  end
+
   create_table "workers", force: :cascade do |t|
     t.string "fullname"
     t.string "codigo"
@@ -372,6 +382,7 @@ ActiveRecord::Schema.define(version: 20180313211427) do
     t.string "fecha_calculo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "dias_pendientes", default: 0.0
   end
 
   add_foreign_key "good_activities", "good_stages"
@@ -392,4 +403,5 @@ ActiveRecord::Schema.define(version: 20180313211427) do
   add_foreign_key "without_goods", "users"
   add_foreign_key "without_goods", "without_good_activities"
   add_foreign_key "without_goods", "withoutgood_stages"
+  add_foreign_key "worker_planifications", "workers"
 end

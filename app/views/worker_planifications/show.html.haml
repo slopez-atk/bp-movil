@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Worker:
+  = @worker_planification.worker
+%p
+  %b Start date:
+  = @worker_planification.start_date
+%p
+  %b End date:
+  = @worker_planification.end_date
+%p
+  %b Horas estimadas:
+  = @worker_planification.horas_estimadas
+
+= link_to 'Edit', edit_worker_planification_path(@worker_planification)
+\|
+= link_to 'Back', worker_planifications_path

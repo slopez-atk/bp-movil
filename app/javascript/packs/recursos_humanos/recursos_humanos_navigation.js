@@ -17,17 +17,12 @@ import FloatingActionButton from 'material-ui/FloatingActionButton';
 
 
 //Iconos
-import ActionFeedback from 'material-ui/svg-icons/action/feedback';
 import ActionDns from 'material-ui/svg-icons/action/dns';
+import ActionDateRange from 'material-ui/svg-icons/action/date-range';
 import ActionViewQuilt from 'material-ui/svg-icons/action/view-quilt';
 import ActionHome from 'material-ui/svg-icons/action/home';
 import MapsPersonPin from 'material-ui/svg-icons/maps/person-pin';
-import ViewDay from 'material-ui/svg-icons/action/view-day';
-import ViewWeek from 'material-ui/svg-icons/action/view-week';
-import DeveloperBoard from 'material-ui/svg-icons/hardware/developer-board';
-import Equalizer from 'material-ui/svg-icons/av/equalizer';
-import Event from 'material-ui/svg-icons/action/event';
-import MarkunreadMailbox from 'material-ui/svg-icons/action/markunread-mailbox';
+
 
 
 //Colores
@@ -82,8 +77,17 @@ const styles = {
   floatingButton2: {
     margin: 0,
     top: 'auto',
-    right: 30,
+    right: 20,
     bottom: 85,
+    left: 'auto',
+    position: 'fixed',
+    zIndex: 10
+  },
+  floatingButton3: {
+    margin: 0,
+    top: 'auto',
+    right: 20,
+    bottom: 150,
     left: 'auto',
     position: 'fixed',
     zIndex: 10
@@ -121,6 +125,10 @@ class RecursosHumanosNavigation extends React.Component {
       case 'nuevo_trabajador':
         window.location = '/workers/new';
         break;
+
+      case 'planificacion':
+        window.location = '/recursos_humanos/planificacion_general';
+        break;
     }
   };
 
@@ -131,9 +139,17 @@ class RecursosHumanosNavigation extends React.Component {
   getButtons(){
     return (
       <div>
-        <FloatingActionButton style={styles.floatingButton2}  mini={true} disabled={false} onClick={ () => this.handleLocation("nuevo_trabajador") } backgroundColor="#FDD835" >
-          <MapsPersonPin color="000"/>
-        </FloatingActionButton>
+        <div>
+          <FloatingActionButton style={styles.floatingButton2}   disabled={false} onClick={ () => this.handleLocation("nuevo_trabajador") } backgroundColor="#FDD835" >
+            <MapsPersonPin color="000"/>
+          </FloatingActionButton>
+        </div>
+
+        <div>
+          <FloatingActionButton style={styles.floatingButton3}   disabled={false} onClick={ () => this.handleLocation("planificacion") } backgroundColor="#2E3092" >
+            <ActionDateRange color="000"/>
+          </FloatingActionButton>
+        </div>
       </div>
     )
   }

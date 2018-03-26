@@ -9,8 +9,11 @@ class CreditsController < ApplicationController
   def creditos_por_vencer
     dia_inicio = params["diaInicio"]
     dia_fin = params["diaFin"]
-    @asesor = params['asesor']
-    @agencia = params['agencia']
+
+    params['asesor'] == ' ' ? @asesor = 'Todos' : @asesor = params['asesor']
+    params['agencia'] == ' ' ? @agencia = 'Todos' : @agencia = params['agencia']
+
+
     # Obtengo los creditos por semana
     @data = Oracledb.obtener_creditos_por_vencer Date.new(Date.current.year,Date.current.month,1), Date.new(Time.current.year,Time.current.month,-1), params['agencia'], params['asesor'], dia_inicio, dia_fin
     # @secondWeek = Oracledb.obtener_creditos_por_vencer Date.new(Date.current.year,Date.current.month,8), Date.new(Time.current.year,Time.current.month,14), params['agencia'], params['asesor'],'secondWeek'
@@ -144,8 +147,8 @@ class CreditsController < ApplicationController
   def cartera_recuperada
     dia_inicio = params["diaInicio"]
     dia_fin = params["diaFin"]
-    @asesor = params['asesor']
-    @agencia = params['agencia']
+    params['asesor'] == ' ' ? @asesor = 'Todos' : @asesor = params['asesor']
+    params['agencia'] == ' ' ? @agencia = 'Todos' : @agencia = params['agencia']
     # Obtengo los creditos por semana
     @data = Oracledb.cartera_recuperada Date.new(Date.current.year,Date.current.month,1), Date.new(Time.current.year,Time.current.month,-1), params['agencia'], params['asesor'], dia_inicio, dia_fin
     # @secondWeek = Oracledb.obtener_creditos_por_vencer Date.new(Date.current.year,Date.current.month,8), Date.new(Time.current.year,Time.current.month,14), params['agencia'], params['asesor'],'secondWeek'
@@ -354,8 +357,8 @@ class CreditsController < ApplicationController
   def cosechas
     @fecha = params["fecha"]
 
-    @agencia = params["agencia"]
-    @asesor = params["asesor"]
+    params['asesor'] == ' ' ? @asesor = 'Todos' : @asesor = params['asesor']
+    params['agencia'] == ' ' ? @agencia = 'Todos' : @agencia = params['agencia']
     @hash_datos = Hash.new
     @hash_cantidades = Hash.new
     @hash_saldos = Hash.new
@@ -435,8 +438,8 @@ class CreditsController < ApplicationController
     @hash_cantidades = Hash.new
     @hash_saldos = Hash.new
     @saldo_total = 0
-    @agencia = params["agencia"]
-    @asesor = params["asesor"]
+    params['asesor'] == ' ' ? @asesor = 'Todos' : @asesor = params['asesor']
+    params['agencia'] == ' ' ? @agencia = 'Todos' : @agencia = params['agencia']
 
     data.each do |row|
       row.stringify_keys!
@@ -506,8 +509,8 @@ class CreditsController < ApplicationController
 
   def indicadores_creditos_vigentes
     @data = Oracledb.indicadores_creditos_vigentes params["fecha"], params["diaInicio"], params["diaFin"], params["agencia"], params["asesor"]
-    @agencia = params["agencia"]
-    @asesor = params["asesor"]
+    params['asesor'] == ' ' ? @asesor = 'Todos' : @asesor = params['asesor']
+    params['agencia'] == ' ' ? @agencia = 'Todos' : @agencia = params['agencia']
     @hash_genero = Hash.new
     @hash_sector = Hash.new
     @hash_tipo_credito = Hash.new
@@ -750,8 +753,8 @@ class CreditsController < ApplicationController
 
   def indicadores_creditos_colocados
     @data = Oracledb.indicadores_creditos_colocados params["fechaInicio"], params["fechaFin"], params["diaInicio"], params["diaFin"], params["agencia"], params["asesor"]
-    @agencia = params["agencia"]
-    @asesor = params["asesor"]
+    params['asesor'] == ' ' ? @asesor = 'Todos' : @asesor = params['asesor']
+    params['agencia'] == ' ' ? @agencia = 'Todos' : @agencia = params['agencia']
     @hash_genero = Hash.new
     @hash_sector = Hash.new
     @hash_tipo_credito = Hash.new

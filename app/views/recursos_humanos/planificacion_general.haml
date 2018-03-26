@@ -1,0 +1,6 @@
+.row.center-xs.top-space.bottom-space
+  .col-xs-12.col-md-11
+    = react_component "CalendarPermissions",
+      eventos: @planificaciones,
+      authenticity_token: form_authenticity_token,
+      display_extras: false

@@ -2,19 +2,22 @@
 #
 # Table name: workers
 #
-#  id            :integer          not null, primary key
-#  fullname      :string
-#  codigo        :string
-#  agencia       :string
-#  cargo         :string
-#  fecha_ingreso :date
-#  fecha_calculo :string
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
+#  id              :integer          not null, primary key
+#  fullname        :string
+#  codigo          :string
+#  agencia         :string
+#  cargo           :string
+#  fecha_ingreso   :date
+#  fecha_calculo   :string
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  dias_pendientes :float            default(0.0)
 #
+
 class Worker < ApplicationRecord
   has_many :vacations
   has_many :permission_histories
+  has_many :worker_planifications
 
   def calcular_vacaciones
     fecha = self.fecha_calculo.to_date
@@ -36,12 +39,6 @@ class Worker < ApplicationRecord
           [anios + 15,'rojo']
         end
       end
-
-      # if dias2 >= 1825
-      #
-      # else
-      #   [15,'rojo']
-      # end
     elsif dias < 330
       [0,'verde']
     elsif dias > 331 && dias < 365
@@ -61,7 +58,8 @@ class Worker < ApplicationRecord
 
   def calculo_horas_restantes
     dias = self.calcular_vacaciones
-    total = dias[0] * 8
+    dias = dias[0].to_i + self.dias_pendientes # <= Dias Acumuladas
+    total = dias * 8
 
     consumidos = self.calcular_horas_consumidos
     total - consumidos

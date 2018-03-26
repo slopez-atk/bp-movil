@@ -10,6 +10,16 @@ class RecursosHumanosController < ApplicationController
     @workers = Worker.order(:agencia => :asc, :fullname => :asc)
   end
 
+  def planificacion_general
+    @planificaciones = WorkerPlanification.all.as_json
+    @planificaciones.each do |item|
+      worker = Worker.find(item['worker_id'])
+      item['fullname'] = worker['fullname'] + " - " + worker['agencia']
+      item['start_date'] = item['start_date'].to_date.strftime('%d-%m-%Y')
+      item['end_date'] = item['end_date'].to_date.strftime('%d-%m-%Y')
+    end
+  end
+
   def guardar_historial
     @worker.vacations.each do |permission|
       history = @worker.permission_histories.build(permission.as_json.to_h.except!("id"))
@@ -18,8 +28,10 @@ class RecursosHumanosController < ApplicationController
     end
 
     nueva_fecha = @worker.fecha_calculo.to_date + 365.day
-    @worker.update(fecha_calculo: nueva_fecha)
+    horas_restantes = (@worker.calculo_horas_restantes.to_f / 8.0).round(1) + @worker.dias_pendientes
+    @worker.update(fecha_calculo: nueva_fecha, dias_pendientes: horas_restantes)
     @worker.vacations.destroy_all
+    @worker.worker_planifications.destroy_all
     redirect_to @worker, notice: "Permisos del empleado #{@worker.fullname} actualizados"
 
   end

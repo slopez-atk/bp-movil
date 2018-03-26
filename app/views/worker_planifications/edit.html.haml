@@ -1,0 +1,8 @@
+.row
+  .col-xs-11.col-md-6.col-md-offset-3
+    %h4.text-primary.text-center= "Editar planificaciones de #{@worker_planification.worker.fullname}"
+    = render 'form'
+.row.center-xs.big-top-space
+  .col-xs-12
+    = link_to 'Regresar', worker_planifications_path(id: @worker_planification.worker.id), class: "btn btn-info btn-hg"
+

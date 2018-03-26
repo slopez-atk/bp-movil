@@ -1,0 +1,15 @@
+.row.center-xs.top-space.bottom-space
+  .col-xs-12.col-md-11.start-xs
+    = link_to 'Regresar', @worker, class: 'btn btn-primary btn-hg'
+  .col-xs-12.col-md-11.center-xs
+    %h3.text-primary
+      Planificaciones de
+      = @worker.fullname
+.row.center-xs.top-space.bottom-space
+  .col-xs-12.col-md-11
+    = react_component "CalendarPermissions",
+      fecha_actual: @fecha_actual,
+      eventos: @planificaciones,
+      authenticity_token: form_authenticity_token,
+      worker_id: @worker.id,
+      display_extras: true

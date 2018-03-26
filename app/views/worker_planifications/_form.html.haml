@@ -1,0 +1,34 @@
+= form_for @worker_planification do |f|
+  - if @worker_planification.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@worker_planification.errors.count, "error")} prohibited this worker_planification from being saved:"
+      %ul
+        - @worker_planification.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.hidden_field :worker
+  .form-group
+    %p.text-left.color-blue
+      %b Fecha de Inicio
+    .input-group
+      %span.input-group-btn
+        %button{class:"btn", type:"button"}
+          Calendario
+      = text_field "worker_planification", :start_date, class:"form-control datepick", id: "datepicker1"
+
+  .form-group
+    %p.text-left.color-blue
+      %b Fecha de Finalización
+    .input-group
+      %span.input-group-btn
+        %button{class:"btn", type:"button"}
+          Calendario
+      = text_field "worker_planification", :end_date, class:"form-control datepick", id: "datepicker2"
+
+  .form-group
+    %p.text-left.color-blue
+      %b Descripción
+    = f.text_field :horas_estimadas, class: "form-control"
+  .actions
+    = f.submit 'Enviar', class: "btn btn-success"

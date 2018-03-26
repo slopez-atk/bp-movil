@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :worker_planifications
   resources :permission_histories
   resources :vacations, only: [:new, :edit, :update, :destroy, :create]
   resources :workers, except: [:index]
@@ -89,5 +90,6 @@ Rails.application.routes.draw do
   namespace :recursos_humanos do
     get 'vacaciones'
     post 'guardar_historial'
+    get 'planificacion_general'
   end
 end

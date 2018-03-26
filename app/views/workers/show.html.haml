@@ -26,32 +26,43 @@
               = link_to "Ingresar Permiso", new_vacation_path(id: @worker.id), class: "btn btn-info top-space bottom-space"
               = link_to "Editar Empleado", edit_worker_path(@worker), class: "btn btn-info top-space bottom-space"
             = link_to "Historial de Permisos", permission_histories_path(id: @worker.id), class: "btn btn-info top-space bottom-space"
-            - if @horas_restantes == 0
-              = link_to "Culminar Periodo", recursos_humanos_guardar_historial_path(id: @worker.id), method: :post, class: "btn btn-info"
+            = link_to "Culminar Periodo", recursos_humanos_guardar_historial_path(id: @worker.id), method: :post, class: "btn btn-danger", data: { confirm: 'Estás segura?' }
+            = link_to "Planifiacaciones", worker_planifications_path(:id => @worker.id), class: 'btn btn-info top-space bottom-space'
 
       .row.center-xs.top-space
-        .col-xs-4
+        .col-xs-6
           %h6
             %b.text-primary Días Vigentes:
             = @dias_vigentes[0]
-        .col-xs-4
+
+        .col-xs-6
           %h6
-            %b.text-primary Horas Restantes:
-            = @horas_restantes
+            %b.text-primary Días Acumulados:
+            = @worker.dias_pendientes
 
       .row.center-xs.top-space
         .col-xs-4
           %h6
             %b.text-primary Días Restantes:
             = (@horas_restantes / 8.0).round(1)
+
         .col-xs-4
           %h6
-            %b.text-primary Horas ocupadas:
-            = @worker.calcular_horas_consumidos
-        .col-xs-4
+            %b.text-primary Horas Restantes:
+            = @horas_restantes
+
+
+
+      .row.center-xs.top-space
+        .col-xs-6
           %h6
             %b.text-primary Días ocupados:
             = (@worker.calcular_horas_consumidos / 8.0).round(1)
+
+        .col-xs-6
+          %h6
+            %b.text-primary Horas ocupadas:
+            = @worker.calcular_horas_consumidos
 
     .table-responsive.big-top-space
       %table.table.table-striped.table-hover
