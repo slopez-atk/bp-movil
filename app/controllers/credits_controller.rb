@@ -357,13 +357,13 @@ class CreditsController < ApplicationController
   def cosechas
     @fecha = params["fecha"]
 
-    params['asesor'] == ' ' ? @asesor = 'Todos' : @asesor = params['asesor']
-    params['agencia'] == ' ' ? @agencia = 'Todos' : @agencia = params['agencia']
     @hash_datos = Hash.new
     @hash_cantidades = Hash.new
     @hash_saldos = Hash.new
 
     @data = Oracledb.obtener_cosechas @fecha,  @agencia, @asesor
+    params['asesor'] == ' ' ? @asesor = 'Todos' : @asesor = params['asesor']
+    params['agencia'] == ' ' ? @agencia = 'Todos' : @agencia = params['agencia']
 
 
     @data.each do |row|
