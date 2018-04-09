@@ -1,16 +1,15 @@
 .row.center-xs
+  .col-xs-12.col-md-5.top-space
+    %h4
+      %b.text-primary Agencia:
+      = @agencia
+  .col-xs-12.col-md-5.top-space
+    %h4
+      %b.text-primary Asesor:
+      = @asesor
   .col-xs-11.col-xs-offset
     = react_component "MatrizTransicion",
     data: @hash_datos,
     cantidades: @hash_cantidades,
     saldos: @hash_saldos,
     matriz: @matriz
-
-    .col-xs-12.col-md-5.top-space
-      %h4
-        %b.text-primary Agencia:
-        = @agencia
-    .col-xs-12.col-md-5.top-space
-      %h4
-        %b.text-primary Asesor:
-        = @asesor
