@@ -16,16 +16,12 @@ import Divider from 'material-ui/Divider';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 
 //Iconos
-import ActionFeedback from 'material-ui/svg-icons/action/feedback';
 import ActionDns from 'material-ui/svg-icons/action/dns';
 import ActionViewQuilt from 'material-ui/svg-icons/action/view-quilt';
 import ActionHome from 'material-ui/svg-icons/action/home';
-import ViewDay from 'material-ui/svg-icons/action/view-day';
-import ViewWeek from 'material-ui/svg-icons/action/view-week';
-import DeveloperBoard from 'material-ui/svg-icons/hardware/developer-board';
-import Equalizer from 'material-ui/svg-icons/av/equalizer';
 import Event from 'material-ui/svg-icons/action/event';
-import MarkunreadMailbox from 'material-ui/svg-icons/action/markunread-mailbox';
+import AccountBalance from 'material-ui/svg-icons/action/account-balance';
+
 
 
 //Colores
@@ -86,7 +82,8 @@ class AgenciasNavigation extends React.Component {
     super(props);
     this.state = {
       open: false,
-      openModalReporteCuentas: false
+      openModalReporteCuentas: false,
+      openModalIndicadoresSeps: false,
     };
   }
 
@@ -100,6 +97,9 @@ class AgenciasNavigation extends React.Component {
   };
   handleModal1 = () => {
     this.setState({openModalReporteCuentas: !this.state.openModalReporteCuentas});
+  };
+  handleModal2 = () => {
+    this.setState({openModalIndicadoresSeps: !this.state.openModalIndicadoresSeps});
   };
 
   handleLocation = (action) => {
@@ -118,13 +118,24 @@ class AgenciasNavigation extends React.Component {
     let permissions = this.props.permissions;
     return(
       <div>
-        <Divider/>
-        <MenuItem
-          primaryText="Reporte de Cuentas"
-          leftIcon={ <Event color='#444444'/>}
-          style={{color: '#444444'}}
-          onClick={ this.handleModal1 } />
+        <div>
+          <Divider/>
+          <MenuItem
+            primaryText="Indicadores Financieros"
+            leftIcon={ <Event color='#444444'/>}
+            style={{color: '#444444'}}
+            onClick={ this.handleModal1 } />
+
+          <Divider/>
+
+          <MenuItem
+            primaryText="Indicadores de la Seps"
+            leftIcon={ <AccountBalance color='#444444'/>}
+            style={{color: '#444444'}}
+            onClick={ this.handleModal2 } />
+        </div>
       </div>
+
     );
   }
 
@@ -135,6 +146,13 @@ class AgenciasNavigation extends React.Component {
         label="Cancelar"
         primary={true}
         onClick={this.handleModal1}
+      />,
+    ];
+    const actions2 = [
+      <FlatButton
+        label="Cancelar"
+        primary={true}
+        onClick={this.handleModal2}
       />,
     ];
     return(
@@ -155,6 +173,7 @@ class AgenciasNavigation extends React.Component {
               style={{color: '#444444'}}
               onClick={()=> this.handleLocation('dashboard') }
             />
+            <Divider/>
             <MenuItem
               primaryText="Inicio"
               leftIcon={ <ActionHome color='#444444'/>}
@@ -179,12 +198,29 @@ class AgenciasNavigation extends React.Component {
               actions={actions1}
             >
               <div className="row center-xs middle-xs">
-                <h4 style={{color: "#2E3092"}}>Reporte de Cuentas</h4>
+                <h4 style={{color: "#2E3092"}}>Indicadores Financieros</h4>
                 <div className="col-xs-10" style={styles.div}>
                   <IndicadoresFinancierosForm
                     authenticity_token={ this.props.authenticity_token }
                     url='/agencias/indicadores_financieros'
                     title='Informe de Cuentas por Agencia'/>
+                </div>
+              </div>
+            </Dialog>
+
+            <Dialog
+              modal={true}
+              contentStyle={customContentStyle}
+              open={ this.state.openModalIndicadoresSeps }
+              actions={actions2}
+            >
+              <div className="row center-xs middle-xs">
+                <h4 style={{color: "#2E3092"}}>Indicadores de la Seps</h4>
+                <div className="col-xs-10" style={styles.div}>
+                  <IndicadoresFinancierosForm
+                    authenticity_token={ this.props.authenticity_token }
+                    url='/agencias/indicadores_seps'
+                    title='Informe de indicadores de la Seps'/>
                 </div>
               </div>
             </Dialog>

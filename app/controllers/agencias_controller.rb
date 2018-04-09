@@ -1,10 +1,10 @@
 class AgenciasController < ApplicationController
   before_action :authenticate_user!
   def index
-
   end
 
   def indicadores_financieros
+    @nombre_agencia = OracledbAgencias.obtener_nombre_agencia params['agencia']
     @array_de_datos = Array.new
     fecha_final = Date.current.end_of_year
     fecha_inicial = fecha_final - 1.year
@@ -175,6 +175,7 @@ class AgenciasController < ApplicationController
   end
 
   def indicadores_seps
+    @nombre_agencia = OracledbAgencias.obtener_nombre_agencia params['agencia']
     fecha_final = Date.current.end_of_year
     fecha_inicial = Date.current.end_of_month
     arrego_de_fechas = extraer_fechas_entre(fecha_inicial, fecha_final)

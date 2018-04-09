@@ -1,4 +1,9 @@
 .row.center-xs.top-space
+  .col-xs-12.col-md-5
+    %h4
+      %b.text-primary Agencia:
+      = @nombre_agencia
+
   .col-xs-11
     = react_component 'IndicadoresSeps',
     solvencia_normativa: @solvencia_normativa,

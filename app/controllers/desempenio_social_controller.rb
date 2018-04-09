@@ -13,6 +13,8 @@ class DesempenioSocialController < ApplicationController
     @mes_1 = fecha_inicial.to_date.strftime('%B')
     @mes_2 = fecha_final.to_date.strftime('%B')
 
+    @nombre_agencia = OracledbAgencias.obtener_nombre_agencia agencia
+
     if agencia == "todos"
       method = OracledbAgencias.method(:obtener_sumatoria_cuentas_cacmu)
     else

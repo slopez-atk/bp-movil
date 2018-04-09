@@ -1,5 +1,6 @@
 import React from 'react';
 import WebpackerReact from 'webpacker-react';
+import BalanceSocialForm from "../../components/DesepenioSocial/DesempenioForms/BalanceSocialForm";
 
 
 import Dialog from 'material-ui/Dialog';
@@ -16,16 +17,10 @@ import Divider from 'material-ui/Divider';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 
 //Iconos
-import ActionFeedback from 'material-ui/svg-icons/action/feedback';
 import ActionDns from 'material-ui/svg-icons/action/dns';
 import ActionViewQuilt from 'material-ui/svg-icons/action/view-quilt';
 import ActionHome from 'material-ui/svg-icons/action/home';
-import ViewDay from 'material-ui/svg-icons/action/view-day';
-import ViewWeek from 'material-ui/svg-icons/action/view-week';
-import DeveloperBoard from 'material-ui/svg-icons/hardware/developer-board';
-import Equalizer from 'material-ui/svg-icons/av/equalizer';
-import Event from 'material-ui/svg-icons/action/event';
-import MarkunreadMailbox from 'material-ui/svg-icons/action/markunread-mailbox';
+import AccountCircle from 'material-ui/svg-icons/action/account-circle';
 
 
 //Colores
@@ -35,7 +30,6 @@ import {
   grey100, grey300, grey400, grey500,
   white, darkBlack, fullBlack,
 } from 'material-ui/styles/colors';
-
 
 const customContentStyle = {
   width: '100%',
@@ -85,6 +79,7 @@ class DesempenioSocialNavigation extends React.Component {
     super(props);
     this.state = {
       open: false,
+      openModalBalanceSocial: false,
     };
   }
 
@@ -96,23 +91,45 @@ class DesempenioSocialNavigation extends React.Component {
   handleClose = () => {
     this.setState({open: false});
   };
+  handleModal1 = () => {
+    this.setState({openModalBalanceSocial: !this.state.openModalBalanceSocial});
+  };
 
   handleLocation = (action) => {
     switch (action) {
       case 'home':
         window.location = '/desempeño_social';
+      break;
 
       case 'dashboard':
         window.location = '/';
+      break;
     }
   };
 
   getMenuItems(){
     let permissions = this.props.permissions;
+    return(
+      <div>
+        <Divider/>
+        <MenuItem
+          primaryText="Balance Social"
+          leftIcon={ <AccountCircle color='#444444'/>}
+          style={{color: '#444444'}}
+          onClick={ this.handleModal1 } />
+      </div>
+    )
   }
 
 
   render(){
+    const actions1 = [
+      <FlatButton
+        label="Cancelar"
+        primary={true}
+        onClick={this.handleModal1}
+      />,
+    ];
     return(
       <MuiThemeProvider muiTheme={getMuiTheme(muiTheme)}>
         <div>
@@ -145,6 +162,25 @@ class DesempenioSocialNavigation extends React.Component {
             <FloatingActionButton style={styles.floatingButton}  disabled={false} onClick={ this.handleToggle } backgroundColor="#2E3092" >
               <ActionDns color="FDD835"/>
             </FloatingActionButton>
+          </div>
+
+          <div>
+            <Dialog
+              modal={true}
+              contentStyle={customContentStyle}
+              open={ this.state.openModalBalanceSocial }
+              actions={actions1}
+            >
+              <div className="row center-xs middle-xs">
+                <h4 style={{color: "#2E3092"}}>Indicadores de la Seps</h4>
+                <div className="col-xs-11" style={styles.div}>
+                  <BalanceSocialForm
+                    url='/desempenio_social/balance_social'
+                    title='Balance Social'
+                    authenticity_token={ this.props.authenticity_token }/>
+                </div>
+              </div>
+            </Dialog>
           </div>
 
         </div>

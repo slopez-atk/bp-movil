@@ -11,7 +11,7 @@ class DesempenioSocial extends React.Component{
   getForms(){
     return(
       <div>
-        <div className="col-xs-12 col-md-5">
+        <div className="col-xs-12 col-md-6">
           <BalanceSocialForm
             url='/desempenio_social/balance_social'
             title='Balance Social'
@@ -25,7 +25,7 @@ class DesempenioSocial extends React.Component{
   render(){
     return(
       <div className="row center-xs middle-xs">
-        <div className="col-xs-12 col-md-11 top-space col-md-offset-1 bottom-space">
+        <div className="col-xs-12 col-md-11 top-space col-md-offset-4 bottom-space">
           { this.getForms() }
         </div>
       </div>

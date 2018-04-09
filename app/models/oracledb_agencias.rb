@@ -580,4 +580,27 @@ class OracledbAgencias < ApplicationRecord
     File.open(file, "wb"){ |f| f << serialized_array }
   end
 
+  def self.obtener_nombre_agencia number
+    case number.to_i
+      when 1
+        "Matriz"
+      when 5
+        "La Merced"
+      when 3
+        "Cuenca del Lago San Pablo"
+      when 2
+        "Cuenca del Rio Mira"
+      when 7
+        "Economia Solidaria"
+      when 9
+        "Frontera Norte"
+      when 8
+        "Servimóvil"
+      when 6
+        "Valle Fertil"
+    else
+      "Todos"
+    end
+  end
+
 end
