@@ -481,7 +481,7 @@ class OracledbAgencias < ApplicationRecord
     valor_t1 = OracledbAgencias.obtener_indicador_seps cta, fecha_anterior, agencia
     activo_total_promedio = (valor_t + valor_t1)/2
 
-    roa = (valor_cts / activo_total_promedio).round(4)
+    roa = (valor_cts / activo_total_promedio).round(5)
     # ------------------------------------------------------------------------------
 
 
@@ -489,7 +489,7 @@ class OracledbAgencias < ApplicationRecord
     cta_45 = [45]
     @@valor_cta_45 = OracledbAgencias.obtener_indicador_seps cta_45, fecha, agencia
 
-    eficiencia_institucional = (@@valor_cta_45 / @@valor_cartera_bruta).round(2)
+    eficiencia_institucional = (@@valor_cta_45 / @@valor_cartera_bruta).round(4)
     # ------------------------------------------------------------------------------
 
 
