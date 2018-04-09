@@ -77,6 +77,7 @@ Rails.application.routes.draw do
   get '/agencias', to: 'agencias#index', as: :agencias_root
   namespace :agencias do
     post 'indicadores_financieros'
+    post 'indicadores_seps'
   end
 
   # Medulo de Desemponio Social

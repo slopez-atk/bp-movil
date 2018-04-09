@@ -46,9 +46,9 @@ class PerMonthPercent extends React.Component{
     let totalCantidad = this.props.first[1] + this.props.second[1] + this.props.third[1] + this.props.fourth[1];
     let totalProvision = ProvisionFirst + ProvisionSecond + ProvisionThird + ProvisionFourth;
 
-    let PagoPorcentaje1 = ((10*totalSaldo)/100).toFixed(2);
-    let PagoPorcentaje2 = ((40*totalSaldo)/100).toFixed(2);
-    let PagoPorcentaje3 = ((40*totalSaldo)/100).toFixed(2);
+    let PagoPorcentaje1 = ((40*totalSaldo)/100).toFixed(2);
+    let PagoPorcentaje2 = ((30*totalSaldo)/100).toFixed(2);
+    let PagoPorcentaje3 = ((20*totalSaldo)/100).toFixed(2);
     let PagoPorcentaje4 = ((10*totalSaldo)/100).toFixed(2);
 
     let first = [Number(((SaldoFirst * 100)/totalSaldo).toFixed(2)),Number(((this.props.first[1] * 100)/totalCantidad).toFixed(2)),Number(((ProvisionFirst * 100)/totalProvision).toFixed(2)),PagoPorcentaje1];

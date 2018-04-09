@@ -19,6 +19,8 @@ class Worker < ApplicationRecord
   has_many :permission_histories
   has_many :worker_planifications
 
+  before_create :update_date
+
   def calcular_vacaciones
     fecha = self.fecha_calculo.to_date
     dias = (Date.current - fecha).to_i
@@ -53,7 +55,7 @@ class Worker < ApplicationRecord
     self.vacations.each do |permiso|
       total += permiso.horas.to_i
     end
-    total
+    total.round(2)
   end
 
   def calculo_horas_restantes
@@ -62,6 +64,11 @@ class Worker < ApplicationRecord
     total = dias * 8
 
     consumidos = self.calcular_horas_consumidos
-    total - consumidos
+    (total - consumidos).round(2)
+  end
+
+  private
+  def update_date
+    self.fecha_calculo = (self.fecha_calculo.to_date - 1.year).strftime('%d-%m-%Y')
   end
 end

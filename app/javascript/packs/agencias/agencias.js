@@ -17,6 +17,13 @@ class Agencias extends React.Component{
             title='Informe de Cuentas por Agencia'
             authenticity_token={ this.props.authenticity_token }/>
         </div>
+
+        <div className="col-xs-12 col-md-5">
+          <IndicadoresFinancierosForm
+            url='/agencias/indicadores_seps'
+            title='Indicadores de la Seps'
+            authenticity_token={ this.props.authenticity_token }/>
+        </div>
       </div>
     );
   }
@@ -25,7 +32,7 @@ class Agencias extends React.Component{
   render(){
     return(
       <div className="row center-xs middle-xs">
-        <div className="col-xs-12 col-md-11 top-space col-md-offset-1 bottom-space">
+        <div className="col-xs-12 col-md-11  top-space bottom-space">
           { this.getForms() }
         </div>
       </div>

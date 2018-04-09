@@ -170,10 +170,88 @@ class AgenciasController < ApplicationController
       suma_patrimonio = activo - pasivo
       @patrimonio.push(suma_patrimonio.round(2))
       suma_patrimonio = 0.0
-
-
     end
 
+  end
+
+  def indicadores_seps
+    fecha_final = Date.current.end_of_year
+    fecha_inicial = Date.current.end_of_month
+    arrego_de_fechas = extraer_fechas_entre(fecha_inicial, fecha_final)
+    agencia = params['agencia']
+    # arrego_de_fechas = ['01/02/2018']
+
+
+    @year = fecha_final.year
+    @last_year = @year - 1
+
+    # @year = 2018
+    # @last_year = 2017
+
+    # Arrays de indicadores
+    @solvencia_normativa = Array.new
+    @apalancamiento = Array.new
+    @liquidez = Array.new
+    @morosidad_ampliada = Array.new
+    @covertura_provision = Array.new
+    @relacion_productividad = Array.new
+    @roa = Array.new
+    @eficiencia_institucional = Array.new
+    @grado_absorcion_mf = Array.new
+    @tasa_activa = Array.new
+    @tasa_pasiva_general = Array.new
+    @roe = Array.new
+
+    # Recupero los datos guardados en el txt y las asigno a las variables
+    store = OracledbAgencias.obtener_indicador_seps_guardados agencia
+    @solvencia_normativa = store[0]
+    @apalancamiento = store[1]
+    @liquidez = store[2]
+    @morosidad_ampliada = store[3]
+    @covertura_provision = store[4]
+    @relacion_productividad = store[5]
+    @roa = store[6]
+    @eficiencia_institucional = store[7]
+    @grado_absorcion_mf = store[8]
+    @tasa_activa = store[9]
+    @tasa_pasiva_general = store[10]
+    @roe = store[11]
+
+    # Consulto los indicadores de este mes y al resto los asigno cero
+    arrego_de_fechas.each do |fecha|
+      fecha = fecha.to_date
+      if fecha.month == Time.now.month and fecha.year == Time.now.year
+        #  Es la iteracion del mes actual
+        data = OracledbAgencias.indicadores_seps_al_mes fecha, agencia
+        @solvencia_normativa.push(data[0])
+        @apalancamiento.push(data[1])
+        @liquidez.push(data[2])
+        @morosidad_ampliada.push(data[3])
+        @covertura_provision.push(data[4])
+        @relacion_productividad.push(data[5])
+        @roa.push(data[6])
+        @eficiencia_institucional.push(data[7])
+        @grado_absorcion_mf.push(data[8])
+        @tasa_activa.push(data[9])
+        @tasa_pasiva_general.push(data[10])
+        @roe.push(data[11])
+
+      else
+        #  Es la iteracion de los futuros meses
+        @solvencia_normativa.push(0)
+        @apalancamiento.push(0)
+        @liquidez.push(0)
+        @morosidad_ampliada.push(0)
+        @covertura_provision.push(0)
+        @relacion_productividad.push(0)
+        @roa.push(0)
+        @eficiencia_institucional.push(0)
+        @grado_absorcion_mf.push(0)
+        @tasa_activa.push(0)
+        @tasa_pasiva_general.push(0)
+        @roe.push(0)
+      end
+    end
   end
 
 
@@ -188,8 +266,6 @@ class AgenciasController < ApplicationController
     (inicio.year..fin.year).each do |y|
       mo_start = (inicio.year == y) ? inicio.month : 1
       mo_end = (fin.year == y) ? fin.month : 12
-
-
       (mo_start..mo_end).each do |m|
         fecha = Date.new(y,m,1).strftime('%d-%m-%Y').to_s
         arr.push(fecha)

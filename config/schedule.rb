@@ -33,6 +33,15 @@ set :output, {:error => '/home/deploy/error.log', :standard => '/home/deploy/sta
 
 every 1.day, :at => '5:00 am' do
   runner "Oracledb.guardar_creditos_pendientes"
+  runner "OracledbAgencias.guardar_indicadores_seps"
+end
+
+every 1.day, :at => '6:00 am' do
+  runner "OracledbAgencias.guardar_indicadores_seps"
+end
+
+every 1.day, :at => '7:00 am' do
+  runner "OracledbAgencias.guardar_logs"
 end
 
 # every 2.minutes do

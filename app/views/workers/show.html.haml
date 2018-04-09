@@ -44,7 +44,7 @@
         .col-xs-4
           %h6
             %b.text-primary Días Restantes:
-            = (@horas_restantes / 8.0).round(1)
+            = (@horas_restantes / 8.0).round(2)
 
         .col-xs-4
           %h6
@@ -57,7 +57,7 @@
         .col-xs-6
           %h6
             %b.text-primary Días ocupados:
-            = (@worker.calcular_horas_consumidos / 8.0).round(1)
+            = (@worker.calcular_horas_consumidos / 8.0).round(2)
 
         .col-xs-6
           %h6

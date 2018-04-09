@@ -28,7 +28,7 @@ class RecursosHumanosController < ApplicationController
     end
 
     nueva_fecha = @worker.fecha_calculo.to_date + 365.day
-    horas_restantes = (@worker.calculo_horas_restantes.to_f / 8.0).round(1) + @worker.dias_pendientes
+    horas_restantes = (@worker.calculo_horas_restantes.to_f / 8.0).round(2)
     @worker.update(fecha_calculo: nueva_fecha, dias_pendientes: horas_restantes)
     @worker.vacations.destroy_all
     @worker.worker_planifications.destroy_all
