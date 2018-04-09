@@ -4,6 +4,14 @@
     <list default="true" id="80e436f7-3cf3-4a79-b522-a1f65f1de881" name="Default" comment="">
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/javascript/packs/agencias/indicadores_seps.js" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/agencias/indicadores_seps.haml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/indicadores/1.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/indicadores/3.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/indicadores/5.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/indicadores/6.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/indicadores/7.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/indicadores/8.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/indicadores/9.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/indicadores/todos.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/agencias_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/agencias_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/recursos_humanos_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/recursos_humanos_controller.rb" />
@@ -60,8 +68,8 @@
       <file leaf-file-name="oracledb_agencias.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/models/oracledb_agencias.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="417">
-              <caret line="553" column="48" lean-forward="true" selection-start-line="553" selection-start-column="48" selection-end-line="553" selection-end-column="48" />
+            <state relative-caret-position="277">
+              <caret line="546" column="34" lean-forward="true" selection-start-line="546" selection-start-column="34" selection-end-line="546" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -499,16 +507,15 @@
       <workItem from="1522954248644" duration="12786000" />
       <workItem from="1523047462122" duration="3603000" />
       <workItem from="1523225356901" duration="10366000" />
-      <workItem from="1523285768085" duration="4328000" />
+      <workItem from="1523285768085" duration="4397000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="305623000" />
+    <option name="totallyTimeSpent" value="305692000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="773" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24140625" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -909,8 +916,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/oracledb_agencias.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="417">
-          <caret line="553" column="48" lean-forward="true" selection-start-line="553" selection-start-column="48" selection-end-line="553" selection-end-column="48" />
+        <state relative-caret-position="277">
+          <caret line="546" column="34" lean-forward="true" selection-start-line="546" selection-start-column="34" selection-end-line="546" selection-end-column="34" />
           <folding />
         </state>
       </provider>
