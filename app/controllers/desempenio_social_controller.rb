@@ -65,7 +65,7 @@ class DesempenioSocialController < ApplicationController
 
     end
     temp2 = total_valor_directo_2 - total_valor_directo_1
-    @valor_directo.push({cuenta: "Total valor económico directo creado", valor_1: total_valor_directo_1, porcentaje_1: "100", valor_2: total_valor_directo_2, porcentaje_2: "100%", tasa_variacion: 0, variacion: temp2})
+    @valor_directo.push({cuenta: "Total valor económico directo creado", valor_1: (total_valor_directo_1).round(2), porcentaje_1: "100", valor_2: (total_valor_directo_2).round(2), porcentaje_2: "100", tasa_variacion: 0, variacion: (temp2).round(2)})
 
 
 
@@ -122,7 +122,7 @@ class DesempenioSocialController < ApplicationController
 
     end
     temp2 = total_valor_distribuido_2 - total_valor_distribuido_1
-    @valor_distribuido.push({cuenta: "Total valor económico distribuido", valor_1: total_valor_distribuido_1, porcentaje_1: "100", valor_2: total_valor_distribuido_2, porcentaje_2: "100%", tasa_variacion: 0, variacion: temp2})
+    @valor_distribuido.push({cuenta: "Total valor económico distribuido", valor_1: (total_valor_distribuido_1).round(2), porcentaje_1: "100", valor_2: (total_valor_distribuido_2).round(2), porcentaje_2: "100", tasa_variacion: 0, variacion: (temp2).round(2)})
 
     @total = [((total_valor_distribuido_1.to_f/total_valor_directo_1.to_f).to_f * 100.00).to_f.round(2), ((total_valor_distribuido_2.to_f/total_valor_directo_2.to_f).to_f * 100.00).to_f.round(2)]
 

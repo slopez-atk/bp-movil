@@ -79,10 +79,10 @@ class BalanceSocial extends React.Component {
     };
     return(
       <tr >
-        <td style={estilos}>Total(Total Directo / Total Distribuido)</td>
+        <td style={estilos}>Procentaje valor económico distribuido</td>
         <td style={estilosNumeros}>{this.props.total[0]}%</td>
         <td style={estilos}> </td>
-        <td style={estilosNumeros}>{this.props.total[0]}%</td>
+        <td style={estilosNumeros}>{this.props.total[1]}%</td>
         <td style={estilos}> </td>
         <td style={estilos}> </td>
         <td style={estilos}> </td>
@@ -108,9 +108,9 @@ class BalanceSocial extends React.Component {
       }
     }
     result.push(<td style={estilos}>{ row.cuenta }</td>);
-    result.push(<td style={estilosNumeros}><NumberFormat value={ row.valor_1 } displayType={'text'} thousandSeparator={true} prefix={'$'}/></td>);
+    result.push(<td style={estilosNumeros}><NumberFormat value={ parseFloat(row.valor_1).toFixed(2) } displayType={'text'} thousandSeparator={true} prefix={'$'}/></td>);
     result.push(<td style={estilosNumeros}>{ row.porcentaje_1 }%</td>);
-    result.push(<td style={estilosNumeros}><NumberFormat value={ row.valor_2 } displayType={'text'} thousandSeparator={true} prefix={'$'}/></td>);
+    result.push(<td style={estilosNumeros}><NumberFormat value={ parseFloat(row.valor_2).toFixed(2) } displayType={'text'} thousandSeparator={true} prefix={'$'}/></td>);
     result.push(<td style={estilosNumeros}>{ row.porcentaje_2 }%</td>);
     result.push(<td style={estilosNumeros}><NumberFormat value={ row.variacion } displayType={'text'} thousandSeparator={true} prefix={'$'}/></td>);
     result.push(<td style={estilosNumeros}>{ row.tasa_variacion }</td>);
