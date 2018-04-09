@@ -215,12 +215,12 @@ class AgenciasNavigation extends React.Component {
               actions={actions2}
             >
               <div className="row center-xs middle-xs">
-                <h4 style={{color: "#2E3092"}}>Indicadores de la Seps</h4>
+                <h4 style={{color: "#2E3092"}}>Indicadores de la SEPS</h4>
                 <div className="col-xs-10" style={styles.div}>
                   <IndicadoresFinancierosForm
                     authenticity_token={ this.props.authenticity_token }
                     url='/agencias/indicadores_seps'
-                    title='Informe de indicadores de la Seps'/>
+                    title='Informe de indicadores de la SEPS'/>
                 </div>
               </div>
             </Dialog>

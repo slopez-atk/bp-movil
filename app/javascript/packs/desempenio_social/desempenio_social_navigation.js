@@ -98,7 +98,7 @@ class DesempenioSocialNavigation extends React.Component {
   handleLocation = (action) => {
     switch (action) {
       case 'home':
-        window.location = '/desempeño_social';
+        window.location = '/desempenio_social';
       break;
 
       case 'dashboard':
@@ -172,7 +172,7 @@ class DesempenioSocialNavigation extends React.Component {
               actions={actions1}
             >
               <div className="row center-xs middle-xs">
-                <h4 style={{color: "#2E3092"}}>Indicadores de la Seps</h4>
+                <h4 style={{color: "#2E3092"}}>Balance Social</h4>
                 <div className="col-xs-11" style={styles.div}>
                   <BalanceSocialForm
                     url='/desempenio_social/balance_social'
