@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="80e436f7-3cf3-4a79-b522-a1f65f1de881" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascript/packs/agencias/agencias_navigation.js" afterPath="$PROJECT_DIR$/app/javascript/packs/agencias/agencias_navigation.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascript/packs/desempenio_social/desempenio_social_navigation.js" afterPath="$PROJECT_DIR$/app/javascript/packs/desempenio_social/desempenio_social_navigation.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/application_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/application_controller.rb" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
@@ -27,8 +26,18 @@
       <file leaf-file-name="balance_social.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/javascript/packs/desempenio_social/balance_social.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="761">
+            <state relative-caret-position="20">
               <caret line="112" column="87" lean-forward="false" selection-start-line="112" selection-start-column="87" selection-end-line="112" selection-end-column="87" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="application_controller.rb" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/controllers/application_controller.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="40">
+              <caret line="2" column="20" lean-forward="true" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -44,11 +53,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="agencias_navigation.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="agencias_navigation.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/javascript/packs/agencias/agencias_navigation.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="210" column="19" lean-forward="true" selection-start-line="210" selection-start-column="19" selection-end-line="210" selection-end-column="19" />
+            <state relative-caret-position="3760">
+              <caret line="209" column="0" lean-forward="false" selection-start-line="209" selection-start-column="0" selection-end-line="209" selection-end-column="0" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
                 <element signature="e#182#249#0" expanded="true" />
@@ -62,7 +71,7 @@
       <file leaf-file-name="desempenio_social.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/javascript/packs/desempenio_social/desempenio_social.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
+            <state relative-caret-position="220">
               <caret line="13" column="44" lean-forward="false" selection-start-line="13" selection-start-column="44" selection-end-line="13" selection-end-column="44" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
@@ -138,7 +147,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/models/permission_history.rb" />
         <option value="$PROJECT_DIR$/app/views/vacations/new.html.haml" />
         <option value="$PROJECT_DIR$/app/views/workers/_form.html.haml" />
         <option value="$PROJECT_DIR$/app/views/workers/new.html.haml" />
@@ -189,6 +197,7 @@
         <option value="$PROJECT_DIR$/app/javascript/packs/desempenio_social/desempenio_social.js" />
         <option value="$PROJECT_DIR$/app/javascript/packs/desempenio_social/desempenio_social_navigation.js" />
         <option value="$PROJECT_DIR$/app/javascript/packs/agencias/agencias_navigation.js" />
+        <option value="$PROJECT_DIR$/app/controllers/application_controller.rb" />
       </list>
     </option>
   </component>
@@ -247,6 +256,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="RailsProjectView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -268,89 +278,12 @@
             <path>
               <item name="AppCacmu" type="b2602c69:ProjectViewProjectNode" />
               <item name="AppCacmu" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="javascript" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="AppCacmu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AppCacmu" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="javascript" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="AppCacmu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AppCacmu" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="javascript" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="DesepenioSocial" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="AppCacmu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AppCacmu" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="javascript" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="DesepenioSocial" type="462c0819:PsiDirectoryNode" />
-              <item name="DesempenioForms" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="AppCacmu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AppCacmu" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="javascript" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="RecursosHumanos" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="AppCacmu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AppCacmu" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="javascript" type="462c0819:PsiDirectoryNode" />
-              <item name="packs" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="AppCacmu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AppCacmu" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="javascript" type="462c0819:PsiDirectoryNode" />
-              <item name="packs" type="462c0819:PsiDirectoryNode" />
-              <item name="desempenio_social" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="AppCacmu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AppCacmu" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="javascript" type="462c0819:PsiDirectoryNode" />
-              <item name="packs" type="462c0819:PsiDirectoryNode" />
-              <item name="recursos_humanos" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="AppCacmu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AppCacmu" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="AppCacmu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AppCacmu" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="agencias" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="AppCacmu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AppCacmu" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="desempenio_social" type="462c0819:PsiDirectoryNode" />
+              <item name="db" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="RailsProjectView" />
       <pane id="Scope">
         <subPane subId="Project Files">
           <expand>
@@ -582,14 +515,17 @@
       <workItem from="1523293514794" duration="1764000" />
       <workItem from="1523301113772" duration="5047000" />
       <workItem from="1523307090070" duration="325000" />
+      <workItem from="1523591404185" duration="205000" />
+      <workItem from="1523903767930" duration="79000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="312828000" />
+    <option name="totallyTimeSpent" value="313112000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="773" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19609375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -624,20 +560,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/views/vacations/new.html.haml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="7" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/vacations/_form.html.haml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="6" lean-forward="true" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/worker_planifications/_form.html.haml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="31">
@@ -954,23 +876,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1566">
           <caret line="123" column="69" lean-forward="false" selection-start-line="115" selection-start-column="18" selection-end-line="123" selection-end-column="69" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/javascript/packs/desempenio_social/desempenio_social.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="13" column="44" lean-forward="false" selection-start-line="13" selection-start-column="44" selection-end-line="13" selection-end-column="44" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/javascript/packs/desempenio_social/balance_social.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="761">
+        <state relative-caret-position="20">
           <caret line="112" column="87" lean-forward="false" selection-start-line="112" selection-start-column="87" selection-end-line="112" selection-end-column="87" />
           <folding />
         </state>
@@ -980,25 +891,284 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1656">
           <caret line="174" column="61" lean-forward="false" selection-start-line="174" selection-start-column="61" selection-end-line="174" selection-end-column="61" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-            <element signature="e#282#349#0" expanded="true" />
-            <element signature="e#657#714#0" expanded="true" />
-            <element signature="e#931#1086#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/javascript/packs/agencias/agencias_navigation.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="210" column="19" lean-forward="true" selection-start-line="210" selection-start-column="19" selection-end-line="210" selection-end-column="19" />
+        <state relative-caret-position="3760">
+          <caret line="209" column="0" lean-forward="false" selection-start-line="209" selection-start-column="0" selection-end-line="209" selection-end-column="0" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
             <element signature="e#182#249#0" expanded="true" />
             <element signature="e#557#614#0" expanded="true" />
             <element signature="e#890#1045#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/javascript/packs/desempenio_social/desempenio_social.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="13" column="44" lean-forward="false" selection-start-line="13" selection-start-column="44" selection-end-line="13" selection-end-column="44" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://RailsDependency/Good">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>RailsDependency</ID>
+          <OriginalElement>Good</OriginalElement>
+          <nodes>
+            <node x="1777.0" y="1270.268378052976">WithoutGoodActivity</node>
+            <node x="2188.0" y="2462.8333333333335">ApplicationRecord</node>
+            <node x="1871.0" y="1817.827235982113">OracledbAgencias</node>
+            <node x="1011.5" y="3612.4917096663235">GoodActivity</node>
+            <node x="1795.5" y="3011.4917096663235">PermissionHistory</node>
+            <node x="496.0906260250023" y="1290.822914234045">Insolvency</node>
+            <node x="337.0" y="2491.1307619539048">Good</node>
+            <node x="1366.0" y="1362.1544461644314">WithoutgoodStage</node>
+            <node x="655.0" y="3533.9917096663235">GoodStage</node>
+            <node x="1796.5" y="2387.327235982113">InsolvencyActivity</node>
+            <node x="1860.0" y="981.268378052976">HistoryCredit</node>
+            <node x="1385.5" y="2532.154446164431">InsolvencyStage</node>
+            <node x="1789.5" y="3349.4917096663235">WorkerPlanification</node>
+            <node x="653.0" y="2577.14219126247">Lawyer</node>
+            <node x="1378.5" y="3067.388157894737">Worker</node>
+            <node x="965.0" y="653.0894564843484">WithoutGood</node>
+            <node x="-3.987015297755079" y="1675.9765553232796">User</node>
+            <node x="1899.0" y="2158.5061231510153">Oracledb</node>
+            <node x="1856.5" y="3191.4917096663235">Vacation</node>
+            <node x="1872.0" y="3507.4917096663235">DiscardedTrial</node>
+            <node x="1824.5" y="0.0">PendingTrial</node>
+          </nodes>
+          <notes />
+          <edges>
+            <edge source="WithoutGood" target="WithoutgoodStage">
+              <point x="160.5" y="376.66666666666674" />
+              <point x="-165.5" y="-0.0" />
+            </edge>
+            <edge source="Insolvency" target="ApplicationRecord">
+              <point x="141.0" y="-376.66666666666674" />
+              <point x="1286.0" y="2011.4227898176819" />
+              <point x="1366.0" y="2148.0061231510153" />
+              <point x="2108.0" y="2148.0061231510153" />
+              <point x="-72.0" y="-4.578947368421268" />
+            </edge>
+            <edge source="WithoutgoodStage" target="ApplicationRecord">
+              <point x="165.5" y="35.0" />
+              <point x="2108.0" y="1467.1544461644314" />
+              <point x="-72.0" y="-7.631578947368325" />
+            </edge>
+            <edge source="WithoutgoodStage" target="WithoutGoodActivity">
+              <point x="165.5" y="-35.0" />
+              <point x="-165.5" y="24.0" />
+            </edge>
+            <edge source="Good" target="GoodActivity">
+              <point x="118.0" y="469.5999999999999" />
+              <point x="653.0" y="3684.4917096663235" />
+              <point x="-114.0" y="24.0" />
+            </edge>
+            <edge source="Worker" target="ApplicationRecord">
+              <point x="153.0" y="-93.75" />
+              <point x="1697.0" y="3098.638157894737" />
+              <point x="1777.0" y="2989.8798675610606" />
+              <point x="2108.0" y="2989.8798675610606" />
+              <point x="-72.0" y="4.578947368421268" />
+            </edge>
+            <edge source="PendingTrial" target="ApplicationRecord">
+              <point x="118.0" y="-0.0" />
+              <point x="2108.0" y="466.0000000000002" />
+              <point x="-72.0" y="-13.73684210526335" />
+            </edge>
+            <edge source="Insolvency" target="InsolvencyStage">
+              <point x="141.0" y="376.6666666666665" />
+              <point x="1286.0" y="2764.756123151015" />
+              <point x="1366.0" y="2602.154446164431" />
+              <point x="-146.0" y="-0.0" />
+            </edge>
+            <edge source="User" target="WithoutGood">
+              <point x="128.5" y="-94.0" />
+              <point x="337.0" y="935.5894564843484" />
+              <point x="-160.5" y="-282.5" />
+            </edge>
+            <edge source="User" target="Insolvency">
+              <point x="128.5" y="-0.0" />
+              <point x="337.0" y="2208.3517113863095" />
+              <point x="885.0" y="2208.3517113863095" />
+              <point x="965.0" y="2105.5894564843484" />
+              <point x="-141.0" y="-282.5" />
+            </edge>
+            <edge source="Lawyer" target="Insolvency">
+              <point x="116.0" y="-0.0" />
+              <point x="-141.0" y="282.5" />
+            </edge>
+            <edge source="InsolvencyActivity" target="ApplicationRecord">
+              <point x="146.0" y="-0.0" />
+              <point x="2108.0" y="2435.327235982113" />
+              <point x="-72.0" y="-1.526315789473756" />
+            </edge>
+            <edge source="User" target="Good">
+              <point x="128.5" y="188.0" />
+              <point x="-118.0" y="293.5" />
+            </edge>
+            <edge source="User" target="PendingTrial">
+              <point x="128.5" y="-188.0" />
+              <point x="337.0" y="466.0000000000002" />
+              <point x="-118.0" y="-0.0" />
+            </edge>
+            <edge source="Lawyer" target="WithoutGood">
+              <point x="116.0" y="-61.333333333333485" />
+              <point x="-160.5" y="282.5" />
+            </edge>
+            <edge source="InsolvencyStage" target="ApplicationRecord">
+              <point x="146.0" y="35.0" />
+              <point x="2108.0" y="2637.154446164431" />
+              <point x="-72.0" y="-0.0" />
+            </edge>
+            <edge source="GoodStage" target="ApplicationRecord">
+              <point x="114.0" y="-35.0" />
+              <point x="2108.0" y="3568.9917096663235" />
+              <point x="-72.0" y="12.210526315789593" />
+            </edge>
+            <edge source="Good" target="GoodStage">
+              <point x="118.0" y="234.79999999999973" />
+              <point x="-114.0" y="-0.0" />
+            </edge>
+            <edge source="GoodActivity" target="ApplicationRecord">
+              <point x="114.0" y="-0.0" />
+              <point x="2108.0" y="3660.4917096663235" />
+              <point x="-72.0" y="13.73684210526335" />
+            </edge>
+            <edge source="Worker" target="Vacation">
+              <point x="153.0" y="31.25" />
+              <point x="1697.0" y="3223.638157894737" />
+              <point x="1777.0" y="3250.4917096663235" />
+              <point x="-86.0" y="-0.0" />
+            </edge>
+            <edge source="DiscardedTrial" target="ApplicationRecord">
+              <point x="70.5" y="-0.0" />
+              <point x="2108.0" y="3532.9917096663235" />
+              <point x="-72.0" y="10.684210526315837" />
+            </edge>
+            <edge source="WithoutGoodActivity" target="ApplicationRecord">
+              <point x="165.5" y="-0.0" />
+              <point x="-72.0" y="-9.157894736842081" />
+            </edge>
+            <edge source="Vacation" target="ApplicationRecord">
+              <point x="86.0" y="-0.0" />
+              <point x="2108.0" y="3250.4917096663235" />
+              <point x="-72.0" y="7.631578947368325" />
+            </edge>
+            <edge source="WithoutGood" target="WithoutGoodActivity">
+              <point x="160.5" y="-0.0" />
+              <point x="1366.0" y="1294.268378052976" />
+              <point x="-165.5" y="-24.0" />
+            </edge>
+            <edge source="Oracledb" target="ApplicationRecord">
+              <point x="43.5" y="-0.0" />
+              <point x="2108.0" y="2173.0061231510153" />
+              <point x="-72.0" y="-3.052631578947512" />
+            </edge>
+            <edge source="WithoutGood" target="ApplicationRecord">
+              <point x="160.5" y="-376.66666666666674" />
+              <point x="1366.0" y="970.768378052976" />
+              <point x="2108.0" y="970.768378052976" />
+              <point x="-72.0" y="-12.210526315789593" />
+            </edge>
+            <edge source="Good" target="User">
+              <point x="-118.0" y="-293.5" />
+              <point x="128.5" y="94.0" />
+            </edge>
+            <edge source="Lawyer" target="ApplicationRecord">
+              <point x="116.0" y="61.333333333333485" />
+              <point x="965.0" y="2963.5894564843484" />
+              <point x="2108.0" y="2963.5894564843484" />
+              <point x="-72.0" y="1.526315789473756" />
+            </edge>
+            <edge source="Good" target="ApplicationRecord">
+              <point x="118.0" y="-0.0" />
+              <point x="653.0" y="2984.935947712419" />
+              <point x="2108.0" y="2984.935947712419" />
+              <point x="-72.0" y="3.052631578947512" />
+            </edge>
+            <edge source="Worker" target="WorkerPlanification">
+              <point x="153.0" y="93.75" />
+              <point x="1697.0" y="3286.138157894737" />
+              <point x="1777.0" y="3408.4917096663235" />
+              <point x="-153.0" y="-0.0" />
+            </edge>
+            <edge source="OracledbAgencias" target="ApplicationRecord">
+              <point x="71.5" y="-0.0" />
+              <point x="2108.0" y="1832.327235982113" />
+              <point x="-72.0" y="-6.105263157894569" />
+            </edge>
+            <edge source="Insolvency" target="InsolvencyActivity">
+              <point x="141.0" y="-0.0" />
+              <point x="1286.0" y="2388.0894564843484" />
+              <point x="1366.0" y="2411.327235982113" />
+              <point x="-146.0" y="-24.0" />
+            </edge>
+            <edge source="PermissionHistory" target="ApplicationRecord">
+              <point x="147.0" y="-0.0" />
+              <point x="2108.0" y="3081.4917096663235" />
+              <point x="-72.0" y="6.105263157894569" />
+            </edge>
+            <edge source="Worker" target="PermissionHistory">
+              <point x="153.0" y="-31.25" />
+              <point x="1697.0" y="3161.138157894737" />
+              <point x="1777.0" y="3081.4917096663235" />
+              <point x="-147.0" y="-0.0" />
+            </edge>
+            <edge source="HistoryCredit" target="ApplicationRecord">
+              <point x="82.5" y="-0.0" />
+              <point x="2108.0" y="1105.768378052976" />
+              <point x="-72.0" y="-10.684210526315837" />
+            </edge>
+            <edge source="WorkerPlanification" target="ApplicationRecord">
+              <point x="153.0" y="-0.0" />
+              <point x="2108.0" y="3408.4917096663235" />
+              <point x="-72.0" y="9.157894736842081" />
+            </edge>
+            <edge source="InsolvencyStage" target="InsolvencyActivity">
+              <point x="146.0" y="-35.0" />
+              <point x="1697.0" y="2567.154446164431" />
+              <point x="1777.0" y="2459.327235982113" />
+              <point x="-146.0" y="24.0" />
+            </edge>
+            <edge source="Good" target="Lawyer">
+              <point x="118.0" y="-234.80000000000018" />
+              <point x="-116.0" y="46.0" />
+            </edge>
+            <edge source="GoodStage" target="GoodActivity">
+              <point x="114.0" y="35.0" />
+              <point x="-114.0" y="-24.0" />
+            </edge>
+            <edge source="Lawyer" target="Good">
+              <point x="-116.0" y="-46.0" />
+              <point x="118.0" y="-469.5999999999999" />
+            </edge>
+          </edges>
+          <settings layout="Hierarchic Group" zoom="0.501628373767744" x="650.0" y="1841.0" />
+          <SelectedNodes>
+            <node>Insolvency</node>
+          </SelectedNodes>
+          <Categories>
+            <Category>Migration fields</Category>
+            <Category>Association fields</Category>
+          </Categories>
+          <SCOPE>All</SCOPE>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/application_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40">
+          <caret line="2" column="20" lean-forward="true" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
+          <folding />
         </state>
       </provider>
     </entry>
