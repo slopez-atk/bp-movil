@@ -57,7 +57,7 @@ gem "chartkick"
 # Para busquedas en los modelos
 gem 'searchkick'
 # Rails admin
-gem 'rails_admin', '~> 1.2'
+gem 'rails_admin', '~> 1.3'
 # Oracle DBC
 gem 'activerecord-oracle_enhanced-adapter', '~> 1.8.1'
 # gem 'therubyracer', platforms: :ruby

@@ -76,7 +76,7 @@ class WorkersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def worker_params
-      params.require(:worker).permit(:fullname, :codigo, :agencia, :cargo, :fecha_ingreso, :fecha_calculo)
+      params.require(:worker).permit(:fullname, :codigo, :agencia, :cargo, :fecha_ingreso, :fecha_calculo, :dias_pendientes)
     end
 
     def set_layout

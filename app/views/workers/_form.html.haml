@@ -39,6 +39,10 @@
           Calendario
       = text_field "worker", :fecha_calculo, class:"form-control datepick", id: "datepicker2"
 
+  .form-group
+    %p.text-left.color-blue
+      %b Dias Acumulados
+    = f.text_field :dias_pendientes, class: "form-control"
 
   .actions
     = f.submit 'Enviar', class: "btn btn-success"

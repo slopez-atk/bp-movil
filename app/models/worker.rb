@@ -29,8 +29,9 @@ class Worker < ApplicationRecord
       dias2 = (Date.current - self.fecha_ingreso.to_date).to_i
 
       anios = Date.current.year - self.fecha_ingreso.to_date.year
+
       anios = anios - 5
-      if anios < 0
+      if anios <= 0
         [15,'rojo']
       elsif anios == 1
         [16,'rojo']
