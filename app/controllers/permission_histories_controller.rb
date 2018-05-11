@@ -72,7 +72,7 @@ class PermissionHistoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def permission_history_params
-      params.require(:permission_history).permit(:worker_id, :descripcion, :fecha_permiso, :fecha_eliminacion, :horas)
+      params.require(:permission_history).permit(:worker_id, :descripcion, :fecha_permiso, :fecha_eliminacion, :horas, :fecha_terminacion)
     end
 
     def set_worker

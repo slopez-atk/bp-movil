@@ -68,7 +68,8 @@
       %table.table.table-striped.table-hover
         %thead
           %tr
-            %th Fecha
+            %th Fecha Inicio
+            %th Fecha Fin
             %th Descripción
             %th Horas
             %th
@@ -77,6 +78,7 @@
           - @vacations.each do |permiso|
             %tr
               %td= permiso.fecha_permiso
+              %td= permiso.fecha_terminacion
               %td= permiso.descripcion
               %td= permiso.horas
               - if current_user.permissions == 10

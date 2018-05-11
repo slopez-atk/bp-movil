@@ -10,12 +10,21 @@
     = f.hidden_field :worker_id
   .form-group
     %p.text-left.color-blue
-      %b Fecha de Permiso
+      %b Fecha de Inicio
     .input-group
       %span.input-group-btn
         %button{class:"btn", type:"button"}
           Calendario
       = text_field "vacation", :fecha_permiso, class:"form-control datepick", id: "datepicker1"
+
+  .form-group
+    %p.text-left.color-blue
+      %b Fecha de Fin
+    .input-group
+      %span.input-group-btn
+        %button{class:"btn", type:"button"}
+          Calendario
+      = text_field "vacation", :fecha_terminacion, class:"form-control datepick", id: "datepicker2"
   .form-group
     %p.text-left.color-blue
       %b Descripción

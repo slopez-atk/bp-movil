@@ -10,6 +10,7 @@
 #  horas             :string
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
+#  fecha_terminacion :date
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

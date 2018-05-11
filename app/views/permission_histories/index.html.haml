@@ -7,8 +7,9 @@
         %thead
           %tr
             %th Descripcion
-            %th Fecha permiso
-            %th Fecha guardado
+            %th Fecha Inicio
+            %th Fecha Fin
+            %th Fecha Guardado
             %th Horas
 
         %tbody
@@ -16,6 +17,7 @@
             %tr
               %td= permission_history.descripcion
               %td= permission_history.fecha_permiso
+              %td= permission_history.fecha_terminacion
               %td= permission_history.fecha_eliminacion
               %td= permission_history.horas
 
