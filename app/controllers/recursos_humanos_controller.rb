@@ -14,7 +14,8 @@ class RecursosHumanosController < ApplicationController
     @planificaciones = WorkerPlanification.all.as_json
     @planificaciones.each do |item|
       worker = Worker.find(item['worker_id'])
-      item['fullname'] = worker['fullname'] + " - " + worker['agencia']
+      worker['agencia'].nil? ? agencia = 'Agencia no asignada' : agencia = worker['agencia']
+      item['fullname'] = worker['fullname'] + " - " + agencia
       item['start_date'] = item['start_date'].to_date.strftime('%d-%m-%Y')
       item['end_date'] = item['end_date'].to_date.strftime('%d-%m-%Y')
     end
