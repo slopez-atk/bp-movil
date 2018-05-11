@@ -6,7 +6,7 @@ class Rack::Attack
 
 
   # Key: "rack::attack:#{Time.now.to_i/:period}:req/ip:#{req.ip}"
-  throttle('req/ip', limit: 3, period: 10) do |req|
+  throttle('req/ip', limit: 300, period: 5) do |req|
     req.ip
   end
 
@@ -22,11 +22,11 @@ class Rack::Attack
   #   req.path.start_with?('/admin') && req.ip != OFFICE_IP
   # end
 
-  blocklist('block local host') do |req|
-    !LOCAL_IPS.include?(req.ip)
-  end
-
-  safelist('safelist_ips 1.2.3.4') do |req|
-    '127.0.0.1' == req.ip
-  end
+  # blocklist('block local host') do |req|
+  #   !LOCAL_IPS.include?(req.ip)
+  # end
+  #
+  # safelist('safelist_ips 1.2.3.4') do |req|
+  #   '127.0.0.1' == req.ip
+  # end
 end
