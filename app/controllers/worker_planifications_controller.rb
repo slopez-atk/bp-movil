@@ -9,8 +9,11 @@ class WorkerPlanificationsController < ApplicationController
     @worker_planifications = @worker.worker_planifications
     @planificaciones = @worker_planifications.as_json
     @planificaciones.each do |item|
+
+
       worker = Worker.find(item['worker_id'])
-      item['fullname'] = worker['fullname'] + " - " + worker['agencia']
+
+      item['fullname'] = worker['fullname']
       item['start_date'] = item['start_date'].to_date.strftime('%d-%m-%Y')
       item['end_date'] = item['end_date'].to_date.strftime('%d-%m-%Y')
     end
@@ -44,7 +47,8 @@ class WorkerPlanificationsController < ApplicationController
         @planificaciones = @worker_planifications.as_json
         @planificaciones.each do |item|
           worker = Worker.find(item['worker_id'])
-          item['fullname'] = worker['fullname'] + " - " + worker['agencia']
+
+          item['fullname'] = worker['fullname']
           item['start_date'] = item['start_date'].to_date.strftime('%d-%m-%Y')
           item['end_date'] = item['end_date'].to_date.strftime('%d-%m-%Y')
         end
@@ -80,7 +84,8 @@ class WorkerPlanificationsController < ApplicationController
     @planificaciones = worker.worker_planifications.as_json
     @planificaciones.each do |item|
       worker = Worker.find(item['worker_id'])
-      item['fullname'] = worker['fullname'] + " - " + worker['agencia']
+
+      item['fullname'] = worker['fullname']
       item['start_date'] = item['start_date'].to_date.strftime('%d-%m-%Y')
       item['end_date'] = item['end_date'].to_date.strftime('%d-%m-%Y')
     end
