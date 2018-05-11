@@ -8,6 +8,9 @@ require 'capistrano/passenger'
 set :rbenv_type, :user
 set :rbenv_ruby, '2.4.1'
 
+# Lest Encript
+require 'capistrano/lets-encrypt'
+
 # Whenever
 require 'capistrano/rbenv'
 require 'whenever/capistrano'

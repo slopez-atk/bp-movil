@@ -48,7 +48,7 @@ class WorkerPlanificationsController < ApplicationController
           item['start_date'] = item['start_date'].to_date.strftime('%d-%m-%Y')
           item['end_date'] = item['end_date'].to_date.strftime('%d-%m-%Y')
         end
-        format.html { redirect_to @worker_planification, notice: 'Worker planification was successfully created.' }
+        format.html { redirect_to @worker_planification, :only_path => true, notice: 'Worker planification was successfully created.' }
         format.json { render json: @planificaciones, :layout => false}
 
       else

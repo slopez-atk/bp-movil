@@ -39,7 +39,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 # Devise para autenticacion de usuarios
-gem 'devise', git: 'https://github.com/gogovan/devise.git', branch: 'rails-5.1'
+gem "devise", git: 'https://github.com/plataformatec/devise.git'
 # Haml para las vistas
 gem 'haml-rails'
 # Anotaciones de los modelos
@@ -73,6 +73,7 @@ gem 'execjs'
 gem 'capistrano', '~> 3.7', '>= 3.7.1'
 gem 'capistrano-rails', '~> 1.2'
 gem 'capistrano-passenger', '~> 0.2.0'
+gem 'capistrano-lets-encrypt'
 
 # Add this if you're using rbenv
 gem 'capistrano-rbenv', '~> 2.1'
@@ -83,12 +84,14 @@ gem 'capistrano-rails-console', require: false
 # Utilidades
 gem 'react-rails'
 
+#Prevencion de ataques
+gem 'rack-attack'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
-  gem 'selenium-webdriver'
 end
 
 

@@ -1,18 +1,19 @@
 GIT
-  remote: https://github.com/gogovan/devise.git
-  revision: 931ae3985872ea1f0039cd3a749779c0023a622a
-  branch: rails-5.1
+  remote: https://github.com/plataformatec/devise.git
+  revision: 8866b8e5eb00a3624810c25c1e3ebde846942270
   specs:
-    devise (4.2.0)
+    devise (4.4.3)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
-      railties (>= 4.1.0, < 5.2)
+      railties (>= 4.1.0, < 6.0)
       responders
       warden (~> 1.2.3)
 
 GEM
   remote: https://rubygems.org/
   specs:
+    acme-client (2.0.0)
+      faraday (~> 0.9, >= 0.9.1)
     actioncable (5.1.3)
       actionpack (= 5.1.3)
       nio4r (~> 2.0)
@@ -81,6 +82,9 @@ GEM
     capistrano-bundler (1.3.0)
       capistrano (~> 3.1)
       sshkit (~> 1.2)
+    capistrano-lets-encrypt (0.3.0)
+      capistrano (>= 3.0.0)
+      letsencrypt-cli (>= 0.1.4)
     capistrano-passenger (0.2.0)
       capistrano (~> 3.0)
     capistrano-rails (1.3.0)
@@ -100,8 +104,6 @@ GEM
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
     chartkick (2.2.4)
-    childprocess (0.7.1)
-      ffi (~> 1.0, >= 1.0.11)
     chronic (0.10.2)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
@@ -110,8 +112,10 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
+    colorize (0.8.1)
     concurrent-ruby (1.0.5)
     connection_pool (2.2.1)
+    crass (1.0.4)
     elasticsearch (5.0.4)
       elasticsearch-api (= 5.0.4)
       elasticsearch-transport (= 5.0.4)
@@ -168,12 +172,17 @@ GEM
       activerecord
       kaminari-core (= 1.1.1)
     kaminari-core (1.1.1)
+    letsencrypt-cli (0.4.1)
+      acme-client (>= 0.2.4)
+      colorize
+      thor
     libv8 (3.16.14.19)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
       ruby_dep (~> 1.2)
-    loofah (2.0.3)
+    loofah (2.2.2)
+      crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.6.6)
       mime-types (>= 1.16, < 4)
@@ -182,7 +191,7 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
     mini_mime (0.1.4)
-    mini_portile2 (2.2.0)
+    mini_portile2 (2.3.0)
     minitest (5.10.3)
     multi_json (1.12.2)
     multipart-post (2.0.0)
@@ -191,13 +200,15 @@ GEM
       net-ssh (>= 2.6.5)
     net-ssh (4.2.0)
     nio4r (2.1.0)
-    nokogiri (1.8.0)
-      mini_portile2 (~> 2.2.0)
+    nokogiri (1.8.2)
+      mini_portile2 (~> 2.3.0)
     orm_adapter (0.5.0)
     pg (0.21.0)
     public_suffix (3.0.0)
     puma (3.10.0)
     rack (2.0.3)
+    rack-attack (5.2.0)
+      rack
     rack-pjax (1.0.0)
       nokogiri (~> 1.5)
       rack (>= 1.1)
@@ -220,8 +231,8 @@ GEM
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
-    rails-html-sanitizer (1.0.3)
-      loofah (~> 2.0)
+    rails-html-sanitizer (1.0.4)
+      loofah (~> 2.2, >= 2.2.2)
     rails_admin (1.3.0)
       builder (~> 3.1)
       coffee-rails (~> 4.0)
@@ -261,7 +272,6 @@ GEM
     ruby_dep (1.5.0)
     ruby_parser (3.10.1)
       sexp_processor (~> 4.9)
-    rubyzip (1.2.1)
     sass (3.5.1)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -277,9 +287,6 @@ GEM
       activemodel (>= 4.1)
       elasticsearch (>= 1)
       hashie
-    selenium-webdriver (3.5.1)
-      childprocess (~> 0.5)
-      rubyzip (~> 1.0)
     sexp_processor (4.10.0)
     spring (2.0.2)
       activesupport (>= 4.2)
@@ -343,6 +350,7 @@ DEPENDENCIES
   best_in_place (~> 3.1)
   byebug
   capistrano (~> 3.7, >= 3.7.1)
+  capistrano-lets-encrypt
   capistrano-passenger (~> 0.2.0)
   capistrano-rails (~> 1.2)
   capistrano-rails-console
@@ -359,13 +367,13 @@ DEPENDENCIES
   listen (>= 3.0.5, < 3.2)
   pg
   puma (~> 3.7)
+  rack-attack
   rails (~> 5.1.3)
   rails_admin (~> 1.3)
   react-rails
   ruby-oci8
   sass-rails (~> 5.0)
   searchkick
-  selenium-webdriver
   spring
   spring-watcher-listen (~> 2.0.0)
   sqlite3
