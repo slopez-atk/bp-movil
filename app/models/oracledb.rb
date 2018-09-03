@@ -422,12 +422,12 @@ class Oracledb < ApplicationRecord
       agencia = ""
     end
 
-    resultados = [{socio: 23324, nombre: 'Santiago Javier Lopez Carranco', credito: 7645, saldo: 23454.52, provision: 345.64, valor_recuperado: 1253.54, fecha: '02/08/2018'},
-                  {socio: 56745, nombre: 'Sofia Isabell Guerra Lopez', credito: 4563, saldo: 53242.52, provision: 345.23, valor_recuperado: 3424.94, fecha: '08/08/2018'},
-                  {socio: 85675, nombre: 'Daniela Angelica Ruiz Teran', credito: 37557, saldo: 6423.52, provision: 543.65, valor_recuperado: 456.40, fecha: '16/08/2018'},
-                  {socio: 6784, nombre: 'Chloe Antonella Wrigth Campos', credito: 845634, saldo: 98790.52, provision: 5463.645, valor_recuperado: 8349.50, fecha: '25/08/2018'},
-                  {socio: 54645, nombre: 'Valentina Elizabeth Amador Proaño', credito: 2650398, saldo: 87789.52, provision: 83287.645, valor_recuperado: 237.594, fecha: '04/08/2018'}]
-    return resultados
+    # resultados = [{socio: 23324, nombre: 'Santiago Javier Lopez Carranco', credito: 7645, saldo: 23454.52, provision: 345.64, valor_recuperado: 1253.54, fecha: '02/08/2018'},
+    #               {socio: 56745, nombre: 'Sofia Isabell Guerra Lopez', credito: 4563, saldo: 53242.52, provision: 345.23, valor_recuperado: 3424.94, fecha: '08/08/2018'},
+    #               {socio: 85675, nombre: 'Daniela Angelica Ruiz Teran', credito: 37557, saldo: 6423.52, provision: 543.65, valor_recuperado: 456.40, fecha: '16/08/2018'},
+    #               {socio: 6784, nombre: 'Chloe Antonella Wrigth Campos', credito: 845634, saldo: 98790.52, provision: 5463.645, valor_recuperado: 8349.50, fecha: '25/08/2018'},
+    #               {socio: 54645, nombre: 'Valentina Elizabeth Amador Proaño', credito: 2650398, saldo: 87789.52, provision: 83287.645, valor_recuperado: 237.594, fecha: '04/08/2018'}]
+    # return resultados
 
 
     results = connection.exec_query("

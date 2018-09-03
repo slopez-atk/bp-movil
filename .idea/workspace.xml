@@ -2,21 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="80e436f7-3cf3-4a79-b522-a1f65f1de881" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/agencias_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/agencias_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/goods_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/goods_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascript/components/Agencias/IndicadoresFinancieros/Graficas.js" afterPath="$PROJECT_DIR$/app/javascript/components/Agencias/IndicadoresFinancieros/Graficas.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascript/components/Agencias/IndicadoresFinancieros/IndicadoresFinancieros.js" afterPath="$PROJECT_DIR$/app/javascript/components/Agencias/IndicadoresFinancieros/IndicadoresFinancieros.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascript/components/CreditsIndicadores/IndicadoresColocadosTable.js" afterPath="$PROJECT_DIR$/app/javascript/components/CreditsIndicadores/IndicadoresColocadosTable.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascript/components/CreditsIndicadores/IndicadoresTable.js" afterPath="$PROJECT_DIR$/app/javascript/components/CreditsIndicadores/IndicadoresTable.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascript/components/CreditsIndicadores/PercentIndicadoresTable.js" afterPath="$PROJECT_DIR$/app/javascript/components/CreditsIndicadores/PercentIndicadoresTable.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascript/packs/agencias/indicadores_parent.js" afterPath="$PROJECT_DIR$/app/javascript/packs/agencias/indicadores_parent.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascript/packs/creditos_indicadores.js" afterPath="$PROJECT_DIR$/app/javascript/packs/creditos_indicadores.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/oracledb.rb" afterPath="$PROJECT_DIR$/app/models/oracledb.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/oracledb_agencias.rb" afterPath="$PROJECT_DIR$/app/models/oracledb_agencias.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/agencias/indicadores_financieros.haml" afterPath="$PROJECT_DIR$/app/views/agencias/indicadores_financieros.haml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/goods/show.html.haml" afterPath="$PROJECT_DIR$/app/views/goods/show.html.haml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package-lock.json" afterPath="$PROJECT_DIR$/package-lock.json" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
@@ -36,20 +22,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="agencias_controller.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/agencias_controller.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4320">
-              <caret line="216" column="22" lean-forward="false" selection-start-line="216" selection-start-column="22" selection-end-line="216" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="oracledb_agencias.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/oracledb_agencias.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="392">
+            <state relative-caret-position="-3094">
               <caret line="77" column="10" lean-forward="true" selection-start-line="77" selection-start-column="10" selection-end-line="77" selection-end-column="10" />
               <folding />
             </state>
@@ -99,8 +75,18 @@
       <file leaf-file-name="credits_controller.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/credits_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="9369">
-              <caret line="509" column="35" lean-forward="false" selection-start-line="509" selection-start-column="6" selection-end-line="509" selection-end-column="35" />
+            <state relative-caret-position="700">
+              <caret line="35" column="8" lean-forward="true" selection-start-line="35" selection-start-column="4" selection-end-line="35" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="creditos_por_vencer.html.haml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/credits/creditos_por_vencer.html.haml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="480">
+              <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -116,7 +102,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="edit.html.haml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="edit.html.haml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/lawyers/edit.html.haml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="40">
@@ -126,11 +112,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="oracledb.rb" pinned="false" current-in-tab="false">
+      <file leaf-file-name="oracledb.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/models/oracledb.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="603">
-              <caret line="2461" column="0" lean-forward="true" selection-start-line="2461" selection-start-column="0" selection-end-line="2461" selection-end-column="0" />
+            <state relative-caret-position="601">
+              <caret line="503" column="18" lean-forward="false" selection-start-line="503" selection-start-column="18" selection-end-line="503" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -140,7 +126,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>&lt;th</find>
       <find>SIZE</find>
       <find>markRow</find>
       <find>@year</find>
@@ -167,9 +152,10 @@
       <find>indicadores_creditos_c</find>
       <find>indica</find>
       <find>patrimonio</find>
-      <find>indicad</find>
       <find>obtener_sumatoria_cuentas_cacmu</find>
+      <find>indicad</find>
       <find>obtener_sumatoria_cuentas</find>
+      <find>obtener_creditos_por_vencer</find>
     </findStrings>
     <replaceStrings>
       <replace>tr</replace>
@@ -252,8 +238,8 @@
         <option value="$PROJECT_DIR$/app/javascript/packs/agencias/indicadores_parent.js" />
         <option value="$PROJECT_DIR$/app/controllers/agencias_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/agencias/indicadores_financieros.haml" />
-        <option value="$PROJECT_DIR$/app/models/oracledb.rb" />
         <option value="$PROJECT_DIR$/app/models/oracledb_agencias.rb" />
+        <option value="$PROJECT_DIR$/app/models/oracledb.rb" />
       </list>
     </option>
   </component>
@@ -343,6 +329,12 @@
               <item name="AppCacmu" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="helpers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="AppCacmu" type="b2602c69:ProjectViewProjectNode" />
+              <item name="AppCacmu" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="AppCacmu" type="b2602c69:ProjectViewProjectNode" />
@@ -608,18 +600,18 @@
       <workItem from="1535926484527" duration="890000" />
       <workItem from="1535996083355" duration="8347000" />
       <workItem from="1536006696640" duration="455000" />
-      <workItem from="1536010026528" duration="1917000" />
+      <workItem from="1536010026528" duration="3074000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="345084000" />
+    <option name="totallyTimeSpent" value="346241000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="773" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2484375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1671875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -652,13 +644,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/config/deploy.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-109">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/schedule.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="545">
@@ -926,7 +911,7 @@
         <state relative-caret-position="0">
           <caret line="16" column="40" lean-forward="false" selection-start-line="16" selection-start-column="40" selection-end-line="16" selection-end-column="40" />
           <folding>
-            <element signature="e#0#26#0" expanded="true" />
+            <element signature="e#0#26#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -935,22 +920,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4320">
           <caret line="216" column="22" lean-forward="false" selection-start-line="216" selection-start-column="22" selection-end-line="216" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/oracledb.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="603">
-          <caret line="2461" column="0" lean-forward="true" selection-start-line="2461" selection-start-column="0" selection-end-line="2461" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/oracledb_agencias.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="392">
-          <caret line="77" column="10" lean-forward="true" selection-start-line="77" selection-start-column="10" selection-end-line="77" selection-end-column="10" />
           <folding />
         </state>
       </provider>
@@ -1003,14 +972,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/credits_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9369">
-          <caret line="509" column="35" lean-forward="false" selection-start-line="509" selection-start-column="6" selection-end-line="509" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/lawyers/_form.html.haml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1023,6 +984,38 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="40">
           <caret line="2" column="10" lean-forward="true" selection-start-line="2" selection-start-column="10" selection-end-line="2" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/oracledb_agencias.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3094">
+          <caret line="77" column="10" lean-forward="true" selection-start-line="77" selection-start-column="10" selection-end-line="77" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/credits_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="700">
+          <caret line="35" column="8" lean-forward="true" selection-start-line="35" selection-start-column="4" selection-end-line="35" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/credits/creditos_por_vencer.html.haml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/oracledb.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="601">
+          <caret line="503" column="18" lean-forward="false" selection-start-line="503" selection-start-column="18" selection-end-line="503" selection-end-column="18" />
           <folding />
         </state>
       </provider>
