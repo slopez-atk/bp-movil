@@ -2,15 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="80e436f7-3cf3-4a79-b522-a1f65f1de881" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/config/initializers/rack_attack.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/AppCacmu.iml" afterPath="$PROJECT_DIR$/.idea/AppCacmu.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Capfile" afterPath="$PROJECT_DIR$/Capfile" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/worker_planifications_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/worker_planifications_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/application.rb" afterPath="$PROJECT_DIR$/config/application.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/agencias_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/agencias_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/goods_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/goods_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascript/components/Agencias/IndicadoresFinancieros/Graficas.js" afterPath="$PROJECT_DIR$/app/javascript/components/Agencias/IndicadoresFinancieros/Graficas.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascript/components/Agencias/IndicadoresFinancieros/IndicadoresFinancieros.js" afterPath="$PROJECT_DIR$/app/javascript/components/Agencias/IndicadoresFinancieros/IndicadoresFinancieros.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascript/components/CreditsIndicadores/IndicadoresColocadosTable.js" afterPath="$PROJECT_DIR$/app/javascript/components/CreditsIndicadores/IndicadoresColocadosTable.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascript/components/CreditsIndicadores/IndicadoresTable.js" afterPath="$PROJECT_DIR$/app/javascript/components/CreditsIndicadores/IndicadoresTable.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascript/components/CreditsIndicadores/PercentIndicadoresTable.js" afterPath="$PROJECT_DIR$/app/javascript/components/CreditsIndicadores/PercentIndicadoresTable.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascript/packs/agencias/indicadores_parent.js" afterPath="$PROJECT_DIR$/app/javascript/packs/agencias/indicadores_parent.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/javascript/packs/creditos_indicadores.js" afterPath="$PROJECT_DIR$/app/javascript/packs/creditos_indicadores.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/oracledb.rb" afterPath="$PROJECT_DIR$/app/models/oracledb.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/oracledb_agencias.rb" afterPath="$PROJECT_DIR$/app/models/oracledb_agencias.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/agencias/indicadores_financieros.haml" afterPath="$PROJECT_DIR$/app/views/agencias/indicadores_financieros.haml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/goods/show.html.haml" afterPath="$PROJECT_DIR$/app/views/goods/show.html.haml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package-lock.json" afterPath="$PROJECT_DIR$/package-lock.json" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
@@ -30,51 +36,61 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="rack_attack.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/initializers/rack_attack.rb">
+      <file leaf-file-name="agencias_controller.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/agencias_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="20">
-              <caret line="1" column="26" lean-forward="false" selection-start-line="1" selection-start-column="2" selection-end-line="1" selection-end-column="26" />
+            <state relative-caret-position="4320">
+              <caret line="216" column="22" lean-forward="false" selection-start-line="216" selection-start-column="22" selection-end-line="216" selection-end-column="22" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="worker_planifications_controller.rb" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/controllers/worker_planifications_controller.rb">
+      <file leaf-file-name="oracledb_agencias.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/models/oracledb_agencias.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="485">
-              <caret line="109" column="31" lean-forward="false" selection-start-line="109" selection-start-column="31" selection-end-line="109" selection-end-column="31" />
+            <state relative-caret-position="392">
+              <caret line="77" column="10" lean-forward="true" selection-start-line="77" selection-start-column="10" selection-end-line="77" selection-end-column="10" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="lawyers_controller.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/lawyers_controller.rb">
+      <file leaf-file-name="production.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/deploy/production.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="300">
+              <caret line="15" column="14" lean-forward="false" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="14" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="oracledb.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/oracledb.rb">
+      <file leaf-file-name="Capfile" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Capfile">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="31960">
-              <caret line="1598" column="43" lean-forward="false" selection-start-line="1598" selection-start-column="43" selection-end-line="1598" selection-end-column="43" />
+            <state relative-caret-position="340">
+              <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Gemfile" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Gemfile">
+      <file leaf-file-name="database.yml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/database.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1740">
-              <caret line="87" column="17" lean-forward="false" selection-start-line="87" selection-start-column="17" selection-end-line="87" selection-end-column="17" />
+            <state relative-caret-position="400">
+              <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="goods_controller.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/goods_controller.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="580">
+              <caret line="29" column="5" lean-forward="true" selection-start-line="27" selection-start-column="3" selection-end-line="29" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -83,18 +99,38 @@
       <file leaf-file-name="credits_controller.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/credits_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="12" column="4" lean-forward="false" selection-start-line="12" selection-start-column="4" selection-end-line="13" selection-end-column="80" />
+            <state relative-caret-position="9369">
+              <caret line="509" column="35" lean-forward="false" selection-start-line="509" selection-start-column="6" selection-end-line="509" selection-end-column="35" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="production.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/environments/production.rb">
+      <file leaf-file-name="_form.html.haml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/lawyers/_form.html.haml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="18" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="edit.html.haml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/views/lawyers/edit.html.haml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="40">
+              <caret line="2" column="10" lean-forward="true" selection-start-line="2" selection-start-column="10" selection-end-line="2" selection-end-column="10" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="oracledb.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/models/oracledb.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="603">
+              <caret line="2461" column="0" lean-forward="true" selection-start-line="2461" selection-start-column="0" selection-end-line="2461" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -104,24 +140,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>ind</find>
-      <find>por_venc</find>
-      <find>matriz_</find>
-      <find>creditos_po</find>
-      <find>img_juicio</find>
-      <find>camb</find>
-      <find>indicadores</find>
-      <find>indica</find>
-      <find>indi</find>
-      <find>setSt</find>
-      <find>reqwest</find>
-      <find>header</find>
-      <find>patrimonio_constituido</find>
-      <find>fecha.end_of_month.strftime(&quot;%d/%m/%Y&quot;)</find>
-      <find>fecha</find>
-      <find>@@fecha</find>
-      <find>= Array.new</find>
-      <find>@</find>
       <find>&lt;th</find>
       <find>SIZE</find>
       <find>markRow</find>
@@ -134,6 +152,24 @@
       <find>noko</find>
       <find>loo</find>
       <find>rails-ht</find>
+      <find>creditos_por</find>
+      <find>obtener_creditos_de_asesor</find>
+      <find>obtener_creditos_d</find>
+      <find>obtener_creditos_por_as</find>
+      <find>obtener_saldo_cartera_asesor</find>
+      <find>obtener_creditos_concedidos_de_un_asesor</find>
+      <find>obtener_creditos_concedidos_por_asesor</find>
+      <find>creditos_con</find>
+      <find>datos_matriz_transicion</find>
+      <find>cosech</find>
+      <find>obtener_cosechas</find>
+      <find>indicadores_creditos_vigentes</find>
+      <find>indicadores_creditos_c</find>
+      <find>indica</find>
+      <find>patrimonio</find>
+      <find>indicad</find>
+      <find>obtener_sumatoria_cuentas_cacmu</find>
+      <find>obtener_sumatoria_cuentas</find>
     </findStrings>
     <replaceStrings>
       <replace>tr</replace>
@@ -167,16 +203,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/javascript/components/RecursosHumanos/workers_list.js" />
-        <option value="$PROJECT_DIR$/app/views/recursos_humanos/vacaciones.haml" />
-        <option value="$PROJECT_DIR$/app/views/recursos_humanos/index.haml" />
-        <option value="$PROJECT_DIR$/app/controllers/permission_histories_controller.rb" />
-        <option value="$PROJECT_DIR$/app/controllers/vacations_controller.rb" />
-        <option value="$PROJECT_DIR$/app/javascript/components/CreditosPorVencer/PerWeek.js" />
-        <option value="$PROJECT_DIR$/app/models/oracledb.rb" />
-        <option value="$PROJECT_DIR$/db/migrate/20180324201544_add_dias_pendientes_to_workers.rb" />
-        <option value="$PROJECT_DIR$/config/webpack/custom.js" />
-        <option value="$PROJECT_DIR$/app/views/layouts/recursos_humanos.haml" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/credits.scss" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/calendar.css" />
         <option value="$PROJECT_DIR$/app/views/worker_planifications/edit.html.haml" />
@@ -189,7 +215,6 @@
         <option value="$PROJECT_DIR$/app/javascript/packs/recursos_humanos/calendar_permissions.js" />
         <option value="$PROJECT_DIR$/app/controllers/credits_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/layouts/agencias.haml" />
-        <option value="$PROJECT_DIR$/config/routes.rb" />
         <option value="$PROJECT_DIR$/app/javascript/packs/agencias/agencias.js" />
         <option value="$PROJECT_DIR$/app/controllers/recursos_humanos_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/workers/show.html.haml" />
@@ -199,10 +224,7 @@
         <option value="$PROJECT_DIR$/app/views/main/dashboard.haml" />
         <option value="$PROJECT_DIR$/app/controllers/desempenio_social_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/desempenio_social/balance_social.haml" />
-        <option value="$PROJECT_DIR$/app/views/agencias/indicadores_financieros.haml" />
         <option value="$PROJECT_DIR$/app/views/agencias/indicadores_seps.haml" />
-        <option value="$PROJECT_DIR$/app/models/oracledb_agencias.rb" />
-        <option value="$PROJECT_DIR$/app/controllers/agencias_controller.rb" />
         <option value="$PROJECT_DIR$/app/javascript/packs/desempenio_social/desempenio_social.js" />
         <option value="$PROJECT_DIR$/app/javascript/packs/desempenio_social/desempenio_social_navigation.js" />
         <option value="$PROJECT_DIR$/app/javascript/packs/agencias/agencias_navigation.js" />
@@ -218,6 +240,20 @@
         <option value="$PROJECT_DIR$/config/initializers/rack_attack.rb" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/app/controllers/worker_planifications_controller.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/goods_controller.rb" />
+        <option value="$PROJECT_DIR$/app/views/goods/show.html.haml" />
+        <option value="$PROJECT_DIR$/app/javascript/packs/creditos_indicadores.js" />
+        <option value="$PROJECT_DIR$/app/javascript/components/CreditsIndicadores/IndicadoresTable.js" />
+        <option value="$PROJECT_DIR$/app/javascript/components/CreditsIndicadores/PercentIndicadoresTable.js" />
+        <option value="$PROJECT_DIR$/app/javascript/components/CreditsIndicadores/IndicadoresColocadosTable.js" />
+        <option value="$PROJECT_DIR$/config/routes.rb" />
+        <option value="$PROJECT_DIR$/app/javascript/components/Agencias/IndicadoresFinancieros/Graficas.js" />
+        <option value="$PROJECT_DIR$/app/javascript/components/Agencias/IndicadoresFinancieros/IndicadoresFinancieros.js" />
+        <option value="$PROJECT_DIR$/app/javascript/packs/agencias/indicadores_parent.js" />
+        <option value="$PROJECT_DIR$/app/controllers/agencias_controller.rb" />
+        <option value="$PROJECT_DIR$/app/views/agencias/indicadores_financieros.haml" />
+        <option value="$PROJECT_DIR$/app/models/oracledb.rb" />
+        <option value="$PROJECT_DIR$/app/models/oracledb_agencias.rb" />
       </list>
     </option>
   </component>
@@ -276,6 +312,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="RailsProjectView" />
       <pane id="ProjectPane">
         <subPane>
@@ -293,12 +330,24 @@
               <item name="AppCacmu" type="b2602c69:ProjectViewProjectNode" />
               <item name="AppCacmu" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="AppCacmu" type="b2602c69:ProjectViewProjectNode" />
+              <item name="AppCacmu" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="controllers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="AppCacmu" type="b2602c69:ProjectViewProjectNode" />
               <item name="AppCacmu" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="helpers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="AppCacmu" type="b2602c69:ProjectViewProjectNode" />
+              <item name="AppCacmu" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -306,17 +355,14 @@
               <item name="AppCacmu" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="workers" type="462c0819:PsiDirectoryNode" />
+              <item name="credits" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="AppCacmu" type="b2602c69:ProjectViewProjectNode" />
               <item name="AppCacmu" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="AppCacmu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AppCacmu" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="lawyers" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -386,12 +432,11 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="SearchEverywhereHistoryKey" value="oracl&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/models/oracledb.rb&#10;gem&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/Gemfile&#10;credit&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/credits_controller.rb&#10;worker_pl&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/worker_planifications_controller.rb&#10;workers&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/workers_controller.rb&#10;oracle&#9;null&#9;null&#10;gemfile&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/Gemfile&#10;dash&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/views/main/dashboard.haml&#10;creditos_por&#9;null&#9;null&#10;ora&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/models/oracledb_agencias.rb&#10;agencias&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/models/oracledb_agencias.rb&#10;rout&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/config/routes.rb&#10;routes&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/config/routes.rb&#10;credits_con&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/credits_controller.rb&#10;cred&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/javascript/packs/creditos_navigation.js&#10;route&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/config/routes.rb&#10;worker_pla&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/worker_planifications_controller.rb&#10;permis&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/permission_histories_controller.rb&#10;recu&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/recursos_humanos_controller.rb&#10;work&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/workers_controller.rb&#10;rec&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/recursos_humanos_controller.rb&#10;worke&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/workers_controller.rb&#10;histo&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/permission_histories_controller.rb&#10;recurso&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/recursos_humanos_controller.rb&#10;vaca&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/vacations_controller.rb&#10;worker&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/workers_controller.rb&#10;va&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/vacations_controller.rb&#10;recur&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/javascript/packs/recursos_humanos/recursos_humanos_navigation.js&#10;recurs&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/recursos_humanos_controller.rb&#10;main&#9;null&#9;null&#10;orac&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/models/oracledb.rb&#10;credits_contr&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/credits_controller.rb&#10;indi&#9;null&#9;null&#10;or&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/models/oracledb_agencias.rb&#10;database&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/config/database.yml&#10;credits_co&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/credits_controller.rb&#10;cose&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/models/oracledb.rb&#10;Orac&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/models/oracledb.rb&#10;goo&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/models/good.rb&#10;Inso&#9;null&#9;null&#10;Good&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/models/good.rb&#10;credits_&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/credits_controller.rb&#10;cre&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/javascript/packs/creditos_concedidos.js&#10;data&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/config/database.yml&#10;report&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/views/credits/report.haml&#10;hi&#9;null&#9;null&#10;with&#9;null&#9;null&#10;new_tr&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/views/main/new_trial.haml&#10;credits&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/credits_controller.rb&#10;Oracle&#9;null&#9;null" />
+    <property name="SearchEverywhereHistoryKey" value="oracle&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/models/oracledb_agencias.rb&#10;routes&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/config/routes.rb&#10;oracl&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/models/oracledb.rb&#10;gem&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/Gemfile&#10;credit&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/credits_controller.rb&#10;worker_pl&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/worker_planifications_controller.rb&#10;workers&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/workers_controller.rb&#10;gemfile&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/Gemfile&#10;dash&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/views/main/dashboard.haml&#10;creditos_por&#9;null&#9;null&#10;ora&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/models/oracledb_agencias.rb&#10;agencias&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/models/oracledb_agencias.rb&#10;rout&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/config/routes.rb&#10;credits_con&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/credits_controller.rb&#10;cred&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/javascript/packs/creditos_navigation.js&#10;route&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/config/routes.rb&#10;worker_pla&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/worker_planifications_controller.rb&#10;permis&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/permission_histories_controller.rb&#10;recu&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/recursos_humanos_controller.rb&#10;work&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/workers_controller.rb&#10;rec&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/recursos_humanos_controller.rb&#10;worke&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/workers_controller.rb&#10;histo&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/permission_histories_controller.rb&#10;recurso&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/recursos_humanos_controller.rb&#10;vaca&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/vacations_controller.rb&#10;worker&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/workers_controller.rb&#10;va&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/vacations_controller.rb&#10;recur&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/javascript/packs/recursos_humanos/recursos_humanos_navigation.js&#10;recurs&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/recursos_humanos_controller.rb&#10;main&#9;null&#9;null&#10;orac&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/models/oracledb.rb&#10;credits_contr&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/credits_controller.rb&#10;indi&#9;null&#9;null&#10;or&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/models/oracledb_agencias.rb&#10;database&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/config/database.yml&#10;credits_co&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/credits_controller.rb&#10;cose&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/models/oracledb.rb&#10;Orac&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/models/oracledb.rb&#10;goo&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/models/good.rb&#10;Inso&#9;null&#9;null&#10;Good&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/models/good.rb&#10;credits_&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/credits_controller.rb&#10;cre&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/javascript/packs/creditos_concedidos.js&#10;data&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/config/database.yml&#10;report&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/views/credits/report.haml&#10;hi&#9;null&#9;null&#10;with&#9;null&#9;null&#10;new_tr&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/views/main/new_trial.haml&#10;credits&#9;FILE&#9;file:///Users/santy/Documents/Proyectos Programacion/RubyonRails/AppCacmu/app/controllers/credits_controller.rb&#10;Oracle&#9;null&#9;null" />
     <property name="settings.editor.selected.configurable" value="editing.templates" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
   </component>
@@ -558,16 +603,23 @@
       <workItem from="1524063662824" duration="2540000" />
       <workItem from="1525910554675" duration="9058000" />
       <workItem from="1525965717530" duration="81000" />
+      <workItem from="1529275308842" duration="495000" />
+      <workItem from="1533494443081" duration="7268000" />
+      <workItem from="1535926484527" duration="890000" />
+      <workItem from="1535996083355" duration="8347000" />
+      <workItem from="1536006696640" duration="455000" />
+      <workItem from="1536010026528" duration="1917000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="325712000" />
+    <option name="totallyTimeSpent" value="345084000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="773" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19609375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2484375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -600,485 +652,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/views/layouts/agencias.haml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="20" column="52" lean-forward="false" selection-start-line="20" selection-start-column="52" selection-end-line="20" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/javascript/packs/creditos_concedidos.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="205" column="57" lean-forward="true" selection-start-line="205" selection-start-column="6" selection-end-line="205" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/javascript/components/Agencias/IndicadoresFinancieros/Graficas.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="760">
-          <caret line="38" column="24" lean-forward="false" selection-start-line="38" selection-start-column="24" selection-end-line="38" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/javascript/packs/agencias/indicadores_parent.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1433">
-          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="81" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/javascript/components/Agencias/IndicadoresFinancieros/IndicadoresFinancieros.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/routes.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
-          <caret line="79" column="8" lean-forward="false" selection-start-line="79" selection-start-column="8" selection-end-line="79" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/javascript/components/Agencias/AgenciasForms/IndicadoresFinancierosForm.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="92" column="69" lean-forward="false" selection-start-line="85" selection-start-column="18" selection-end-line="92" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/javascript/packs/agencias/agencias.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="507">
-          <caret line="34" column="44" lean-forward="false" selection-start-line="34" selection-start-column="44" selection-end-line="34" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/permission_histories_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-741">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/recursos_humanos_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="30" column="75" lean-forward="false" selection-start-line="30" selection-start-column="75" selection-end-line="30" selection-end-column="75" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/vacations_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-668">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/workers/show.html.haml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1340">
-          <caret line="67" column="20" lean-forward="false" selection-start-line="67" selection-start-column="20" selection-end-line="67" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/database.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/deploy/production.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/credits/matrices.html.haml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="14" column="19" lean-forward="true" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/javascript/packs/agencias/indicadores_seps.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="20">
-          <caret line="114" column="17" lean-forward="false" selection-start-line="114" selection-start-column="17" selection-end-line="114" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/main/dashboard.haml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="30" column="30" lean-forward="true" selection-start-line="30" selection-start-column="30" selection-end-line="30" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/desempenio_social/index.haml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/credits/cosechas.html.haml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="5" column="18" lean-forward="true" selection-start-line="2" selection-start-column="4" selection-end-line="5" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/agencias/indicadores_financieros.haml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="5" column="6" lean-forward="false" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/agencias/indicadores_seps.haml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="5" column="6" lean-forward="false" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/desempenio_social/balance_social.haml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="4" column="23" lean-forward="false" selection-start-line="1" selection-start-column="2" selection-end-line="4" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/desempenio_social_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-345">
-          <caret line="15" column="4" lean-forward="false" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/agencias_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3620">
-          <caret line="181" column="31" lean-forward="false" selection-start-line="181" selection-start-column="31" selection-end-line="181" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/javascript/components/DesepenioSocial/DesempenioForms/BalanceSocialForm.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1566">
-          <caret line="123" column="69" lean-forward="false" selection-start-line="115" selection-start-column="18" selection-end-line="123" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/javascript/packs/desempenio_social/desempenio_social_navigation.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1656">
-          <caret line="174" column="61" lean-forward="false" selection-start-line="174" selection-start-column="61" selection-end-line="174" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/javascript/packs/agencias/agencias_navigation.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3760">
-          <caret line="209" column="0" lean-forward="false" selection-start-line="209" selection-start-column="0" selection-end-line="209" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/javascript/packs/desempenio_social/desempenio_social.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="13" column="44" lean-forward="false" selection-start-line="13" selection-start-column="44" selection-end-line="13" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="uml://RailsDependency/Good">
-      <provider selected="true" editor-type-id="UmlEditorProvider">
-        <state>
-          <ID>RailsDependency</ID>
-          <OriginalElement>Good</OriginalElement>
-          <nodes>
-            <node x="1777.0" y="1270.268378052976">WithoutGoodActivity</node>
-            <node x="2188.0" y="2462.8333333333335">ApplicationRecord</node>
-            <node x="1871.0" y="1817.827235982113">OracledbAgencias</node>
-            <node x="1011.5" y="3612.4917096663235">GoodActivity</node>
-            <node x="1795.5" y="3011.4917096663235">PermissionHistory</node>
-            <node x="496.0906260250023" y="1290.822914234045">Insolvency</node>
-            <node x="337.0" y="2491.1307619539048">Good</node>
-            <node x="1366.0" y="1362.1544461644314">WithoutgoodStage</node>
-            <node x="655.0" y="3533.9917096663235">GoodStage</node>
-            <node x="1796.5" y="2387.327235982113">InsolvencyActivity</node>
-            <node x="1860.0" y="981.268378052976">HistoryCredit</node>
-            <node x="1385.5" y="2532.154446164431">InsolvencyStage</node>
-            <node x="1789.5" y="3349.4917096663235">WorkerPlanification</node>
-            <node x="653.0" y="2577.14219126247">Lawyer</node>
-            <node x="1378.5" y="3067.388157894737">Worker</node>
-            <node x="965.0" y="653.0894564843484">WithoutGood</node>
-            <node x="-3.987015297755079" y="1675.9765553232796">User</node>
-            <node x="1899.0" y="2158.5061231510153">Oracledb</node>
-            <node x="1856.5" y="3191.4917096663235">Vacation</node>
-            <node x="1872.0" y="3507.4917096663235">DiscardedTrial</node>
-            <node x="1824.5" y="0.0">PendingTrial</node>
-          </nodes>
-          <notes />
-          <edges>
-            <edge source="WithoutGood" target="WithoutgoodStage">
-              <point x="160.5" y="376.66666666666674" />
-              <point x="-165.5" y="-0.0" />
-            </edge>
-            <edge source="Insolvency" target="ApplicationRecord">
-              <point x="141.0" y="-376.66666666666674" />
-              <point x="1286.0" y="2011.4227898176819" />
-              <point x="1366.0" y="2148.0061231510153" />
-              <point x="2108.0" y="2148.0061231510153" />
-              <point x="-72.0" y="-4.578947368421268" />
-            </edge>
-            <edge source="WithoutgoodStage" target="ApplicationRecord">
-              <point x="165.5" y="35.0" />
-              <point x="2108.0" y="1467.1544461644314" />
-              <point x="-72.0" y="-7.631578947368325" />
-            </edge>
-            <edge source="WithoutgoodStage" target="WithoutGoodActivity">
-              <point x="165.5" y="-35.0" />
-              <point x="-165.5" y="24.0" />
-            </edge>
-            <edge source="Good" target="GoodActivity">
-              <point x="118.0" y="469.5999999999999" />
-              <point x="653.0" y="3684.4917096663235" />
-              <point x="-114.0" y="24.0" />
-            </edge>
-            <edge source="Worker" target="ApplicationRecord">
-              <point x="153.0" y="-93.75" />
-              <point x="1697.0" y="3098.638157894737" />
-              <point x="1777.0" y="2989.8798675610606" />
-              <point x="2108.0" y="2989.8798675610606" />
-              <point x="-72.0" y="4.578947368421268" />
-            </edge>
-            <edge source="PendingTrial" target="ApplicationRecord">
-              <point x="118.0" y="-0.0" />
-              <point x="2108.0" y="466.0000000000002" />
-              <point x="-72.0" y="-13.73684210526335" />
-            </edge>
-            <edge source="Insolvency" target="InsolvencyStage">
-              <point x="141.0" y="376.6666666666665" />
-              <point x="1286.0" y="2764.756123151015" />
-              <point x="1366.0" y="2602.154446164431" />
-              <point x="-146.0" y="-0.0" />
-            </edge>
-            <edge source="User" target="WithoutGood">
-              <point x="128.5" y="-94.0" />
-              <point x="337.0" y="935.5894564843484" />
-              <point x="-160.5" y="-282.5" />
-            </edge>
-            <edge source="User" target="Insolvency">
-              <point x="128.5" y="-0.0" />
-              <point x="337.0" y="2208.3517113863095" />
-              <point x="885.0" y="2208.3517113863095" />
-              <point x="965.0" y="2105.5894564843484" />
-              <point x="-141.0" y="-282.5" />
-            </edge>
-            <edge source="Lawyer" target="Insolvency">
-              <point x="116.0" y="-0.0" />
-              <point x="-141.0" y="282.5" />
-            </edge>
-            <edge source="InsolvencyActivity" target="ApplicationRecord">
-              <point x="146.0" y="-0.0" />
-              <point x="2108.0" y="2435.327235982113" />
-              <point x="-72.0" y="-1.526315789473756" />
-            </edge>
-            <edge source="User" target="Good">
-              <point x="128.5" y="188.0" />
-              <point x="-118.0" y="293.5" />
-            </edge>
-            <edge source="User" target="PendingTrial">
-              <point x="128.5" y="-188.0" />
-              <point x="337.0" y="466.0000000000002" />
-              <point x="-118.0" y="-0.0" />
-            </edge>
-            <edge source="Lawyer" target="WithoutGood">
-              <point x="116.0" y="-61.333333333333485" />
-              <point x="-160.5" y="282.5" />
-            </edge>
-            <edge source="InsolvencyStage" target="ApplicationRecord">
-              <point x="146.0" y="35.0" />
-              <point x="2108.0" y="2637.154446164431" />
-              <point x="-72.0" y="-0.0" />
-            </edge>
-            <edge source="GoodStage" target="ApplicationRecord">
-              <point x="114.0" y="-35.0" />
-              <point x="2108.0" y="3568.9917096663235" />
-              <point x="-72.0" y="12.210526315789593" />
-            </edge>
-            <edge source="Good" target="GoodStage">
-              <point x="118.0" y="234.79999999999973" />
-              <point x="-114.0" y="-0.0" />
-            </edge>
-            <edge source="GoodActivity" target="ApplicationRecord">
-              <point x="114.0" y="-0.0" />
-              <point x="2108.0" y="3660.4917096663235" />
-              <point x="-72.0" y="13.73684210526335" />
-            </edge>
-            <edge source="Worker" target="Vacation">
-              <point x="153.0" y="31.25" />
-              <point x="1697.0" y="3223.638157894737" />
-              <point x="1777.0" y="3250.4917096663235" />
-              <point x="-86.0" y="-0.0" />
-            </edge>
-            <edge source="DiscardedTrial" target="ApplicationRecord">
-              <point x="70.5" y="-0.0" />
-              <point x="2108.0" y="3532.9917096663235" />
-              <point x="-72.0" y="10.684210526315837" />
-            </edge>
-            <edge source="WithoutGoodActivity" target="ApplicationRecord">
-              <point x="165.5" y="-0.0" />
-              <point x="-72.0" y="-9.157894736842081" />
-            </edge>
-            <edge source="Vacation" target="ApplicationRecord">
-              <point x="86.0" y="-0.0" />
-              <point x="2108.0" y="3250.4917096663235" />
-              <point x="-72.0" y="7.631578947368325" />
-            </edge>
-            <edge source="WithoutGood" target="WithoutGoodActivity">
-              <point x="160.5" y="-0.0" />
-              <point x="1366.0" y="1294.268378052976" />
-              <point x="-165.5" y="-24.0" />
-            </edge>
-            <edge source="Oracledb" target="ApplicationRecord">
-              <point x="43.5" y="-0.0" />
-              <point x="2108.0" y="2173.0061231510153" />
-              <point x="-72.0" y="-3.052631578947512" />
-            </edge>
-            <edge source="WithoutGood" target="ApplicationRecord">
-              <point x="160.5" y="-376.66666666666674" />
-              <point x="1366.0" y="970.768378052976" />
-              <point x="2108.0" y="970.768378052976" />
-              <point x="-72.0" y="-12.210526315789593" />
-            </edge>
-            <edge source="Good" target="User">
-              <point x="-118.0" y="-293.5" />
-              <point x="128.5" y="94.0" />
-            </edge>
-            <edge source="Lawyer" target="ApplicationRecord">
-              <point x="116.0" y="61.333333333333485" />
-              <point x="965.0" y="2963.5894564843484" />
-              <point x="2108.0" y="2963.5894564843484" />
-              <point x="-72.0" y="1.526315789473756" />
-            </edge>
-            <edge source="Good" target="ApplicationRecord">
-              <point x="118.0" y="-0.0" />
-              <point x="653.0" y="2984.935947712419" />
-              <point x="2108.0" y="2984.935947712419" />
-              <point x="-72.0" y="3.052631578947512" />
-            </edge>
-            <edge source="Worker" target="WorkerPlanification">
-              <point x="153.0" y="93.75" />
-              <point x="1697.0" y="3286.138157894737" />
-              <point x="1777.0" y="3408.4917096663235" />
-              <point x="-153.0" y="-0.0" />
-            </edge>
-            <edge source="OracledbAgencias" target="ApplicationRecord">
-              <point x="71.5" y="-0.0" />
-              <point x="2108.0" y="1832.327235982113" />
-              <point x="-72.0" y="-6.105263157894569" />
-            </edge>
-            <edge source="Insolvency" target="InsolvencyActivity">
-              <point x="141.0" y="-0.0" />
-              <point x="1286.0" y="2388.0894564843484" />
-              <point x="1366.0" y="2411.327235982113" />
-              <point x="-146.0" y="-24.0" />
-            </edge>
-            <edge source="PermissionHistory" target="ApplicationRecord">
-              <point x="147.0" y="-0.0" />
-              <point x="2108.0" y="3081.4917096663235" />
-              <point x="-72.0" y="6.105263157894569" />
-            </edge>
-            <edge source="Worker" target="PermissionHistory">
-              <point x="153.0" y="-31.25" />
-              <point x="1697.0" y="3161.138157894737" />
-              <point x="1777.0" y="3081.4917096663235" />
-              <point x="-147.0" y="-0.0" />
-            </edge>
-            <edge source="HistoryCredit" target="ApplicationRecord">
-              <point x="82.5" y="-0.0" />
-              <point x="2108.0" y="1105.768378052976" />
-              <point x="-72.0" y="-10.684210526315837" />
-            </edge>
-            <edge source="WorkerPlanification" target="ApplicationRecord">
-              <point x="153.0" y="-0.0" />
-              <point x="2108.0" y="3408.4917096663235" />
-              <point x="-72.0" y="9.157894736842081" />
-            </edge>
-            <edge source="InsolvencyStage" target="InsolvencyActivity">
-              <point x="146.0" y="-35.0" />
-              <point x="1697.0" y="2567.154446164431" />
-              <point x="1777.0" y="2459.327235982113" />
-              <point x="-146.0" y="24.0" />
-            </edge>
-            <edge source="Good" target="Lawyer">
-              <point x="118.0" y="-234.80000000000018" />
-              <point x="-116.0" y="46.0" />
-            </edge>
-            <edge source="GoodStage" target="GoodActivity">
-              <point x="114.0" y="35.0" />
-              <point x="-114.0" y="-24.0" />
-            </edge>
-            <edge source="Lawyer" target="Good">
-              <point x="-116.0" y="-46.0" />
-              <point x="118.0" y="-469.5999999999999" />
-            </edge>
-          </edges>
-          <settings layout="Hierarchic Group" zoom="0.501628373767744" x="650.0" y="1841.0" />
-          <SelectedNodes>
-            <node>Insolvency</node>
-          </SelectedNodes>
-          <Categories>
-            <Category>Migration fields</Category>
-            <Category>Association fields</Category>
-          </Categories>
-          <SCOPE>All</SCOPE>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/application_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/javascript/packs/desempenio_social/balance_social.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="20">
-          <caret line="112" column="87" lean-forward="false" selection-start-line="112" selection-start-column="87" selection-end-line="112" selection-end-column="87" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/environment.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/initializers/application_controller_renderer.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/environments/development.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-595">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/deploy.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-109">
@@ -1090,13 +663,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="545">
           <caret line="47" column="5" lean-forward="false" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/oracledb_agencias.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="20">
-          <caret line="574" column="23" lean-forward="false" selection-start-line="574" selection-start-column="11" selection-end-line="574" selection-end-column="23" />
         </state>
       </provider>
     </entry>
@@ -1115,13 +681,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Capfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-230">
-          <caret line="11" column="33" lean-forward="false" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/workers/_form.html.haml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
@@ -1133,7 +692,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1148,15 +706,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="260">
           <caret line="33" column="19" lean-forward="false" selection-start-line="33" selection-start-column="19" selection-end-line="33" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/initializers/rack_attack.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="20">
-          <caret line="1" column="26" lean-forward="false" selection-start-line="1" selection-start-column="2" selection-end-line="1" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1164,22 +713,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="520">
           <caret line="26" column="15" lean-forward="false" selection-start-line="26" selection-start-column="15" selection-end-line="26" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/oracledb.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="31960">
-          <caret line="1598" column="43" lean-forward="false" selection-start-line="1598" selection-start-column="43" selection-end-line="1598" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/credits_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="12" column="4" lean-forward="false" selection-start-line="12" selection-start-column="4" selection-end-line="13" selection-end-column="80" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1191,7 +724,246 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/worker_planifications_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2280">
+          <caret line="114" column="31" lean-forward="false" selection-start-line="114" selection-start-column="31" selection-end-line="114" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/javascript/components/CreditosPorVencer/TableDates.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1355">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/javascript/components/CreditosPorVencer/PerWeek.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-862">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/initializers/rack_attack.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="20">
+          <caret line="1" column="26" lean-forward="false" selection-start-line="1" selection-start-column="2" selection-end-line="1" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/lawyers_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/main_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/main/stage.haml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/main/search.haml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/partials/creditos/_list_all_trials.haml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/main/home_creditos.haml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/goods/show.html.haml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="392">
+          <caret line="71" column="14" lean-forward="false" selection-start-line="71" selection-start-column="14" selection-end-line="71" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/javascript/components/CreditsIndicadores/PercentIndicadoresColocadosTable.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/webpack/development.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/credits/indicadores_creditos_vigentes.haml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/javascript/packs/credits.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-270">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/credits/index.haml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="4" column="32" lean-forward="true" selection-start-line="4" selection-start-column="32" selection-end-line="4" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/javascript/packs/creditos_navigation.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/javascript/packs/creditos_indicadores.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="101" column="22" lean-forward="true" selection-start-line="101" selection-start-column="22" selection-end-line="101" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/javascript/components/CreditsIndicadores/IndicadoresTable.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="36" column="4" lean-forward="true" selection-start-line="36" selection-start-column="4" selection-end-line="44" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/javascript/components/CreditsIndicadores/PercentIndicadoresTable.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="89" column="45" lean-forward="false" selection-start-line="89" selection-start-column="45" selection-end-line="89" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/javascript/packs/MatrizTransicion.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="371">
+          <caret line="59" column="21" lean-forward="false" selection-start-line="59" selection-start-column="21" selection-end-line="59" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/javascript/components/MatrizTransicion/MatrizSaldos.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40">
+          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/routes.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1420">
+          <caret line="71" column="8" lean-forward="false" selection-start-line="71" selection-start-column="8" selection-end-line="71" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/javascript/components/CreditsIndicadores/IndicadoresColocadosTable.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="60" column="79" lean-forward="false" selection-start-line="60" selection-start-column="79" selection-end-line="60" selection-end-column="79" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/material-ui/RaisedButton/RaisedButton.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="229">
+          <caret line="448" column="2" lean-forward="false" selection-start-line="448" selection-start-column="2" selection-end-line="448" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/javascript/components/Agencias/IndicadoresFinancieros/IndicadoresFinancieros.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="46" column="21" lean-forward="false" selection-start-line="46" selection-start-column="21" selection-end-line="46" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/javascript/packs/agencias/indicadores_parent.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="64" column="6" lean-forward="false" selection-start-line="64" selection-start-column="6" selection-end-line="64" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/agencias/indicadores_financieros.haml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="700">
+          <caret line="35" column="27" lean-forward="false" selection-start-line="35" selection-start-column="27" selection-end-line="35" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/javascript/components/Agencias/IndicadoresFinancieros/Graficas.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="16" column="40" lean-forward="false" selection-start-line="16" selection-start-column="40" selection-end-line="16" selection-end-column="40" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/agencias_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4320">
+          <caret line="216" column="22" lean-forward="false" selection-start-line="216" selection-start-column="22" selection-end-line="216" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/oracledb.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="603">
+          <caret line="2461" column="0" lean-forward="true" selection-start-line="2461" selection-start-column="0" selection-end-line="2461" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/oracledb_agencias.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="392">
+          <caret line="77" column="10" lean-forward="true" selection-start-line="77" selection-start-column="10" selection-end-line="77" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/deploy/production.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="15" column="14" lean-forward="false" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/webpacker.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1199,10 +971,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/worker_planifications_controller.rb">
+    <entry file="file://$PROJECT_DIR$/db/migrate/20180511211221_add_fecha_terminacion_to_permission_history.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="485">
-          <caret line="109" column="31" lean-forward="false" selection-start-line="109" selection-start-column="31" selection-end-line="109" selection-end-column="31" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Capfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/database.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/goods_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="580">
+          <caret line="29" column="5" lean-forward="true" selection-start-line="27" selection-start-column="3" selection-end-line="29" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/credits_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9369">
+          <caret line="509" column="35" lean-forward="false" selection-start-line="509" selection-start-column="6" selection-end-line="509" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/lawyers/_form.html.haml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="18" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/lawyers/edit.html.haml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40">
+          <caret line="2" column="10" lean-forward="true" selection-start-line="2" selection-start-column="10" selection-end-line="2" selection-end-column="10" />
           <folding />
         </state>
       </provider>

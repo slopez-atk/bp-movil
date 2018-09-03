@@ -551,10 +551,16 @@ class OracledbAgencias < ApplicationRecord
     # Egresos promedio
     egresos_promedio = (OracledbAgencias.obtener_indicador_seps [4], fecha, agencia) / mes * 12.0
 
-    roe = (ingresos_promedio - egresos_promedio)
+    patrimonio_anterior = (OracledbAgencias.obtener_indicador_seps [3], '31/12/2017', agencia)
+
+    patrimonio_actual = (OracledbAgencias.obtener_indicador_seps [3], fecha, agencia)
+
+    patrimonio_promedio = (patrimonio_anterior - patrimonio_actual) / 2
+
+    roe = (ingresos_promedio - egresos_promedio) / patrimonio_promedio
     # ------------------------------------------------------------------------------
 
-    [solvencia, apalancamiento, liquidez, morosidad_ampliada, covertura_provision, relacion_productividad, roa, eficiencia_institucional, grado_absorcion_mf, tasa_activa, tasa_pasiva_general, solvencia]
+    [solvencia, apalancamiento, liquidez, morosidad_ampliada, covertura_provision, relacion_productividad, roa, eficiencia_institucional, grado_absorcion_mf, tasa_activa, tasa_pasiva_general, roe]
   end
 
   def self.extraer_fechas_entre(inicio, fin)

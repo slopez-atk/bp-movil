@@ -24,9 +24,22 @@ class IndicadoresColocadosTable extends React.Component {
   calcularTotales() {
     let cantidad = 0;
     let monto_real = 0;
+    let row = {clave: 'Total',
+      cantidad: cantidad,
+      cap_activo: cap_activo,
+      cap_ndevenga:cap_ndevenga,
+      cartera_riesgo: cartera_riesgo,
+      cap_vencido: cap_vencido
+    };
+    let data = this.props.data;
+    data.push(row);
 
     for (let i = 0; i < this.props.data.length; i++) {
       monto_real += parseFloat(this.props.data[i]["monto_real"]);
+      cantidad += parseFloat(this.props.data[i]["cantidad"]);
+
+      cantidad += parseFloat(this.props.data[i]["monto_real"]);
+      cantidad += parseFloat(this.props.data[i]["cantidad"]);
       cantidad += parseFloat(this.props.data[i]["cantidad"]);
     }
     return [cantidad, monto_real];
@@ -45,13 +58,13 @@ class IndicadoresColocadosTable extends React.Component {
             <BootstrapTable ref='table' data={this.props.data} exportCSV={true} hover options={options}>
               <TableHeaderColumn dataField='clave' isKey={true} dataSort={true}
                                  width='250'>Indicador</TableHeaderColumn>
-              <TableHeaderColumn dataField='cantidad' dataSort={true} width='250'>Cantidad</TableHeaderColumn>
+              <TableHeaderColumn dataField='cantidad' style={{textAlign: 'right'}} dataSort={true} width='250'>Cantidad</TableHeaderColumn>
               <TableHeaderColumn dataField='monto_real' dataSort={true} width='250'>Monto Real</TableHeaderColumn>
             </BootstrapTable>
           </div>
           <h4 className="top-space" style={{color: "#FFC107"}}>Tabla de Porcentajes</h4>
           <div>
-            <PercentIndicadoresColocadosTable data={this.props.data} cantidad={porcentajes[0]} monto_real={porcentajes[1]}/>
+            <PercentIndicadoresColocadosTable data={this.props.data_percent} cantidad={porcentajes[0]} monto_real={porcentajes[1]}/>
           </div>
         </Paper>
       </div>

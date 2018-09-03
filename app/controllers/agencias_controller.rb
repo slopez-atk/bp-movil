@@ -66,9 +66,12 @@ class AgenciasController < ApplicationController
     @gastos_provision = Array.new
     @gastos_operacionales = Array.new
     @gastos_personal = Array.new
+    @utilidades = Array.new
+
 
     @array_de_datos.each do |data|
       data.each_with_index do |cuenta, index|
+
         cuenta.stringify_keys!
         if cuenta["nro_cuenta"] === 1
           @activos.push(cuenta["valor"])
@@ -88,6 +91,7 @@ class AgenciasController < ApplicationController
           @certificados_aportacion.push(cuenta["valor"])
         elsif cuenta["nro_cuenta"] === 5
           @ingresos_totales.push(cuenta["valor"])
+
         elsif cuenta["nro_cuenta"] === 51
           @intereses_descuentos.push(cuenta["valor"])
         elsif cuenta["nro_cuenta"] === 5102
@@ -102,6 +106,7 @@ class AgenciasController < ApplicationController
           @otros_ingresos.push(cuenta["valor"])
         elsif cuenta["nro_cuenta"] === 4
           @gastos_totales.push(cuenta["valor"])
+
         elsif cuenta["nro_cuenta"] === 41
           @gastos_financieros.push(cuenta["valor"])
         elsif cuenta["nro_cuenta"] === 4101
@@ -113,8 +118,10 @@ class AgenciasController < ApplicationController
         elsif cuenta["nro_cuenta"] === 4501
           @gastos_personal.push(cuenta["valor"])
         end
+
       end
     end
+
 
     # Carteras compuestas
     suma_caja_bancos = 0.0
@@ -171,7 +178,10 @@ class AgenciasController < ApplicationController
       @patrimonio.push(suma_patrimonio.round(2))
       suma_patrimonio = 0.0
     end
-
+    # Calculo de utilidades
+    @ingresos_totales.each_with_index do |ingreso, index |
+      @utilidades.push(ingreso.to_f - @gastos_totales[index].to_f)
+    end
   end
 
   def indicadores_seps

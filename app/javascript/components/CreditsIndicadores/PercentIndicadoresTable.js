@@ -63,7 +63,7 @@ class PercentIndicadoresTable extends React.Component{
   }
 
   calcularSumatorias(){
-    let data = this.props.data;
+    let data = this.props.data_percent;
     let suma_cantidad = 0;
     let suma_cap_activo = 0;
     let suma_cap_ndevenga = 0;
@@ -87,11 +87,12 @@ class PercentIndicadoresTable extends React.Component{
     const options = {
       toolBar: this.createCustomToolBar
     };
+    let data = this.props.data_percent.pop();
     return(
       <div>
         <h4 className="top-space" style={{color: "#FFC107"}}>{ this.props.title }</h4>
         <div>
-          <BootstrapTable ref='table' data={ this.props.data } exportCSV={ true } hover options={options}>
+          <BootstrapTable ref='table' data={ this.props.data_percent } exportCSV={ true } hover options={options}>
             <TableHeaderColumn dataField='clave' isKey={ true } dataSort={ true } width='250'>Indicador</TableHeaderColumn>
             <TableHeaderColumn dataField='cantidad' dataSort={ true } width='250' dataFormat={this.calculoDePorcentajeCantidad}>% Cantidad</TableHeaderColumn>
             <TableHeaderColumn dataField='cap_activo' dataSort={ true } width='250' dataFormat={this.calculoDePorcentajeCapActivo}>% Capital Activo</TableHeaderColumn>
@@ -104,5 +105,7 @@ class PercentIndicadoresTable extends React.Component{
     );
   }
 }
+
+
 
 export default PercentIndicadoresTable;

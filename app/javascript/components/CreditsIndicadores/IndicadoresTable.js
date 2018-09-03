@@ -34,8 +34,19 @@ class IndicadoresTable extends React.Component{
       cartera_riesgo += parseFloat(this.props.data[i]["cartera_riesgo"]);
       cantidad += parseFloat(this.props.data[i]["cantidad"]);
     }
+    let row = {clave: 'Total',
+      cantidad: cantidad,
+      cap_activo: cap_activo,
+      cap_ndevenga:cap_ndevenga,
+      cartera_riesgo: cartera_riesgo,
+      cap_vencido: cap_vencido
+    };
+    let data = this.props.data;
+    data.push(row);
     return [cantidad, cap_activo, cap_ndevenga, cartera_riesgo, cap_vencido];
+
   }
+
 
   render(){
     const options = {
@@ -58,7 +69,7 @@ class IndicadoresTable extends React.Component{
           </div>
           <h4 className="top-space" style={{color: "#FFC107"}}>Tabla de Porcentajes</h4>
           <div>
-            <PercentIndicadoresTable data={this.props.data} cantidad={porcentajes[0]} cap_activo={porcentajes[1]} cap_ndevenga={porcentajes[2]} cartera_riesgo={porcentajes[3]} cap_vencido={porcentajes[4]}/>
+            <PercentIndicadoresTable data_percent={this.props.data_percent} cantidad={porcentajes[0]} cap_activo={porcentajes[1]} cap_ndevenga={porcentajes[2]} cartera_riesgo={porcentajes[3]} cap_vencido={porcentajes[4]}/>
           </div>
         </Paper>
       </div>

@@ -21,6 +21,7 @@ class GoodsController < ApplicationController
     end
     @variables = Oracledb.getSaldos(id)
     @semaforo_actual = @good.semaforo
+
   end
 
   # GET /goods/new

@@ -38,43 +38,43 @@ class CreditosIndicadores extends React.Component{
       return(
         <Tabs>
           <Tab label="Genero">
-            <IndicadoresTable title={"Indicador de Genero"} data={ this.props.generos }/>
+            <IndicadoresTable title={"Indicador de Genero"} data={ this.props.generos } data_percent={ this.props.generos }/>
           </Tab>
 
           <Tab label="Sector">
-            <IndicadoresTable title={"Indicador de Sector"} data={ this.props.sectores }/>
+            <IndicadoresTable title={"Indicador de Sector"} data={ this.props.sectores } data_percent={ this.props.sectores }/>
           </Tab>
 
           <Tab label="Sector C.">
-            <IndicadoresTable title={"Indicador de Sector Calculado"} data={ this.props.sector_calculado }/>
+            <IndicadoresTable title={"Indicador de Sector Calculado"} data={ this.props.sector_calculado }data_percent={ this.props.sector_calculado }/>
           </Tab>
 
           <Tab label="Tipo Credito">
-            <IndicadoresTable title={"Indicador de Tipo de Credito"} data={ this.props.tipos_credito }/>
+            <IndicadoresTable title={"Indicador de Tipo de Credito"} data={ this.props.tipos_credito }data_percent={ this.props.tipos_credito }/>
           </Tab>
 
           <Tab label="Origen Recursos">
-            <IndicadoresTable title={"Indicador de Origen de Recursos"} data={ this.props.origenes_recursos }/>
+            <IndicadoresTable title={"Indicador de Origen de Recursos"} data={ this.props.origenes_recursos }data_percent={ this.props.origenes_recursos }/>
           </Tab>
 
           <Tab label="Metodología">
-            <IndicadoresTable title={"Indicador de Metodología"} data={ this.props.metodologias }/>
+            <IndicadoresTable title={"Indicador de Metodología"} data={ this.props.metodologias }data_percent={ this.props.metodologias }/>
           </Tab>
 
           <Tab label="Instrucción">
-            <IndicadoresTable title={"Indicador de Nivel de Instrucción"} data={ this.props.nivel_instrucciones }/>
+            <IndicadoresTable title={"Indicador de Nivel de Instrucción"} data={ this.props.nivel_instrucciones }data_percent={ this.props.nivel_instrucciones }/>
           </Tab>
 
           <Tab label="Estado Civil">
-            <IndicadoresTable title={"Indicador de Estado Civil"} data={ this.props.estados_civiles }/>
+            <IndicadoresTable title={"Indicador de Estado Civil"} data={ this.props.estados_civiles }data_percent={ this.props.estados_civiles }/>
           </Tab>
 
           <Tab label="Edades">
-            <IndicadoresTable title={"Indicador de Rango de Edades"} data={ this.props.rango_edades }/>
+            <IndicadoresTable title={"Indicador de Rango de Edades"} data={ this.props.rango_edades }data_percent={ this.props.rango_edades }/>
           </Tab>
 
           <Tab label="Ingresos">
-            <IndicadoresTable title={"Indicador de Rango de Ingreso"} data={ this.props.rango_ingresos }/>
+            <IndicadoresTable title={"Indicador de Rango de Ingreso"} data={ this.props.rango_ingresos }data_percent={ this.props.rango_ingresos }/>
           </Tab>
 
         </Tabs>
@@ -83,43 +83,43 @@ class CreditosIndicadores extends React.Component{
       return(
         <Tabs>
           <Tab label="Genero">
-            <IndicadoresColocadosTable title={"Indicador de Genero"} data={ this.props.generos }/>
+            <IndicadoresColocadosTable title={"Indicador de Genero"} data={ this.props.generos }data_percent={ this.props.generos }/>
           </Tab>
 
           <Tab label="Sector">
-            <IndicadoresColocadosTable title={"Indicador de Sector"} data={ this.props.sectores }/>
+            <IndicadoresColocadosTable title={"Indicador de Sector"} data={ this.props.sectores }data_percent={ this.props.sectores }/>
           </Tab>
 
           <Tab label="Sector C.">
-            <IndicadoresColocadosTable title={"Indicador de Sector Calculado"} data={ this.props.sector_calculado }/>
+            <IndicadoresColocadosTable title={"Indicador de Sector Calculado"} data={ this.props.sector_calculado }data_percent={ this.props.sector_calculado }/>
           </Tab>
 
           <Tab label="Tipo Credito">
-            <IndicadoresColocadosTable title={"Indicador de Tipo de Credito"} data={ this.props.tipos_credito }/>
+            <IndicadoresColocadosTable title={"Indicador de Tipo de Credito"} data={ this.props.tipos_credito }data_percent={ this.props.tipos_credito }/>
           </Tab>
 
           <Tab label="Origen Recursos">
-            <IndicadoresColocadosTable title={"Indicador de Origen de Recursos"} data={ this.props.origenes_recursos }/>
+            <IndicadoresColocadosTable title={"Indicador de Origen de Recursos"} data={ this.props.origenes_recursos }data_percent={ this.props.origenes_recursos }/>
           </Tab>
 
           <Tab label="Metodología">
-            <IndicadoresColocadosTable title={"Indicador de Metodología"} data={ this.props.metodologias }/>
+            <IndicadoresColocadosTable title={"Indicador de Metodología"} data={ this.props.metodologias }data_percent={ this.props.metodologias }a={ this.props.metodologias }/>
           </Tab>
 
           <Tab label="Instrucción">
-            <IndicadoresColocadosTable title={"Indicador de Nivel de Instrucción"} data={ this.props.nivel_instrucciones }/>
+            <IndicadoresColocadosTable title={"Indicador de Nivel de Instrucción"} data={ this.props.nivel_instrucciones }data_percent={ this.props.nivel_instrucciones }/>
           </Tab>
 
           <Tab label="Estado Civil">
-            <IndicadoresColocadosTable title={"Indicador de Estado Civil"} data={ this.props.estados_civiles }/>
+            <IndicadoresColocadosTable title={"Indicador de Estado Civil"} data={ this.props.estados_civiles }data_percent={ this.props.estados_civiles }/>
           </Tab>
 
           <Tab label="Edades">
-            <IndicadoresColocadosTable title={"Indicador de Rango de Edades"} data={ this.props.rango_edades }/>
+            <IndicadoresColocadosTable title={"Indicador de Rango de Edades"} data={ this.props.rango_edades }data_percent={ this.props.rango_edades }/>
           </Tab>
 
           <Tab label="Ingresos">
-            <IndicadoresColocadosTable title={"Indicador de Rango de Ingresos"} data={ this.props.rango_ingresos }/>
+            <IndicadoresColocadosTable title={"Indicador de Rango de Ingresos"} data={ this.props.rango_ingresos }data_percent={ this.props.rango_ingresos }/>
           </Tab>
 
 

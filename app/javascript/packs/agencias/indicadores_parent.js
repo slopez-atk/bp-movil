@@ -94,7 +94,9 @@ class IndicadoresParent extends React.Component{
           cartera_bruta_microcredito={this.props.cartera_bruta_microcredito}
           cartera_riesgo={this.props.cartera_riesgo}
           patrimonio={this.props.patrimonio}
-          onClick={this.setDataGraphic}/>
+          onClick={this.setDataGraphic}
+          agencia={this.props.agencia}
+          utilidades={this.props.utilidades}/>
 
 
           <Dialog

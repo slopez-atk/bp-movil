@@ -6,17 +6,18 @@ class Graficas extends React.Component {
     super(props)
   }
 
+
   getData(){
     let data = {
       labels: ['Diciembre', 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
       datasets: [
         {
           label: this.props.titulo,
-          backgroundColor: 'rgba(255,99,132,0.2)',
-          borderColor: 'rgba(255,99,132,1)',
+          backgroundColor: 'rgb(63, 81, 181)',
+          borderColor: 'rgb(60, 76, 170)',
           borderWidth: 1,
-          hoverBackgroundColor: 'rgba(255,99,132,0.4)',
-          hoverBorderColor: 'rgba(255,99,132,1)',
+          hoverBackgroundColor: 'rgb(46, 59, 132)',
+          hoverBorderColor: 'rgb(40, 51, 113)',
           data: this.props.data
         }
       ]

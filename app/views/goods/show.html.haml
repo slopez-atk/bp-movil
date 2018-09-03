@@ -56,7 +56,7 @@
                 = @good.propietario_bienes
               %p
                 %b.text-primary Fecha del juicio:
-                = @good.created_at
+                = @good.created_at.strftime('%m-%d-%Y')
             .col-xs-6
               %p
                 %b.text-primary Bienes:

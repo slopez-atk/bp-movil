@@ -44,6 +44,7 @@ class IndicadoresFinancieros extends React.Component{
   }
 
   getRow(array, marked){
+    console.log(array)
     return array.map((row, index) =>{
       let estilos = {};
       if(marked){
@@ -95,157 +96,163 @@ class IndicadoresFinancieros extends React.Component{
               <tr>
                 <td style={style.markRow}>Activos</td>
                 {this.getRow(this.props.activos, true)}
-                <td ><RaisedButton label="Ver" primary onClick={()=>  this.props.onClick(this.props.activos, "Gráfica de cuenta - Activos")}/></td>
+                <td ><RaisedButton label="Ver" primary onClick={()=>  this.props.onClick(this.props.activos, "Gráfica de cuenta - Activos - " + this.props.agencia)}/></td>
               </tr>
 
               <tr>
                 <td style={style.cuentasRow}>Fondos</td>
                 {this.getRow(this.props.fondos, false)}
-                <td><RaisedButton label="Ver" primary onClick={()=>  this.props.onClick(this.props.fondos, "Gráfica de cuenta - Fondos")}/></td>
+                <td><RaisedButton label="Ver" primary onClick={()=>  this.props.onClick(this.props.fondos, "Gráfica de cuenta - Fondos - "+ this.props.agencia)}/></td>
               </tr>
 
               <tr>
                 <td style={style.cuentasRow}>Caja Bancos</td>
                 {this.getRow(this.props.caja_bancos, false)}
-                <td><RaisedButton label="Ver" primary onClick={()=>  this.props.onClick(this.props.caja_bancos, "Gráfica de cuenta - Caja Bancos")}/></td>
+                <td><RaisedButton label="Ver" primary onClick={()=>  this.props.onClick(this.props.caja_bancos, "Gráfica de cuenta - Caja Bancos - "+ this.props.agencia)}/></td>
               </tr>
 
               <tr>
                 <td style={style.cuentasRow}>Cartera Bruta</td>
                 {this.getRow(this.props.cartera_bruta, false)}
-                <td><RaisedButton label="Ver" primary onClick={()=>  this.props.onClick(this.props.cartera_bruta, "Gráfica de cuenta - Cartera Bruta")}/></td>
+                <td><RaisedButton label="Ver" primary onClick={()=>  this.props.onClick(this.props.cartera_bruta, "Gráfica de cuenta - Cartera Bruta - "+ this.props.agencia)}/></td>
               </tr>
 
               <tr>
                 <td style={style.cuentasRow}>Cartera Bruta - microcrédito</td>
                 {this.getRow(this.props.cartera_bruta_microcredito, false)}
-                <td><RaisedButton label="Ver" primary onClick={()=>  this.props.onClick(this.props.cartera_bruta_microcredito, "Gráfica de cuenta - Cartera Bruta-microcrédito")}/></td>
+                <td><RaisedButton label="Ver" primary onClick={()=>  this.props.onClick(this.props.cartera_bruta_microcredito, "Gráfica de cuenta - Cartera Bruta-microcrédito - "+ this.props.agencia)}/></td>
               </tr>
 
               <tr>
                 <td style={style.cuentasRow}>Cartera en riesgo total</td>
                 {this.getRow(this.props.cartera_riesgo, false)}
-                <td><RaisedButton label="Ver" primary onClick={()=>  this.props.onClick(this.props.cartera_riesgo, "Gráfica de cuenta - Cartera en riesgo total")}/></td>
+                <td><RaisedButton label="Ver" primary onClick={()=>  this.props.onClick(this.props.cartera_riesgo, "Gráfica de cuenta - Cartera en riesgo total - "+ this.props.agencia)}/></td>
               </tr>
 
               <tr>
                 <td style={style.cuentasRow}>Reserva por préstamos incobrables</td>
                 {this.getRow(this.props.recerva_prestamo, false)}
-                <td><RaisedButton label="Ver" primary onClick={()=>  this.props.onClick(this.props.recerva_prestamo, "Gráfica de cuenta - Reserva por préstamos incobrables")}/></td>
+                <td><RaisedButton label="Ver" primary onClick={()=>  this.props.onClick(this.props.recerva_prestamo, "Gráfica de cuenta - Reserva por préstamos incobrables - "+ this.props.agencia)}/></td>
               </tr>
 
               <tr>
                 <td style={style.markRow}>Pasivos</td>
                 {this.getRow(this.props.pasivos, true)}
-                <td><RaisedButton label="Ver" primary onClick={()=>  this.props.onClick(this.props.pasivos, "Gráfica de cuenta - Pasivos")}/></td>
+                <td><RaisedButton label="Ver" primary onClick={()=>  this.props.onClick(this.props.pasivos, "Gráfica de cuenta - Pasivos - "+ this.props.agencia)}/></td>
               </tr>
 
               <tr>
                 <td style={style.cuentasRow}>Obligaciones con el público</td>
                 {this.getRow(this.props.obligaciones, false)}
-                <td><RaisedButton label="Ver" primary onClick={()=>  this.props.onClick(this.props.obligaciones, "Gráfica de cuenta - Obligaciones con el público")}/></td>
+                <td><RaisedButton label="Ver" primary onClick={()=>  this.props.onClick(this.props.obligaciones, "Gráfica de cuenta - Obligaciones con el público - "+ this.props.agencia)}/></td>
               </tr>
 
               <tr>
                 <td style={style.cuentasRow}>Depósitos a la vista</td>
                 {this.getRow(this.props.deposito_vista, false)}
-                <td><RaisedButton label="Ver" primary onClick={()=>  this.props.onClick(this.props.deposito_vista, "Gráfica de cuenta - Depósitos a la vista")}/></td>
+                <td><RaisedButton label="Ver" primary onClick={()=>  this.props.onClick(this.props.deposito_vista, "Gráfica de cuenta - Depósitos a la vista - "+ this.props.agencia)}/></td>
               </tr>
 
               <tr>
                 <td style={style.cuentasRow}>DPF + Cesantía</td>
                 {this.getRow(this.props.dpf_cesantia, false)}
-                <td><RaisedButton label="Ver" primary onClick={()=>  this.props.onClick(this.props.dpf_cesantia, "Gráfica de cuenta -")}/></td>
+                <td><RaisedButton label="Ver" primary onClick={()=>  this.props.onClick(this.props.dpf_cesantia, "Gráfica de cuenta - Dpf cesantia - " + this.props.agencia)}/></td>
               </tr>
 
               <tr>
                 <td style={style.markRow} >Patrimonio</td>
                 {this.getRow(this.props.patrimonio, true)}
-                <td><RaisedButton label="Ver" primary onClick={()=>  this.props.onClick(this.props.patrimonio, "Gráfica de cuenta - Patrimonio")}/></td>
+                <td><RaisedButton label="Ver" primary onClick={()=>  this.props.onClick(this.props.patrimonio, "Gráfica de cuenta - Patrimonio - " + this.props.agencia)}/></td>
               </tr>
 
               <tr>
                 <td style={style.cuentasRow}>Certificados de aportación</td>
                 {this.getRow(this.props.certificados_aportacion, false)}
-                <td><RaisedButton label="Ver" primary onClick={()=>  this.props.onClick(this.props.gastos_personal, "Gráfica de cuenta - Certificados de aportación")}/></td>
+                <td><RaisedButton label="Ver" primary onClick={()=>  this.props.onClick(this.props.gastos_personal, "Gráfica de cuenta - Certificados de aportación - "+ this.props.agencia)}/></td>
               </tr>
 
               <tr>
                 <td style={style.markRow}>Ingresos Totales</td>
                 {this.getRow(this.props.ingresos_totales, true)}
-                <td><RaisedButton label="Ver" primary onClick={()=>  this.props.onClick(this.props.ingresos_totales, "Gráfica de cuenta - Ingresos Totales")}/></td>
+                <td><RaisedButton label="Ver" primary onClick={()=>  this.props.onClick(this.props.ingresos_totales, "Gráfica de cuenta - Ingresos Totales - "+ this.props.agencia)}/></td>
               </tr>
 
               <tr>
                 <td style={style.cuentasRow}>Intereses y descuentos ganados</td>
                 {this.getRow(this.props.intereses_descuentos, false)}
-                <td><RaisedButton label="Ver" primary onClick={()=>  this.props.onClick(this.props.intereses_descuentos, "Gráfica de cuenta - Intereses y descuentos ganados")}/></td>
+                <td><RaisedButton label="Ver" primary onClick={()=>  this.props.onClick(this.props.intereses_descuentos, "Gráfica de cuenta - Intereses y descuentos ganados - "+ this.props.agencia)}/></td>
               </tr>
 
               <tr>
                 <td style={style.cuentasRow}>Operaciones Interfinancieras</td>
                 {this.getRow(this.props.operaciones_interfinancieras, false)}
-                <td><RaisedButton label="Ver" primary onClick={()=>  this.props.onClick(this.props.operaciones_interfinancieras, "Gráfica de cuenta - Operaciones Interfinancieras")}/></td>
+                <td><RaisedButton label="Ver" primary onClick={()=>  this.props.onClick(this.props.operaciones_interfinancieras, "Gráfica de cuenta - Operaciones Interfinancieras - "+ this.props.agencia)}/></td>
               </tr>
 
               <tr>
                 <td style={style.cuentasRow}>Intereses en inversiones</td>
                 {this.getRow(this.props.intereses_inversiones, false)}
-                <td><RaisedButton label="Ver" primary onClick={()=>  this.props.onClick(this.props.intereses_inversiones, "Gráfica de cuenta - Intereses en inversiones")}/></td>
+                <td><RaisedButton label="Ver" primary onClick={()=>  this.props.onClick(this.props.intereses_inversiones, "Gráfica de cuenta - Intereses en inversiones - "+ this.props.agencia)}/></td>
               </tr>
 
               <tr>
                 <td style={style.cuentasRow}>Intereses y descuentos de cartera de crédito</td>
                 {this.getRow(this.props.intereses_cartera_credito, false)}
-                <td><RaisedButton label="Ver" primary onClick={()=>  this.props.onClick(this.props.intereses_cartera_credito, "Gráfica de cuenta - Intereses y descuentos de cartera de crédito")}/></td>
+                <td><RaisedButton label="Ver" primary onClick={()=>  this.props.onClick(this.props.intereses_cartera_credito, "Gráfica de cuenta - Intereses y descuentos de cartera de crédito - "+ this.props.agencia)}/></td>
               </tr>
 
               <tr>
                 <td style={style.cuentasRow}>Ingresos por servicios</td>
                 {this.getRow(this.props.ingresos_servicio, false)}
-                <td><RaisedButton label="Ver" primary onClick={()=>  this.props.onClick(this.props.ingresos_servicio, "Gráfica de cuenta - Ingresos por servicios")}/></td>
+                <td><RaisedButton label="Ver" primary onClick={()=>  this.props.onClick(this.props.ingresos_servicio, "Gráfica de cuenta - Ingresos por servicios - "+ this.props.agencia)}/></td>
               </tr>
 
               <tr>
                 <td style={style.cuentasRow}>Otros ingresos</td>
                 {this.getRow(this.props.otros_ingresos, false)}
-                <td><RaisedButton label="Ver" primary onClick={()=>  this.props.onClick(this.props.otros_ingresos, "Gráfica de cuenta - Otros ingresos")}/></td>
+                <td><RaisedButton label="Ver" primary onClick={()=>  this.props.onClick(this.props.otros_ingresos, "Gráfica de cuenta - Otros ingresos - "+ this.props.agencia)}/></td>
               </tr>
 
               <tr>
                 <td style={style.markRow}>Gastos Totales</td>
                 {this.getRow(this.props.gastos_totales, true)}
-                <td><RaisedButton label="Ver" primary onClick={()=>  this.props.onClick(this.props.gastos_totales, "Gráfica de cuenta - Gastos Totales")}/></td>
+                <td><RaisedButton label="Ver" primary onClick={()=>  this.props.onClick(this.props.gastos_totales, "Gráfica de cuenta - Gastos Totales - "+ this.props.agencia)}/></td>
               </tr>
 
               <tr>
                 <td style={style.cuentasRow}>Gastos Financieros</td>
                 {this.getRow(this.props.gastos_financieros, false)}
-                <td><RaisedButton label="Ver" primary onClick={()=>  this.props.onClick(this.props.gastos_financieros, "Gráfica de cuenta - Gastos Financieros")}/></td>
+                <td><RaisedButton label="Ver" primary onClick={()=>  this.props.onClick(this.props.gastos_financieros, "Gráfica de cuenta - Gastos Financieros - "+ this.props.agencia)}/></td>
               </tr>
 
               <tr>
                 <td style={style.cuentasRow}>Intereses Causados</td>
                 {this.getRow(this.props.intereses_causados, false)}
-                <td><RaisedButton label="Ver" primary onClick={()=>  this.props.onClick(this.props.intereses_causados, "Gráfica de cuenta - Intereses Causados")}/></td>
+                <td><RaisedButton label="Ver" primary onClick={()=>  this.props.onClick(this.props.intereses_causados, "Gráfica de cuenta - Intereses Causados - "+ this.props.agencia)}/></td>
               </tr>
 
               <tr>
                 <td style={style.cuentasRow}>Gastos de Provisión</td>
                 {this.getRow(this.props.gastos_provision, false)}
-                <td><RaisedButton label="Ver" primary onClick={()=>  this.props.onClick(this.props.gastos_provision, "Gráfica de cuenta - Gastos de Provisión")}/></td>
+                <td><RaisedButton label="Ver" primary onClick={()=>  this.props.onClick(this.props.gastos_provision, "Gráfica de cuenta - Gastos de Provisión - "+ this.props.agencia)}/></td>
               </tr>
 
               <tr>
                 <td style={style.cuentasRow}>Gastos Operacionales</td>
                 {this.getRow(this.props.gastos_operacionales, false)}
-                <td><RaisedButton label="Ver" primary onClick={()=>  this.props.onClick(this.props.gastos_operacionales, "Gráfica de cuenta - Gastos Operacionales")}/></td>
+                <td><RaisedButton label="Ver" primary onClick={()=>  this.props.onClick(this.props.gastos_operacionales, "Gráfica de cuenta - Gastos Operacionales - "+ this.props.agencia)}/></td>
               </tr>
 
               <tr>
                 <td style={style.cuentasRow}>Gastos de Personal</td>
                 {this.getRow(this.props.gastos_personal, false)}
-                <td><RaisedButton label="Ver" primary onClick={()=>  this.props.onClick(this.props.gastos_personal, "Gráfica de cuenta - Gastos de Personal")}/></td>
+                <td><RaisedButton label="Ver" primary onClick={()=>  this.props.onClick(this.props.gastos_personal, "Gráfica de cuenta - Gastos de Personal - "+ this.props.agencia)}/></td>
+              </tr>
+
+              <tr>
+                <td style={style.markRow}>Utilidades</td>
+                {this.getRow(this.props.utilidades, true)}
+                <td><RaisedButton label="Ver" primary onClick={()=>  this.props.onClick(this.props.utilidades, "Gráfica de cuenta - Utilidades - "+ this.props.agencia)}/></td>
               </tr>
               </tbody>
             </table>
