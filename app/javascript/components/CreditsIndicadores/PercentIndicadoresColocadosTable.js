@@ -58,6 +58,7 @@ class PercentIndicadoresColocadosTable extends React.Component{
     const options = {
       toolBar: this.createCustomToolBar
     };
+    let data = this.props.data.pop()
     return(
       <div>
         <h4 className="top-space" style={{color: "#FFC107"}}>{ this.props.title }</h4>

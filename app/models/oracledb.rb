@@ -67,7 +67,7 @@ class Oracledb < ApplicationRecord
       t.dias_morocidad DIASMORA_PD,
       t.provision_especifica PROVISION_REQUERIDA,
       (
-       CASE (SELECT MAX(CODIGO_PRINCIPAL) FROM SOCIOS_GARANTIAS_REALES
+       CASE (SELECT MAX(CODIGO_PRINCIPAL) FROM CRED_GARANTIAS_REALES
              WHERE NUMERO_CREDITO = c.NUMERO_CREDITO)
              WHEN 1 THEN 'HIPOTECA'
              WHEN 2 THEN 'PRENDARIA'
@@ -76,11 +76,11 @@ class Oracledb < ApplicationRecord
              ELSE 'GARANTIA SOLIDARIA'
         END
        ) TIPO_GARANTIA,
-       (SELECT MAX(TB.DESCRIPCION) FROM SOCIOS_TIPOS_BIENES TB, SOCIOS_GARANTIAS_REALES GR
+       (SELECT MAX(TB.DESCRIPCION) FROM SOCIOS_TIPOS_BIENES TB, CRED_GARANTIAS_REALES GR
         WHERE TB.CODIGO_BIEN = GR.CODIGO_BIEN
         AND GR.NUMERO_CREDITO = c.NUMERO_CREDITO
        )GARANTIA_REAL,
-       (SELECT APELLIDOS||' '||NOMBRES FROM SOCIOS_GARANTIAS_FIDUCIARIAS
+       (SELECT NUMERO_ID FROM CRED_GARANTIAS_FIDUCIARIAS
         WHERE NUM_REGISTRO = 1
         AND NUMERO_CREDITO = c.NUMERO_CREDITO
        )GARANTIA_FIDUCIARIA,
@@ -88,12 +88,12 @@ class Oracledb < ApplicationRecord
       FROM SOCIOS_GARANTES_DIRECCIONES WHERE CODIGO_SOCIO=c.CODIGO_SOCIO AND NUM_REGISTRO=(select max(num_registro)
       from SOCIOS_GARANTES_DIRECCIONES where codigo_socio=c.codigo_socio) and rownum=1
              AND TRIM(NUMERO_ID_GARANTE) IN
-              (SELECT TRIM(NUMERO_ID) FROM SOCIOS_GARANTIAS_FIDUCIARIAS  where codigo_socio=c.codigo_socio and numero_credito=c.numero_credito and num_registro=2))  as DIR_GARANTE,
+              (SELECT TRIM(NUMERO_ID) FROM CRED_GARANTIAS_FIDUCIARIAS  where codigo_socio=c.codigo_socio and numero_credito=c.numero_credito and num_registro=2))  as DIR_GARANTE,
       (SELECT gara_telefonos
       FROM SOCIOS_GARANTES_DIRECCIONES WHERE CODIGO_SOCIO=c.CODIGO_SOCIO AND NUM_REGISTRO=(select max(num_registro)
       from SOCIOS_GARANTES_DIRECCIONES where codigo_socio=c.codigo_socio) and rownum=1
              AND TRIM(NUMERO_ID_GARANTE) IN
-              (SELECT TRIM(NUMERO_ID) FROM SOCIOS_GARANTIAS_FIDUCIARIAS  where codigo_socio=c.codigo_socio and numero_credito=c.numero_credito and num_registro=2))  as TELF_GARANTE,
+              (SELECT TRIM(NUMERO_ID) FROM CRED_GARANTIAS_FIDUCIARIAS  where codigo_socio=c.codigo_socio and numero_credito=c.numero_credito and num_registro=2))  as TELF_GARANTE,
       t.calificacion_propia CALIFICACION_PROPIA,
       t.valor_cartera_castigada VALOR_CARTERA_CASTIGADA,
       (case when (select max(valor) from cred_ctas_contables_temp_x_usu where codigo_socio=c.codigo_socio and descripcion in ('TERRENOS','CASAS','VEHICULOS'))=0 then 'NO'
@@ -116,19 +116,19 @@ class Oracledb < ApplicationRecord
             when (select max(valor) from cred_ctas_contables_temp_x_usu where codigo_socio=c.codigo_socio and descripcion in ('VEHICULOS'))>0 then 'V'
             else 'NO DISPONE' end)BIEN
             ,(SELECT MIN(DESCRIPCION_GRUPO) FROM CRED_GRUPO_SEGMENTOS_CREDITO G WHERE G.CODIGO_GRUPO = c.codigo_grupo) AS  TIPO_CREDITO,
-             (select apellidos||' '||nombres from socios_garantias_fiduciarias where c.numero_credito=numero_credito and num_registro=1)nom_garante1,
-            (select numero_id from socios_garantias_fiduciarias where c.numero_credito=numero_credito and num_registro=1)ci_garante_1,
+             (select numero_id from cred_garantias_fiduciarias where c.numero_credito=numero_credito and num_registro=1)nom_garante1,
+            (select numero_id from cred_garantias_fiduciarias where c.numero_credito=numero_credito and num_registro=1)ci_garante_1,
             (select sc.codigo_numero_id from socios so, socios_datos_conyuges sc where so.codigo_socio=sc.codigo_socio
-      and so.mcli_numero_id=(select numero_id from socios_garantias_fiduciarias where c.numero_credito=numero_credito and num_registro=1))
+      and so.mcli_numero_id=(select numero_id from cred_garantias_fiduciarias where c.numero_credito=numero_credito and num_registro=1))
        cony_garante1,
-            (select apellidos||' '||nombres from socios_garantias_fiduciarias where c.numero_credito=numero_credito and num_registro=2)nom_garante2,
-            (select numero_id from socios_garantias_fiduciarias where c.numero_credito=numero_credito and num_registro=2)ci_garante2,
+            (select numero_id from cred_garantias_fiduciarias where c.numero_credito=numero_credito and num_registro=2)nom_garante2,
+            (select numero_id from cred_garantias_fiduciarias where c.numero_credito=numero_credito and num_registro=2)ci_garante2,
             (select sc.codigo_numero_id from socios so, socios_datos_conyuges sc where so.codigo_socio=sc.codigo_socio
       and so.mcli_numero_id=(select numero_id from socios_garantias_fiduciarias where c.numero_credito=numero_credito and num_registro=2))
        cony_garante2,
-      (select MAX(gara_avaluo_comercial) from socios_garantias_reales where numero_credito=t.numero_operacion) valor_avaluo_comercial,
-       (select MAX(gara_avaluo_catastral) from socios_garantias_reales where numero_credito=t.numero_operacion) valor_avaluo_catastral,
-       (select MAX(gara_avaluo) from socios_garantias_reales where numero_credito=t.numero_operacion) avaluo_titulo,
+      (select MAX(gara_avaluo_comercial) from cred_garantias_reales where numero_credito=t.numero_operacion) valor_avaluo_comercial,
+       (select MAX(gara_avaluo_catastral) from cred_garantias_reales where numero_credito=t.numero_operacion) valor_avaluo_catastral,
+       (select MAX(gara_avaluo) from cred_garantias_reales where numero_credito=t.numero_operacion) avaluo_titulo,
        t.interes_ordinario interes,
        t.interes_sobre_mora mora,
        t.valor_gtos_recup_cart_jud gastos_judiciales,
@@ -213,7 +213,7 @@ class Oracledb < ApplicationRecord
       t.dias_morocidad DIASMORA_PD,
       t.provision_especifica PROVISION_REQUERIDA,
       (
-       CASE (SELECT MAX(CODIGO_PRINCIPAL) FROM SOCIOS_GARANTIAS_REALES
+       CASE (SELECT MAX(CODIGO_PRINCIPAL) FROM CRED_GARANTIAS_REALES
              WHERE NUMERO_CREDITO = c.NUMERO_CREDITO)
              WHEN 1 THEN 'HIPOTECA'
              WHEN 2 THEN 'PRENDARIA'
@@ -222,11 +222,11 @@ class Oracledb < ApplicationRecord
              ELSE 'GARANTIA SOLIDARIA'
         END
        ) TIPO_GARANTIA,
-       (SELECT MAX(TB.DESCRIPCION) FROM SOCIOS_TIPOS_BIENES TB, SOCIOS_GARANTIAS_REALES GR
+       (SELECT MAX(TB.DESCRIPCION) FROM SOCIOS_TIPOS_BIENES TB, CRED_GARANTIAS_REALES GR
         WHERE TB.CODIGO_BIEN = GR.CODIGO_BIEN
         AND GR.NUMERO_CREDITO = c.NUMERO_CREDITO
        )GARANTIA_REAL,
-       (SELECT APELLIDOS||' '||NOMBRES FROM SOCIOS_GARANTIAS_FIDUCIARIAS
+       (SELECT NUMERO_ID FROM CRED_GARANTIAS_FIDUCIARIAS
         WHERE NUM_REGISTRO = 1
         AND NUMERO_CREDITO = c.NUMERO_CREDITO
        )GARANTIA_FIDUCIARIA,
@@ -234,12 +234,12 @@ class Oracledb < ApplicationRecord
       FROM SOCIOS_GARANTES_DIRECCIONES WHERE CODIGO_SOCIO=c.CODIGO_SOCIO AND NUM_REGISTRO=(select max(num_registro)
       from SOCIOS_GARANTES_DIRECCIONES where codigo_socio=c.codigo_socio) and rownum=1
              AND TRIM(NUMERO_ID_GARANTE) IN
-              (SELECT TRIM(NUMERO_ID) FROM SOCIOS_GARANTIAS_FIDUCIARIAS  where codigo_socio=c.codigo_socio and numero_credito=c.numero_credito and num_registro=2))  as DIR_GARANTE,
+              (SELECT TRIM(NUMERO_ID) FROM CRED_GARANTIAS_FIDUCIARIAS  where codigo_socio=c.codigo_socio and numero_credito=c.numero_credito and num_registro=2))  as DIR_GARANTE,
       (SELECT gara_telefonos
       FROM SOCIOS_GARANTES_DIRECCIONES WHERE CODIGO_SOCIO=c.CODIGO_SOCIO AND NUM_REGISTRO=(select max(num_registro)
       from SOCIOS_GARANTES_DIRECCIONES where codigo_socio=c.codigo_socio) and rownum=1
              AND TRIM(NUMERO_ID_GARANTE) IN
-              (SELECT TRIM(NUMERO_ID) FROM SOCIOS_GARANTIAS_FIDUCIARIAS  where codigo_socio=c.codigo_socio and numero_credito=c.numero_credito and num_registro=2))  as TELF_GARANTE,
+              (SELECT TRIM(NUMERO_ID) FROM CRED_GARANTIAS_FIDUCIARIAS  where codigo_socio=c.codigo_socio and numero_credito=c.numero_credito and num_registro=2))  as TELF_GARANTE,
       t.calificacion_propia CALIFICACION_PROPIA,
       t.valor_cartera_castigada VALOR_CARTERA_CASTIGADA,
       (case when (select max(valor) from cred_ctas_contables_temp_x_usu where codigo_socio=c.codigo_socio and descripcion in ('TERRENOS','CASAS','VEHICULOS'))=0 then 'NO'
@@ -262,19 +262,19 @@ class Oracledb < ApplicationRecord
             when (select max(valor) from cred_ctas_contables_temp_x_usu where codigo_socio=c.codigo_socio and descripcion in ('VEHICULOS'))>0 then 'V'
             else 'NO DISPONE' end)BIEN
             ,(SELECT MIN(DESCRIPCION_GRUPO) FROM CRED_GRUPO_SEGMENTOS_CREDITO G WHERE G.CODIGO_GRUPO = c.codigo_grupo) AS  TIPO_CREDITO,
-             (select apellidos||' '||nombres from socios_garantias_fiduciarias where c.numero_credito=numero_credito and num_registro=1)nom_garante1,
-            (select numero_id from socios_garantias_fiduciarias where c.numero_credito=numero_credito and num_registro=1)ci_garante_1,
+             (select NUMERO_ID from cred_garantias_fiduciarias where c.numero_credito=numero_credito and num_registro=1)nom_garante1,
+            (select numero_id from cred_garantias_fiduciarias where c.numero_credito=numero_credito and num_registro=1)ci_garante_1,
             (select sc.codigo_numero_id from socios so, socios_datos_conyuges sc where so.codigo_socio=sc.codigo_socio
-      and so.mcli_numero_id=(select numero_id from socios_garantias_fiduciarias where c.numero_credito=numero_credito and num_registro=1))
+      and so.mcli_numero_id=(select numero_id from cred_garantias_fiduciarias where c.numero_credito=numero_credito and num_registro=1))
        cony_garante1,
             (select apellidos||' '||nombres from socios_garantias_fiduciarias where c.numero_credito=numero_credito and num_registro=2)nom_garante2,
-            (select numero_id from socios_garantias_fiduciarias where c.numero_credito=numero_credito and num_registro=2)ci_garante2,
+            (select numero_id from cred_garantias_fiduciarias where c.numero_credito=numero_credito and num_registro=2)ci_garante2,
             (select sc.codigo_numero_id from socios so, socios_datos_conyuges sc where so.codigo_socio=sc.codigo_socio
-      and so.mcli_numero_id=(select numero_id from socios_garantias_fiduciarias where c.numero_credito=numero_credito and num_registro=2))
+      and so.mcli_numero_id=(select numero_id from cred_garantias_fiduciarias where c.numero_credito=numero_credito and num_registro=2))
        cony_garante2,
-      (select MAX(gara_avaluo_comercial) from socios_garantias_reales where numero_credito=t.numero_operacion) valor_avaluo_comercial,
-       (select MAX(gara_avaluo_catastral) from socios_garantias_reales where numero_credito=t.numero_operacion) valor_avaluo_catastral,
-       (select MAX(gara_avaluo) from socios_garantias_reales where numero_credito=t.numero_operacion) avaluo_titulo,
+      (select MAX(gara_avaluo_comercial) from cred_garantias_reales where numero_credito=t.numero_operacion) valor_avaluo_comercial,
+       (select MAX(gara_avaluo_catastral) from cred_garantias_reales where numero_credito=t.numero_operacion) valor_avaluo_catastral,
+       (select MAX(gara_avaluo) from cred_garantias_reales where numero_credito=t.numero_operacion) avaluo_titulo,
        t.interes_ordinario interes,
        t.interes_sobre_mora mora,
        t.valor_gtos_recup_cart_jud gastos_judiciales,

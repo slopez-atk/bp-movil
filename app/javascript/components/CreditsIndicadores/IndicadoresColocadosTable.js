@@ -24,24 +24,28 @@ class IndicadoresColocadosTable extends React.Component {
   calcularTotales() {
     let cantidad = 0;
     let monto_real = 0;
-    let row = {clave: 'Total',
-      cantidad: cantidad,
-      cap_activo: cap_activo,
-      cap_ndevenga:cap_ndevenga,
-      cartera_riesgo: cartera_riesgo,
-      cap_vencido: cap_vencido
-    };
-    let data = this.props.data;
-    data.push(row);
+
+    let cap_activo = 0;
+    let cap_ndevenga = 0;
+    let cartera_riesgo = 0;
+    let cap_vencido = 0;
+
 
     for (let i = 0; i < this.props.data.length; i++) {
       monto_real += parseFloat(this.props.data[i]["monto_real"]);
       cantidad += parseFloat(this.props.data[i]["cantidad"]);
 
-      cantidad += parseFloat(this.props.data[i]["monto_real"]);
-      cantidad += parseFloat(this.props.data[i]["cantidad"]);
-      cantidad += parseFloat(this.props.data[i]["cantidad"]);
+
     }
+
+    let row = {clave: 'Total',
+      cantidad: cantidad,
+      cap_activo: cap_activo,
+      monto_real:monto_real,
+    };
+    let data = this.props.data;
+    data.push(row);
+
     return [cantidad, monto_real];
   }
 
